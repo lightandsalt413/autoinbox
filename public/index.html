@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="AutoInbox — Smart AI Auto-Reply. Your AI that replies exactly like you.">
+  <meta name="theme-color" content="#0A0A0B">
+  <title>AutoInbox — Smart AI Auto-Reply</title>
+  <link rel="manifest" href="/manifest.json">
+  <link rel="icon" href="/icons/icon-192.png">
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <!-- Landing -->
+  <div id="page-landing" class="page">
+    <canvas id="particles"></canvas>
+
+    <!-- Top Nav -->
+    <nav class="nav">
+      <div class="logo"><span>AutoInbox</span></div>
+      <div class="nav-center">
+        <a href="#features" class="active">Features</a>
+        <a href="#how">How It Works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="nav-right">
+        <button class="btn-ghost btn-sm" id="btn-goto-login">Log In</button>
+        <button class="btn-accent btn-sm" id="btn-goto-register">Get Started</button>
+      </div>
+    </nav>
+
+    <!-- Hero Split -->
+    <section class="hero">
+      <div class="hero-left">
+        <div class="hero-eyebrow">AI-Powered Auto-Reply</div>
+        <h1>Stop Typing.<br><span class="glow-text">Let Your AI Clone Reply.</span></h1>
+        <p class="hero-desc">Kopyahin ng AI ang exact style mo mag-reply — same tone, same words, same vibe. Para ikaw talaga ang sumasagot. <strong>Always.</strong></p>
+        <div class="hero-btns">
+          <button class="btn-accent btn-xl pulse-glow" id="btn-hero-start">Get Started</button>
+          <button class="btn-ghost btn-xl" onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})">View Features</button>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="preview-window">
+          <div class="pw-bar"><span class="pw-dot r"></span><span class="pw-dot y"></span><span class="pw-dot g"></span><span class="pw-title">AutoInbox Dashboard</span></div>
+          <div class="pw-body">
+            <div class="pw-msg left"><img class="pw-avatar-img" src="https://ui-avatars.com/api/?name=Maria+Santos&background=C5A55A&color=fff&size=64&bold=true" alt="MS"><div class="pw-bubble"><strong>maria.santos@gmail.com</strong><p>Hi, available ka pa ba? Magkano ang rate mo for a basic website?</p><span class="pw-time">2:34 PM</span></div></div>
+            <div class="pw-msg right"><div class="pw-bubble ai"><div class="pw-ai-tag">AI Clone Draft</div><p>Hi Maria! Yes po, available pa ako. Ang basic website po starts at ₱8,000, usually 5-7 days completion. Salamat po!</p><span class="pw-time">Drafted 3s ago</span></div></div>
+            <div class="pw-action"><button class="btn-accent btn-sm">Approve & Send</button><button class="btn-ghost btn-sm">Edit</button><button class="btn-ghost btn-sm">Regen</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section class="section" id="features">
+      <div class="section-tag">Features</div>
+      <h2 class="section-h">Powerful Features for <span class="glow-text">Smarter Replies</span></h2>
+      <div class="feat-grid">
+        <div class="feat-card"><div class="feat-icon">01</div><h4>Voice Cloning AI</h4><p>Learns your exact tone, language, and emoji style from real reply samples.</p></div>
+        <div class="feat-card"><div class="feat-icon">02</div><h4>Instant Auto-Reply</h4><p>AI drafts replies in seconds. No more late responses or lost clients.</p></div>
+        <div class="feat-card"><div class="feat-icon">03</div><h4>Military Encryption</h4><p>AES-256 encryption. Your emails and data are 100% secure and private.</p></div>
+        <div class="feat-card"><div class="feat-icon">04</div><h4>Review & Approve</h4><p>Edit, regenerate, or approve every AI draft before it gets sent.</p></div>
+        <div class="feat-card"><div class="feat-icon">05</div><h4>24/7 Monitoring</h4><p>Works while you sleep. Never miss a client message again.</p></div>
+        <div class="feat-card"><div class="feat-icon">06</div><h4>Multi-Platform</h4><p>Gmail live now. Facebook, Instagram, and Messenger coming soon.</p></div>
+      </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="section" id="how">
+      <div class="section-tag">How It Works</div>
+      <h2 class="section-h">3 Steps. 2 Minutes. <span class="glow-text">Done.</span></h2>
+      <div class="steps-row">
+        <div class="step-card"><div class="step-num">1</div><h4>Connect Your Gmail</h4><p>Link your email with a secure App Password. Your real password never leaves your device.</p></div>
+        <div class="step-arrow">→</div>
+        <div class="step-card"><div class="step-num">2</div><h4>Train Your AI Clone</h4><p>Paste 3-5 of your real replies. The AI learns your tone, language, style — everything.</p></div>
+        <div class="step-arrow">→</div>
+        <div class="step-card"><div class="step-num">3</div><h4>Sit Back & Relax</h4><p>AI drafts replies that sound like you. Review, edit if needed, approve with one click.</p></div>
+      </div>
+    </section>
+
+    <!-- Dashboard Preview -->
+    <section class="section dash-preview-section">
+      <div class="section-tag">Dashboard Preview</div>
+      <div class="dash-mock">
+        <div class="dm-bar"><span class="dm-title">AutoInbox Dashboard</span><span class="dm-date">May 18, 2026 · 10:00 AM</span></div>
+        <div class="dm-body">
+          <div class="dm-sidebar">
+            <div class="dm-nav-item active">Overview</div>
+            <div class="dm-nav-item">Inbox</div>
+            <div class="dm-nav-item">Voice Clone</div>
+            <div class="dm-nav-item">Settings</div>
+          </div>
+          <div class="dm-main">
+            <h4>Welcome back, Carlo!</h4>
+            <p>Here's what's happening with your inbox today.</p>
+            <div class="dm-stats">
+              <div class="dm-stat"><span class="dm-stat-num">24</span><span>Total Replies</span></div>
+              <div class="dm-stat"><span class="dm-stat-num">18</span><span>Auto-Drafted</span></div>
+              <div class="dm-stat"><span class="dm-stat-num">5</span><span>Approved</span></div>
+              <div class="dm-stat"><span class="dm-stat-num">98%</span><span>Accuracy</span></div>
+            </div>
+            <div class="dm-inbox-list">
+              <div class="dm-inbox-item"><img src="https://ui-avatars.com/api/?name=Juan+Reyes&background=1e1e1e&color=C5A55A&size=48" alt="JR"><div><strong>Juan Reyes</strong> <small>juan.reyes@gmail.com</small><p>Interested sa SMM services mo...</p></div><span class="dm-tag sent">Sent</span></div>
+              <div class="dm-inbox-item"><img src="https://ui-avatars.com/api/?name=Ana+Lim&background=1e1e1e&color=C5A55A&size=48" alt="AL"><div><strong>Ana Lim</strong> <small>ana.lim@yahoo.com</small><p>Magkano po yung logo design?</p></div><span class="dm-tag draft">Draft</span></div>
+              <div class="dm-inbox-item"><img src="https://ui-avatars.com/api/?name=Kristine+Bautista&background=1e1e1e&color=C5A55A&size=48" alt="KB"><div><strong>Kristine Bautista</strong> <small>kbautista@outlook.com</small><p>Available ka ba for a rush project?</p></div><span class="dm-tag pending">Pending</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Before vs After -->
+    <section class="section" id="compare">
+      <div class="section-tag">The Difference</div>
+      <h2 class="section-h">Before vs After <span class="glow-text">AutoInbox</span></h2>
+      <div class="bva-grid">
+        <div class="bva-card before">
+          <div class="bva-label">Without AutoInbox</div>
+          <ul class="bva-list"><li>2+ hours daily replying</li><li>Slow response = lost clients</li><li>No replies while you sleep</li><li>Copy-paste the same answers</li><li>Missed opportunities everyday</li></ul>
+          <div class="bva-stat">~120 mins<span>wasted daily</span></div>
+        </div>
+        <div class="bva-vs"><div class="vs-circle">VS</div></div>
+        <div class="bva-card after">
+          <div class="bva-label">With AutoInbox</div>
+          <ul class="bva-list"><li>AI replies in seconds — 24/7</li><li>Instant response = happy clients</li><li>Works while you sleep</li><li>Personalized — sounds like YOU</li><li>More sales, less stress</li></ul>
+          <div class="bva-stat glow">~10 mins<span>approve & done</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="section" id="pricing">
+      <div class="section-tag">Pricing</div>
+      <h2 class="section-h">Simple. Transparent. <span class="glow-text">Affordable.</span></h2>
+      <p class="section-p">Start free. Upgrade when your business grows.</p>
+      <div class="price-row">
+        <div class="price-card"><h4>Free</h4><div class="price-val">₱0<span>/mo</span></div><ul><li>10 AI replies / month</li><li>1 email account</li><li>Basic voice clone</li><li>Dashboard access</li><li class="dim">— Priority AI</li><li class="dim">— FB & IG integration</li></ul><button class="btn-ghost btn-full" id="price-free">Get Started</button></div>
+        <div class="price-card pop"><div class="pop-tag">Best Value</div><h4>Basic</h4><div class="price-val">₱299<span>/mo</span></div><ul><li>200 AI replies / month</li><li>1 email account</li><li>Full voice clone</li><li>Edit & customize drafts</li><li>Priority AI speed</li><li class="dim">— FB & IG (coming soon)</li></ul><button class="btn-accent btn-full pulse-glow" id="price-basic">Start Free Trial</button></div>
+        <div class="price-card"><h4>Pro</h4><div class="price-val">₱599<span>/mo</span></div><ul><li>Unlimited AI replies</li><li>3 email accounts</li><li>Full voice clone</li><li>Edit & customize drafts</li><li>Fastest AI priority</li><li>FB & IG (coming soon)</li></ul><button class="btn-ghost btn-full" id="price-pro">Start Free Trial</button></div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section">
+      <div class="section-tag">Testimonials</div>
+      <h2 class="section-h">Loved by Filipino Professionals</h2>
+      <div class="testi-row">
+        <div class="testi-card"><p>"Sobrang laking tulong! Dati 2 hours sa replies, ngayon 10 mins na lang. Parang ako pa rin ang sumasagot!"</p><div class="testi-who"><img class="testi-av-img" src="https://ui-avatars.com/api/?name=Maria+Garcia&background=C5A55A&color=fff&size=80&bold=true" alt="MG"><div><strong>Maria Garcia</strong><small>Freelance Designer · Cebu</small></div></div></div>
+        <div class="testi-card"><p>"Game changer for my online selling. Auto-reply sa 'available pa ba?' — finally! Ang galing."</p><div class="testi-who"><img class="testi-av-img" src="https://ui-avatars.com/api/?name=Jay+Reyes&background=C5A55A&color=fff&size=80&bold=true" alt="JR"><div><strong>Jay Reyes</strong><small>Online Seller · Manila</small></div></div></div>
+        <div class="testi-card"><p>"Kahit Taglish ang reply ko, kino-copy ng AI yung exact style ko. Hindi halata na bot!"</p><div class="testi-who"><img class="testi-av-img" src="https://ui-avatars.com/api/?name=Ana+Lim&background=C5A55A&color=fff&size=80&bold=true" alt="AL"><div><strong>Ana Lim</strong><small>Virtual Assistant · Davao</small></div></div></div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section narrow" id="faq">
+      <div class="section-tag">FAQ</div>
+      <h2 class="section-h">Common Questions</h2>
+      <div class="faq-list">
+        <div class="faq-item"><button class="faq-q">Safe ba ang data ko?</button><div class="faq-a"><p>Absolutely. AES-256 encryption (military-grade). Hindi namin nababasa ang emails mo.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Anong email ang supported?</button><div class="faq-a"><p>Gmail currently supported via App Password. Yahoo at Outlook coming soon.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Pwede ko ba i-edit yung AI reply?</button><div class="faq-a"><p>Oo! Lahat ng drafts pwede mong i-edit, i-regenerate, or i-skip.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Paano mag-cancel?</button><div class="faq-a"><p>Anytime — walang lock-in. Disconnect email, delete account. Done.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Kailangan ba ng technical skills?</button><div class="faq-a"><p>Hindi. Kung kaya mong mag-copy-paste, kaya mong gamitin ang AutoInbox.</p></div></div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section cta-section">
+      <h2 class="cta-h">Ready to Clone<br><span class="glow-text">Your Replies?</span></h2>
+      <p class="section-p">Join 500+ Filipino professionals. Start in 2 minutes — libre lang.</p>
+      <button class="btn-accent btn-xl pulse-glow" id="btn-final-cta">Create Your AI Clone</button>
+    </section>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <div class="footer-brand"><div class="logo"><span>AutoInbox</span></div><p>Smart AI Auto-Reply para sa Pinoy freelancers at online sellers.</p></div>
+        <div class="footer-col"><h5>Product</h5><a href="#features">Features</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div>
+        <div class="footer-col"><h5>Legal</h5><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+        <div class="footer-col"><h5>Connect</h5><a href="#">Facebook</a><a href="#">Email Us</a></div>
+      </div>
+      <div class="footer-bot">Built in Philippines · © 2026 AutoInbox</div>
+    </footer>
+  </div>
+
+  <!-- Auth Pages (unchanged) -->
+  <div id="page-login" class="page hidden"><div class="auth-wrap"><div class="auth-box glass"><div class="auth-top"><div class="logo"><span>AutoInbox</span></div><h2>Welcome Back</h2><p>Log in to your dashboard</p></div><form id="form-login" class="auth-form"><div class="fg"><label for="login-email">Email</label><input type="email" id="login-email" placeholder="you@email.com" required></div><div class="fg"><label for="login-pass">Password</label><input type="password" id="login-pass" placeholder="••••••••" required></div><div id="login-error" class="form-err hidden"></div><button type="submit" class="btn-accent btn-full">Log In</button></form><p class="auth-sw">No account? <a href="#" id="link-register">Sign Up Free</a></p></div></div></div>
+  <div id="page-register" class="page hidden"><div class="auth-wrap"><div class="auth-box glass"><div class="auth-top"><div class="logo"><span>AutoInbox</span></div><h2>Create Account</h2><p>2 minutes to get started</p></div><form id="form-register" class="auth-form"><div class="fg"><label for="reg-name">Your Name</label><input type="text" id="reg-name" placeholder="Juan Dela Cruz" required></div><div class="fg"><label for="reg-email">Email</label><input type="email" id="reg-email" placeholder="you@email.com" required></div><div class="fg"><label for="reg-pass">Password</label><input type="password" id="reg-pass" placeholder="Min 6 characters" required minlength="6"></div><div id="reg-error" class="form-err hidden"></div><button type="submit" class="btn-accent btn-full">Create Account</button></form><p class="auth-sw">Have an account? <a href="#" id="link-login">Log In</a></p></div></div></div>
+  <div id="page-onboard" class="page hidden"><div class="auth-wrap"><div class="auth-box glass" style="max-width:560px"><div class="ob-prog"><div class="ob-bar"><div class="ob-fill" id="onboard-progress"></div></div><span id="onboard-step-label">Step 1 of 3</span></div>
+    <div class="onboard-step" id="onboard-step-1"><h2>Connect Email</h2><p>Link your Gmail para ma-monitor ng AI ang inbox mo.</p><div class="fg"><label for="ob-email">Gmail Address</label><input type="email" id="ob-email" placeholder="you@gmail.com"></div><div class="fg"><label for="ob-pass">App Password <a href="https://myaccount.google.com/apppasswords" target="_blank" class="hl">Get here →</a></label><input type="password" id="ob-pass" placeholder="xxxx xxxx xxxx xxxx"></div><div id="ob-email-error" class="form-err hidden"></div><div class="ob-btns"><button class="btn-ghost" id="ob-skip-1">Skip</button><button class="btn-accent" id="ob-next-1">Connect</button></div></div>
+    <div class="onboard-step hidden" id="onboard-step-2"><h2>Train AI Clone</h2><p>Paste <strong>3+ real replies</strong> mo.</p><div id="voice-samples-container"><div class="fg sg"><label>Sample 1</label><textarea class="voice-sample" rows="3" placeholder='e.g. "Hi! Yes po available..."'></textarea></div><div class="fg sg"><label>Sample 2</label><textarea class="voice-sample" rows="3" placeholder='e.g. "Thank you po sa order!"'></textarea></div><div class="fg sg"><label>Sample 3</label><textarea class="voice-sample" rows="3" placeholder='e.g. "Hello po! Pasensya na..."'></textarea></div></div><button class="btn-ghost btn-sm" id="ob-add-sample">+ Add More</button><div id="ob-voice-error" class="form-err hidden"></div><div class="ob-btns"><button class="btn-ghost" id="ob-skip-2">Skip</button><button class="btn-accent" id="ob-next-2">Analyze Style</button></div></div>
+    <div class="onboard-step hidden" id="onboard-step-3"><div style="text-align:center;padding:20px 0"><h2>All Set!</h2><p style="color:var(--t2);margin:8px 0 20px">Your AI clone is ready.</p><div id="voice-profile-preview" class="profile-box hidden"><h4>Voice Profile</h4><div id="profile-details"></div></div><button class="btn-accent btn-xl" id="ob-finish">Go to Dashboard</button></div></div>
+  </div></div></div>
+
+  <!-- Dashboard -->
+  <div id="page-dashboard" class="page hidden">
+    <aside class="sidebar"><div class="sb-top"><div class="logo-sm">AutoInbox</div></div><nav class="sb-nav"><button class="nav-item active" data-page="inbox" id="nav-inbox"><span></span> Inbox <span class="badge hidden" id="inbox-badge">0</span></button><button class="nav-item" data-page="voice" id="nav-voice"><span></span> Voice Clone</button><button class="nav-item" data-page="settings" id="nav-settings"><span></span> Settings</button></nav><div class="sb-bot"><div class="mon-st"><span class="status-dot" id="monitor-dot"></span><span id="monitor-label">Email</span></div><button class="btn-ghost btn-sm" id="btn-logout">Logout</button></div></aside>
+    <main class="dash-main">
+      <section id="dash-inbox" class="dash-section"><div class="dash-head"><h1>Inbox</h1><div class="stats-row"><div class="stat-card"><span class="stat-num" id="stat-today">0</span><span class="stat-lbl">Today</span></div><div class="stat-card warn"><span class="stat-num" id="stat-pending">0</span><span class="stat-lbl">Pending</span></div><div class="stat-card good"><span class="stat-num" id="stat-sent">0</span><span class="stat-lbl">Sent</span></div></div></div><div class="filter-tabs"><button class="tab active" data-filter="all">All</button><button class="tab" data-filter="drafted">Drafted</button><button class="tab" data-filter="pending">Pending</button><button class="tab" data-filter="sent">Sent</button><button class="tab" data-filter="rejected">Skipped</button></div><div id="message-list" class="message-list"><div class="empty-state"><p><strong>No messages yet</strong></p><p style="color:var(--t3)">Messages appear here when received.</p></div></div></section>
+      <section id="dash-voice" class="dash-section hidden"><div class="dash-head"><h1>Voice Clone</h1></div><div class="card glass"><h3>Voice Profile</h3><div id="dash-voice-profile" class="profile-box"><p style="color:var(--t3)">No profile yet. Add samples below.</p></div></div><div class="card glass"><h3>Samples</h3><p style="color:var(--t2);font-size:.9rem;margin-bottom:16px">Paste real replies. Min 3.</p><div id="dash-voice-samples"></div><button class="btn-ghost btn-sm" id="dash-add-sample">+ Add</button><div style="margin-top:16px"><button class="btn-accent" id="dash-analyze">Analyze Style</button></div></div></section>
+      <section id="dash-settings" class="dash-section hidden"><div class="dash-head"><h1>Settings</h1></div><div class="set-grid"><div class="card glass"><h3>Email</h3><p id="email-status-text" style="margin-bottom:12px">Not connected</p><div class="fg"><label for="set-email">Gmail</label><input type="email" id="set-email" placeholder="you@gmail.com"></div><div class="fg"><label for="set-email-pass">App Password</label><input type="password" id="set-email-pass" placeholder="xxxx xxxx xxxx xxxx"></div><button class="btn-accent btn-sm" id="set-email-connect">Connect</button><button class="btn-ghost btn-sm hidden" id="set-email-disconnect">Disconnect</button></div><div class="card glass"><h3>AI Personality</h3><div class="fg"><label for="set-name">Name</label><input type="text" id="set-name" placeholder="Your name"></div><div class="fg"><label for="set-tone">Tone</label><select id="set-tone"><option value="professional-friendly">Professional Friendly</option><option value="casual">Casual</option><option value="formal">Formal</option><option value="taglish">Taglish Casual</option></select></div><div class="fg"><label for="set-lang">Language</label><select id="set-lang"><option value="en">English</option><option value="tl">Filipino</option><option value="taglish">Taglish</option></select></div></div><div class="card glass full-w"><h3>Instructions</h3><div class="fg"><label for="set-services">Services</label><textarea id="set-services" rows="3" placeholder="Your services..."></textarea></div><div class="fg"><label for="set-custom">Custom Rules</label><textarea id="set-custom" rows="3" placeholder="Special instructions..."></textarea></div></div></div><button class="btn-accent" id="btn-save-settings">Save Settings</button></section>
+    </main>
+    <nav class="mobile-nav"><button class="mnav-item active" data-page="inbox"><span>Inbox</span></button><button class="mnav-item" data-page="voice"><span>Clone</span></button><button class="mnav-item" data-page="settings"><span>Settings</span></button></nav>
+  </div>
+
+  <div id="message-modal" class="modal hidden"><div class="modal-bg"></div><div class="modal-box glass"><button class="modal-x" id="modal-close">×</button><div class="modal-head"><h3 id="modal-sender"></h3><span id="modal-subject" style="color:var(--t2);font-size:.9rem"></span></div><div class="modal-sec"><label>Original Message</label><div class="modal-msg" id="modal-body"></div></div><div class="modal-sec"><label>AI Draft</label><textarea id="modal-draft" rows="6" class="draft-ed"></textarea></div><div class="modal-btns"><button class="btn-ghost" id="modal-reject">Skip</button><button class="btn-ghost" id="modal-regen">Regen</button><button class="btn-accent" id="modal-approve">Approve & Send</button></div></div></div>
+  <div id="toast" class="toast hidden"></div>
+  <script src="/app.js"></script>
+</body>
+</html>
