@@ -17,6 +17,9 @@ app.use(helmetConfig);
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
+// --- Health Check (keep-alive) ---
+app.get('/health', (req, res) => res.status(200).json({ status: 'alive', uptime: process.uptime() }));
+
 // --- Auth Routes (public) ---
 app.post('/api/auth/register', authLimiter, async (req, res) => {
   try {
@@ -193,13 +196,22 @@ async function start() {
   app.listen(PORT, () => {
     console.log('');
     console.log('╔══════════════════════════════════════════╗');
-    console.log('║     🤖  KopyaKo SaaS — Running!          ║');
+    console.log('║     🤖  AutoInbox SaaS — Running!        ║');
     console.log('╚══════════════════════════════════════════╝');
     console.log(`   App: http://localhost:${PORT}`);
     console.log('');
     initAI();
     initVoiceAI();
     emailMonitor.startAllActive();
+
+    // Keep-alive self-ping every 14 minutes (prevents Render free tier sleep)
+    if (process.env.RENDER) {
+      const PING_URL = `https://${process.env.RENDER_EXTERNAL_HOSTNAME || 'autoinbox.onrender.com'}/health`;
+      setInterval(() => {
+        require('https').get(PING_URL, (r) => console.log(`🏓 Keep-alive ping: ${r.statusCode}`)).on('error', () => {});
+      }, 14 * 60 * 1000); // 14 minutes
+      console.log('   🏓 Keep-alive enabled (every 14 min)');
+    }
   });
 }
 
