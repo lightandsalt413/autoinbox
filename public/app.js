@@ -538,6 +538,52 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js').catch(() => {});
 }
 
+// ===== Pricing & Checkout =====
+async function startCheckout(plan) {
+  if (!token) {
+    showToast('Please create an account first', 'error');
+    showPage('register');
+    return;
+  }
+  try {
+    showToast('Redirecting to checkout...', 'success');
+    const data = await api('/checkout', {
+      method: 'POST',
+      body: JSON.stringify({ plan })
+    });
+    if (data.checkout_url) {
+      window.location.href = data.checkout_url;
+    }
+  } catch (e) {
+    showToast(e.message || 'Checkout failed', 'error');
+  }
+}
+
+document.getElementById('price-free')?.addEventListener('click', () => {
+  if (token) { enterDashboard(); }
+  else { showPage('register'); }
+});
+document.getElementById('price-basic')?.addEventListener('click', () => startCheckout('basic'));
+document.getElementById('price-pro')?.addEventListener('click', () => startCheckout('pro'));
+document.getElementById('btn-final-cta')?.addEventListener('click', () => {
+  if (token) { enterDashboard(); }
+  else { showPage('register'); }
+});
+
+// Check for payment success in URL
+(function checkPaymentReturn() {
+  const params = new URLSearchParams(window.location.search);
+  const payment = params.get('payment');
+  const plan = params.get('plan');
+  if (payment === 'success' && plan) {
+    setTimeout(() => showToast(`🎉 Payment successful! You're now on the ${plan.charAt(0).toUpperCase() + plan.slice(1)} plan!`, 'success'), 500);
+    window.history.replaceState({}, '', '/');
+  } else if (payment === 'cancelled') {
+    setTimeout(() => showToast('Payment was cancelled', 'error'), 500);
+    window.history.replaceState({}, '', '/');
+  }
+})();
+
 // ===== Init =====
 (async () => {
   if (token) {

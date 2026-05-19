@@ -90,6 +90,20 @@ async function initDB() {
     FOREIGN KEY (user_id) REFERENCES users(id)
   )`);
 
+  db.run(`CREATE TABLE IF NOT EXISTS subscriptions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    plan TEXT DEFAULT 'free',
+    checkout_id TEXT,
+    payment_id TEXT,
+    amount INTEGER DEFAULT 0,
+    currency TEXT DEFAULT 'USD',
+    status TEXT DEFAULT 'active',
+    started_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    expires_at DATETIME,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+  )`);
+
   saveDB();
   console.log('✅ Database initialized');
 }
@@ -199,6 +213,20 @@ function getStats(userId) {
   };
 }
 
+// --- Subscriptions ---
+function getUserPlan(userId) {
+  const sub = queryOne("SELECT * FROM subscriptions WHERE user_id=? AND status='active' ORDER BY started_at DESC LIMIT 1", [userId]);
+  return sub || { plan: 'free', status: 'active' };
+}
+function setUserPlan(userId, plan, checkoutId, paymentId, amount) {
+  db.run("INSERT INTO subscriptions (user_id, plan, checkout_id, payment_id, amount, status) VALUES (?,?,?,?,?,'active')",
+    [userId, plan, checkoutId || null, paymentId || null, amount || 0]);
+  saveDB();
+}
+function getSubByCheckoutId(checkoutId) {
+  return queryOne("SELECT * FROM subscriptions WHERE checkout_id=?", [checkoutId]);
+}
+
 function closeDB() { if (db) { saveDB(); db.close(); } }
 
 module.exports = {
@@ -208,5 +236,6 @@ module.exports = {
   insertMessage, getMessageById, getMessageByExternalId, getMessagesByUser, getMessageCount, updateMessageStatus,
   insertDraft, getDraftByMessageId, updateDraftContent, insertSentReply,
   getSetting, upsertSetting, getAllSettings,
-  addVoiceSample, getVoiceSamples, clearVoiceSamples, getStats
+  addVoiceSample, getVoiceSamples, clearVoiceSamples, getStats,
+  getUserPlan, setUserPlan, getSubByCheckoutId
 };

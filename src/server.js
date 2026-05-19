@@ -46,6 +46,38 @@ app.post('/api/auth/login', authLimiter, async (req, res) => {
   } catch (e) { res.status(401).json({ error: e.message }); }
 });
 
+// --- PayMongo Plans ---
+const PAYMONGO_SECRET = process.env.PAYMONGO_SECRET_KEY;
+const PLANS = {
+  basic: { name: 'AutoInbox Basic', amount: 500, description: '200 AI replies/mo, Full voice clone, Priority AI' },
+  pro: { name: 'AutoInbox Pro', amount: 1000, description: 'Unlimited AI replies, 3 Gmail accounts, Fastest AI' }
+};
+
+// --- PayMongo Webhook (public, no auth needed) ---
+app.post('/api/webhook/paymongo', (req, res) => {
+  try {
+    const event = req.body;
+    const type = event?.data?.attributes?.type;
+    console.log(`📦 PayMongo webhook: ${type}`);
+
+    if (type === 'checkout_session.payment.paid') {
+      const session = event.data.attributes.data;
+      const metadata = session?.attributes?.metadata;
+      if (metadata?.user_id && metadata?.plan) {
+        const userId = parseInt(metadata.user_id);
+        const plan = metadata.plan;
+        const paymentId = session?.attributes?.payments?.[0]?.id || 'paid';
+        db.setUserPlan(userId, plan, session.id, paymentId, PLANS[plan]?.amount || 0);
+        console.log(`✅ User ${userId} upgraded to ${plan}`);
+      }
+    }
+    res.json({ received: true });
+  } catch (e) {
+    console.error('Webhook error:', e);
+    res.json({ received: true });
+  }
+});
+
 // --- Protected Routes ---
 app.use('/api', requireAuth);
 app.use('/api', apiLimiter);
@@ -192,6 +224,71 @@ app.get('/api/stats', (req, res) => {
     stats.email = emailMonitor.getUserStatus(req.userId);
     res.json(stats);
   } catch (e) { res.status(500).json({ error: e.message }); }
+});
+
+// --- Plan ---
+app.get('/api/plan', (req, res) => {
+  try {
+    const plan = db.getUserPlan(req.userId);
+    res.json(plan);
+  } catch (e) { res.status(500).json({ error: e.message }); }
+});
+
+// --- PayMongo Checkout ---
+app.post('/api/checkout', async (req, res) => {
+  try {
+    const { plan } = req.body;
+    if (!PLANS[plan]) return res.status(400).json({ error: 'Invalid plan' });
+
+    if (!PAYMONGO_SECRET) return res.status(500).json({ error: 'Payment system not configured' });
+
+    const p = PLANS[plan];
+    const response = await fetch('https://api.paymongo.com/v1/checkout_sessions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Basic ${Buffer.from(PAYMONGO_SECRET + ':').toString('base64')}`
+      },
+      body: JSON.stringify({
+        data: {
+          attributes: {
+            line_items: [{
+              name: p.name,
+              amount: p.amount,
+              currency: 'USD',
+              quantity: 1
+            }],
+            payment_method_types: ['card', 'gcash', 'grab_pay'],
+            description: p.description,
+            send_email_receipt: true,
+            success_url: `${req.protocol}://${req.get('host')}/?payment=success&plan=${plan}`,
+            cancel_url: `${req.protocol}://${req.get('host')}/?payment=cancelled`,
+            metadata: {
+              user_id: String(req.userId),
+              plan: plan
+            }
+          }
+        }
+      })
+    });
+
+    const data = await response.json();
+    if (!response.ok) {
+      console.error('PayMongo error:', JSON.stringify(data));
+      return res.status(400).json({ error: data.errors?.[0]?.detail || 'Checkout failed' });
+    }
+
+    const checkoutId = data.data.id;
+    const checkoutUrl = data.data.attributes.checkout_url;
+
+    // Save pending subscription
+    db.setUserPlan(req.userId, plan, checkoutId, null, p.amount);
+
+    res.json({ checkout_url: checkoutUrl, checkout_id: checkoutId });
+  } catch (e) {
+    console.error('Checkout error:', e);
+    res.status(500).json({ error: e.message });
+  }
 });
 
 // SPA fallback
