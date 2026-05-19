@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=3">
+  <link rel="stylesheet" href="/styles.css?v=4">
 </head>
 <body>
   <!-- Landing -->
@@ -30,21 +30,15 @@
       <div class="nav-right">
         <button class="btn-ghost btn-sm" id="btn-goto-login">Log In</button>
         <button class="btn-accent btn-sm" id="btn-goto-register">Get Started</button>
-        <button class="hamburger" id="hamburger-btn" aria-label="Menu">
-          <span></span><span></span><span></span>
-        </button>
       </div>
     </nav>
 
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobile-menu">
-      <a href="#features" class="mobile-menu-link">Features</a>
-      <a href="#how" class="mobile-menu-link">How It Works</a>
-      <a href="#pricing" class="mobile-menu-link">Pricing</a>
-      <a href="#faq" class="mobile-menu-link">FAQ</a>
-      <div class="mobile-menu-divider"></div>
-      <button class="btn-ghost btn-full mobile-menu-btn" id="mobile-login">Log In</button>
-      <button class="btn-accent btn-full mobile-menu-btn" id="mobile-register">Get Started</button>
+    <!-- Mobile Menu Bar -->
+    <div class="menu-bar" id="menu-bar">
+      <a href="#features" class="menu-bar-link">Features</a>
+      <a href="#how" class="menu-bar-link">How It Works</a>
+      <a href="#pricing" class="menu-bar-link">Pricing</a>
+      <a href="#faq" class="menu-bar-link">FAQ</a>
     </div>
 
     <!-- Hero Split -->
@@ -223,6 +217,6 @@
 
   <div id="message-modal" class="modal hidden"><div class="modal-bg"></div><div class="modal-box glass"><button class="modal-x" id="modal-close">×</button><div class="modal-head"><h3 id="modal-sender"></h3><span id="modal-subject" style="color:var(--t2);font-size:.9rem"></span></div><div class="modal-sec"><label>Original Message</label><div class="modal-msg" id="modal-body"></div></div><div class="modal-sec"><label>AI Draft</label><textarea id="modal-draft" rows="6" class="draft-ed"></textarea></div><div class="modal-btns"><button class="btn-ghost" id="modal-reject">Skip</button><button class="btn-ghost" id="modal-regen">Regen</button><button class="btn-accent" id="modal-approve">Approve & Send</button></div></div></div>
   <div id="toast" class="toast hidden"></div>
-  <script src="/app.js?v=3"></script>
+  <script src="/app.js?v=4"></script>
 </body>
 </html>
