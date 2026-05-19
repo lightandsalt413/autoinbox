@@ -25,10 +25,23 @@ function showToast(msg, type = 'success') {
 }
 
 // ===== Navigation =====
-function showPage(id) {
+function showPage(id, addHistory = true) {
   document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
   document.getElementById(`page-${id}`).classList.remove('hidden');
+  if (addHistory && id !== 'landing') {
+    history.pushState({ page: id }, '', `#${id}`);
+  }
 }
+
+// Back button → go to landing
+window.addEventListener('popstate', (e) => {
+  if (e.state && e.state.page) {
+    showPage(e.state.page, false);
+  } else {
+    showPage('landing', false);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+});
 
 function showDashSection(id) {
   document.querySelectorAll('.dash-section').forEach(s => s.classList.add('hidden'));
