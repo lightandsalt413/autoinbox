@@ -43,6 +43,7 @@ document.getElementById('btn-goto-register')?.addEventListener('click', () => sh
 document.getElementById('btn-hero-start')?.addEventListener('click', () => showPage('register'));
 document.getElementById('link-register')?.addEventListener('click', (e) => { e.preventDefault(); showPage('register'); });
 document.getElementById('link-login')?.addEventListener('click', (e) => { e.preventDefault(); showPage('login'); });
+document.getElementById('logo-home')?.addEventListener('click', (e) => { e.preventDefault(); showPage('landing'); window.scrollTo({top:0,behavior:'smooth'}); });
 
 document.getElementById('form-login')?.addEventListener('submit', async (e) => {
   e.preventDefault();
