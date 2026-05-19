@@ -45,13 +45,26 @@ document.getElementById('link-register')?.addEventListener('click', (e) => { e.p
 document.getElementById('link-login')?.addEventListener('click', (e) => { e.preventDefault(); showPage('login'); });
 document.getElementById('logo-home')?.addEventListener('click', (e) => { e.preventDefault(); showPage('landing'); window.scrollTo({top:0,behavior:'smooth'}); });
 
-// ===== Menu Bar: hide on non-landing pages =====
-const origShowPage = showPage;
-showPage = function(id) {
-  origShowPage(id);
-  const menuBar = document.getElementById('menu-bar');
-  if (menuBar) menuBar.style.display = id === 'landing' ? '' : 'none';
-};
+// ===== Menu Dropdown =====
+const menuTrigger = document.getElementById('menu-trigger');
+const menuPanel = document.getElementById('menu-panel');
+
+menuTrigger?.addEventListener('click', (e) => {
+  e.stopPropagation();
+  menuPanel.classList.toggle('open');
+});
+
+document.querySelectorAll('.menu-item').forEach(item => {
+  item.addEventListener('click', () => {
+    menuPanel.classList.remove('open');
+  });
+});
+
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.menu-dropdown')) {
+    menuPanel?.classList.remove('open');
+  }
+});
 
 document.getElementById('form-login')?.addEventListener('submit', async (e) => {
   e.preventDefault();
