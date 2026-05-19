@@ -15,7 +15,11 @@ const PORT = process.env.PORT || 3000;
 
 app.use(helmetConfig);
 app.use(express.json());
-app.use(express.static(path.join(__dirname, '..', 'public')));
+app.use(express.static(path.join(__dirname, '..', 'public'), {
+  maxAge: '1d',
+  etag: true,
+  lastModified: true
+}));
 
 // --- Health Check (keep-alive) ---
 app.get('/health', (req, res) => res.status(200).json({ status: 'alive', uptime: process.uptime() }));
