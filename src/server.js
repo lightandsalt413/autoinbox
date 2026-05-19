@@ -18,7 +18,12 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, '..', 'public'), {
   maxAge: '1d',
   etag: true,
-  lastModified: true
+  lastModified: true,
+  setHeaders: (res, filePath) => {
+    if (filePath.endsWith('.html')) {
+      res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    }
+  }
 }));
 
 // --- Health Check (keep-alive) ---
