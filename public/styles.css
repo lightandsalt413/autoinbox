@@ -66,8 +66,8 @@ a{color:var(--p2);text-decoration:none}
 .dm-stat{background:var(--s);border:1px solid var(--s2);border-radius:12px;padding:14px;text-align:center}
 .dm-stat-num{display:block;font-size:1.5rem;font-weight:800;color:var(--p);margin-bottom:4px}
 .dm-stat span{font-size:.7rem;color:var(--t3);text-transform:uppercase;letter-spacing:.5px}
-.pw-avatar-img{width:32px;height:32px;border-radius:50%;flex-shrink:0}
-.testi-av-img{width:40px;height:40px;border-radius:50%;flex-shrink:0}
+.pw-avatar-img{width:32px;height:32px;border-radius:50%;flex-shrink:0;background:var(--s2);object-fit:cover}
+.testi-av-img{width:40px;height:40px;border-radius:50%;flex-shrink:0;background:var(--p);object-fit:cover}
 .dm-inbox-list{margin-top:16px;display:flex;flex-direction:column;gap:8px}
 .dm-inbox-item{display:flex;align-items:center;gap:10px;background:var(--s);border:1px solid var(--s2);border-radius:10px;padding:10px 14px}
 .dm-inbox-item img{width:32px;height:32px;border-radius:50%;flex-shrink:0}
@@ -248,4 +248,13 @@ a{color:var(--p2);text-decoration:none}
   .dash-main{padding:16px 16px 80px}
   .set-grid{grid-template-columns:1fr}
   .modal-box{width:95%;margin:20px;padding:20px}
+}
+
+@media(max-width:380px){
+  .hero h1{font-size:1.5rem}
+  .hero-btns{flex-direction:column;gap:10px}
+  .hero-btns .btn-xl{width:100%}
+  .logo span{font-size:.8rem;padding:4px 10px}
+  .section-h{font-size:1.4rem}
+  .cta-h{font-size:1.5rem}
 }
