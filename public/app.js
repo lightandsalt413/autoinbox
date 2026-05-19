@@ -45,6 +45,14 @@ document.getElementById('link-register')?.addEventListener('click', (e) => { e.p
 document.getElementById('link-login')?.addEventListener('click', (e) => { e.preventDefault(); showPage('login'); });
 document.getElementById('logo-home')?.addEventListener('click', (e) => { e.preventDefault(); showPage('landing'); window.scrollTo({top:0,behavior:'smooth'}); });
 
+// ===== Menu Bar: hide on non-landing pages =====
+const origShowPage = showPage;
+showPage = function(id) {
+  origShowPage(id);
+  const menuBar = document.getElementById('menu-bar');
+  if (menuBar) menuBar.style.display = id === 'landing' ? '' : 'none';
+};
+
 document.getElementById('form-login')?.addEventListener('submit', async (e) => {
   e.preventDefault();
   const errEl = document.getElementById('login-error');
