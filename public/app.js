@@ -45,6 +45,35 @@ document.getElementById('link-register')?.addEventListener('click', (e) => { e.p
 document.getElementById('link-login')?.addEventListener('click', (e) => { e.preventDefault(); showPage('login'); });
 document.getElementById('logo-home')?.addEventListener('click', (e) => { e.preventDefault(); showPage('landing'); window.scrollTo({top:0,behavior:'smooth'}); });
 
+// ===== Hamburger Menu =====
+const hamburgerBtn = document.getElementById('hamburger-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+
+hamburgerBtn?.addEventListener('click', () => {
+  hamburgerBtn.classList.toggle('active');
+  mobileMenu.classList.toggle('open');
+});
+
+// Close menu when clicking a link
+document.querySelectorAll('.mobile-menu-link').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburgerBtn.classList.remove('active');
+    mobileMenu.classList.remove('open');
+  });
+});
+
+// Mobile menu login/register buttons
+document.getElementById('mobile-login')?.addEventListener('click', () => {
+  hamburgerBtn.classList.remove('active');
+  mobileMenu.classList.remove('open');
+  showPage('login');
+});
+document.getElementById('mobile-register')?.addEventListener('click', () => {
+  hamburgerBtn.classList.remove('active');
+  mobileMenu.classList.remove('open');
+  showPage('register');
+});
+
 document.getElementById('form-login')?.addEventListener('submit', async (e) => {
   e.preventDefault();
   const errEl = document.getElementById('login-error');
