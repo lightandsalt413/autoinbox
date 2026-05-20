@@ -684,11 +684,11 @@ window.addEventListener('scroll', () => {
   window.addEventListener('resize', resize);
 
   const waves = [
-    { amp: 80, freq: 0.003, speed: 0.008, y: 0.35, color: 'rgba(197,165,90,', opacity: 0.12, lineWidth: 1.5 },
-    { amp: 60, freq: 0.004, speed: 0.012, y: 0.42, color: 'rgba(212,183,106,', opacity: 0.10, lineWidth: 1.2 },
-    { amp: 100, freq: 0.002, speed: 0.006, y: 0.50, color: 'rgba(197,165,90,', opacity: 0.08, lineWidth: 2.0 },
-    { amp: 45, freq: 0.005, speed: 0.015, y: 0.55, color: 'rgba(180,150,70,',  opacity: 0.06, lineWidth: 1.0 },
-    { amp: 70, freq: 0.0035, speed: 0.010, y: 0.45, color: 'rgba(220,190,110,', opacity: 0.07, lineWidth: 1.8 },
+    { amp: 80, freq: 0.003, speed: 0.003, y: 0.35, color: 'rgba(197,165,90,', opacity: 0.12, lineWidth: 1.5 },
+    { amp: 60, freq: 0.004, speed: 0.005, y: 0.42, color: 'rgba(212,183,106,', opacity: 0.10, lineWidth: 1.2 },
+    { amp: 100, freq: 0.002, speed: 0.002, y: 0.50, color: 'rgba(197,165,90,', opacity: 0.08, lineWidth: 2.0 },
+    { amp: 45, freq: 0.005, speed: 0.006, y: 0.55, color: 'rgba(180,150,70,',  opacity: 0.06, lineWidth: 1.0 },
+    { amp: 70, freq: 0.0035, speed: 0.004, y: 0.45, color: 'rgba(220,190,110,', opacity: 0.07, lineWidth: 1.8 },
   ];
 
   function drawWave(wave, t) {
