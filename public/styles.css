@@ -59,6 +59,23 @@ a{color:var(--p2);text-decoration:none}
 .step-num{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--p),#8a7540);color:#fff;font-size:1.2rem;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:0 0 30px rgba(197,165,90,.3)}
 .step-card h4{font-size:1rem;margin-bottom:8px}.step-card p{font-size:.85rem;color:var(--t2);line-height:1.6}
 .step-arrow{color:var(--p);font-size:1.5rem;opacity:.5;align-self:center}
+/* Professional Timeline */
+.timeline{max-width:700px;margin:48px auto 0;position:relative}
+.timeline-step{display:flex;gap:24px;margin-bottom:0;position:relative;padding-bottom:48px}
+.timeline-step:last-child{padding-bottom:0}
+.timeline-step:last-child .timeline-line{display:none}
+.timeline-left{flex-shrink:0;width:72px;display:flex;justify-content:center;position:relative;z-index:2}
+.timeline-num{width:72px;height:72px;border-radius:50%;background:var(--s);border:2px solid rgba(197,165,90,.3);color:var(--p);font-size:1.4rem;font-weight:800;display:flex;align-items:center;justify-content:center;font-family:var(--fh);transition:all .4s}
+.timeline-step:hover .timeline-num{background:linear-gradient(135deg,var(--p),#8a7540);color:#fff;border-color:var(--p);box-shadow:0 0 40px rgba(197,165,90,.3);transform:scale(1.08)}
+.timeline-line{position:absolute;left:36px;top:72px;bottom:0;width:2px;background:linear-gradient(180deg,rgba(197,165,90,.3),rgba(197,165,90,.05));z-index:1}
+.timeline-content{flex:1;padding-top:8px}
+.timeline-badge{display:inline-block;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--p);background:rgba(197,165,90,.08);padding:4px 12px;border-radius:50px;margin-bottom:12px}
+.timeline-content h3{font-size:1.25rem;font-weight:700;margin-bottom:10px;font-family:var(--fh);color:var(--t);transition:color .3s}
+.timeline-step:hover .timeline-content h3{color:var(--p)}
+.timeline-content p{font-size:.9rem;color:var(--t2);line-height:1.8;margin-bottom:14px}
+.timeline-content p strong{color:var(--t)}
+.timeline-note{font-size:.8rem;color:var(--t3);padding:12px 16px;background:rgba(197,165,90,.04);border-left:2px solid rgba(197,165,90,.2);border-radius:0 8px 8px 0;line-height:1.5}
+@media(max-width:600px){.timeline-left{width:52px}.timeline-num{width:52px;height:52px;font-size:1.1rem}.timeline-line{left:26px;top:52px}}
 .dash-preview-section{max-width:1100px}
 .dash-mock{background:var(--bg2);border:1px solid var(--s2);border-radius:var(--rad);overflow:hidden;box-shadow:0 20px 80px rgba(0,0,0,.5),0 0 60px rgba(197,165,90,.05)}
 .dm-bar{display:flex;justify-content:space-between;align-items:center;padding:14px 24px;background:rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.06)}
@@ -330,8 +347,8 @@ a{color:var(--p2);text-decoration:none}
 /* === Level-Up: Scroll Reveal Animations === */
 .section,.cta-section{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
 .section.revealed,.cta-section.revealed{opacity:1;transform:translateY(0)}
-.feat-card,.step-card,.price-card,.testi-card,.faq-item,.bva-card{opacity:0;transform:translateY(30px);transition:all .5s ease}
-.revealed .feat-card,.revealed .step-card,.revealed .price-card,.revealed .testi-card,.revealed .faq-item,.revealed .bva-card{opacity:1;transform:translateY(0)}
+.feat-card,.step-card,.price-card,.testi-card,.faq-item,.bva-card,.timeline-step{opacity:0;transform:translateY(30px);transition:all .5s ease}
+.revealed .feat-card,.revealed .step-card,.revealed .price-card,.revealed .testi-card,.revealed .faq-item,.revealed .bva-card,.revealed .timeline-step{opacity:1;transform:translateY(0)}
 .revealed .feat-card:nth-child(1){transition-delay:.05s}
 .revealed .feat-card:nth-child(2){transition-delay:.1s}
 .revealed .feat-card:nth-child(3){transition-delay:.15s}
@@ -341,6 +358,9 @@ a{color:var(--p2);text-decoration:none}
 .revealed .step-card:nth-child(1){transition-delay:.05s}
 .revealed .step-card:nth-child(3){transition-delay:.15s}
 .revealed .step-card:nth-child(5){transition-delay:.25s}
+.revealed .timeline-step:nth-child(1){transition-delay:.1s}
+.revealed .timeline-step:nth-child(2){transition-delay:.25s}
+.revealed .timeline-step:nth-child(3){transition-delay:.4s}
 .revealed .step-card:nth-child(7){transition-delay:.35s}
 .revealed .price-card:nth-child(1){transition-delay:.05s}
 .revealed .price-card:nth-child(2){transition-delay:.1s}
