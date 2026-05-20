@@ -97,17 +97,67 @@ document.getElementById('form-login')?.addEventListener('submit', async (e) => {
   }
 });
 
+// ===== Password Strength & Toggle =====
+const regPass = document.getElementById('reg-pass');
+const passBar = document.getElementById('pass-bar');
+const passLabel = document.getElementById('pass-label');
+if (regPass) {
+  regPass.addEventListener('input', () => {
+    const v = regPass.value;
+    let score = 0;
+    if (v.length >= 6) score++;
+    if (v.length >= 8) score++;
+    if (/[A-Z]/.test(v) && /[a-z]/.test(v)) score++;
+    if (/[0-9]/.test(v)) score++;
+    if (/[^A-Za-z0-9]/.test(v)) score++;
+    passBar.className = 'pass-bar';
+    passLabel.className = 'pass-label';
+    if (v.length === 0) { passLabel.textContent = ''; return; }
+    if (score <= 2) { passBar.classList.add('weak'); passLabel.classList.add('weak'); passLabel.textContent = 'Weak — add uppercase, numbers, or symbols'; }
+    else if (score <= 3) { passBar.classList.add('medium'); passLabel.classList.add('medium'); passLabel.textContent = 'Medium — getting better'; }
+    else { passBar.classList.add('strong'); passLabel.classList.add('strong'); passLabel.textContent = 'Strong — great password!'; }
+  });
+}
+// Show/Hide Password Toggles
+document.getElementById('toggle-pass')?.addEventListener('click', function() {
+  const inp = document.getElementById('reg-pass');
+  const show = inp.type === 'password';
+  inp.type = show ? 'text' : 'password';
+  this.textContent = show ? 'Hide' : 'Show';
+});
+document.getElementById('toggle-pass-confirm')?.addEventListener('click', function() {
+  const inp = document.getElementById('reg-pass-confirm');
+  const show = inp.type === 'password';
+  inp.type = show ? 'text' : 'password';
+  this.textContent = show ? 'Hide' : 'Show';
+});
+
 document.getElementById('form-register')?.addEventListener('submit', async (e) => {
   e.preventDefault();
   const errEl = document.getElementById('reg-error');
   errEl.classList.add('hidden');
+  const pass = document.getElementById('reg-pass').value;
+  const confirmPass = document.getElementById('reg-pass-confirm').value;
+  const agree = document.getElementById('reg-agree');
+  // Validate confirm password
+  if (pass !== confirmPass) {
+    errEl.textContent = 'Passwords do not match.';
+    errEl.classList.remove('hidden');
+    return;
+  }
+  // Validate terms checkbox
+  if (!agree.checked) {
+    errEl.textContent = 'Please agree to the Terms of Service and Privacy Policy.';
+    errEl.classList.remove('hidden');
+    return;
+  }
   try {
     const data = await api('/auth/register', {
       method: 'POST',
       body: JSON.stringify({
         name: document.getElementById('reg-name').value,
         email: document.getElementById('reg-email').value,
-        password: document.getElementById('reg-pass').value
+        password: pass
       })
     });
     token = data.token;
