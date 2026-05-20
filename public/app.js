@@ -668,3 +668,59 @@ window.addEventListener('scroll', () => {
   const nav = document.querySelector('.nav');
   if (nav) nav.classList.toggle('scrolled', window.scrollY > 50);
 }, { passive: true });
+
+// ===== Animated Gold Waves Background =====
+(function() {
+  const canvas = document.getElementById('particles');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let w, h, time = 0;
+
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  const waves = [
+    { amp: 80, freq: 0.003, speed: 0.008, y: 0.35, color: 'rgba(197,165,90,', opacity: 0.12, lineWidth: 1.5 },
+    { amp: 60, freq: 0.004, speed: 0.012, y: 0.42, color: 'rgba(212,183,106,', opacity: 0.10, lineWidth: 1.2 },
+    { amp: 100, freq: 0.002, speed: 0.006, y: 0.50, color: 'rgba(197,165,90,', opacity: 0.08, lineWidth: 2.0 },
+    { amp: 45, freq: 0.005, speed: 0.015, y: 0.55, color: 'rgba(180,150,70,',  opacity: 0.06, lineWidth: 1.0 },
+    { amp: 70, freq: 0.0035, speed: 0.010, y: 0.45, color: 'rgba(220,190,110,', opacity: 0.07, lineWidth: 1.8 },
+  ];
+
+  function drawWave(wave, t) {
+    ctx.beginPath();
+    const baseY = h * wave.y;
+    for (let x = 0; x <= w; x += 2) {
+      const y = baseY
+        + Math.sin(x * wave.freq + t * wave.speed * 60) * wave.amp
+        + Math.sin(x * wave.freq * 0.5 + t * wave.speed * 30) * wave.amp * 0.5;
+      if (x === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.strokeStyle = wave.color + wave.opacity + ')';
+    ctx.lineWidth = wave.lineWidth;
+    ctx.stroke();
+
+    // Fill below wave with very subtle gradient
+    ctx.lineTo(w, h);
+    ctx.lineTo(0, h);
+    ctx.closePath();
+    const grad = ctx.createLinearGradient(0, baseY, 0, h);
+    grad.addColorStop(0, wave.color + (wave.opacity * 0.3) + ')');
+    grad.addColorStop(1, 'rgba(10,10,11,0)');
+    ctx.fillStyle = grad;
+    ctx.fill();
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, w, h);
+    time++;
+    waves.forEach(wave => drawWave(wave, time));
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
