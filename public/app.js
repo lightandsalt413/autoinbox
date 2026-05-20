@@ -132,6 +132,12 @@ document.getElementById('toggle-pass-confirm')?.addEventListener('click', functi
   inp.type = show ? 'text' : 'password';
   this.textContent = show ? 'Hide' : 'Show';
 });
+document.getElementById('toggle-login-pass')?.addEventListener('click', function() {
+  const inp = document.getElementById('login-pass');
+  const show = inp.type === 'password';
+  inp.type = show ? 'text' : 'password';
+  this.textContent = show ? 'Hide' : 'Show';
+});
 
 document.getElementById('form-register')?.addEventListener('submit', async (e) => {
   e.preventDefault();
