@@ -47,7 +47,33 @@ function buildSystemPrompt(userId) {
       voiceProfile.writing_rules.forEach(r => { prompt += `- ${r}\n`; });
     }
   } else {
-    const langMap = { tl: 'Reply in Filipino/Tagalog.', taglish: 'Reply in Taglish.', en: 'Reply in English.' };
+    const langMap = {
+      auto: 'IMPORTANT: Detect the language of the incoming message and reply in the SAME language. If unsure, default to English.',
+      en: 'Reply in English.',
+      tl: 'Reply in Filipino/Tagalog.',
+      taglish: 'Reply in Taglish (mix of Tagalog and English).',
+      es: 'Reply in Spanish (Español).',
+      fr: 'Reply in French (Français).',
+      de: 'Reply in German (Deutsch).',
+      it: 'Reply in Italian (Italiano).',
+      pt: 'Reply in Portuguese (Português).',
+      ja: 'Reply in Japanese (日本語).',
+      ko: 'Reply in Korean (한국어).',
+      zh: 'Reply in Chinese Simplified (简体中文).',
+      'zh-tw': 'Reply in Chinese Traditional (繁體中文).',
+      ar: 'Reply in Arabic (العربية). Use right-to-left text direction.',
+      hi: 'Reply in Hindi (हिन्दी).',
+      ru: 'Reply in Russian (Русский).',
+      nl: 'Reply in Dutch (Nederlands).',
+      sv: 'Reply in Swedish (Svenska).',
+      th: 'Reply in Thai (ไทย).',
+      vi: 'Reply in Vietnamese (Tiếng Việt).',
+      id: 'Reply in Bahasa Indonesia.',
+      ms: 'Reply in Bahasa Malay.',
+      tr: 'Reply in Turkish (Türkçe).',
+      pl: 'Reply in Polish (Polski).',
+      uk: 'Reply in Ukrainian (Українська).',
+    };
     prompt += `- ${langMap[language] || langMap.en}\n`;
     prompt += `- Tone: ${tone}\n`;
   }
