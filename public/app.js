@@ -669,7 +669,7 @@ window.addEventListener('scroll', () => {
   if (nav) nav.classList.toggle('scrolled', window.scrollY > 50);
 }, { passive: true });
 
-// ===== Network Lines with Running Lights =====
+// ===== Slow Running Lights on Background Lines =====
 (function() {
   const canvas = document.getElementById('particles');
   if (!canvas) return;
@@ -679,118 +679,76 @@ window.addEventListener('scroll', () => {
   function resize() {
     w = canvas.width = window.innerWidth;
     h = canvas.height = window.innerHeight;
-    initNodes();
   }
 
-  // Network nodes
-  let nodes = [];
-  let edges = [];
-  let pulses = [];
-  const NODE_COUNT = 60;
-  const CONNECT_DIST = 220;
+  // Light particles that travel across the screen slowly
+  let lights = [];
+  const MAX_LIGHTS = 15;
 
-  function initNodes() {
-    nodes = [];
-    edges = [];
-    for (let i = 0; i < NODE_COUNT; i++) {
-      nodes.push({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: (Math.random() - 0.5) * 0.3,
-        r: Math.random() * 2 + 1
-      });
-    }
-  }
-
-  function buildEdges() {
-    edges = [];
-    for (let i = 0; i < nodes.length; i++) {
-      for (let j = i + 1; j < nodes.length; j++) {
-        const dx = nodes[i].x - nodes[j].x;
-        const dy = nodes[i].y - nodes[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < CONNECT_DIST) {
-          edges.push({ from: i, to: j, dist });
-        }
-      }
-    }
-  }
-
-  // Spawn a pulse on a random edge
-  function spawnPulse() {
-    if (edges.length === 0) return;
-    const edge = edges[Math.floor(Math.random() * edges.length)];
-    pulses.push({
-      edge,
-      t: 0,          // 0 to 1 progress
-      speed: 0.008 + Math.random() * 0.012,
-      size: 2 + Math.random() * 2,
-      alpha: 0.7 + Math.random() * 0.3
+  function spawnLight() {
+    // Random angle for travel direction
+    const angle = Math.random() * Math.PI * 2;
+    const speed = 0.15 + Math.random() * 0.25; // very slow
+    lights.push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      vx: Math.cos(angle) * speed,
+      vy: Math.sin(angle) * speed,
+      size: 2 + Math.random() * 3,
+      life: 0,
+      maxLife: 400 + Math.random() * 600, // long life = slow travel
+      alpha: 0
     });
   }
+
+  // Start with some lights
+  for (let i = 0; i < 8; i++) spawnLight();
 
   function animate() {
     ctx.clearRect(0, 0, w, h);
 
-    // Move nodes slowly
-    nodes.forEach(n => {
-      n.x += n.vx;
-      n.y += n.vy;
-      if (n.x < 0 || n.x > w) n.vx *= -1;
-      if (n.y < 0 || n.y > h) n.vy *= -1;
-    });
-
-    buildEdges();
-
-    // Draw edges (network lines)
-    edges.forEach(e => {
-      const a = nodes[e.from];
-      const b = nodes[e.to];
-      const opacity = (1 - e.dist / CONNECT_DIST) * 0.12;
-      ctx.beginPath();
-      ctx.moveTo(a.x, a.y);
-      ctx.lineTo(b.x, b.y);
-      ctx.strokeStyle = `rgba(197,165,90,${opacity})`;
-      ctx.lineWidth = 0.5;
-      ctx.stroke();
-    });
-
-    // Draw nodes (small dots)
-    nodes.forEach(n => {
-      ctx.beginPath();
-      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(197,165,90,0.15)';
-      ctx.fill();
-    });
-
-    // Spawn new pulses
-    if (Math.random() < 0.15 && pulses.length < 30) {
-      spawnPulse();
+    // Spawn new lights slowly
+    if (Math.random() < 0.02 && lights.length < MAX_LIGHTS) {
+      spawnLight();
     }
 
-    // Update and draw pulses (running lights)
-    pulses = pulses.filter(p => p.t <= 1);
-    pulses.forEach(p => {
-      p.t += p.speed;
-      const a = nodes[p.edge.from];
-      const b = nodes[p.edge.to];
-      const x = a.x + (b.x - a.x) * p.t;
-      const y = a.y + (b.y - a.y) * p.t;
+    lights = lights.filter(l => l.life < l.maxLife);
 
-      // Glow
-      const grd = ctx.createRadialGradient(x, y, 0, x, y, p.size * 6);
-      grd.addColorStop(0, `rgba(197,165,90,${p.alpha * 0.3})`);
+    lights.forEach(l => {
+      l.x += l.vx;
+      l.y += l.vy;
+      l.life++;
+
+      // Fade in and out
+      const progress = l.life / l.maxLife;
+      if (progress < 0.1) {
+        l.alpha = progress / 0.1;
+      } else if (progress > 0.8) {
+        l.alpha = (1 - progress) / 0.2;
+      } else {
+        l.alpha = 1;
+      }
+
+      // Outer glow
+      const grd = ctx.createRadialGradient(l.x, l.y, 0, l.x, l.y, l.size * 8);
+      grd.addColorStop(0, `rgba(197,165,90,${l.alpha * 0.2})`);
+      grd.addColorStop(0.5, `rgba(197,165,90,${l.alpha * 0.05})`);
       grd.addColorStop(1, 'rgba(197,165,90,0)');
       ctx.beginPath();
-      ctx.arc(x, y, p.size * 6, 0, Math.PI * 2);
+      ctx.arc(l.x, l.y, l.size * 8, 0, Math.PI * 2);
       ctx.fillStyle = grd;
       ctx.fill();
 
-      // Bright center
+      // Bright center dot
       ctx.beginPath();
-      ctx.arc(x, y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255,220,130,${p.alpha})`;
+      ctx.arc(l.x, l.y, l.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,225,140,${l.alpha * 0.6})`;
+      ctx.fill();
+
+      // Tiny white core
+      ctx.beginPath();
+      ctx.arc(l.x, l.y, l.size * 0.4, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255,${l.alpha * 0.4})`;
       ctx.fill();
     });
 
@@ -801,3 +759,4 @@ window.addEventListener('scroll', () => {
   window.addEventListener('resize', resize);
   animate();
 })();
+
