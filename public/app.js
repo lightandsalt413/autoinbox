@@ -669,87 +669,148 @@ window.addEventListener('scroll', () => {
   if (nav) nav.classList.toggle('scrolled', window.scrollY > 50);
 }, { passive: true });
 
-// ===== Slow Running Lights on Background Lines =====
+// ===== Animated Network Background with Running Lights =====
 (function() {
   const canvas = document.getElementById('particles');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
   let w, h;
 
+  // Fixed nodes so lines don't move (like a static network)
+  let nodes = [];
+  let edges = [];
+  let pulses = [];
+  const NODE_COUNT = 80;
+  const CONNECT_DIST = 200;
+
+  function initNetwork() {
+    nodes = [];
+    edges = [];
+    pulses = [];
+    for (let i = 0; i < NODE_COUNT; i++) {
+      nodes.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: 1.5 + Math.random() * 2
+      });
+    }
+    // Build edges once (static lines)
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const dx = nodes[i].x - nodes[j].x;
+        const dy = nodes[i].y - nodes[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < CONNECT_DIST) {
+          edges.push({ from: i, to: j, dist });
+        }
+      }
+    }
+  }
+
   function resize() {
     w = canvas.width = window.innerWidth;
     h = canvas.height = window.innerHeight;
+    initNetwork();
   }
 
-  // Light particles that travel across the screen slowly
-  let lights = [];
-  const MAX_LIGHTS = 15;
-
-  function spawnLight() {
-    // Random angle for travel direction
-    const angle = Math.random() * Math.PI * 2;
-    const speed = 0.15 + Math.random() * 0.25; // very slow
-    lights.push({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      vx: Math.cos(angle) * speed,
-      vy: Math.sin(angle) * speed,
-      size: 2 + Math.random() * 3,
-      life: 0,
-      maxLife: 400 + Math.random() * 600, // long life = slow travel
-      alpha: 0
+  // Spawn a light pulse on a random edge
+  function spawnPulse() {
+    if (edges.length === 0) return;
+    const edge = edges[Math.floor(Math.random() * edges.length)];
+    const reverse = Math.random() > 0.5;
+    pulses.push({
+      edge,
+      t: 0,
+      speed: 0.002 + Math.random() * 0.003, // VERY slow
+      size: 2.5 + Math.random() * 2,
+      reverse,
+      trail: []
     });
   }
-
-  // Start with some lights
-  for (let i = 0; i < 8; i++) spawnLight();
 
   function animate() {
     ctx.clearRect(0, 0, w, h);
 
-    // Spawn new lights slowly
-    if (Math.random() < 0.02 && lights.length < MAX_LIGHTS) {
-      spawnLight();
+    // Draw static lines (subtle gold)
+    edges.forEach(e => {
+      const a = nodes[e.from];
+      const b = nodes[e.to];
+      const opacity = (1 - e.dist / CONNECT_DIST) * 0.08;
+      ctx.beginPath();
+      ctx.moveTo(a.x, a.y);
+      ctx.lineTo(b.x, b.y);
+      ctx.strokeStyle = `rgba(197,165,90,${opacity})`;
+      ctx.lineWidth = 0.5;
+      ctx.stroke();
+    });
+
+    // Draw nodes (small static dots)
+    nodes.forEach(n => {
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r * 0.5, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(197,165,90,0.12)';
+      ctx.fill();
+    });
+
+    // Spawn pulses slowly
+    if (Math.random() < 0.03 && pulses.length < 12) {
+      spawnPulse();
     }
 
-    lights = lights.filter(l => l.life < l.maxLife);
+    // Draw running light pulses on the lines
+    pulses = pulses.filter(p => p.t <= 1);
+    pulses.forEach(p => {
+      p.t += p.speed;
+      const a = nodes[p.edge.from];
+      const b = nodes[p.edge.to];
+      const progress = p.reverse ? 1 - p.t : p.t;
+      const x = a.x + (b.x - a.x) * progress;
+      const y = a.y + (b.y - a.y) * progress;
 
-    lights.forEach(l => {
-      l.x += l.vx;
-      l.y += l.vy;
-      l.life++;
+      // Store trail positions
+      p.trail.push({ x, y });
+      if (p.trail.length > 20) p.trail.shift();
 
-      // Fade in and out
-      const progress = l.life / l.maxLife;
-      if (progress < 0.1) {
-        l.alpha = progress / 0.1;
-      } else if (progress > 0.8) {
-        l.alpha = (1 - progress) / 0.2;
-      } else {
-        l.alpha = 1;
+      // Draw trail (fading line behind the pulse)
+      for (let i = 1; i < p.trail.length; i++) {
+        const fade = i / p.trail.length;
+        ctx.beginPath();
+        ctx.moveTo(p.trail[i - 1].x, p.trail[i - 1].y);
+        ctx.lineTo(p.trail[i].x, p.trail[i].y);
+        ctx.strokeStyle = `rgba(197,165,90,${fade * 0.3})`;
+        ctx.lineWidth = fade * 2;
+        ctx.stroke();
       }
 
       // Outer glow
-      const grd = ctx.createRadialGradient(l.x, l.y, 0, l.x, l.y, l.size * 8);
-      grd.addColorStop(0, `rgba(197,165,90,${l.alpha * 0.2})`);
-      grd.addColorStop(0.5, `rgba(197,165,90,${l.alpha * 0.05})`);
+      const grd = ctx.createRadialGradient(x, y, 0, x, y, p.size * 6);
+      grd.addColorStop(0, 'rgba(197,165,90,0.25)');
+      grd.addColorStop(0.4, 'rgba(197,165,90,0.08)');
       grd.addColorStop(1, 'rgba(197,165,90,0)');
       ctx.beginPath();
-      ctx.arc(l.x, l.y, l.size * 8, 0, Math.PI * 2);
+      ctx.arc(x, y, p.size * 6, 0, Math.PI * 2);
       ctx.fillStyle = grd;
       ctx.fill();
 
-      // Bright center dot
+      // Bright center
       ctx.beginPath();
-      ctx.arc(l.x, l.y, l.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255,225,140,${l.alpha * 0.6})`;
+      ctx.arc(x, y, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255,220,130,0.7)';
       ctx.fill();
 
-      // Tiny white core
+      // White core
       ctx.beginPath();
-      ctx.arc(l.x, l.y, l.size * 0.4, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255,255,255,${l.alpha * 0.4})`;
+      ctx.arc(x, y, p.size * 0.3, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255,255,255,0.5)';
       ctx.fill();
+
+      // Light up the line the pulse is on
+      ctx.beginPath();
+      ctx.moveTo(a.x, a.y);
+      ctx.lineTo(b.x, b.y);
+      ctx.strokeStyle = `rgba(197,165,90,${0.15 * (1 - p.t)})`;
+      ctx.lineWidth = 1;
+      ctx.stroke();
     });
 
     requestAnimationFrame(animate);
@@ -759,4 +820,3 @@ window.addEventListener('scroll', () => {
   window.addEventListener('resize', resize);
   animate();
 })();
-
