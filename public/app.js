@@ -691,7 +691,8 @@ window.addEventListener('scroll', () => {
       nodes.push({
         x: Math.random() * w,
         y: Math.random() * h,
-        r: 1.5 + Math.random() * 2
+        r: 1.5 + Math.random() * 2,
+        hasEnvelope: Math.random() < 0.3 // 30% of nodes get an envelope
       });
     }
     // Build edges once (static lines)
@@ -744,12 +745,35 @@ window.addEventListener('scroll', () => {
       ctx.stroke();
     });
 
-    // Draw nodes (small static dots)
+    // Draw nodes — envelopes or small dots
     nodes.forEach(n => {
-      ctx.beginPath();
-      ctx.arc(n.x, n.y, n.r * 0.5, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(197,165,90,0.12)';
-      ctx.fill();
+      if (n.hasEnvelope) {
+        // Draw envelope icon
+        const s = 7 + n.r * 2; // envelope size
+        const ex = n.x - s / 2;
+        const ey = n.y - s * 0.35;
+        const eh = s * 0.7;
+        // Envelope body (rectangle)
+        ctx.beginPath();
+        ctx.rect(ex, ey, s, eh);
+        ctx.strokeStyle = 'rgba(197,165,90,0.18)';
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+        // Envelope flap (V shape on top)
+        ctx.beginPath();
+        ctx.moveTo(ex, ey);
+        ctx.lineTo(n.x, ey + eh * 0.5);
+        ctx.lineTo(ex + s, ey);
+        ctx.strokeStyle = 'rgba(197,165,90,0.18)';
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+      } else {
+        // Small dot
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r * 0.5, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(197,165,90,0.12)';
+        ctx.fill();
+      }
     });
 
     // Spawn pulses slowly
