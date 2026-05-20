@@ -692,7 +692,7 @@ window.addEventListener('scroll', () => {
         x: Math.random() * w,
         y: Math.random() * h,
         r: 1.5 + Math.random() * 2,
-        hasEnvelope: Math.random() < 0.3 // 30% of nodes get an envelope
+        hasEnvelope: Math.random() < 0.4 // 40% of nodes get an envelope
       });
     }
     // Build edges once (static lines)
@@ -748,24 +748,24 @@ window.addEventListener('scroll', () => {
     // Draw nodes — envelopes or small dots
     nodes.forEach(n => {
       if (n.hasEnvelope) {
-        // Draw envelope icon
-        const s = 7 + n.r * 2; // envelope size
+        // Draw envelope icon — bigger and more visible
+        const s = 16 + n.r * 3; // larger envelope
         const ex = n.x - s / 2;
         const ey = n.y - s * 0.35;
-        const eh = s * 0.7;
+        const eh = s * 0.65;
         // Envelope body (rectangle)
         ctx.beginPath();
         ctx.rect(ex, ey, s, eh);
-        ctx.strokeStyle = 'rgba(197,165,90,0.18)';
-        ctx.lineWidth = 0.8;
+        ctx.strokeStyle = 'rgba(197,165,90,0.35)';
+        ctx.lineWidth = 1.2;
         ctx.stroke();
         // Envelope flap (V shape on top)
         ctx.beginPath();
         ctx.moveTo(ex, ey);
-        ctx.lineTo(n.x, ey + eh * 0.5);
+        ctx.lineTo(n.x, ey + eh * 0.55);
         ctx.lineTo(ex + s, ey);
-        ctx.strokeStyle = 'rgba(197,165,90,0.18)';
-        ctx.lineWidth = 0.8;
+        ctx.strokeStyle = 'rgba(197,165,90,0.35)';
+        ctx.lineWidth = 1.2;
         ctx.stroke();
       } else {
         // Small dot
