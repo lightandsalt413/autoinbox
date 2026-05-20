@@ -1,7 +1,7 @@
 {
-  "name": "kopya-ko",
+  "name": "autoinbox",
   "version": "1.0.0",
-  "description": "KopyaKo — AI Clone Auto-Reply SaaS",
+  "description": "AutoInbox — Smart AI Auto-Reply SaaS",
   "main": "src/server.js",
   "scripts": {
     "start": "node src/server.js",

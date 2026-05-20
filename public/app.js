@@ -318,7 +318,7 @@ async function openMessage(id) {
 document.getElementById('modal-close')?.addEventListener('click', () => {
   document.getElementById('message-modal').classList.add('hidden');
 });
-document.querySelector('.modal-backdrop')?.addEventListener('click', () => {
+document.querySelector('.modal-bg')?.addEventListener('click', () => {
   document.getElementById('message-modal').classList.add('hidden');
 });
 
@@ -477,8 +477,8 @@ document.querySelectorAll('.mnav-item').forEach(btn => {
   });
 });
 
-// ===== Pricing Buttons =====
-['price-free', 'price-basic', 'price-pro', 'btn-final-cta'].forEach(id => {
+// Pricing button handlers are in the Checkout section below
+['btn-final-cta'].forEach(id => {
   document.getElementById(id)?.addEventListener('click', () => showPage('register'));
 });
 
@@ -512,14 +512,14 @@ document.querySelectorAll('.nav-center a').forEach(a => {
       if (o.y < -10) o.y = h + 10; if (o.y > h + 10) o.y = -10;
       const glow = 0.15 + Math.sin(o.phase) * 0.1;
       ctx.beginPath(); ctx.arc(o.x, o.y, o.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255,154,139,${glow})`;
+      ctx.fillStyle = `rgba(197,165,90,${glow})`;
       ctx.fill();
       for (let j = i + 1; j < orbs.length; j++) {
         const dx = o.x - orbs[j].x, dy = o.y - orbs[j].y;
         const d = Math.sqrt(dx * dx + dy * dy);
         if (d < 120) {
           ctx.beginPath(); ctx.moveTo(o.x, o.y); ctx.lineTo(orbs[j].x, orbs[j].y);
-          ctx.strokeStyle = `rgba(255,154,139,${0.04 * (1 - d / 120)})`;
+          ctx.strokeStyle = `rgba(197,165,90,${0.04 * (1 - d / 120)})`;
           ctx.stroke();
         }
       }
