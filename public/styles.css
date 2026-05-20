@@ -303,3 +303,63 @@ a{color:var(--p2);text-decoration:none}
   @keyframes arrowPulse{0%,100%{opacity:.5;transform:rotate(90deg) translateX(0)}50%{opacity:1;transform:rotate(90deg) translateX(6px)}}
   .lang-demo-card{max-width:100%}
 }
+
+/* === Level-Up: Scroll Reveal Animations === */
+.section,.cta-section{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
+.section.revealed,.cta-section.revealed{opacity:1;transform:translateY(0)}
+.feat-card,.step-card,.price-card,.testi-card,.faq-item,.bva-card{opacity:0;transform:translateY(30px);transition:all .5s ease}
+.revealed .feat-card,.revealed .step-card,.revealed .price-card,.revealed .testi-card,.revealed .faq-item,.revealed .bva-card{opacity:1;transform:translateY(0)}
+.revealed .feat-card:nth-child(1){transition-delay:.05s}
+.revealed .feat-card:nth-child(2){transition-delay:.1s}
+.revealed .feat-card:nth-child(3){transition-delay:.15s}
+.revealed .feat-card:nth-child(4){transition-delay:.2s}
+.revealed .feat-card:nth-child(5){transition-delay:.25s}
+.revealed .feat-card:nth-child(6){transition-delay:.3s}
+.revealed .step-card:nth-child(1){transition-delay:.05s}
+.revealed .step-card:nth-child(3){transition-delay:.15s}
+.revealed .step-card:nth-child(5){transition-delay:.25s}
+.revealed .price-card:nth-child(1){transition-delay:.05s}
+.revealed .price-card:nth-child(2){transition-delay:.1s}
+.revealed .price-card:nth-child(3){transition-delay:.15s}
+.revealed .testi-card:nth-child(1){transition-delay:.05s}
+.revealed .testi-card:nth-child(2){transition-delay:.1s}
+.revealed .testi-card:nth-child(3){transition-delay:.15s}
+
+/* === Enhanced CTA Breathing Glow === */
+.cta-section::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(197,165,90,.06) 0%,transparent 70%);animation:breathe 4s ease-in-out infinite;pointer-events:none;z-index:-1}
+@keyframes breathe{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.6}50%{transform:translate(-50%,-50%) scale(1.2);opacity:1}}
+
+/* === Testimonial Quote Marks === */
+.testi-card::before{content:'"';position:absolute;top:12px;right:20px;font-size:4rem;font-family:serif;color:rgba(197,165,90,.1);line-height:1;pointer-events:none}
+.testi-card{position:relative;overflow:hidden}
+.testi-card::after{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,transparent,var(--p),transparent);opacity:0;transition:opacity .4s}
+.testi-card:hover::after{opacity:1}
+
+/* === Pricing Card Shine Effect === */
+.price-card::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(197,165,90,.03),transparent);transition:left .6s ease;pointer-events:none;z-index:0}
+.price-card:hover::before{left:100%}
+.price-card{overflow:hidden}
+
+/* === Dashboard Preview Glow === */
+.dash-mock{transition:all .4s ease}
+.dash-mock:hover{box-shadow:0 24px 90px rgba(0,0,0,.6),0 0 80px rgba(197,165,90,.08);transform:translateY(-4px)}
+
+/* === Smoother Nav Scroll Shadow === */
+.nav{transition:all .3s ease}
+.nav.scrolled{background:rgba(10,10,11,.98);box-shadow:0 4px 30px rgba(0,0,0,.5);backdrop-filter:blur(20px)}
+
+/* === Feature Number Glow === */
+.feat-icon{transition:all .4s cubic-bezier(.25,.46,.45,.94)}
+.feat-card:hover .feat-icon{background:linear-gradient(135deg,var(--p),#8a7540);color:#fff;box-shadow:0 0 30px rgba(197,165,90,.3)}
+
+/* === VS Circle Pulse === */
+.vs-circle{animation:vsPulse 3s ease-in-out infinite}
+@keyframes vsPulse{0%,100%{box-shadow:0 0 0 0 rgba(197,165,90,.1)}50%{box-shadow:0 0 0 12px rgba(197,165,90,.05)}}
+
+/* === Step Number Counter Animation === */
+.step-num{transition:all .4s}
+.step-card:hover .step-num{transform:scale(1.1);box-shadow:0 0 40px rgba(197,165,90,.4)}
+
+/* === Hero Text Shimmer === */
+@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+.glow-text{background:linear-gradient(90deg,var(--p),var(--p2),#fff,var(--p2),var(--p));background-size:200% auto;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 6s linear infinite}

@@ -599,3 +599,15 @@ document.getElementById('btn-final-cta')?.addEventListener('click', () => {
     showPage('landing');
   }
 })();
+
+// ===== Scroll Reveal =====
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); revealObserver.unobserve(e.target); } });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.section, .cta-section').forEach(el => revealObserver.observe(el));
+
+// ===== Nav Scroll Shadow =====
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('.nav');
+  if (nav) nav.classList.toggle('scrolled', window.scrollY > 50);
+}, { passive: true });
