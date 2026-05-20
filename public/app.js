@@ -54,6 +54,7 @@ function showDashSection(id) {
 document.getElementById('btn-goto-login')?.addEventListener('click', () => showPage('login'));
 document.getElementById('btn-goto-register')?.addEventListener('click', () => showPage('register'));
 document.getElementById('btn-hero-start')?.addEventListener('click', () => showPage('register'));
+document.getElementById('btn-how-signup')?.addEventListener('click', () => showPage('register'));
 document.getElementById('link-register')?.addEventListener('click', (e) => { e.preventDefault(); showPage('register'); });
 document.getElementById('link-login')?.addEventListener('click', (e) => { e.preventDefault(); showPage('login'); });
 document.getElementById('logo-home')?.addEventListener('click', (e) => { e.preventDefault(); showPage('landing'); window.scrollTo({top:0,behavior:'smooth'}); });

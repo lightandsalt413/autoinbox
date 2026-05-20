@@ -161,6 +161,9 @@ a{color:var(--p2);text-decoration:none}
 .checkbox-label input[type="checkbox"]{width:18px;height:18px;margin-top:2px;accent-color:var(--p);cursor:pointer;flex-shrink:0}
 /* Trust Badge */
 .trust-badge{text-align:center;margin-top:16px;padding:10px;font-size:.76rem;color:var(--t3);border:1px solid rgba(22,163,74,.15);border-radius:8px;background:rgba(22,163,74,.04);letter-spacing:.3px}
+.trust-row{display:flex;justify-content:center;gap:24px;margin-top:28px;flex-wrap:wrap}
+.trust-item{font-size:.78rem;color:var(--t3);padding:8px 18px;border:1px solid var(--s2);border-radius:50px;background:var(--s);letter-spacing:.3px;transition:all .3s}
+.trust-item:hover{border-color:rgba(197,165,90,.3);color:var(--t2)}
 .ob-prog{margin-bottom:28px}.ob-bar{height:4px;background:var(--bg2);border-radius:4px;overflow:hidden;margin-bottom:8px}
 .ob-fill{height:100%;background:linear-gradient(90deg,var(--p),var(--p2));transition:width .4s;width:33%}
 #onboard-step-label{font-size:.78rem;color:var(--t3)}
