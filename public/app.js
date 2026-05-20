@@ -748,24 +748,30 @@ window.addEventListener('scroll', () => {
     // Draw nodes — envelopes or small dots
     nodes.forEach(n => {
       if (n.hasEnvelope) {
-        // Draw envelope icon — bigger and more visible
-        const s = 16 + n.r * 3; // larger envelope
-        const ex = n.x - s / 2;
-        const ey = n.y - s * 0.35;
-        const eh = s * 0.65;
-        // Envelope body (rectangle)
-        ctx.beginPath();
-        ctx.rect(ex, ey, s, eh);
+        // Draw envelope icon — properly aligned
+        const s = 16 + n.r * 3; // width
+        const eh = s * 0.65;    // height
+        const ex = n.x - s / 2; // top-left x
+        const ey = n.y - eh / 2; // top-left y (centered on node)
+
         ctx.strokeStyle = 'rgba(197,165,90,0.35)';
         ctx.lineWidth = 1.2;
+
+        // Draw full envelope as one connected path
+        ctx.beginPath();
+        // Bottom-left → top-left → flap center → top-right → bottom-right → close
+        ctx.moveTo(ex, ey + eh);
+        ctx.lineTo(ex, ey);
+        ctx.lineTo(n.x, ey + eh * 0.5);
+        ctx.lineTo(ex + s, ey);
+        ctx.lineTo(ex + s, ey + eh);
+        ctx.closePath();
         ctx.stroke();
-        // Envelope flap (V shape on top)
+
+        // Bottom line of flap (connecting top corners straight)
         ctx.beginPath();
         ctx.moveTo(ex, ey);
-        ctx.lineTo(n.x, ey + eh * 0.55);
         ctx.lineTo(ex + s, ey);
-        ctx.strokeStyle = 'rgba(197,165,90,0.35)';
-        ctx.lineWidth = 1.2;
         ctx.stroke();
       } else {
         // Small dot
