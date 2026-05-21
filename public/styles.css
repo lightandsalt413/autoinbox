@@ -300,6 +300,9 @@ a{color:var(--p2);text-decoration:none}
 .menu-item::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--t3);transition:all .2s;flex-shrink:0}
 .menu-item:hover{color:var(--p);background:rgba(197,165,90,.08)}
 .menu-item:hover::before{background:var(--p);box-shadow:0 0 8px rgba(197,165,90,.4)}
+.menu-divider{height:1px;background:var(--s2);margin:6px 0}
+.menu-signup{color:var(--p)!important;font-weight:600}
+.menu-signup::before{background:var(--p)!important}
 
 /* Mobile */
 .mobile-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--bg2);border-top:1px solid var(--s2);padding:8px 0;z-index:100;justify-content:space-around}
