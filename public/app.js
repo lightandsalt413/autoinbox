@@ -240,7 +240,10 @@ document.getElementById('form-register')?.addEventListener('submit', async (e) =
 document.getElementById('btn-logout')?.addEventListener('click', () => {
   token = '';
   localStorage.removeItem('kk_token');
+  localStorage.removeItem('autoinbox_name');
   if (refreshTimer) clearInterval(refreshTimer);
+  window._isAdmin = false;
+  history.replaceState(null, '', window.location.pathname);
   showPage('landing');
 });
 
