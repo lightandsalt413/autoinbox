@@ -238,13 +238,27 @@ document.getElementById('form-register')?.addEventListener('submit', async (e) =
 });
 
 document.getElementById('btn-logout')?.addEventListener('click', () => {
+  document.getElementById('logout-modal')?.classList.remove('hidden');
+});
+
+document.getElementById('logout-confirm')?.addEventListener('click', () => {
   token = '';
   localStorage.removeItem('kk_token');
   localStorage.removeItem('autoinbox_name');
   if (refreshTimer) clearInterval(refreshTimer);
   window._isAdmin = false;
+  document.getElementById('logout-modal')?.classList.add('hidden');
   history.replaceState(null, '', window.location.pathname);
   showPage('landing');
+});
+
+document.getElementById('logout-cancel')?.addEventListener('click', () => {
+  document.getElementById('logout-modal')?.classList.add('hidden');
+});
+
+// Close logout modal when clicking background
+document.getElementById('logout-modal')?.querySelector('.modal-bg')?.addEventListener('click', () => {
+  document.getElementById('logout-modal')?.classList.add('hidden');
 });
 
 // ===== Onboarding =====
