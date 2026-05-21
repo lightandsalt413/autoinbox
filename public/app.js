@@ -61,12 +61,22 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ===== Navigation =====
+let currentPage = null;
 function showPage(id, addHistory = true) {
   document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
-  document.getElementById(`page-${id}`).classList.remove('hidden');
+  const el = document.getElementById(`page-${id}`);
+  if (el) el.classList.remove('hidden');
   if (addHistory && id !== 'landing') {
-    history.pushState({ page: id }, '', `#${id}`);
+    if (currentPage === id) {
+      // Same page — replace, don't push (prevents back-button spam)
+      history.replaceState({ page: id }, '', `#${id}`);
+    } else {
+      history.pushState({ page: id }, '', `#${id}`);
+    }
+  } else if (addHistory && id === 'landing') {
+    history.replaceState(null, '', window.location.pathname);
   }
+  currentPage = id;
 }
 
 // Back button → go to landing
@@ -783,6 +793,9 @@ document.getElementById('btn-final-cta')?.addEventListener('click', () => {
 // ===== Init =====
 (async () => {
   try {
+    const hash = window.location.hash.replace('#', '');
+    const publicPages = ['login', 'register'];
+
     if (token) {
       try {
         await api('/stats');
@@ -790,13 +803,20 @@ document.getElementById('btn-final-cta')?.addEventListener('click', () => {
       } catch (e) {
         token = '';
         localStorage.removeItem('kk_token');
-        showPage('landing');
+        // If hash points to a public page, go there; otherwise landing
+        if (publicPages.includes(hash)) {
+          showPage(hash, false);
+        } else {
+          showPage('landing');
+        }
       }
+    } else if (publicPages.includes(hash)) {
+      // Restore public page from hash (e.g. #register after refresh)
+      showPage(hash, false);
     } else {
       showPage('landing');
     }
   } catch (e) {
-    // Safety fallback — always show landing if anything goes wrong
     console.error('Init error:', e);
     showPage('landing');
   }
