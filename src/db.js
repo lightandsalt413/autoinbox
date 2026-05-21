@@ -206,6 +206,23 @@ async function getSubByCheckoutId(checkoutId) {
   return r.rows[0] || null;
 }
 
+async function getAdminStats() {
+  const totalUsers = await pool.query("SELECT COUNT(*) as count FROM users");
+  const payingUsers = await pool.query("SELECT COUNT(DISTINCT user_id) as count FROM subscriptions WHERE plan != 'free' AND status = 'active'");
+  const todaySignups = await pool.query("SELECT COUNT(*) as count FROM users WHERE created_at >= CURRENT_DATE");
+  const totalRevenue = await pool.query("SELECT COALESCE(SUM(amount), 0) as total FROM subscriptions WHERE status = 'active' AND plan != 'free'");
+  const recentUsers = await pool.query("SELECT id, name, email, created_at FROM users ORDER BY created_at DESC LIMIT 10");
+  
+  return {
+    totalUsers: parseInt(totalUsers.rows[0].count),
+    payingUsers: parseInt(payingUsers.rows[0].count),
+    freeUsers: parseInt(totalUsers.rows[0].count) - parseInt(payingUsers.rows[0].count),
+    todaySignups: parseInt(todaySignups.rows[0].count),
+    totalRevenue: parseInt(totalRevenue.rows[0].total),
+    recentUsers: recentUsers.rows
+  };
+}
+
 async function closeDB() { await pool.end(); }
 
 module.exports = {
@@ -216,5 +233,5 @@ module.exports = {
   insertDraft, getDraftByMessageId, updateDraftContent, insertSentReply,
   getSetting, upsertSetting, getAllSettings,
   addVoiceSample, getVoiceSamples, clearVoiceSamples, getStats,
-  getUserPlan, setUserPlan, getSubByCheckoutId
+  getUserPlan, setUserPlan, getSubByCheckoutId, getAdminStats
 };

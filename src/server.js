@@ -226,6 +226,19 @@ app.get('/api/stats', async (req, res) => {
   } catch (e) { res.status(500).json({ error: e.message }); }
 });
 
+// --- Admin Stats ---
+app.get('/api/admin/stats', async (req, res) => {
+  try {
+    const user = await db.getUserById(req.userId);
+    const adminEmail = process.env.ADMIN_EMAIL || '';
+    if (!user || user.email !== adminEmail) {
+      return res.status(403).json({ error: 'Not authorized' });
+    }
+    const stats = await db.getAdminStats();
+    res.json(stats);
+  } catch (e) { res.status(500).json({ error: e.message }); }
+});
+
 // --- Plan ---
 app.get('/api/plan', async (req, res) => {
   try {

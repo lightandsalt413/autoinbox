@@ -315,6 +315,7 @@ async function enterDashboard() {
   loadStats();
   loadEmailStatus();
   loadSidebarPlan();
+  checkAdmin();
   // Set user name in sidebar
   const userName = localStorage.getItem('autoinbox_name');
   if (userName) {
@@ -323,6 +324,40 @@ async function enterDashboard() {
   }
   if (refreshTimer) clearInterval(refreshTimer);
   refreshTimer = setInterval(() => { loadMessages(); loadStats(); loadEmailStatus(); }, 10000);
+}
+
+async function checkAdmin() {
+  try {
+    const data = await api('/admin/stats');
+    // If we get here, user is admin
+    document.getElementById('nav-admin')?.classList.remove('hidden');
+    window._isAdmin = true;
+    window._adminData = data;
+  } catch (e) {
+    // Not admin — hide button
+    document.getElementById('nav-admin')?.classList.add('hidden');
+    window._isAdmin = false;
+  }
+}
+
+async function loadAdminStats() {
+  try {
+    const data = await api('/admin/stats');
+    document.getElementById('admin-total-users').textContent = data.totalUsers;
+    document.getElementById('admin-paying').textContent = data.payingUsers;
+    document.getElementById('admin-free').textContent = data.freeUsers;
+    document.getElementById('admin-today').textContent = data.todaySignups;
+    document.getElementById('admin-revenue').textContent = '\u20b1' + data.totalRevenue.toLocaleString();
+    
+    const tbody = document.getElementById('admin-users-body');
+    if (tbody && data.recentUsers.length) {
+      tbody.innerHTML = data.recentUsers.map((u, i) => 
+        `<tr><td>${i+1}</td><td>${u.name}</td><td>${u.email}</td><td>${new Date(u.created_at).toLocaleDateString()}</td></tr>`
+      ).join('');
+    } else if (tbody) {
+      tbody.innerHTML = '<tr><td colspan="4" style="color:var(--t3)">No users yet</td></tr>';
+    }
+  } catch (e) { console.error('Admin stats error:', e); }
 }
 
 async function loadSidebarPlan() {
@@ -345,6 +380,7 @@ document.querySelectorAll('.nav-item').forEach(btn => {
     if (page === 'voice') loadVoicePage();
     if (page === 'settings') loadSettings();
     if (page === 'plan') loadPlanPage();
+    if (page === 'admin') loadAdminStats();
   });
 });
 
@@ -358,6 +394,7 @@ document.querySelectorAll('.mnav-item').forEach(btn => {
     if (page === 'voice') loadVoicePage();
     if (page === 'settings') loadSettings();
     if (page === 'plan') loadPlanPage();
+    if (page === 'admin') loadAdminStats();
   });
 });
 
