@@ -317,6 +317,49 @@ async function start() {
         require('https').get(PING_URL, (r) => console.log(`🏓 Keep-alive ping: ${r.statusCode}`)).on('error', () => {});
       }, 14 * 60 * 1000); // 14 minutes
       console.log('   🏓 Keep-alive enabled (every 14 min)');
+
+      // Auto-register PayMongo webhook
+      if (PAYMONGO_SECRET) {
+        const WEBHOOK_URL = `https://${process.env.RENDER_EXTERNAL_HOSTNAME || 'autoinbox.onrender.com'}/api/webhook/paymongo`;
+        (async () => {
+          try {
+            // Check existing webhooks first
+            const listRes = await fetch('https://api.paymongo.com/v1/webhooks', {
+              headers: { 'Authorization': `Basic ${Buffer.from(PAYMONGO_SECRET + ':').toString('base64')}` }
+            });
+            const listData = await listRes.json();
+            const existing = listData?.data?.find(w => w.attributes.url === WEBHOOK_URL && w.attributes.status === 'enabled');
+
+            if (existing) {
+              console.log('   💳 PayMongo webhook already registered');
+            } else {
+              const createRes = await fetch('https://api.paymongo.com/v1/webhooks', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                  'Authorization': `Basic ${Buffer.from(PAYMONGO_SECRET + ':').toString('base64')}`
+                },
+                body: JSON.stringify({
+                  data: {
+                    attributes: {
+                      url: WEBHOOK_URL,
+                      events: ['checkout_session.payment.paid']
+                    }
+                  }
+                })
+              });
+              const createData = await createRes.json();
+              if (createRes.ok) {
+                console.log('   💳 PayMongo webhook registered ✅');
+              } else {
+                console.error('   💳 PayMongo webhook error:', createData?.errors?.[0]?.detail || 'Unknown');
+              }
+            }
+          } catch (e) {
+            console.error('   💳 PayMongo webhook setup failed:', e.message);
+          }
+        })();
+      }
     }
   });
 }
