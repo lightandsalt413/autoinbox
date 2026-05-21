@@ -150,7 +150,7 @@ a{color:var(--p2);text-decoration:none}
 
 /* Auth */
 .auth-wrap{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px;flex-direction:column;gap:16px}
-.auth-back{color:var(--t3);font-size:.88rem;text-decoration:none;transition:color .2s;align-self:center;padding:8px 16px;border-radius:50px;border:1px solid var(--s2);background:rgba(255,255,255,.03)}
+.auth-back{display:inline-block;color:var(--t3);font-size:.85rem;text-decoration:none;transition:color .2s;padding:6px 14px;border-radius:50px;border:1px solid var(--s2);background:rgba(255,255,255,.03);margin-bottom:16px}
 .auth-back:hover{color:var(--p);border-color:var(--p)}
 .auth-box{background:var(--s);padding:40px;border-radius:var(--rad);width:100%;max-width:440px;border:1px solid var(--s2)}
 .auth-top{text-align:center;margin-bottom:28px}.auth-top h2{margin-top:16px;font-size:1.5rem}.auth-top p{color:var(--t2)}
