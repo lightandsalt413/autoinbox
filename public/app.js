@@ -1,5 +1,5 @@
 // ===== State =====
-let token = localStorage.getItem('kk_token') || '';
+let token = localStorage.getItem('kk_token') || sessionStorage.getItem('kk_token') || '';
 let currentFilter = 'all';
 let currentMsgId = null;
 let refreshTimer = null;
@@ -144,8 +144,14 @@ document.getElementById('form-login')?.addEventListener('submit', async (e) => {
       body: JSON.stringify({ email: document.getElementById('login-email').value, password: document.getElementById('login-pass').value })
     });
     token = data.token;
-    localStorage.setItem('kk_token', token);
-    if (data.name) localStorage.setItem('autoinbox_name', data.name);
+    const rememberMe = document.getElementById('remember-me')?.checked;
+    if (rememberMe) {
+      localStorage.setItem('kk_token', token);
+      if (data.name) localStorage.setItem('autoinbox_name', data.name);
+    } else {
+      sessionStorage.setItem('kk_token', token);
+      if (data.name) sessionStorage.setItem('autoinbox_name', data.name);
+    }
     enterDashboard();
   } catch (e) {
     errEl.textContent = e.message;
@@ -245,6 +251,8 @@ document.getElementById('logout-confirm')?.addEventListener('click', () => {
   token = '';
   localStorage.removeItem('kk_token');
   localStorage.removeItem('autoinbox_name');
+  sessionStorage.removeItem('kk_token');
+  sessionStorage.removeItem('autoinbox_name');
   if (refreshTimer) clearInterval(refreshTimer);
   window._isAdmin = false;
   document.getElementById('logout-modal')?.classList.add('hidden');
@@ -863,6 +871,7 @@ document.getElementById('btn-final-cta')?.addEventListener('click', () => {
       } catch (e) {
         token = '';
         localStorage.removeItem('kk_token');
+        sessionStorage.removeItem('kk_token');
         // If hash points to a public page, go there; otherwise landing
         if (publicPages.includes(hash)) {
           showPage(hash, false);
