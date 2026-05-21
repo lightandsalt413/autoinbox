@@ -4,10 +4,10 @@ const { decrypt } = require('../crypto');
 
 const transporters = new Map();
 
-function getTransporter(userId) {
+async function getTransporter(userId) {
   if (transporters.has(userId)) return transporters.get(userId);
 
-  const config = getEmailConfig(userId);
+  const config = await getEmailConfig(userId);
   if (!config) return null;
 
   const password = decrypt(config.email_password_enc);
@@ -23,13 +23,13 @@ function getTransporter(userId) {
 }
 
 async function sendReply(messageId, userId) {
-  const transporter = getTransporter(userId);
+  const transporter = await getTransporter(userId);
   if (!transporter) throw new Error('Email not configured');
 
-  const message = getMessageById(messageId, userId);
+  const message = await getMessageById(messageId, userId);
   if (!message) throw new Error('Message not found');
 
-  const draft = getDraftByMessageId(messageId, userId);
+  const draft = await getDraftByMessageId(messageId, userId);
   if (!draft) throw new Error('No draft found');
 
   const content = draft.edited_content || draft.content;
@@ -45,20 +45,20 @@ async function sendReply(messageId, userId) {
   let subject = message.subject || '';
   if (!subject.toLowerCase().startsWith('re:')) subject = `Re: ${subject}`;
 
-  const config = getEmailConfig(userId);
+  const config = await getEmailConfig(userId);
 
   try {
     const info = await transporter.sendMail({
       from: config.email_address, to: message.sender_email || message.sender_id,
       subject, text: content, headers
     });
-    insertSentReply({ message_id: messageId, user_id: userId, draft_id: draft.id, content, status: 'sent', error: null });
-    updateMessageStatus('sent', messageId, userId);
+    await insertSentReply({ message_id: messageId, user_id: userId, draft_id: draft.id, content, status: 'sent', error: null });
+    await updateMessageStatus('sent', messageId, userId);
     console.log(`📤 [User ${userId}] Reply sent to ${message.sender_email}`);
     return { success: true };
   } catch (error) {
-    insertSentReply({ message_id: messageId, user_id: userId, draft_id: draft.id, content, status: 'failed', error: error.message });
-    updateMessageStatus('failed', messageId, userId);
+    await insertSentReply({ message_id: messageId, user_id: userId, draft_id: draft.id, content, status: 'failed', error: error.message });
+    await updateMessageStatus('failed', messageId, userId);
     throw error;
   }
 }

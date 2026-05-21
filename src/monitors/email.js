@@ -11,14 +11,14 @@ async function processEmail(parsed, userId, ownEmail) {
     const messageId = parsed.messageId || `email-${Date.now()}-${Math.random()}`;
     const from = parsed.from?.value?.[0] || {};
     if (from.address?.toLowerCase() === ownEmail?.toLowerCase()) return;
-    if (getMessageByExternalId(messageId, 'email', userId)) return;
+    if (await getMessageByExternalId(messageId, 'email', userId)) return;
 
     let body = parsed.text || '';
     if (!body && parsed.html) body = parsed.html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
     if (body.length > 5000) body = body.substring(0, 5000) + '\n[...truncated...]';
     if (!body) body = '(empty)';
 
-    const result = insertMessage({
+    const result = await insertMessage({
       user_id: userId, platform: 'email', external_id: messageId,
       sender_id: from.address || 'unknown', sender_name: from.name || from.address || 'Unknown',
       sender_email: from.address || '', subject: parsed.subject || '(no subject)',
@@ -28,20 +28,20 @@ async function processEmail(parsed, userId, ownEmail) {
     const savedId = result.lastInsertRowid;
     console.log(`📧 [User ${userId}] New: ${from.name || from.address} — "${parsed.subject}"`);
 
-    const autoDraft = getSetting(userId, 'auto_draft')?.value;
+    const autoDraft = (await getSetting(userId, 'auto_draft'))?.value;
     if (autoDraft === 'true') {
-      updateMessageStatus('drafting', savedId, userId);
+      await updateMessageStatus('drafting', savedId, userId);
       try {
         const draft = await generateDraft(userId, { platform: 'email', sender_name: from.name, sender_email: from.address, subject: parsed.subject, body });
         if (draft.action === 'skip') {
-          updateMessageStatus('rejected', savedId, userId);
+          await updateMessageStatus('rejected', savedId, userId);
         } else {
-          insertDraft({ message_id: savedId, user_id: userId, content: draft.content, version: 1 });
-          updateMessageStatus('drafted', savedId, userId);
+          await insertDraft({ message_id: savedId, user_id: userId, content: draft.content, version: 1 });
+          await updateMessageStatus('drafted', savedId, userId);
           console.log(`   ✍️  Draft ready`);
         }
       } catch (e) {
-        updateMessageStatus('pending', savedId, userId);
+        await updateMessageStatus('pending', savedId, userId);
       }
     }
   } catch (e) { console.error(`❌ [User ${userId}] Process error:`, e.message); }
@@ -100,7 +100,7 @@ async function stopForUser(userId) {
 }
 
 async function startAllActive() {
-  const configs = getActiveEmailConfigs();
+  const configs = await getActiveEmailConfigs();
   for (const config of configs) {
     startForUser(config.user_id, config).catch(() => {});
   }

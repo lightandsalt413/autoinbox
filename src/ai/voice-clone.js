@@ -13,7 +13,7 @@ function initVoiceAI() {
 }
 
 async function analyzeVoice(userId) {
-  const samples = getVoiceSamples(userId);
+  const samples = await getVoiceSamples(userId);
   if (samples.length < 3) {
     return { success: false, error: 'Need at least 3 sample replies to analyze your style' };
   }
@@ -61,7 +61,7 @@ Respond with a JSON object (no markdown, just raw JSON) with this structure:
     JSON.parse(cleaned);
 
     // Save profile
-    upsertSetting(userId, 'voice_profile', cleaned);
+    await upsertSetting(userId, 'voice_profile', cleaned);
 
     return { success: true, profile: JSON.parse(cleaned) };
   } catch (error) {
@@ -69,8 +69,8 @@ Respond with a JSON object (no markdown, just raw JSON) with this structure:
   }
 }
 
-function getVoiceProfile(userId) {
-  const setting = getSetting(userId, 'voice_profile');
+async function getVoiceProfile(userId) {
+  const setting = await getSetting(userId, 'voice_profile');
   if (!setting?.value) return null;
   try { return JSON.parse(setting.value); } catch (e) { return null; }
 }

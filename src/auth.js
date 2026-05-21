@@ -12,11 +12,11 @@ async function register(email, password, name) {
   if (!email || !password || !name) throw new Error('Email, password, and name are required');
   if (password.length < 6) throw new Error('Password must be at least 6 characters');
 
-  const existing = getUserByEmail(email.toLowerCase());
+  const existing = await getUserByEmail(email.toLowerCase());
   if (existing) throw new Error('Email already registered');
 
   const hash = await bcrypt.hash(password, SALT_ROUNDS);
-  const userId = createUser(email.toLowerCase(), hash, name);
+  const userId = await createUser(email.toLowerCase(), hash, name);
 
   const token = jwt.sign({ userId, email: email.toLowerCase() }, getSecret(), { expiresIn: '7d' });
   return { userId, token };
@@ -25,7 +25,7 @@ async function register(email, password, name) {
 async function login(email, password) {
   if (!email || !password) throw new Error('Email and password are required');
 
-  const user = getUserByEmail(email.toLowerCase());
+  const user = await getUserByEmail(email.toLowerCase());
   if (!user) throw new Error('Invalid email or password');
 
   const valid = await bcrypt.compare(password, user.password_hash);

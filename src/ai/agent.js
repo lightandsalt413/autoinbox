@@ -17,13 +17,13 @@ function initAI() {
   return true;
 }
 
-function buildSystemPrompt(userId) {
-  const name = getSetting(userId, 'agent_name')?.value || 'AI Assistant';
-  const tone = getSetting(userId, 'agent_tone')?.value || 'professional-friendly';
-  const language = getSetting(userId, 'agent_language')?.value || 'en';
-  const services = getSetting(userId, 'services')?.value || '';
-  const custom = getSetting(userId, 'custom_instructions')?.value || '';
-  const voiceProfile = getVoiceProfile(userId);
+async function buildSystemPrompt(userId) {
+  const name = (await getSetting(userId, 'agent_name'))?.value || 'AI Assistant';
+  const tone = (await getSetting(userId, 'agent_tone'))?.value || 'professional-friendly';
+  const language = (await getSetting(userId, 'agent_language'))?.value || 'en';
+  const services = (await getSetting(userId, 'services'))?.value || '';
+  const custom = (await getSetting(userId, 'custom_instructions'))?.value || '';
+  const voiceProfile = await getVoiceProfile(userId);
 
   let prompt = `You are ${name}'s AI email clone. Reply EXACTLY as they would.\n\n## Rules\n`;
   prompt += `- If spam/newsletter/automated: respond [SKIP]\n`;
@@ -87,7 +87,7 @@ function buildSystemPrompt(userId) {
 async function generateDraft(userId, message) {
   if (!model) return { success: false, content: '[AI not configured]', action: 'needs_review' };
 
-  const systemPrompt = buildSystemPrompt(userId);
+  const systemPrompt = await buildSystemPrompt(userId);
   const userPrompt = message.platform === 'email'
     ? `New email:\nFrom: ${message.sender_name} <${message.sender_email}>\nSubject: ${message.subject || '(none)'}\n\n${message.body}\n\n---\nDraft a reply.`
     : `New ${message.platform} message:\nFrom: ${message.sender_name}\n\n${message.body}\n\n---\nDraft a reply.`;

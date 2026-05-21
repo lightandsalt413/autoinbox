@@ -1,233 +1,187 @@
-const initSqlJs = require('sql.js');
-const path = require('path');
-const fs = require('fs');
+const { Pool } = require('pg');
 
-const dataDir = path.join(__dirname, '..', 'data');
-if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
-const dbPath = path.join(dataDir, 'autoinbox.db');
-
-let db = null;
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false }
+});
 
 async function initDB() {
-  const SQL = await initSqlJs();
+  const client = await pool.connect();
   try {
-    if (fs.existsSync(dbPath)) {
-      db = new SQL.Database(fs.readFileSync(dbPath));
-    } else {
-      db = new SQL.Database();
-    }
-  } catch (e) { db = new SQL.Database(); }
+    await client.query(`CREATE TABLE IF NOT EXISTS users (
+      id SERIAL PRIMARY KEY,
+      email TEXT UNIQUE NOT NULL,
+      password_hash TEXT NOT NULL,
+      name TEXT NOT NULL,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )`);
 
-  db.run(`CREATE TABLE IF NOT EXISTS users (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    email TEXT UNIQUE NOT NULL,
-    password_hash TEXT NOT NULL,
-    name TEXT NOT NULL,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-  )`);
+    await client.query(`CREATE TABLE IF NOT EXISTS user_email_config (
+      id SERIAL PRIMARY KEY,
+      user_id INTEGER UNIQUE NOT NULL REFERENCES users(id),
+      imap_host TEXT, imap_port INTEGER DEFAULT 993,
+      smtp_host TEXT, smtp_port INTEGER DEFAULT 587,
+      email_address TEXT,
+      email_password_enc TEXT,
+      is_active INTEGER DEFAULT 0
+    )`);
 
-  db.run(`CREATE TABLE IF NOT EXISTS user_email_config (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER UNIQUE NOT NULL,
-    imap_host TEXT, imap_port INTEGER DEFAULT 993,
-    smtp_host TEXT, smtp_port INTEGER DEFAULT 587,
-    email_address TEXT,
-    email_password_enc TEXT,
-    is_active INTEGER DEFAULT 0,
-    FOREIGN KEY (user_id) REFERENCES users(id)
-  )`);
+    await client.query(`CREATE TABLE IF NOT EXISTS messages (
+      id SERIAL PRIMARY KEY,
+      user_id INTEGER NOT NULL REFERENCES users(id),
+      platform TEXT NOT NULL,
+      external_id TEXT,
+      sender_id TEXT NOT NULL,
+      sender_name TEXT, sender_email TEXT,
+      subject TEXT, body TEXT NOT NULL,
+      raw_headers TEXT,
+      received_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      status TEXT DEFAULT 'pending'
+    )`);
 
-  db.run(`CREATE TABLE IF NOT EXISTS messages (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER NOT NULL,
-    platform TEXT NOT NULL,
-    external_id TEXT,
-    sender_id TEXT NOT NULL,
-    sender_name TEXT, sender_email TEXT,
-    subject TEXT, body TEXT NOT NULL,
-    raw_headers TEXT,
-    received_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    status TEXT DEFAULT 'pending',
-    FOREIGN KEY (user_id) REFERENCES users(id)
-  )`);
+    await client.query(`CREATE TABLE IF NOT EXISTS drafts (
+      id SERIAL PRIMARY KEY,
+      message_id INTEGER NOT NULL REFERENCES messages(id),
+      user_id INTEGER NOT NULL,
+      content TEXT NOT NULL,
+      edited_content TEXT,
+      version INTEGER DEFAULT 1,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )`);
 
-  db.run(`CREATE TABLE IF NOT EXISTS drafts (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    message_id INTEGER NOT NULL,
-    user_id INTEGER NOT NULL,
-    content TEXT NOT NULL,
-    edited_content TEXT,
-    version INTEGER DEFAULT 1,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (message_id) REFERENCES messages(id)
-  )`);
+    await client.query(`CREATE TABLE IF NOT EXISTS sent_replies (
+      id SERIAL PRIMARY KEY,
+      message_id INTEGER NOT NULL REFERENCES messages(id),
+      user_id INTEGER NOT NULL,
+      draft_id INTEGER,
+      content TEXT NOT NULL,
+      sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      status TEXT DEFAULT 'sent', error TEXT
+    )`);
 
-  db.run(`CREATE TABLE IF NOT EXISTS sent_replies (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    message_id INTEGER NOT NULL,
-    user_id INTEGER NOT NULL,
-    draft_id INTEGER,
-    content TEXT NOT NULL,
-    sent_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    status TEXT DEFAULT 'sent', error TEXT,
-    FOREIGN KEY (message_id) REFERENCES messages(id)
-  )`);
+    await client.query(`CREATE TABLE IF NOT EXISTS settings (
+      id SERIAL PRIMARY KEY,
+      user_id INTEGER NOT NULL,
+      key TEXT NOT NULL,
+      value TEXT NOT NULL,
+      UNIQUE(user_id, key)
+    )`);
 
-  db.run(`CREATE TABLE IF NOT EXISTS settings (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER NOT NULL,
-    key TEXT NOT NULL,
-    value TEXT NOT NULL,
-    UNIQUE(user_id, key),
-    FOREIGN KEY (user_id) REFERENCES users(id)
-  )`);
+    await client.query(`CREATE TABLE IF NOT EXISTS voice_samples (
+      id SERIAL PRIMARY KEY,
+      user_id INTEGER NOT NULL,
+      sample_text TEXT NOT NULL,
+      created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )`);
 
-  db.run(`CREATE TABLE IF NOT EXISTS voice_samples (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER NOT NULL,
-    sample_text TEXT NOT NULL,
-    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(id)
-  )`);
+    await client.query(`CREATE TABLE IF NOT EXISTS subscriptions (
+      id SERIAL PRIMARY KEY,
+      user_id INTEGER NOT NULL,
+      plan TEXT DEFAULT 'free',
+      checkout_id TEXT,
+      payment_id TEXT,
+      amount INTEGER DEFAULT 0,
+      currency TEXT DEFAULT 'PHP',
+      status TEXT DEFAULT 'active',
+      started_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+      expires_at TIMESTAMP
+    )`);
 
-  db.run(`CREATE TABLE IF NOT EXISTS subscriptions (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER NOT NULL,
-    plan TEXT DEFAULT 'free',
-    checkout_id TEXT,
-    payment_id TEXT,
-    amount INTEGER DEFAULT 0,
-    currency TEXT DEFAULT 'PHP',
-    status TEXT DEFAULT 'active',
-    started_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-    expires_at DATETIME,
-    FOREIGN KEY (user_id) REFERENCES users(id)
-  )`);
-
-  saveDB();
-  console.log('✅ Database initialized');
-}
-
-function saveDB() {
-  if (!db) return;
-  fs.writeFileSync(dbPath, Buffer.from(db.export()));
-}
-
-function queryAll(sql, params = []) {
-  const r = db.exec(sql, params);
-  if (!r.length) return [];
-  return r[0].values.map(row => {
-    const obj = {};
-    r[0].columns.forEach((c, i) => { obj[c] = row[i]; });
-    return obj;
-  });
-}
-
-function queryOne(sql, params = []) {
-  const rows = queryAll(sql, params);
-  return rows[0] || null;
-}
-
-function run(sql, params = []) {
-  db.run(sql, params);
-  saveDB();
+    console.log('✅ PostgreSQL database initialized (Supabase)');
+  } finally {
+    client.release();
+  }
 }
 
 // --- Users ---
-function createUser(email, passwordHash, name) {
-  db.run("INSERT INTO users (email, password_hash, name) VALUES (?,?,?)", [email, passwordHash, name]);
-  const u = queryOne("SELECT last_insert_rowid() as id");
-  // Default settings
+async function createUser(email, passwordHash, name) {
+  const res = await pool.query("INSERT INTO users (email, password_hash, name) VALUES ($1,$2,$3) RETURNING id", [email, passwordHash, name]);
+  const userId = res.rows[0].id;
   const defaults = { agent_name: name, agent_tone: 'professional-friendly', agent_language: 'en', auto_draft: 'true', services: '', custom_instructions: '', voice_profile: '' };
   for (const [k, v] of Object.entries(defaults)) {
-    db.run("INSERT INTO settings (user_id, key, value) VALUES (?,?,?)", [u.id, k, v]);
+    await pool.query("INSERT INTO settings (user_id, key, value) VALUES ($1,$2,$3)", [userId, k, v]);
   }
-  saveDB();
-  return u.id;
+  return userId;
 }
-function getUserByEmail(email) { return queryOne("SELECT * FROM users WHERE email = ?", [email]); }
-function getUserById(id) { return queryOne("SELECT * FROM users WHERE id = ?", [id]); }
+async function getUserByEmail(email) { const r = await pool.query("SELECT * FROM users WHERE email = $1", [email]); return r.rows[0] || null; }
+async function getUserById(id) { const r = await pool.query("SELECT * FROM users WHERE id = $1", [id]); return r.rows[0] || null; }
 
 // --- Email Config ---
-function setEmailConfig(userId, config) {
-  const existing = queryOne("SELECT id FROM user_email_config WHERE user_id = ?", [userId]);
-  if (existing) {
-    db.run("UPDATE user_email_config SET imap_host=?, imap_port=?, smtp_host=?, smtp_port=?, email_address=?, email_password_enc=?, is_active=? WHERE user_id=?",
+async function setEmailConfig(userId, config) {
+  const existing = await pool.query("SELECT id FROM user_email_config WHERE user_id = $1", [userId]);
+  if (existing.rows.length) {
+    await pool.query("UPDATE user_email_config SET imap_host=$1, imap_port=$2, smtp_host=$3, smtp_port=$4, email_address=$5, email_password_enc=$6, is_active=$7 WHERE user_id=$8",
       [config.imap_host, config.imap_port, config.smtp_host, config.smtp_port, config.email_address, config.email_password_enc, config.is_active ? 1 : 0, userId]);
   } else {
-    db.run("INSERT INTO user_email_config (user_id, imap_host, imap_port, smtp_host, smtp_port, email_address, email_password_enc, is_active) VALUES (?,?,?,?,?,?,?,?)",
+    await pool.query("INSERT INTO user_email_config (user_id, imap_host, imap_port, smtp_host, smtp_port, email_address, email_password_enc, is_active) VALUES ($1,$2,$3,$4,$5,$6,$7,$8)",
       [userId, config.imap_host, config.imap_port, config.smtp_host, config.smtp_port, config.email_address, config.email_password_enc, config.is_active ? 1 : 0]);
   }
-  saveDB();
 }
-function getEmailConfig(userId) { return queryOne("SELECT * FROM user_email_config WHERE user_id = ?", [userId]); }
-function getActiveEmailConfigs() { return queryAll("SELECT * FROM user_email_config WHERE is_active = 1"); }
+async function getEmailConfig(userId) { const r = await pool.query("SELECT * FROM user_email_config WHERE user_id = $1", [userId]); return r.rows[0] || null; }
+async function getActiveEmailConfigs() { const r = await pool.query("SELECT * FROM user_email_config WHERE is_active = 1"); return r.rows; }
 
 // --- Messages ---
-function insertMessage(d) {
-  db.run("INSERT INTO messages (user_id,platform,external_id,sender_id,sender_name,sender_email,subject,body,raw_headers) VALUES (?,?,?,?,?,?,?,?,?)",
+async function insertMessage(d) {
+  const r = await pool.query("INSERT INTO messages (user_id,platform,external_id,sender_id,sender_name,sender_email,subject,body,raw_headers) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING id",
     [d.user_id, d.platform, d.external_id, d.sender_id, d.sender_name, d.sender_email, d.subject, d.body, d.raw_headers]);
-  const r = queryOne("SELECT last_insert_rowid() as id");
-  saveDB();
-  return { lastInsertRowid: r.id };
+  return { lastInsertRowid: r.rows[0].id };
 }
-function getMessageById(id, userId) { return queryOne("SELECT * FROM messages WHERE id=? AND user_id=?", [id, userId]); }
-function getMessageByExternalId(extId, platform, userId) { return queryOne("SELECT * FROM messages WHERE external_id=? AND platform=? AND user_id=?", [extId, platform, userId]); }
-function getAllMessages(userId, limit, offset) {
-  return queryAll("SELECT m.*, d.content as draft_content, d.edited_content, d.id as draft_id FROM messages m LEFT JOIN drafts d ON d.message_id=m.id AND d.user_id=m.user_id ORDER BY m.received_at DESC LIMIT ? OFFSET ?", [limit, offset]);
+async function getMessageById(id, userId) { const r = await pool.query("SELECT * FROM messages WHERE id=$1 AND user_id=$2", [id, userId]); return r.rows[0] || null; }
+async function getMessageByExternalId(extId, platform, userId) { const r = await pool.query("SELECT * FROM messages WHERE external_id=$1 AND platform=$2 AND user_id=$3", [extId, platform, userId]); return r.rows[0] || null; }
+async function getMessagesByUser(userId, limit, offset) {
+  const r = await pool.query("SELECT m.*, d.content as draft_content, d.edited_content, d.id as draft_id FROM messages m LEFT JOIN drafts d ON d.message_id=m.id AND d.user_id=m.user_id WHERE m.user_id=$1 ORDER BY m.received_at DESC LIMIT $2 OFFSET $3", [userId, limit, offset]);
+  return r.rows;
 }
-function getMessagesByUser(userId, limit, offset) {
-  return queryAll("SELECT m.*, d.content as draft_content, d.edited_content, d.id as draft_id FROM messages m LEFT JOIN drafts d ON d.message_id=m.id AND d.user_id=m.user_id WHERE m.user_id=? ORDER BY m.received_at DESC LIMIT ? OFFSET ?", [userId, limit, offset]);
-}
-function getMessageCount(userId) { return queryOne("SELECT COUNT(*) as count FROM messages WHERE user_id=?", [userId]); }
-function updateMessageStatus(status, id, userId) { run("UPDATE messages SET status=? WHERE id=? AND user_id=?", [status, id, userId]); }
+async function getMessageCount(userId) { const r = await pool.query("SELECT COUNT(*) as count FROM messages WHERE user_id=$1", [userId]); return r.rows[0] || { count: 0 }; }
+async function updateMessageStatus(status, id, userId) { await pool.query("UPDATE messages SET status=$1 WHERE id=$2 AND user_id=$3", [status, id, userId]); }
 
 // --- Drafts ---
-function insertDraft(d) { run("INSERT INTO drafts (message_id, user_id, content, version) VALUES (?,?,?,?)", [d.message_id, d.user_id, d.content, d.version]); }
-function getDraftByMessageId(msgId, userId) { return queryOne("SELECT * FROM drafts WHERE message_id=? AND user_id=? ORDER BY version DESC LIMIT 1", [msgId, userId]); }
-function updateDraftContent(content, draftId, userId) { run("UPDATE drafts SET edited_content=? WHERE id=? AND user_id=?", [content, draftId, userId]); }
+async function insertDraft(d) { await pool.query("INSERT INTO drafts (message_id, user_id, content, version) VALUES ($1,$2,$3,$4)", [d.message_id, d.user_id, d.content, d.version]); }
+async function getDraftByMessageId(msgId, userId) { const r = await pool.query("SELECT * FROM drafts WHERE message_id=$1 AND user_id=$2 ORDER BY version DESC LIMIT 1", [msgId, userId]); return r.rows[0] || null; }
+async function updateDraftContent(content, draftId, userId) { await pool.query("UPDATE drafts SET edited_content=$1 WHERE id=$2 AND user_id=$3", [content, draftId, userId]); }
 
 // --- Sent ---
-function insertSentReply(d) { run("INSERT INTO sent_replies (message_id,user_id,draft_id,content,status,error) VALUES (?,?,?,?,?,?)", [d.message_id, d.user_id, d.draft_id, d.content, d.status, d.error]); }
+async function insertSentReply(d) { await pool.query("INSERT INTO sent_replies (message_id,user_id,draft_id,content,status,error) VALUES ($1,$2,$3,$4,$5,$6)", [d.message_id, d.user_id, d.draft_id, d.content, d.status, d.error]); }
 
 // --- Settings ---
-function getSetting(userId, key) { return queryOne("SELECT value FROM settings WHERE user_id=? AND key=?", [userId, key]); }
-function upsertSetting(userId, key, value) {
-  run("INSERT INTO settings (user_id,key,value) VALUES (?,?,?) ON CONFLICT(user_id,key) DO UPDATE SET value=excluded.value", [userId, key, value]);
+async function getSetting(userId, key) { const r = await pool.query("SELECT value FROM settings WHERE user_id=$1 AND key=$2", [userId, key]); return r.rows[0] || null; }
+async function upsertSetting(userId, key, value) {
+  await pool.query("INSERT INTO settings (user_id,key,value) VALUES ($1,$2,$3) ON CONFLICT(user_id,key) DO UPDATE SET value=EXCLUDED.value", [userId, key, value]);
 }
-function getAllSettings(userId) { return queryAll("SELECT * FROM settings WHERE user_id=?", [userId]); }
+async function getAllSettings(userId) { const r = await pool.query("SELECT * FROM settings WHERE user_id=$1", [userId]); return r.rows; }
 
 // --- Voice Samples ---
-function addVoiceSample(userId, text) { run("INSERT INTO voice_samples (user_id, sample_text) VALUES (?,?)", [userId, text]); }
-function getVoiceSamples(userId) { return queryAll("SELECT * FROM voice_samples WHERE user_id=? ORDER BY created_at DESC", [userId]); }
-function clearVoiceSamples(userId) { run("DELETE FROM voice_samples WHERE user_id=?", [userId]); }
+async function addVoiceSample(userId, text) { await pool.query("INSERT INTO voice_samples (user_id, sample_text) VALUES ($1,$2)", [userId, text]); }
+async function getVoiceSamples(userId) { const r = await pool.query("SELECT * FROM voice_samples WHERE user_id=$1 ORDER BY created_at DESC", [userId]); return r.rows; }
+async function clearVoiceSamples(userId) { await pool.query("DELETE FROM voice_samples WHERE user_id=$1", [userId]); }
 
 // --- Stats ---
-function getStats(userId) {
-  const total = queryOne("SELECT COUNT(*) as count FROM messages WHERE user_id=?", [userId]);
-  const byStatus = queryAll("SELECT status, COUNT(*) as count FROM messages WHERE user_id=? GROUP BY status", [userId]);
-  const today = queryOne("SELECT COUNT(*) as count FROM messages WHERE user_id=? AND date(received_at)=date('now')", [userId]);
+async function getStats(userId) {
+  const total = await pool.query("SELECT COUNT(*) as count FROM messages WHERE user_id=$1", [userId]);
+  const byStatus = await pool.query("SELECT status, COUNT(*) as count FROM messages WHERE user_id=$1 GROUP BY status", [userId]);
+  const today = await pool.query("SELECT COUNT(*) as count FROM messages WHERE user_id=$1 AND DATE(received_at)=CURRENT_DATE", [userId]);
   return {
-    total: total?.count || 0, today: today?.count || 0,
-    byStatus: Object.fromEntries((byStatus || []).map(r => [r.status, r.count]))
+    total: parseInt(total.rows[0]?.count) || 0,
+    today: parseInt(today.rows[0]?.count) || 0,
+    byStatus: Object.fromEntries((byStatus.rows || []).map(r => [r.status, parseInt(r.count)]))
   };
 }
 
 // --- Subscriptions ---
-function getUserPlan(userId) {
-  const sub = queryOne("SELECT * FROM subscriptions WHERE user_id=? AND status='active' ORDER BY started_at DESC LIMIT 1", [userId]);
-  return sub || { plan: 'free', status: 'active' };
+async function getUserPlan(userId) {
+  const r = await pool.query("SELECT * FROM subscriptions WHERE user_id=$1 AND status='active' ORDER BY started_at DESC LIMIT 1", [userId]);
+  return r.rows[0] || { plan: 'free', status: 'active' };
 }
-function setUserPlan(userId, plan, checkoutId, paymentId, amount) {
-  db.run("INSERT INTO subscriptions (user_id, plan, checkout_id, payment_id, amount, status) VALUES (?,?,?,?,?,'active')",
+async function setUserPlan(userId, plan, checkoutId, paymentId, amount) {
+  await pool.query("INSERT INTO subscriptions (user_id, plan, checkout_id, payment_id, amount, status) VALUES ($1,$2,$3,$4,$5,'active')",
     [userId, plan, checkoutId || null, paymentId || null, amount || 0]);
-  saveDB();
 }
-function getSubByCheckoutId(checkoutId) {
-  return queryOne("SELECT * FROM subscriptions WHERE checkout_id=?", [checkoutId]);
+async function getSubByCheckoutId(checkoutId) {
+  const r = await pool.query("SELECT * FROM subscriptions WHERE checkout_id=$1", [checkoutId]);
+  return r.rows[0] || null;
 }
 
-function closeDB() { if (db) { saveDB(); db.close(); } }
+async function closeDB() { await pool.end(); }
 
 module.exports = {
   initDB, closeDB,
