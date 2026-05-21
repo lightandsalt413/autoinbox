@@ -14,13 +14,10 @@ function buildPoolConfig() {
     return {
       user: `postgres.${projectRef}`,
       password: password,
-      host: `aws-0-ap-northeast-1.pooler.supabase.com`,
-      port: 6543,
+      host: `aws-1-ap-northeast-1.pooler.supabase.com`,
+      port: 5432,
       database: 'postgres',
-      ssl: { rejectUnauthorized: false },
-      // Transaction mode pooler settings
-      statement_timeout: 30000,
-      idle_in_transaction_session_timeout: 60000
+      ssl: { rejectUnauthorized: false }
     };
   }
   
