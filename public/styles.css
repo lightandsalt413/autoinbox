@@ -244,6 +244,27 @@ a{color:var(--p2);text-decoration:none}
 .card h3{margin-bottom:12px;font-size:1.05rem}
 .set-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-bottom:20px}
 .full-w{grid-column:1/-1}
+/* Plan & Billing Page */
+.current-plan-display{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.cpd-name{font-size:1.5rem;font-weight:800;color:var(--p2)}
+.cpd-price{font-size:1.1rem;color:var(--t2)}
+.cpd-status{font-size:.78rem;padding:4px 14px;border-radius:50px;background:rgba(16,185,129,.15);color:var(--g);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.plan-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:16px}
+.plan-option{background:var(--s);border:1px solid var(--s2);border-radius:var(--rad);padding:24px;position:relative;transition:all .3s}
+.plan-option:hover{border-color:var(--p);transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,.3)}
+.plan-option.featured{border-color:var(--p);background:linear-gradient(135deg,rgba(197,165,90,.08),rgba(197,165,90,.02))}
+.plan-option.current{border-color:var(--g);background:rgba(16,185,129,.05)}
+.po-tag{position:absolute;top:-10px;left:16px;background:var(--p);color:#000;padding:3px 12px;border-radius:50px;font-size:.7rem;font-weight:700;text-transform:uppercase}
+.plan-option h4{font-size:1.1rem;margin-bottom:8px}
+.po-price{font-size:1.8rem;font-weight:800;color:var(--t);margin-bottom:4px}
+.po-price span{font-size:.85rem;color:var(--t3);font-weight:400}
+.po-trial{font-size:.75rem;color:var(--g);font-weight:600;margin-bottom:12px}
+.plan-option ul{list-style:none;padding:0;margin:0 0 16px}
+.plan-option li{padding:6px 0;font-size:.85rem;color:var(--t2);border-bottom:1px solid var(--s2)}
+.plan-option li:last-child{border:none}
+.plan-option li::before{content:'✓';color:var(--g);margin-right:8px;font-weight:700}
+.pay-methods{display:flex;gap:10px;flex-wrap:wrap}
+.pay-pill{background:var(--bg2);border:1px solid var(--s2);padding:8px 16px;border-radius:50px;font-size:.82rem;color:var(--t2)}
 
 /* Modal */
 .modal{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px}

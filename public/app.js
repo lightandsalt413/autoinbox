@@ -291,8 +291,84 @@ document.querySelectorAll('.nav-item').forEach(btn => {
     showDashSection(page);
     if (page === 'voice') loadVoicePage();
     if (page === 'settings') loadSettings();
+    if (page === 'plan') loadPlanPage();
   });
 });
+
+// Mobile nav
+document.querySelectorAll('.mnav-item').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const page = btn.dataset.page;
+    document.querySelectorAll('.mnav-item').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    showDashSection(page);
+    if (page === 'voice') loadVoicePage();
+    if (page === 'settings') loadSettings();
+    if (page === 'plan') loadPlanPage();
+  });
+});
+
+// ===== Plan & Billing Page =====
+async function loadPlanPage() {
+  try {
+    const data = await api('/plan');
+    const plan = data?.plan || 'free';
+    const prices = { free: '₱0/mo', basic: '₱499/mo', pro: '₱999/mo' };
+    
+    document.getElementById('cpd-name').textContent = plan.charAt(0).toUpperCase() + plan.slice(1);
+    document.getElementById('cpd-price').textContent = prices[plan] || '₱0/mo';
+    document.getElementById('cpd-status').textContent = data?.status || 'Active';
+
+    // Highlight current plan
+    document.querySelectorAll('.plan-option').forEach(o => o.classList.remove('current'));
+    const currentEl = document.getElementById(`po-${plan}`);
+    if (currentEl) {
+      currentEl.classList.add('current');
+      const btn = currentEl.querySelector('button');
+      if (btn) { btn.textContent = 'Current Plan'; btn.disabled = true; btn.className = 'btn-ghost btn-full'; }
+    }
+
+    // Enable upgrade buttons for non-current plans
+    ['basic', 'pro'].forEach(p => {
+      if (p !== plan) {
+        const el = document.getElementById(`po-${p}`);
+        if (el) {
+          const btn = el.querySelector('button');
+          if (btn) {
+            btn.disabled = false;
+            btn.className = 'btn-accent btn-full';
+            btn.textContent = p === 'basic' ? 'Start 7-Day Free Trial' : 'Subscribe Now';
+          }
+        }
+      }
+    });
+    if (plan !== 'free') {
+      const freeEl = document.getElementById('po-free');
+      if (freeEl) {
+        const btn = freeEl.querySelector('button');
+        if (btn) { btn.textContent = 'Downgrade'; btn.disabled = true; btn.className = 'btn-ghost btn-full'; }
+      }
+    }
+  } catch (e) { /* silent */ }
+}
+
+// Upgrade handlers
+async function handleUpgrade(plan) {
+  try {
+    showToast('Redirecting to payment...');
+    const data = await api('/checkout', { method: 'POST', body: JSON.stringify({ plan }) });
+    if (data.checkout_url) {
+      window.location.href = data.checkout_url;
+    } else {
+      showToast(data.error || 'Checkout failed', 'error');
+    }
+  } catch (e) {
+    showToast(e.message || 'Payment error', 'error');
+  }
+}
+
+document.getElementById('btn-upgrade-basic')?.addEventListener('click', () => handleUpgrade('basic'));
+document.getElementById('btn-upgrade-pro')?.addEventListener('click', () => handleUpgrade('pro'));
 
 // ===== Messages =====
 function escHtml(s) { const d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
