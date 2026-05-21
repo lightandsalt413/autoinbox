@@ -65,10 +65,15 @@ let currentPage = null;
 function showPage(id, addHistory = true) {
   document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
   const el = document.getElementById(`page-${id}`);
-  if (el) el.classList.remove('hidden');
+  if (el) {
+    el.classList.remove('hidden');
+    // Re-trigger fade animation
+    el.style.animation = 'none';
+    el.offsetHeight; // force reflow
+    el.style.animation = '';
+  }
   if (addHistory && id !== 'landing') {
     if (currentPage === id) {
-      // Same page — replace, don't push (prevents back-button spam)
       history.replaceState({ page: id }, '', `#${id}`);
     } else {
       history.pushState({ page: id }, '', `#${id}`);
@@ -77,6 +82,7 @@ function showPage(id, addHistory = true) {
     history.replaceState(null, '', window.location.pathname);
   }
   currentPage = id;
+  window.scrollTo({ top: 0 });
 }
 
 // Back button → go to landing
