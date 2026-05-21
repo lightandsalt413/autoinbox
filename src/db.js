@@ -1,24 +1,37 @@
 const { Pool } = require('pg');
 
-// Auto-convert Supabase direct URL to pooler URL (fixes IPv6 ENETUNREACH from Render)
-function getConnectionString() {
-  let url = process.env.DATABASE_URL || '';
-  // Direct: postgresql://postgres:PASS@db.PROJECTREF.supabase.co:5432/postgres
-  // Pooler: postgresql://postgres.PROJECTREF:PASS@aws-0-ap-northeast-1.pooler.supabase.com:5432/postgres
+// Parse Supabase DATABASE_URL and connect via pooler
+function buildPoolConfig() {
+  const url = process.env.DATABASE_URL || '';
+  
+  // Parse: postgresql://postgres:PASS@db.PROJECTREF.supabase.co:5432/postgres
   const match = url.match(/postgresql:\/\/postgres:(.+)@db\.(.+)\.supabase\.co:5432\/postgres/);
+  
   if (match) {
-    const password = encodeURIComponent(match[1]);
+    const password = match[1];
     const projectRef = match[2];
-    url = `postgresql://postgres.${projectRef}:${password}@aws-0-ap-northeast-1.pooler.supabase.com:5432/postgres`;
-    console.log('🔄 Converted to Supabase connection pooler URL (session mode)');
+    console.log(`🔄 Supabase project: ${projectRef} — connecting via pooler`);
+    return {
+      user: `postgres.${projectRef}`,
+      password: password,
+      host: `aws-0-ap-northeast-1.pooler.supabase.com`,
+      port: 6543,
+      database: 'postgres',
+      ssl: { rejectUnauthorized: false },
+      // Transaction mode pooler settings
+      statement_timeout: 30000,
+      idle_in_transaction_session_timeout: 60000
+    };
   }
-  return url;
+  
+  // Fallback: use URL as-is
+  return {
+    connectionString: url,
+    ssl: { rejectUnauthorized: false }
+  };
 }
 
-const pool = new Pool({
-  connectionString: getConnectionString(),
-  ssl: { rejectUnauthorized: false }
-});
+const pool = new Pool(buildPoolConfig());
 
 async function initDB() {
   const client = await pool.connect();
