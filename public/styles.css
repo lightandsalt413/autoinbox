@@ -302,7 +302,7 @@ a{color:var(--p2);text-decoration:none}
 
 @media(max-width:768px){
   body{background-image:none!important;background-color:#111111}
-  .nav{padding:10px 16px;position:fixed;top:0;left:0;right:0;border-radius:0}
+  .nav{padding:10px 16px;position:fixed;top:0;left:0;right:0;border-radius:0;z-index:100}
   .nav-right .btn-ghost:not(.menu-trigger){display:none}
   .logo span{font-size:.9rem;padding:5px 12px}
   .hero{flex-direction:column;padding:90px 20px 40px;gap:20px;text-align:center}
@@ -339,6 +339,37 @@ a{color:var(--p2);text-decoration:none}
   .dash-main{padding:16px 16px 80px}
   .set-grid{grid-template-columns:1fr}
   .modal-box{width:95%;margin:20px;padding:20px}
+  /* Mobile message cards — stack layout */
+  .message-card{grid-template-columns:40px 1fr;gap:10px;padding:14px 16px}
+  .message-avatar{width:40px;height:40px;font-size:.78rem}
+  .message-meta{text-align:left;display:flex;align-items:center;gap:8px;margin-top:6px}
+  .message-preview{max-width:100%}
+  .message-sender{font-size:.85rem}
+  .message-subject{font-size:.78rem}
+  /* Stats row wrap */
+  .stats-row{flex-wrap:wrap;gap:8px}
+  .stat-card{flex:1;min-width:70px;padding:12px 10px}
+  .stat-num{font-size:1.3rem}
+  .stat-lbl{font-size:.65rem}
+  /* Dashboard header */
+  .dash-head h1{font-size:1.3rem}
+  /* Filter tabs scroll */
+  .filter-tabs{overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .filter-tabs::-webkit-scrollbar{display:none}
+  .tab{white-space:nowrap;flex-shrink:0}
+  /* Plan & Billing mobile */
+  .current-plan-display{flex-direction:column;align-items:flex-start;gap:12px}
+  .plan-grid{grid-template-columns:1fr}
+  .plan-option{padding:20px}
+  /* Auth mobile */
+  .auth-box{padding:24px 20px;margin:0 12px}
+  /* Cards */
+  .card{padding:18px 16px}
+  .card h3{font-size:.95rem}
+  /* Voice samples */
+  .sample-group textarea,.dash-voice-sample{font-size:.85rem}
+  /* Pay methods */
+  .pay-methods{justify-content:center}
 }
 
 @media(max-width:380px){
