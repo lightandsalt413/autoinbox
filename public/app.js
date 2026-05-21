@@ -776,6 +776,8 @@ document.getElementById('btn-final-cta')?.addEventListener('click', () => {
 })();
 
 // ===== Init =====
+// Hide all pages first to prevent flash-of-wrong-page on refresh
+document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
 (async () => {
   if (token) {
     try {
@@ -789,6 +791,8 @@ document.getElementById('btn-final-cta')?.addEventListener('click', () => {
   } else {
     showPage('landing');
   }
+  // Reveal body after correct page is set
+  document.body.style.opacity = '1';
 })();
 
 // ===== Scroll Reveal =====
