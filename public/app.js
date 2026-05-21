@@ -58,6 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
     else if (text.includes('₱499')) el.innerHTML = text.replace('₱499', CURRENCY.basic);
     else if (text.includes('₱999')) el.innerHTML = text.replace('₱999', CURRENCY.pro);
   });
+  // Initialize multi-language playground
+  initDemoPlayground();
 });
 
 // ===== Navigation =====
@@ -896,6 +898,179 @@ const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); revealObserver.unobserve(e.target); } });
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.section, .cta-section').forEach(el => revealObserver.observe(el));
+
+// ===== Multi-Language Showcase Interactive Simulator =====
+const DEMO_DATA = {
+  ja: {
+    avatar: 'YT',
+    name: 'Yuki Tanaka',
+    clientMsg: 'ウェブサイトの料金を教えてください。',
+    aiReply: '基本的なウェブサイトは$150からです。5〜7日で完成いたします。',
+    replyBadge: '⚡ Auto-replied in 1.2s'
+  },
+  ko: {
+    avatar: 'MK',
+    name: 'Min-Jun Kim',
+    clientMsg: '로고 디자인 가격이 얼마인가요?',
+    aiReply: '로고 디자인은 $80부터 시작합니다. 3~5일 내 완성됩니다.',
+    replyBadge: '⚡ Auto-replied in 0.9s'
+  },
+  es: {
+    avatar: 'SR',
+    name: 'Sofía Rodríguez',
+    clientMsg: '¿Cuánto cuesta el desarrollo de una app móvil?',
+    aiReply: 'El costo inicial es de $500. Depende de las funciones y diseño.',
+    replyBadge: '⚡ Auto-replied in 1.5s'
+  },
+  fr: {
+    avatar: 'LM',
+    name: 'Lucas Martin',
+    clientMsg: 'Faites-vous des designs pour des e-boutiques?',
+    aiReply: 'Oui, nous concevons des boutiques Shopify professionnelles dès 300€.',
+    replyBadge: '⚡ Auto-replied in 1.1s'
+  },
+  ar: {
+    avatar: 'YA',
+    name: 'Yousef Al-Harbi',
+    clientMsg: 'هل تقدمون خدمات كتابة المحتوى الإعلاني؟',
+    aiReply: 'نعم، نقدم خدمات كتابة محتوى احترافية متوافقة مع السيو بسعر يبدأ من 30$ للصفحة.',
+    replyBadge: '⚡ Auto-replied in 1.4s'
+  },
+  tl: {
+    avatar: 'JC',
+    name: 'Jay dela Cruz',
+    clientMsg: 'Magkano po magpa-gawa ng customized e-commerce site?',
+    aiReply: 'Hello Jay! Ang starting price po namin ay ₱7,500, kasama na ang domain, hosting, at payment setup.',
+    replyBadge: '⚡ Auto-replied in 0.8s'
+  }
+};
+
+let demoTimer = null;
+let currentDemoLang = 'ja';
+
+function initDemoPlayground() {
+  const tabs = document.querySelectorAll('.demo-tab');
+  if (!tabs.length) return;
+
+  // Click handler
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const lang = tab.dataset.lang;
+      if (!lang) return;
+      
+      // Stop auto cycling
+      if (demoTimer) {
+        clearInterval(demoTimer);
+        demoTimer = null;
+      }
+      
+      setActiveTab(lang);
+      playDemo(lang);
+    });
+  });
+
+  // Set active tab helper
+  function setActiveTab(lang) {
+    tabs.forEach(t => {
+      if (t.dataset.lang === lang) {
+        t.classList.add('active');
+        // Scroll tab into view for mobile overflow layout
+        t.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      } else {
+        t.classList.remove('active');
+      }
+    });
+    currentDemoLang = lang;
+  }
+
+  // Play demo helper
+  function playDemo(lang) {
+    const data = DEMO_DATA[lang];
+    if (!data) return;
+
+    const chatBody = document.getElementById('demo-chat-body');
+    const avatarEl = document.getElementById('demo-avatar');
+    const nameEl = document.getElementById('demo-name');
+
+    if (!chatBody) return;
+
+    // Update user info
+    if (avatarEl) avatarEl.textContent = data.avatar;
+    if (nameEl) nameEl.textContent = data.name;
+
+    // Clear and play animations
+    chatBody.innerHTML = '';
+
+    // Step 1: Add Client Message after 200ms
+    const clientTimer = setTimeout(() => {
+      const clientBubble = document.createElement('div');
+      clientBubble.className = 'bubble client';
+      clientBubble.innerHTML = `
+        <span class="bubble-tag">Client</span>
+        <div>${data.clientMsg}</div>
+        <span class="bubble-time">Received</span>
+      `;
+      chatBody.appendChild(clientBubble);
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }, 200);
+
+    // Step 2: Show Typing Indicator after 1200ms
+    const typingTimer = setTimeout(() => {
+      const typingBubble = document.createElement('div');
+      typingBubble.className = 'bubble typing';
+      typingBubble.id = 'demo-typing-indicator';
+      typingBubble.innerHTML = `
+        <span class="typing-dot"></span>
+        <span class="typing-dot"></span>
+        <span class="typing-dot"></span>
+      `;
+      chatBody.appendChild(typingBubble);
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }, 1200);
+
+    // Step 3: Show AI reply after 2700ms (1.5s typing)
+    const replyTimer = setTimeout(() => {
+      // Remove typing bubble
+      const typingInd = document.getElementById('demo-typing-indicator');
+      if (typingInd) typingInd.remove();
+
+      const aiBubble = document.createElement('div');
+      aiBubble.className = 'bubble ai';
+      aiBubble.innerHTML = `
+        <span class="bubble-tag">${data.replyBadge}</span>
+        <div>${data.aiReply}</div>
+        <span class="bubble-time">Sent Automatically</span>
+      `;
+      chatBody.appendChild(aiBubble);
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }, 2700);
+
+    // Store timers on the element to cancel them if tab changes mid-animation
+    // This prevents overlapping text/animations from previous plays
+    if (chatBody._timers) {
+      chatBody._timers.forEach(t => clearTimeout(t));
+    }
+    chatBody._timers = [clientTimer, typingTimer, replyTimer];
+  }
+
+  // Start auto cycle
+  function startAutoCycle() {
+    const langs = ['ja', 'ko', 'es', 'fr', 'ar', 'tl'];
+    let idx = 0;
+    
+    // Play initial demo
+    setActiveTab(langs[idx]);
+    playDemo(langs[idx]);
+
+    demoTimer = setInterval(() => {
+      idx = (idx + 1) % langs.length;
+      setActiveTab(langs[idx]);
+      playDemo(langs[idx]);
+    }, 8000);
+  }
+
+  startAutoCycle();
+}
 
 // ===== Nav Scroll Shadow =====
 window.addEventListener('scroll', () => {
