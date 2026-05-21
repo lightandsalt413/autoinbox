@@ -1,7 +1,22 @@
 const { Pool } = require('pg');
 
+// Auto-convert Supabase direct URL to pooler URL (fixes IPv6 ENETUNREACH from Render)
+function getConnectionString() {
+  let url = process.env.DATABASE_URL || '';
+  // Direct: postgresql://postgres:PASS@db.PROJECTREF.supabase.co:5432/postgres
+  // Pooler: postgresql://postgres.PROJECTREF:PASS@aws-0-ap-northeast-1.pooler.supabase.com:6543/postgres
+  const match = url.match(/postgresql:\/\/postgres:(.+)@db\.(.+)\.supabase\.co:5432\/postgres/);
+  if (match) {
+    const password = match[1];
+    const projectRef = match[2];
+    url = `postgresql://postgres.${projectRef}:${password}@aws-0-ap-northeast-1.pooler.supabase.com:6543/postgres`;
+    console.log('🔄 Converted to Supabase connection pooler URL');
+  }
+  return url;
+}
+
 const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: getConnectionString(),
   ssl: { rejectUnauthorized: false }
 });
 
