@@ -91,6 +91,7 @@ document.getElementById('form-login')?.addEventListener('submit', async (e) => {
     });
     token = data.token;
     localStorage.setItem('kk_token', token);
+    if (data.name) localStorage.setItem('autoinbox_name', data.name);
     enterDashboard();
   } catch (e) {
     errEl.textContent = e.message;
@@ -260,8 +261,27 @@ async function enterDashboard() {
   loadMessages();
   loadStats();
   loadEmailStatus();
+  loadSidebarPlan();
+  // Set user name in sidebar
+  const userName = localStorage.getItem('autoinbox_name');
+  if (userName) {
+    const userEl = document.getElementById('sidebar-user');
+    if (userEl) userEl.textContent = userName;
+  }
   if (refreshTimer) clearInterval(refreshTimer);
   refreshTimer = setInterval(() => { loadMessages(); loadStats(); loadEmailStatus(); }, 10000);
+}
+
+async function loadSidebarPlan() {
+  try {
+    const data = await api('/plan');
+    const badge = document.getElementById('sidebar-plan');
+    if (badge && data) {
+      const planName = data.plan === 'pro' ? 'Pro Plan' : data.plan === 'basic' ? 'Basic Plan' : 'Free Plan';
+      badge.querySelector('span:last-child').textContent = planName;
+      badge.className = 'plan-badge' + (data.plan === 'pro' ? ' pro' : data.plan === 'basic' ? ' basic' : '');
+    }
+  } catch (e) { /* silent */ }
 }
 
 // Sidebar nav

@@ -157,6 +157,11 @@ a{color:var(--p2);text-decoration:none}
 .fg label{font-size:.82rem;font-weight:500;color:var(--t2)}
 .fg input,.fg textarea,.fg select{background:var(--bg2);border:1px solid var(--s2);color:var(--t);padding:12px 14px;border-radius:10px;font-size:.95rem;font-family:var(--f);transition:border .2s}
 .fg input:focus,.fg textarea:focus,.fg select:focus{outline:none;border-color:var(--p)}
+/* Global dark textarea/input for dashboard dynamic elements */
+.sample-group textarea,.dash-voice-sample,.draft-ed,.card textarea,.card input,.card select{background:var(--bg2)!important;border:1px solid var(--s2)!important;color:var(--t)!important;padding:12px 14px;border-radius:10px;font-size:.95rem;font-family:var(--f);transition:border .2s;width:100%;box-sizing:border-box;resize:vertical}
+.sample-group textarea:focus,.dash-voice-sample:focus,.draft-ed:focus,.card textarea:focus,.card input:focus{outline:none;border-color:var(--p)!important}
+.sample-group{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.sample-group label{font-size:.82rem;font-weight:500;color:var(--t2)}
 .form-err{color:var(--r);font-size:.85rem;background:rgba(239,68,68,.1);padding:8px 12px;border-radius:8px}
 .auth-sw{text-align:center;margin-top:20px;font-size:.88rem;color:var(--t2)}
 .hl{color:var(--p2);font-size:.8rem}
@@ -202,6 +207,12 @@ a{color:var(--p2);text-decoration:none}
 .nav-item.active{color:var(--p2);background:rgba(197,165,90,.1);border-left:3px solid var(--p)}
 .badge{background:var(--r);color:#fff;font-size:.7rem;padding:2px 8px;border-radius:10px;margin-left:auto;font-weight:600}
 .sb-bot{padding:16px 20px;border-top:1px solid var(--s2)}
+.plan-badge{display:flex;align-items:center;gap:8px;font-size:.8rem;color:var(--p2);background:rgba(197,165,90,.1);padding:8px 12px;border-radius:8px;margin-bottom:10px;font-weight:600}
+.plan-badge.pro{color:var(--g);background:rgba(16,185,129,.1)}
+.plan-dot{width:8px;height:8px;border-radius:50%;background:var(--p2)}
+.plan-badge.pro .plan-dot{background:var(--g)}
+.sb-user{display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--t2);margin-bottom:10px}
+.user-dot{width:8px;height:8px;border-radius:50%;background:var(--g)}
 .mon-st{display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--t3);margin-bottom:8px}
 .status-dot{width:8px;height:8px;border-radius:50%;background:var(--t3)}.status-dot.active{background:var(--g);box-shadow:0 0 8px rgba(16,185,129,.5);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
