@@ -4,6 +4,24 @@ let currentFilter = 'all';
 let currentMsgId = null;
 let refreshTimer = null;
 
+// ===== Currency Detection =====
+const isPH = (() => {
+  try {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+    const lang = (navigator.language || '').toLowerCase();
+    return tz.includes('Manila') || lang.startsWith('fil') || lang === 'tl';
+  } catch (e) { return false; }
+})();
+const CURRENCY = {
+  symbol: isPH ? '₱' : '$',
+  basic: isPH ? '₱499' : '$9',
+  pro: isPH ? '₱999' : '$19',
+  free: isPH ? '₱0' : '$0',
+  basicFull: isPH ? '₱499/mo' : '$9/mo',
+  proFull: isPH ? '₱999/mo' : '$19/mo',
+  freeFull: isPH ? '₱0/mo' : '$0/mo'
+};
+
 // ===== API =====
 async function api(path, opts = {}) {
   const headers = { 'Content-Type': 'application/json' };
@@ -23,6 +41,24 @@ function showToast(msg, type = 'success') {
   t.classList.remove('hidden');
   setTimeout(() => t.classList.add('hidden'), 3000);
 }
+
+// ===== Auto-update prices based on location =====
+document.addEventListener('DOMContentLoaded', () => {
+  // Update all price-val elements on landing page
+  document.querySelectorAll('.price-val').forEach(el => {
+    const text = el.innerHTML;
+    if (text.includes('₱0')) el.innerHTML = text.replace('₱0', CURRENCY.free);
+    else if (text.includes('₱499')) el.innerHTML = text.replace('₱499', CURRENCY.basic);
+    else if (text.includes('₱999')) el.innerHTML = text.replace('₱999', CURRENCY.pro);
+  });
+  // Update dashboard plan option prices
+  document.querySelectorAll('.po-price').forEach(el => {
+    const text = el.innerHTML;
+    if (text.includes('₱0')) el.innerHTML = text.replace('₱0', CURRENCY.free);
+    else if (text.includes('₱499')) el.innerHTML = text.replace('₱499', CURRENCY.basic);
+    else if (text.includes('₱999')) el.innerHTML = text.replace('₱999', CURRENCY.pro);
+  });
+});
 
 // ===== Navigation =====
 function showPage(id, addHistory = true) {
@@ -313,7 +349,7 @@ async function loadPlanPage() {
   try {
     const data = await api('/plan');
     const plan = data?.plan || 'free';
-    const prices = { free: '₱0/mo', basic: '₱499/mo', pro: '₱999/mo' };
+    const prices = { free: CURRENCY.freeFull, basic: CURRENCY.basicFull, pro: CURRENCY.proFull };
     
     document.getElementById('cpd-name').textContent = plan.charAt(0).toUpperCase() + plan.slice(1);
     document.getElementById('cpd-price').textContent = prices[plan] || '₱0/mo';
