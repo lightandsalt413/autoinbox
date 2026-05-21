@@ -776,23 +776,25 @@ document.getElementById('btn-final-cta')?.addEventListener('click', () => {
 })();
 
 // ===== Init =====
-// Hide all pages first to prevent flash-of-wrong-page on refresh
-document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
 (async () => {
-  if (token) {
-    try {
-      await api('/stats');
-      enterDashboard();
-    } catch (e) {
-      token = '';
-      localStorage.removeItem('kk_token');
+  try {
+    if (token) {
+      try {
+        await api('/stats');
+        enterDashboard();
+      } catch (e) {
+        token = '';
+        localStorage.removeItem('kk_token');
+        showPage('landing');
+      }
+    } else {
       showPage('landing');
     }
-  } else {
+  } catch (e) {
+    // Safety fallback — always show landing if anything goes wrong
+    console.error('Init error:', e);
     showPage('landing');
   }
-  // Reveal body after correct page is set
-  document.body.style.opacity = '1';
 })();
 
 // ===== Scroll Reveal =====
