@@ -49,8 +49,8 @@ app.post('/api/auth/login', authLimiter, async (req, res) => {
 // --- PayMongo Plans ---
 const PAYMONGO_SECRET = process.env.PAYMONGO_SECRET_KEY;
 const PLANS = {
-  basic: { name: 'AutoInbox Basic', amount: 500, description: '200 AI replies/mo, Full voice clone, Priority AI' },
-  pro: { name: 'AutoInbox Pro', amount: 1000, description: 'Unlimited AI replies, 3 Gmail accounts, Fastest AI' }
+  basic: { name: 'AutoInbox Basic', amount: 49900, description: '200 AI replies/mo, Full voice clone, Priority AI', trial_days: 7 },
+  pro: { name: 'AutoInbox Pro', amount: 99900, description: 'Unlimited AI replies, 3 Gmail accounts, Fastest AI', trial_days: 0 }
 };
 
 // --- PayMongo Webhook (public, no auth needed) ---
@@ -255,10 +255,10 @@ app.post('/api/checkout', async (req, res) => {
             line_items: [{
               name: p.name,
               amount: p.amount,
-              currency: 'USD',
+              currency: 'PHP',
               quantity: 1
             }],
-            payment_method_types: ['card', 'gcash', 'grab_pay'],
+            payment_method_types: ['card', 'gcash', 'paymaya'],
             description: p.description,
             send_email_receipt: true,
             success_url: `${req.protocol}://${req.get('host')}/?payment=success&plan=${plan}`,

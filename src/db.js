@@ -97,7 +97,7 @@ async function initDB() {
     checkout_id TEXT,
     payment_id TEXT,
     amount INTEGER DEFAULT 0,
-    currency TEXT DEFAULT 'USD',
+    currency TEXT DEFAULT 'PHP',
     status TEXT DEFAULT 'active',
     started_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     expires_at DATETIME,
