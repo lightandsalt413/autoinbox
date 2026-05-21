@@ -201,7 +201,7 @@ document.getElementById('form-register')?.addEventListener('submit', async (e) =
     const data = await api('/auth/register', {
       method: 'POST',
       body: JSON.stringify({
-        name: document.getElementById('reg-name').value,
+        name: `${document.getElementById('reg-fname').value.trim()} ${document.getElementById('reg-lname').value.trim()}`,
         email: document.getElementById('reg-email').value,
         password: pass
       })

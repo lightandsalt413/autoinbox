@@ -155,7 +155,8 @@ a{color:var(--p2);text-decoration:none}
 .auth-box{background:var(--s);padding:40px;border-radius:var(--rad);width:100%;max-width:440px;border:1px solid var(--s2)}
 .auth-top{text-align:center;margin-bottom:28px}.auth-top h2{margin-top:16px;font-size:1.5rem}.auth-top p{color:var(--t2)}
 .auth-form{display:flex;flex-direction:column;gap:16px}
-.fg{display:flex;flex-direction:column;gap:6px;margin-bottom:4px}.sg{margin-bottom:8px}
+.fg{display:flex;flex-direction:column;gap:6px;margin-bottom:4px;flex:1}.sg{margin-bottom:8px}
+.fg-row{display:flex;gap:12px}
 .fg label{font-size:.82rem;font-weight:500;color:var(--t2)}
 .fg input,.fg textarea,.fg select{background:var(--bg2);border:1px solid var(--s2);color:var(--t);padding:12px 14px;border-radius:10px;font-size:.95rem;font-family:var(--f);transition:border .2s}
 .fg input:focus,.fg textarea:focus,.fg select:focus{outline:none;border-color:var(--p)}
