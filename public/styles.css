@@ -311,7 +311,9 @@ a{color:var(--p2);text-decoration:none}
 @media(max-width:768px){
   body{background-image:none!important;background-color:#111111}
   .nav{padding:10px 16px;position:fixed;top:0;left:0;right:0;border-radius:0;z-index:100}
-  .nav-right .btn-ghost:not(.menu-trigger){display:none}
+  .nav-right .btn-ghost:not(.menu-trigger),
+  .nav-right .btn-accent{padding:5px 10px;font-size:.7rem}
+
   .logo span{font-size:.9rem;padding:5px 12px}
   .hero{flex-direction:column;padding:90px 20px 40px;gap:20px;text-align:center}
   .hero::before{display:none}
