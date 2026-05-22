@@ -13,6 +13,25 @@ const { helmetConfig, apiLimiter, authLimiter } = require('./middleware/security
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// --- Live Reload for Local Development ---
+if (process.env.NODE_ENV !== 'production' && !process.env.RENDER) {
+  const livereload = require('livereload');
+  const connectLiveReload = require('connect-livereload');
+  
+  const liveReloadServer = livereload.createServer();
+  liveReloadServer.watch(path.join(__dirname, '..', 'public'));
+  liveReloadServer.watch(path.join(__dirname, '..', 'src'));
+  
+  app.use(connectLiveReload());
+  
+  // Refresh on start/reconnect
+  liveReloadServer.server.once("connection", () => {
+    setTimeout(() => {
+      liveReloadServer.refresh("/");
+    }, 100);
+  });
+}
+
 app.use(helmetConfig);
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '..', 'public'), {

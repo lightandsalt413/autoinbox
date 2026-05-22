@@ -18,7 +18,11 @@
     "jsonwebtoken": "^9.0.2",
     "mailparser": "^3.7.2",
     "nodemailer": "^6.9.16",
-    "sql.js": "^1.11.0",
-    "pg": "^8.13.0"
+    "pg": "^8.13.0",
+    "sql.js": "^1.11.0"
+  },
+  "devDependencies": {
+    "connect-livereload": "^0.6.1",
+    "livereload": "^0.10.3"
   }
 }
