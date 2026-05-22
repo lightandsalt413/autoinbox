@@ -88,6 +88,9 @@ function showPage(id, addHistory = true) {
   }
   currentPage = id;
   window.scrollTo({ top: 0 });
+  if (id === 'landing' && typeof checkRevealFallback === 'function') {
+    setTimeout(checkRevealFallback, 100);
+  }
 }
 
 // Back button → go to landing
@@ -111,6 +114,13 @@ function showDashSection(id) {
 document.getElementById('btn-goto-login')?.addEventListener('click', () => showPage('login'));
 document.getElementById('btn-goto-register')?.addEventListener('click', () => showPage('register'));
 document.getElementById('btn-hero-start')?.addEventListener('click', () => showPage('register'));
+document.getElementById('btn-hero-features')?.addEventListener('click', () => {
+  const el = document.getElementById('features');
+  if (el) {
+    el.classList.add('revealed');
+    el.scrollIntoView({ behavior: 'smooth' });
+  }
+});
 document.getElementById('btn-how-signup')?.addEventListener('click', () => showPage('register'));
 document.getElementById('link-register')?.addEventListener('click', (e) => { e.preventDefault(); showPage('register'); });
 document.getElementById('link-login')?.addEventListener('click', (e) => { e.preventDefault(); showPage('login'); });
@@ -129,7 +139,14 @@ menuTrigger?.addEventListener('click', (e) => {
 
 document.querySelectorAll('.menu-item').forEach(item => {
   item.addEventListener('click', () => {
-    menuPanel.classList.remove('open');
+    menuPanel?.classList.remove('open');
+    const href = item.getAttribute('href');
+    if (href && href.startsWith('#')) {
+      const target = document.getElementById(href.substring(1));
+      if (target) {
+        target.classList.add('revealed');
+      }
+    }
   });
 });
 
@@ -932,8 +949,25 @@ document.getElementById('btn-final-cta')?.addEventListener('click', () => {
 // ===== Scroll Reveal =====
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); revealObserver.unobserve(e.target); } });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+}, { threshold: 0.01, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.section, .cta-section').forEach(el => revealObserver.observe(el));
+
+// Fallback manual scroll reveal
+function checkRevealFallback() {
+  const triggerBottom = window.innerHeight * 0.95;
+  document.querySelectorAll('.section, .cta-section').forEach(el => {
+    if (!el.classList.contains('revealed')) {
+      const rect = el.getBoundingClientRect();
+      if (rect.top < triggerBottom && rect.bottom > 0) {
+        el.classList.add('revealed');
+      }
+    }
+  });
+}
+window.addEventListener('scroll', checkRevealFallback);
+window.addEventListener('resize', checkRevealFallback);
+setTimeout(checkRevealFallback, 100);
+setTimeout(checkRevealFallback, 600);
 
 // ===== Multi-Language Showcase Interactive Simulator =====
 const DEMO_DATA = {
