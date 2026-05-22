@@ -1,4 +1,7 @@
 // ===== State =====
+if ('scrollRestoration' in history) {
+  history.scrollRestoration = 'manual';
+}
 let token = localStorage.getItem('kk_token') || sessionStorage.getItem('kk_token') || '';
 let currentFilter = 'all';
 let currentMsgId = null;
@@ -758,12 +761,22 @@ document.querySelectorAll('.mnav-item').forEach(btn => {
   document.getElementById(id)?.addEventListener('click', () => showPage('register'));
 });
 
-// ===== Smooth Scroll for Nav Links =====
-document.querySelectorAll('.nav-center a').forEach(a => {
+// ===== Smooth Scroll for Nav & Footer Links =====
+document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', (e) => {
-    e.preventDefault();
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) target.scrollIntoView({ behavior: 'smooth' });
+    const href = a.getAttribute('href');
+    if (href === '#' || href === '') return;
+    try {
+      const target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+        // Update URL hash without causing page jump
+        history.pushState(null, '', href);
+      }
+    } catch (err) {
+      console.warn('Invalid selector or target not found:', href, err);
+    }
   });
 });
 
@@ -865,6 +878,18 @@ document.getElementById('btn-final-cta')?.addEventListener('click', () => {
   try {
     const hash = window.location.hash.replace('#', '');
     const publicPages = ['login', 'register'];
+    const landingSections = ['features', 'languages', 'how', 'pricing', 'faq'];
+
+    // Handle landing section hashes on load to prevent native jump and do smooth scroll instead
+    let targetSection = null;
+    if (landingSections.includes(hash)) {
+      const el = document.getElementById(hash);
+      if (el) {
+        targetSection = el;
+        // Temporarily change ID to prevent browser instant scroll
+        el.id = `temp-scroll-${hash}`;
+      }
+    }
 
     if (token) {
       try {
@@ -886,6 +911,17 @@ document.getElementById('btn-final-cta')?.addEventListener('click', () => {
       showPage(hash, false);
     } else {
       showPage('landing');
+    }
+
+    // Smoothly scroll to target section if it was intercepted
+    if (targetSection) {
+      setTimeout(() => {
+        // Restore original ID
+        targetSection.id = hash;
+        if (currentPage === 'landing') {
+          targetSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 200);
     }
   } catch (e) {
     console.error('Init error:', e);
@@ -974,8 +1010,17 @@ function initDemoPlayground() {
     tabs.forEach(t => {
       if (t.dataset.lang === lang) {
         t.classList.add('active');
-        // Scroll tab into view for mobile overflow layout
-        t.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        // Scroll tab into view for mobile overflow layout (container-only scroll to prevent window jumping)
+        const container = t.parentElement;
+        if (container && window.innerWidth <= 768) {
+          const tabLeft = t.offsetLeft;
+          const tabWidth = t.offsetWidth;
+          const containerWidth = container.offsetWidth;
+          container.scrollTo({
+            left: tabLeft - (containerWidth / 2) + (tabWidth / 2),
+            behavior: 'smooth'
+          });
+        }
       } else {
         t.classList.remove('active');
       }

@@ -16,12 +16,14 @@ const PORT = process.env.PORT || 3000;
 app.use(helmetConfig);
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '..', 'public'), {
-  maxAge: '1d',
+  maxAge: 0,
   etag: true,
   lastModified: true,
   setHeaders: (res, filePath) => {
     if (filePath.endsWith('.html') || filePath.endsWith('.css') || filePath.endsWith('.js')) {
-      res.setHeader('Cache-Control', 'no-cache, must-revalidate');
+      res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+      res.setHeader('Pragma', 'no-cache');
+      res.setHeader('Expires', '0');
     }
   }
 }));
