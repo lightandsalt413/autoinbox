@@ -68,6 +68,8 @@ document.addEventListener('DOMContentLoaded', () => {
 // ===== Navigation =====
 let currentPage = null;
 function showPage(id, addHistory = true) {
+  closeLandingModals();
+  closeGuideModal();
   document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
   const el = document.getElementById(`page-${id}`);
   if (el) {
@@ -84,7 +86,13 @@ function showPage(id, addHistory = true) {
       history.pushState({ page: id }, '', `#${id}`);
     }
   } else if (addHistory && id === 'landing') {
-    history.replaceState(null, '', window.location.pathname);
+    // If there was a modal hash, keep it clean
+    const currentHash = window.location.hash.replace('#', '');
+    if (HASH_TO_MODAL[currentHash]) {
+      history.replaceState(null, '', window.location.pathname);
+    } else if (!currentHash) {
+      history.replaceState(null, '', window.location.pathname);
+    }
   }
   currentPage = id;
   window.scrollTo({ top: 0 });
@@ -93,13 +101,29 @@ function showPage(id, addHistory = true) {
   }
 }
 
-// Back button → go to landing
+// Back button / Navigation popstate handler
 window.addEventListener('popstate', (e) => {
-  if (e.state && e.state.page) {
-    showPage(e.state.page, false);
+  // Always close all modals on history navigation (popstate)
+  closeLandingModals();
+  closeGuideModal();
+
+  if (e.state) {
+    if (e.state.page) {
+      showPage(e.state.page, false);
+    }
+    if (e.state.modal) {
+      openModal(e.state.modal, false, e.state.extra);
+    }
   } else {
-    showPage('landing', false);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Check if the hash matches a modal
+    const hash = window.location.hash.replace('#', '');
+    const modalId = HASH_TO_MODAL[hash];
+    if (modalId) {
+      openModal(modalId, false);
+    } else {
+      showPage('landing', false);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
 });
 
@@ -141,6 +165,72 @@ function closeLandingModals() {
   stopDemoCycle();
 }
 
+const MODAL_HASHES = {
+  'features-modal': 'features',
+  'languages-modal': 'languages',
+  'how-modal': 'how-it-works',
+  'guide-modal': 'setup-guide',
+  'pricing-modal': 'pricing',
+  'faq-modal': 'faq',
+  'feedback-modal': 'feedback'
+};
+
+const HASH_TO_MODAL = {
+  'features': 'features-modal',
+  'languages': 'languages-modal',
+  'how-it-works': 'how-modal',
+  'setup-guide': 'guide-modal',
+  'pricing': 'pricing-modal',
+  'faq': 'faq-modal',
+  'feedback': 'feedback-modal'
+};
+
+function openModal(modalId, addHistory = true, extra = null) {
+  const el = document.getElementById(modalId);
+  if (!el) return;
+
+  if (modalId === 'guide-modal') {
+    el.classList.remove('hidden');
+    const provider = extra || 'gmail';
+    const targetTab = document.querySelector(`#modal-guide-tabs .tab[data-provider="${provider}"]`);
+    if (targetTab) {
+      targetTab.click();
+    }
+  } else {
+    closeLandingModals();
+    el.classList.remove('hidden');
+    if (modalId === 'languages-modal') {
+      startDemoCycle();
+    }
+  }
+
+  if (addHistory) {
+    const hash = MODAL_HASHES[modalId];
+    if (hash) {
+      history.pushState({ page: currentPage, modal: modalId, extra: extra }, '', '#' + hash);
+    }
+  }
+}
+
+function closeModal(modalId) {
+  if (history.state && history.state.modal === modalId) {
+    history.back();
+  } else {
+    const el = document.getElementById(modalId);
+    if (el) {
+      el.classList.add('hidden');
+      if (modalId === 'languages-modal') {
+        stopDemoCycle();
+      }
+    }
+    // Clean up URL hash if matches this modal
+    const hash = MODAL_HASHES[modalId];
+    if (window.location.hash.replace('#', '') === hash) {
+      history.replaceState({ page: currentPage }, '', window.location.pathname);
+    }
+  }
+}
+
 const MODAL_MAPPING = {
   'menu-features': 'features-modal',
   'menu-languages': 'languages-modal',
@@ -158,14 +248,10 @@ document.querySelectorAll('.menu-item').forEach(item => {
     const id = item.id;
     const modalId = MODAL_MAPPING[id];
     if (modalId) {
-      closeLandingModals();
       if (modalId === 'guide-modal') {
         openGuideModal('gmail');
       } else {
-        document.getElementById(modalId)?.classList.remove('hidden');
-        if (modalId === 'languages-modal') {
-          startDemoCycle();
-        }
+        openModal(modalId, true);
       }
     }
   });
@@ -182,17 +268,10 @@ const modalCloseConfig = [
 ];
 
 modalCloseConfig.forEach(m => {
-  const modalEl = document.getElementById(m.id);
   const btnEl = document.getElementById(m.closeBtn);
   const bgEl = document.getElementById(m.bg);
-  const close = () => {
-    modalEl?.classList.add('hidden');
-    if (m.id === 'languages-modal') {
-      stopDemoCycle();
-    }
-  };
-  btnEl?.addEventListener('click', close);
-  bgEl?.addEventListener('click', close);
+  btnEl?.addEventListener('click', () => closeModal(m.id));
+  bgEl?.addEventListener('click', () => closeModal(m.id));
 });
 
 document.addEventListener('click', (e) => {
@@ -237,20 +316,11 @@ document.querySelectorAll('#modal-guide-tabs .tab').forEach(tab => {
 
 // Open Setup Guide Modal (Onboarding & Settings)
 const openGuideModal = (provider) => {
-  const modal = document.getElementById('guide-modal');
-  if (modal) {
-    modal.classList.remove('hidden');
-    // Pre-select tab in modal
-    const targetTab = document.querySelector(`#modal-guide-tabs .tab[data-provider="${provider}"]`);
-    if (targetTab) {
-      targetTab.click();
-    }
-  }
+  openModal('guide-modal', true, provider);
 };
 
 document.getElementById('ob-open-guide')?.addEventListener('click', (e) => {
   e.preventDefault();
-  // Get currently selected provider in onboarding
   const activeObTab = document.querySelector('#ob-provider-tabs .tab.active');
   const provider = activeObTab ? activeObTab.getAttribute('data-provider') : 'gmail';
   openGuideModal(provider);
@@ -258,7 +328,6 @@ document.getElementById('ob-open-guide')?.addEventListener('click', (e) => {
 
 document.getElementById('set-open-guide')?.addEventListener('click', (e) => {
   e.preventDefault();
-  // Get currently selected provider in settings
   const activeSetTab = document.querySelector('#set-provider-tabs .tab.active');
   const provider = activeSetTab ? activeSetTab.getAttribute('data-provider') : 'gmail';
   openGuideModal(provider);
@@ -269,8 +338,8 @@ const closeGuideModal = () => {
   document.getElementById('guide-modal')?.classList.add('hidden');
 };
 
-document.getElementById('guide-modal-close')?.addEventListener('click', closeGuideModal);
-document.getElementById('guide-modal-bg')?.addEventListener('click', closeGuideModal);
+document.getElementById('guide-modal-close')?.addEventListener('click', () => closeModal('guide-modal'));
+document.getElementById('guide-modal-bg')?.addEventListener('click', () => closeModal('guide-modal'));
 
 document.getElementById('form-login')?.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -1311,6 +1380,10 @@ document.getElementById('btn-final-cta')?.addEventListener('click', () => {
           showPage(hash, false);
         } else {
           showPage('landing');
+          const modalId = HASH_TO_MODAL[hash];
+          if (modalId) {
+            openModal(modalId, false);
+          }
         }
       }
     } else if (publicPages.includes(hash)) {
@@ -1318,6 +1391,10 @@ document.getElementById('btn-final-cta')?.addEventListener('click', () => {
       showPage(hash, false);
     } else {
       showPage('landing');
+      const modalId = HASH_TO_MODAL[hash];
+      if (modalId) {
+        openModal(modalId, false);
+      }
     }
 
     // Smoothly scroll to target section if it was intercepted
