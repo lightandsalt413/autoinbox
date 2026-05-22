@@ -24,8 +24,18 @@
     .page.hidden {
       display: none !important;
     }
+    /* Hide scrollbars globally */
+    *::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+    }
+    * {
+      -ms-overflow-style: none !important;
+      scrollbar-width: none !important;
+    }
   </style>
-  <link rel="stylesheet" href="/styles.css?v=55">
+  <link rel="stylesheet" href="/styles.css?v=59">
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SEF5Y7KP9Z"></script>
   <script>
@@ -168,10 +178,10 @@
     <div id="reg-error" class="form-err hidden"></div>
     <button type="submit" class="btn-accent btn-full">Create Account</button>
   </form><div class="trust-badge">Your data is protected with AES-256 encryption</div><p class="auth-sw">Already have an account? <a href="#" id="link-login">Log In</a></p></div></div></div>
-  <div id="page-onboard" class="page hidden"><div class="auth-wrap"><div class="auth-box glass" style="max-width:560px"><div class="ob-prog"><div class="ob-bar"><div class="ob-fill" id="onboard-progress"></div></div><span id="onboard-step-label">Step 1 of 3</span></div>
+  <div id="page-onboard" class="page hidden"><div class="auth-wrap"><div class="auth-box glass onboard-box"><div class="ob-prog"><div class="ob-bar"><div class="ob-fill" id="onboard-progress"></div></div><span id="onboard-step-label">Step 1 of 3</span></div>
     <div class="onboard-step" id="onboard-step-1">
       <h2>Connect Email</h2>
-      <div class="provider-tabs" id="ob-provider-tabs" style="display:flex;gap:10px;margin:20px 0">
+      <div class="provider-tabs" id="ob-provider-tabs">
         <button type="button" class="tab active" data-provider="gmail" style="flex:1">Gmail</button>
         <button type="button" class="tab" data-provider="yahoo" style="flex:1">Yahoo Mail</button>
       </div>
@@ -183,7 +193,10 @@
       <div class="fg">
         <label for="ob-pass">App Password <a href="https://myaccount.google.com/apppasswords" target="_blank" class="hl" id="ob-pass-guide">Get here →</a></label>
         <input type="password" id="ob-pass" placeholder="xxxx xxxx xxxx xxxx">
-        <p style="font-size:0.75rem;color:var(--t3);margin-top:6px">Confused about how to get this? <a href="#" id="ob-open-guide" style="color:var(--p);text-decoration:underline">Read the Setup Guide →</a></p>
+        <div class="ob-help-note">
+          <span>Confused about how to get this? </span>
+          <a href="#" id="ob-open-guide">Read the Setup Guide →</a>
+        </div>
       </div>
       <div id="ob-email-error" class="form-err hidden"></div>
       <div class="ob-btns"><button class="btn-ghost" id="ob-skip-1">Skip</button><button class="btn-accent" id="ob-next-1">Connect</button></div>
