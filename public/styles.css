@@ -1122,7 +1122,7 @@ a{color:var(--p2);text-decoration:none}
 .landing-canvas {
   position: relative;
   width: 100%;
-  background-color: #F8F6F2;
+  background-color: #F6F0E6;
   color: #1A1A1C;
   border-radius: 40px;
   box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
@@ -1162,6 +1162,20 @@ a{color:var(--p2);text-decoration:none}
   padding-right: 24px;
 }
 
+.cutout-bottom-right {
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 280px;
+  height: 70px;
+  background-color: #0A0A0B;
+  border-top-left-radius: 40px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 
 /* Logo inside dark top-left cutout */
 .outer-logo a {
@@ -1170,21 +1184,15 @@ a{color:var(--p2);text-decoration:none}
   gap: 10px;
   text-decoration: none;
 }
-.outer-logo .logo-box {
+.outer-logo .logo-image {
   width: 32px;
   height: 32px;
-  border: 2px solid #C5A55A;
+  object-fit: contain;
   border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(197, 165, 90, 0.08);
+  transition: transform 0.2s ease;
 }
-.outer-logo .logo-dot {
-  width: 10px;
-  height: 10px;
-  background-color: #C5A55A;
-  border-radius: 50%;
+.outer-logo a:hover .logo-image {
+  transform: scale(1.05);
 }
 .outer-logo .logo-text {
   font-family: var(--fh);
@@ -1309,6 +1317,22 @@ a{color:var(--p2);text-decoration:none}
   background: radial-gradient(circle at 1px 41px, transparent 39.5px, #0A0A0B 40.5px);
 }
 
+.fillet-br-left {
+  right: 278px;
+  bottom: -2px;
+  width: 42px;
+  height: 42px;
+  background: radial-gradient(circle at 1px 1px, transparent 39.5px, #0A0A0B 40.5px);
+}
+
+.fillet-br-top {
+  right: -2px;
+  bottom: 68px;
+  width: 42px;
+  height: 42px;
+  background: radial-gradient(circle at 1px 1px, transparent 39.5px, #0A0A0B 40.5px);
+}
+
 
 /* Inner Canvas Content Container */
 .canvas-content {
@@ -1409,7 +1433,7 @@ a{color:var(--p2);text-decoration:none}
 
 .canvas-contact-btn {
   background: #1A1A1C;
-  color: #F8F6F2;
+  color: #F6F0E6;
   border: none;
   border-radius: 30px;
   padding: 10px 24px;
@@ -1433,7 +1457,7 @@ a{color:var(--p2);text-decoration:none}
   justify-content: center;
   width: 26px;
   height: 26px;
-  background-color: #F8F6F2;
+  background-color: #F6F0E6;
   color: #1A1A1C;
   border-radius: 50%;
 }
@@ -1544,7 +1568,8 @@ a{color:var(--p2);text-decoration:none}
   }
   /* Convert absolute cutouts to flex flow at top & bottom */
   .cutout-top-left,
-  .cutout-top-right {
+  .cutout-top-right,
+  .cutout-bottom-right {
     position: static;
     width: 100%;
     height: auto;
@@ -1560,6 +1585,10 @@ a{color:var(--p2);text-decoration:none}
   .cutout-top-right {
     justify-content: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  
+  .cutout-bottom-right {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
   }
   
   .footer-simple {
