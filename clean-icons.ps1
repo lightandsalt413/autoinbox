@@ -1,4 +1,4 @@
-$f = 'C:\Users\Huawei\.gemini\antigravity\scratch\kopya-ko\public\index.html'
+$f = Join-Path $PSScriptRoot 'public/index.html'
 $c = Get-Content $f -Raw -Encoding UTF8
 
 # Landing page emojis - replace with clean text or nothing
