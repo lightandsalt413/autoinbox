@@ -391,33 +391,33 @@ a{color:var(--p2);text-decoration:none}
 .lang-scroll-row.reverse .lang-scroll-track{animation:langScrollReverse 25s linear infinite}
 @keyframes langScroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 @keyframes langScrollReverse{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
-.lang-pill{background:rgba(197,165,90,.08);border:1px solid rgba(197,165,90,.2);color:var(--t);padding:10px 22px;border-radius:50px;font-size:.88rem;white-space:nowrap;transition:all .3s;cursor:default;font-family:var(--f)}
+.lang-pill{background:rgba(197,165,90,.08);border:1px solid rgba(197,165,90,.2);color:var(--t);padding:6px 16px;border-radius:50px;font-size:.82rem;white-space:nowrap;transition:all .3s;cursor:default;font-family:var(--f)}
 .lang-pill:hover{background:rgba(197,165,90,.2);border-color:rgba(197,165,90,.5);transform:scale(1.05);box-shadow:0 4px 20px rgba(197,165,90,.15)}
 /* === Interactive Demo Playground === */
 .demo-playground {
   display: flex;
-  gap: 40px;
+  gap: 30px;
   max-width: 960px;
-  margin: 50px auto 0;
+  margin: 25px auto 0;
   text-align: left;
-  align-items: stretch;
+  align-items: center;
 }
 
 .demo-tabs {
   flex: 0 0 280px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 .demo-tab {
   background: rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 14px;
-  padding: 14px 20px;
+  border-radius: 12px;
+  padding: 8px 16px;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   color: var(--t2);
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -506,11 +506,11 @@ a{color:var(--p2);text-decoration:none}
 
 .phone-frame {
   width: 100%;
-  max-width: 360px;
-  height: 520px;
+  max-width: 340px;
+  height: 420px;
   background: #0D0D0E;
-  border: 12px solid #1C1C1E;
-  border-radius: 40px;
+  border: 10px solid #1C1C1E;
+  border-radius: 36px;
   box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8), 0 0 50px rgba(197, 165, 90, 0.08), inset 0 1px 1px rgba(255, 255, 255, 0.05);
   position: relative;
   overflow: hidden;
@@ -533,7 +533,7 @@ a{color:var(--p2);text-decoration:none}
 
 /* Phone Header */
 .phone-bar {
-  padding: 24px 16px 12px;
+  padding: 20px 16px 10px;
   background: rgba(26, 26, 28, 0.85);
   backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
