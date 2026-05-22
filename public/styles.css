@@ -795,7 +795,8 @@ a{color:var(--p2);text-decoration:none}
 .section,.cta-section{opacity:0;transform:translateY(40px);transition:opacity .8s ease,transform .8s ease}
 .section.revealed,.cta-section.revealed{opacity:1;transform:translateY(0)}
 .feat-card,.step-card,.price-card,.testi-card,.faq-item,.bva-card,.timeline-step{opacity:0;transform:translateY(30px);transition:all .5s ease}
-.revealed .feat-card,.revealed .step-card,.revealed .price-card,.revealed .testi-card,.revealed .faq-item,.revealed .bva-card,.revealed .timeline-step{opacity:1;transform:translateY(0)}
+.revealed .feat-card,.revealed .step-card,.revealed .price-card,.revealed .testi-card,.revealed .faq-item,.revealed .bva-card,.revealed .timeline-step,
+.modal .feat-card,.modal .step-card,.modal .price-card,.modal .testi-card,.modal .faq-item,.modal .bva-card,.modal .timeline-step{opacity:1;transform:translateY(0)}
 .revealed .feat-card:nth-child(1){transition-delay:.05s}
 .revealed .feat-card:nth-child(2){transition-delay:.1s}
 .revealed .feat-card:nth-child(3){transition-delay:.15s}
