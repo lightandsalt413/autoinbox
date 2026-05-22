@@ -149,6 +149,77 @@ document.addEventListener('click', (e) => {
   }
 });
 
+// ===== Setup Guide Logic =====
+
+// Landing Page Setup Guide Tabs Switcher
+document.querySelectorAll('#lp-guide-tabs .tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    const provider = tab.getAttribute('data-provider');
+    document.querySelectorAll('#lp-guide-tabs .tab').forEach(t => t.classList.toggle('active', t === tab));
+    
+    if (provider === 'yahoo') {
+      document.getElementById('lp-guide-gmail')?.classList.add('hidden');
+      document.getElementById('lp-guide-yahoo')?.classList.remove('hidden');
+    } else {
+      document.getElementById('lp-guide-yahoo')?.classList.add('hidden');
+      document.getElementById('lp-guide-gmail')?.classList.remove('hidden');
+    }
+  });
+});
+
+// Modal Setup Guide Tabs Switcher
+document.querySelectorAll('#modal-guide-tabs .tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    const provider = tab.getAttribute('data-provider');
+    document.querySelectorAll('#modal-guide-tabs .tab').forEach(t => t.classList.toggle('active', t === tab));
+    
+    if (provider === 'yahoo') {
+      document.getElementById('modal-guide-gmail')?.classList.add('hidden');
+      document.getElementById('modal-guide-yahoo')?.classList.remove('hidden');
+    } else {
+      document.getElementById('modal-guide-yahoo')?.classList.add('hidden');
+      document.getElementById('modal-guide-gmail')?.classList.remove('hidden');
+    }
+  });
+});
+
+// Open Setup Guide Modal (Onboarding & Settings)
+const openGuideModal = (provider) => {
+  const modal = document.getElementById('guide-modal');
+  if (modal) {
+    modal.classList.remove('hidden');
+    // Pre-select tab in modal
+    const targetTab = document.querySelector(`#modal-guide-tabs .tab[data-provider="${provider}"]`);
+    if (targetTab) {
+      targetTab.click();
+    }
+  }
+};
+
+document.getElementById('ob-open-guide')?.addEventListener('click', (e) => {
+  e.preventDefault();
+  // Get currently selected provider in onboarding
+  const activeObTab = document.querySelector('#ob-provider-tabs .tab.active');
+  const provider = activeObTab ? activeObTab.getAttribute('data-provider') : 'gmail';
+  openGuideModal(provider);
+});
+
+document.getElementById('set-open-guide')?.addEventListener('click', (e) => {
+  e.preventDefault();
+  // Get currently selected provider in settings
+  const activeSetTab = document.querySelector('#set-provider-tabs .tab.active');
+  const provider = activeSetTab ? activeSetTab.getAttribute('data-provider') : 'gmail';
+  openGuideModal(provider);
+});
+
+// Close Setup Guide Modal
+const closeGuideModal = () => {
+  document.getElementById('guide-modal')?.classList.add('hidden');
+};
+
+document.getElementById('guide-modal-close')?.addEventListener('click', closeGuideModal);
+document.getElementById('guide-modal-bg')?.addEventListener('click', closeGuideModal);
+
 document.getElementById('form-login')?.addEventListener('submit', async (e) => {
   e.preventDefault();
   const errEl = document.getElementById('login-error');

@@ -50,6 +50,7 @@
             <a href="#features" class="menu-item">Features</a>
             <a href="#languages" class="menu-item">Languages</a>
             <a href="#how" class="menu-item">How It Works</a>
+            <a href="#guide" class="menu-item">Setup Guide</a>
             <a href="#pricing" class="menu-item">Pricing</a>
             <a href="#faq" class="menu-item">FAQ</a>
           </div>
@@ -338,8 +339,61 @@
       <h2 class="section-h">Loved by Professionals <span class="glow-text">Worldwide</span></h2>
       <div class="testi-row">
         <div class="testi-card"><p>"This has been a huge help! I used to spend 2 hours on replies, now it only takes 10 minutes. It still sounds exactly like me!"</p><div class="testi-who"><span class="testi-av">MG</span><div><strong>Maria Garcia</strong><small>Freelance Designer · New York</small></div></div></div>
-        <div class="testi-card"><p>"Game changer for my online business. Auto-reply to 'is this still available?' — finally! Amazing."</p><div class="testi-who"><span class="testi-av">JR</span><div><strong>Jay Roberts</strong><small>Online Seller · London</small></div></div></div>
+              <div class="testi-card"><p>"Game changer for my online business. Auto-reply to 'is this still available?' — finally! Amazing."</p><div class="testi-who"><span class="testi-av">JR</span><div><strong>Jay Roberts</strong><small>Online Seller · London</small></div></div></div>
         <div class="testi-card"><p>"Even with my casual writing style, the AI copies my exact tone perfectly. You can't even tell it's AI!"</p><div class="testi-who"><span class="testi-av">AL</span><div><strong>Anna Lee</strong><small>Virtual Assistant · Toronto</small></div></div></div>
+      </div>
+    </section>
+
+    <!-- Setup Guide Section -->
+    <section class="section" id="guide">
+      <div class="section-tag">Help & Setup</div>
+      <h2 class="section-h">Easy Email <span class="glow-text">Setup Guide</span></h2>
+      <p class="section-p">Paano i-connect ang iyong Gmail o Yahoo Mail gamit ang App Password.</p>
+      
+      <div class="guide-tabs-container" style="max-width: 800px; margin: 30px auto 0;">
+        <div class="provider-tabs" id="lp-guide-tabs" style="display:flex;gap:10px;margin-bottom:24px">
+          <button type="button" class="tab active" data-provider="gmail" style="flex:1">Gmail Setup</button>
+          <button type="button" class="tab" data-provider="yahoo" style="flex:1">Yahoo Mail Setup</button>
+        </div>
+        
+        <div class="guide-card glass" id="lp-guide-gmail" style="text-align: left; padding: 32px;">
+          <h3 style="color: #ea4335; display: flex; align-items: center; gap: 8px; margin-bottom: 15px;">
+            <span style="font-size: 1.4rem;">🔴</span> Gmail App Password Setup
+          </h3>
+          <p style="font-size: 0.9rem; color: var(--t2); margin-bottom: 20px;">
+            Ang <strong>App Password</strong> ay isang secure na 16-character code mula sa Google. Hindi nito binibigay sa amin ang iyong totoong password.
+          </p>
+          <ol style="margin-left: 20px; color: var(--t2); font-size: 0.92rem; line-height: 1.8;">
+            <li style="margin-bottom: 12px;">Siguraduhing naka-on ang <strong>2-Step Verification</strong> sa iyong Google Account.</li>
+            <li style="margin-bottom: 12px;">
+              Pumunta sa pahina ng App Passwords ng Google:
+              <a href="https://myaccount.google.com/apppasswords" target="_blank" class="btn-accent btn-sm" style="display: inline-block; margin-top: 6px; text-decoration: none;">Buksan ang App Passwords →</a>
+            </li>
+            <li style="margin-bottom: 12px;">Mag-log in sa iyong Google Account kung hingan ka ng password.</li>
+            <li style="margin-bottom: 12px;">Mag-enter ng pangalan para sa app (i-type ang: <code>AutoInbox</code>) at i-click ang <strong>Create</strong>.</li>
+            <li style="margin-bottom: 12px;">Kopyahin ang 16-character code na nasa loob ng yellow box.</li>
+            <li style="margin-bottom: 12px;">I-paste ang code sa AutoInbox connect input (tanggalin ang mga spaces).</li>
+          </ol>
+        </div>
+
+        <div class="guide-card glass hidden" id="lp-guide-yahoo" style="text-align: left; padding: 32px;">
+          <h3 style="color: #6001d2; display: flex; align-items: center; gap: 8px; margin-bottom: 15px;">
+            <span style="font-size: 1.4rem;">🟣</span> Yahoo Mail App Password Setup
+          </h3>
+          <p style="font-size: 0.9rem; color: var(--t2); margin-bottom: 20px;">
+            Ang App Password ay nagbibigay-daan sa AutoInbox na makabasa at makasagot ng email nang secure nang hindi nalalaman ang iyong Yahoo password.
+          </p>
+          <ol style="margin-left: 20px; color: var(--t2); font-size: 0.92rem; line-height: 1.8;">
+            <li style="margin-bottom: 12px;">
+              Mag-log in sa iyong Yahoo account at buksan ang Account Security page:
+              <a href="https://login.yahoo.com/account/security" target="_blank" class="btn-accent btn-sm" style="display: inline-block; margin-top: 6px; text-decoration: none;">Buksan ang Yahoo Security →</a>
+            </li>
+            <li style="margin-bottom: 12px;">I-scroll pababa at i-click ang <strong>Generate app password</strong>.</li>
+            <li style="margin-bottom: 12px;">I-type ang <code>AutoInbox</code> at i-click ang <strong>Generate</strong> button.</li>
+            <li style="margin-bottom: 12px;">Kopyahin ang nabuong 16-character code.</li>
+            <li style="margin-bottom: 12px;">I-paste ito sa AutoInbox connect input nang walang spaces.</li>
+          </ol>
+        </div>
       </div>
     </section>
 
@@ -384,7 +438,7 @@
     <footer class="footer">
       <div class="footer-inner">
         <div class="footer-brand"><div class="logo"><span>AutoInbox</span></div><p>Smart AI Auto-Reply for freelancers and online sellers.</p></div>
-        <div class="footer-col"><h5>Product</h5><a href="#features">Features</a><a href="#languages">Languages</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div>
+        <div class="footer-col"><h5>Product</h5><a href="#features">Features</a><a href="#languages">Languages</a><a href="#guide">Setup Guide</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div>
         <div class="footer-col"><h5>Legal</h5><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a></div>
         <div class="footer-col"><h5>Connect</h5><a href="mailto:autoinbox.app@gmail.com">Email Us</a><a href="mailto:autoinbox.app@gmail.com">Support</a></div>
       </div>
@@ -424,7 +478,7 @@
       <div class="fg">
         <label for="ob-pass">App Password <a href="https://myaccount.google.com/apppasswords" target="_blank" class="hl" id="ob-pass-guide">Get here →</a></label>
         <input type="password" id="ob-pass" placeholder="xxxx xxxx xxxx xxxx">
-        <p style="font-size:0.75rem;color:var(--t3);margin-top:6px">Nalilito kung paano ito kuhanin? <a href="/guide.html" target="_blank" style="color:var(--p);text-decoration:underline">Basahin ang Setup Guide →</a></p>
+        <p style="font-size:0.75rem;color:var(--t3);margin-top:6px">Nalilito kung paano ito kuhanin? <a href="#" id="ob-open-guide" style="color:var(--p);text-decoration:underline">Basahin ang Setup Guide →</a></p>
       </div>
       <div id="ob-email-error" class="form-err hidden"></div>
       <div class="ob-btns"><button class="btn-ghost" id="ob-skip-1">Skip</button><button class="btn-accent" id="ob-next-1">Connect</button></div>
@@ -465,7 +519,7 @@
             <div class="fg">
               <label for="set-email-pass" id="set-pass-lbl">App Password <a href="https://myaccount.google.com/apppasswords" target="_blank" style="color:var(--p)" id="set-pass-guide">Get here →</a></label>
               <input type="password" id="set-email-pass" placeholder="xxxx xxxx xxxx xxxx">
-              <p style="font-size:0.75rem;color:var(--t3);margin-top:6px">Nalilito kung paano ito kuhanin? <a href="/guide.html" target="_blank" style="color:var(--p);text-decoration:underline">Basahin ang Setup Guide →</a></p>
+              <p style="font-size:0.75rem;color:var(--t3);margin-top:6px">Nalilito kung paano ito kuhanin? <a href="#" id="set-open-guide" style="color:var(--p);text-decoration:underline">Basahin ang Setup Guide →</a></p>
             </div>
             <button class="btn-accent btn-sm" id="set-email-connect">Connect</button>
             <button class="btn-ghost btn-sm hidden" id="set-email-disconnect">Disconnect</button>
@@ -542,6 +596,46 @@
 
   <div id="message-modal" class="modal hidden"><div class="modal-bg"></div><div class="modal-box glass"><button class="modal-x" id="modal-close">×</button><div class="modal-head"><h3 id="modal-sender"></h3><span id="modal-subject" style="color:var(--t2);font-size:.9rem"></span></div><div class="modal-sec"><label>Original Message</label><div class="modal-msg" id="modal-body"></div></div><div class="modal-sec"><label>AI Draft</label><textarea id="modal-draft" rows="6" class="draft-ed"></textarea></div><div class="modal-btns"><button class="btn-ghost" id="modal-reject">Skip</button><button class="btn-ghost" id="modal-regen">Regen</button><button class="btn-accent" id="modal-approve">Approve & Send</button></div></div></div>
   <div id="logout-modal" class="modal hidden"><div class="modal-bg"></div><div class="modal-box glass" style="max-width:380px;text-align:center"><h3 style="margin-bottom:8px">Log Out?</h3><p style="color:var(--t2);font-size:.9rem;margin-bottom:24px">Are you sure you want to log out of AutoInbox?</p><div style="display:flex;gap:12px;justify-content:center"><button class="btn-ghost" id="logout-cancel">Cancel</button><button class="btn-accent" id="logout-confirm" style="background:var(--r)">Yes, Log Out</button></div></div></div>
+  
+  <div id="guide-modal" class="modal hidden">
+    <div class="modal-bg" id="guide-modal-bg"></div>
+    <div class="modal-box glass" style="max-width: 600px; max-height: 85vh; overflow-y: auto; text-align: left;">
+      <button class="modal-x" id="guide-modal-close">×</button>
+      <div class="modal-head" style="margin-bottom: 20px;">
+        <h3>🔑 Setup Guide</h3>
+        <p style="color:var(--t2);font-size:.9rem;margin-top:4px">Paano kuhanin ang iyong App Password</p>
+      </div>
+      <div class="provider-tabs" id="modal-guide-tabs" style="display:flex;gap:10px;margin-bottom:20px">
+        <button type="button" class="tab active" data-provider="gmail" style="flex:1;padding:8px 12px;font-size:.82rem">Gmail Setup</button>
+        <button type="button" class="tab" data-provider="yahoo" style="flex:1;padding:8px 12px;font-size:.82rem">Yahoo Mail Setup</button>
+      </div>
+      <div id="modal-guide-gmail" class="modal-sec">
+        <h4 style="color: #ea4335; margin-bottom: 8px; font-weight:600">Gmail App Password</h4>
+        <ol style="margin-left: 20px; font-size: 0.88rem; line-height: 1.7; color: var(--t2);">
+          <li style="margin-bottom: 8px;">Siguraduhing naka-on ang <strong>2-Step Verification</strong> sa iyong Google settings.</li>
+          <li style="margin-bottom: 8px;">Pumunta sa: <a href="https://myaccount.google.com/apppasswords" target="_blank" style="color:var(--p);text-decoration:underline">Google App Passwords →</a></li>
+          <li style="margin-bottom: 8px;">I-type ang <code>AutoInbox</code> bilang app name at i-click ang <strong>Create</strong>.</li>
+          <li style="margin-bottom: 8px;">Kopyahin ang 16-character code at i-paste sa connect box nang walang spaces.</li>
+        </ol>
+      </div>
+      <div id="modal-guide-yahoo" class="modal-sec hidden">
+        <h4 style="color: #6001d2; margin-bottom: 8px; font-weight:600">Yahoo Mail App Password</h4>
+        <ol style="margin-left: 20px; font-size: 0.88rem; line-height: 1.7; color: var(--t2);">
+          <li style="margin-bottom: 8px;">Pumunta sa: <a href="https://login.yahoo.com/account/security" target="_blank" style="color:var(--p);text-decoration:underline">Yahoo Account Security →</a></li>
+          <li style="margin-bottom: 8px;">I-scroll pababa at i-click ang <strong>Generate app password</strong>.</li>
+          <li style="margin-bottom: 8px;">I-type ang <code>AutoInbox</code> at i-click ang <strong>Generate</strong>.</li>
+          <li style="margin-bottom: 8px;">Kopyahin ang 16-character code at i-paste sa connect box nang walang spaces.</li>
+        </ol>
+      </div>
+      <div class="modal-sec" style="border-top:1px solid var(--s2);margin-top:20px;padding-top:15px">
+        <h5 style="margin-bottom: 6px; font-weight:600">💡 Troubleshooting</h5>
+        <p style="font-size:0.8rem;color:var(--t3);line-height:1.5">
+          Kung makaranas ng "Invalid credentials", tiyakin na tama ang email at walang spaces ang 16-character code. Siguraduhin ding App Password ang ginagamit at hindi ang iyong personal email login password.
+        </p>
+      </div>
+    </div>
+  </div>
+
   <div id="toast" class="toast hidden"></div>
   <script src="/app.js?v=23"></script>
 </body>
