@@ -1314,43 +1314,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-// ===== Ambient Floating Orbs =====
-(function initOrbs() {
-  const c = document.getElementById('particles');
-  if (!c) return;
-  const ctx = c.getContext('2d');
-  let w, h, orbs = [];
-  function resize() { w = c.width = window.innerWidth; h = c.height = window.innerHeight; }
-  window.addEventListener('resize', resize); resize();
-  for (let i = 0; i < 40; i++) orbs.push({
-    x: Math.random() * w, y: Math.random() * h,
-    r: Math.random() * 2 + 1, vx: (Math.random() - 0.5) * 0.3,
-    vy: (Math.random() - 0.5) * 0.3, phase: Math.random() * Math.PI * 2
-  });
-  function draw() {
-    ctx.clearRect(0, 0, w, h);
-    orbs.forEach((o, i) => {
-      o.x += o.vx; o.y += o.vy; o.phase += 0.008;
-      if (o.x < -10) o.x = w + 10; if (o.x > w + 10) o.x = -10;
-      if (o.y < -10) o.y = h + 10; if (o.y > h + 10) o.y = -10;
-      const glow = 0.15 + Math.sin(o.phase) * 0.1;
-      ctx.beginPath(); ctx.arc(o.x, o.y, o.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(197,165,90,${glow})`;
-      ctx.fill();
-      for (let j = i + 1; j < orbs.length; j++) {
-        const dx = o.x - orbs[j].x, dy = o.y - orbs[j].y;
-        const d = Math.sqrt(dx * dx + dy * dy);
-        if (d < 120) {
-          ctx.beginPath(); ctx.moveTo(o.x, o.y); ctx.lineTo(orbs[j].x, orbs[j].y);
-          ctx.strokeStyle = `rgba(197,165,90,${0.04 * (1 - d / 120)})`;
-          ctx.stroke();
-        }
-      }
-    });
-    requestAnimationFrame(draw);
-  }
-  draw();
-})();
+// ===== Ambient Floating Orbs (disabled) =====
+// (function initOrbs() { })();
 
 // ===== PWA Install =====
 let deferredPrompt;
@@ -1689,187 +1654,8 @@ document.getElementById('form-feedback')?.addEventListener('submit', async (e) =
   }
 });
 
-// ===== Animated Network Background with Running Lights =====
-(function() {
-  const canvas = document.getElementById('particles');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let w, h;
-
-  // Fixed nodes so lines don't move (like a static network)
-  let nodes = [];
-  let edges = [];
-  let pulses = [];
-  const NODE_COUNT = 80;
-  const CONNECT_DIST = 200;
-
-  function initNetwork() {
-    nodes = [];
-    edges = [];
-    pulses = [];
-    for (let i = 0; i < NODE_COUNT; i++) {
-      nodes.push({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        r: 1.5 + Math.random() * 2,
-        hasEnvelope: false // Removed envelopes from the background network
-      });
-    }
-    // Build edges once (static lines)
-    for (let i = 0; i < nodes.length; i++) {
-      for (let j = i + 1; j < nodes.length; j++) {
-        const dx = nodes[i].x - nodes[j].x;
-        const dy = nodes[i].y - nodes[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < CONNECT_DIST) {
-          edges.push({ from: i, to: j, dist });
-        }
-      }
-    }
-  }
-
-  function resize() {
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
-    initNetwork();
-  }
-
-  // Spawn a light pulse on a random edge
-  function spawnPulse() {
-    if (edges.length === 0) return;
-    const edge = edges[Math.floor(Math.random() * edges.length)];
-    const reverse = Math.random() > 0.5;
-    pulses.push({
-      edge,
-      t: 0,
-      speed: 0.002 + Math.random() * 0.003, // VERY slow
-      size: 2.5 + Math.random() * 2,
-      reverse,
-      trail: []
-    });
-  }
-
-  function animate() {
-    ctx.clearRect(0, 0, w, h);
-
-    // Draw static lines (subtle gold)
-    edges.forEach(e => {
-      const a = nodes[e.from];
-      const b = nodes[e.to];
-      const opacity = (1 - e.dist / CONNECT_DIST) * 0.08;
-      ctx.beginPath();
-      ctx.moveTo(a.x, a.y);
-      ctx.lineTo(b.x, b.y);
-      ctx.strokeStyle = `rgba(197,165,90,${opacity})`;
-      ctx.lineWidth = 0.5;
-      ctx.stroke();
-    });
-
-    // Draw nodes — envelopes or small dots
-    nodes.forEach(n => {
-      if (n.hasEnvelope) {
-        // Draw envelope icon — properly aligned
-        const s = 16 + n.r * 3; // width
-        const eh = s * 0.65;    // height
-        const ex = n.x - s / 2; // top-left x
-        const ey = n.y - eh / 2; // top-left y (centered on node)
-
-        ctx.strokeStyle = 'rgba(197,165,90,0.35)';
-        ctx.lineWidth = 1.2;
-
-        // Draw full envelope as one connected path
-        ctx.beginPath();
-        // Bottom-left → top-left → flap center → top-right → bottom-right → close
-        ctx.moveTo(ex, ey + eh);
-        ctx.lineTo(ex, ey);
-        ctx.lineTo(n.x, ey + eh * 0.5);
-        ctx.lineTo(ex + s, ey);
-        ctx.lineTo(ex + s, ey + eh);
-        ctx.closePath();
-        ctx.stroke();
-
-        // Bottom line of flap (connecting top corners straight)
-        ctx.beginPath();
-        ctx.moveTo(ex, ey);
-        ctx.lineTo(ex + s, ey);
-        ctx.stroke();
-      } else {
-        // Small dot
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, n.r * 0.5, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(197,165,90,0.12)';
-        ctx.fill();
-      }
-    });
-
-    // Spawn pulses slowly
-    if (Math.random() < 0.03 && pulses.length < 12) {
-      spawnPulse();
-    }
-
-    // Draw running light pulses on the lines
-    pulses = pulses.filter(p => p.t <= 1);
-    pulses.forEach(p => {
-      p.t += p.speed;
-      const a = nodes[p.edge.from];
-      const b = nodes[p.edge.to];
-      const progress = p.reverse ? 1 - p.t : p.t;
-      const x = a.x + (b.x - a.x) * progress;
-      const y = a.y + (b.y - a.y) * progress;
-
-      // Store trail positions
-      p.trail.push({ x, y });
-      if (p.trail.length > 20) p.trail.shift();
-
-      // Draw trail (fading line behind the pulse)
-      for (let i = 1; i < p.trail.length; i++) {
-        const fade = i / p.trail.length;
-        ctx.beginPath();
-        ctx.moveTo(p.trail[i - 1].x, p.trail[i - 1].y);
-        ctx.lineTo(p.trail[i].x, p.trail[i].y);
-        ctx.strokeStyle = `rgba(197,165,90,${fade * 0.3})`;
-        ctx.lineWidth = fade * 2;
-        ctx.stroke();
-      }
-
-      // Outer glow
-      const grd = ctx.createRadialGradient(x, y, 0, x, y, p.size * 6);
-      grd.addColorStop(0, 'rgba(197,165,90,0.25)');
-      grd.addColorStop(0.4, 'rgba(197,165,90,0.08)');
-      grd.addColorStop(1, 'rgba(197,165,90,0)');
-      ctx.beginPath();
-      ctx.arc(x, y, p.size * 6, 0, Math.PI * 2);
-      ctx.fillStyle = grd;
-      ctx.fill();
-
-      // Bright center
-      ctx.beginPath();
-      ctx.arc(x, y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(255,220,130,0.7)';
-      ctx.fill();
-
-      // White core
-      ctx.beginPath();
-      ctx.arc(x, y, p.size * 0.3, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(255,255,255,0.5)';
-      ctx.fill();
-
-      // Light up the line the pulse is on
-      ctx.beginPath();
-      ctx.moveTo(a.x, a.y);
-      ctx.lineTo(b.x, b.y);
-      ctx.strokeStyle = `rgba(197,165,90,${0.15 * (1 - p.t)})`;
-      ctx.lineWidth = 1;
-      ctx.stroke();
-    });
-
-    requestAnimationFrame(animate);
-  }
-
-  resize();
-  window.addEventListener('resize', resize);
-  animate();
-})();
+// ===== Animated Network Background (disabled) =====
+// Background network and running lights removed for a cleaner look.
 
 // ===== Init =====
 (async () => {
@@ -1933,4 +1719,125 @@ document.getElementById('form-feedback')?.addEventListener('submit', async (e) =
     console.error('Init error:', e);
     showPage('landing');
   }
+})();
+
+/* ==========================================
+   Animated Inbox Mockup — Email Slide-In Loop
+   ========================================== */
+(function initInboxMockup() {
+  const emails = [
+    { name: 'Alice Johnson', initials: 'AJ', subject: 'Collaboration Request — Q4 Project', time: '5:00 AM' },
+    { name: 'Benjamin Lee', initials: 'BL', subject: 'Welcome to Nova SaaS', time: '3:20 PM' },
+    { name: 'Sophie Dupont', initials: 'SD', subject: 'Invoice: $1,450.00', time: '2:08 PM' },
+    { name: 'Yuki Tanaka', initials: 'YT', subject: 'ウェブサイトの料金を教えてください', time: '1:45 PM' },
+    { name: 'Carlos Rivera', initials: 'CR', subject: 'Partnership Opportunity', time: '11:30 AM' },
+  ];
+
+  const container = document.getElementById('mockup-emails');
+  const badge = document.getElementById('mockup-badge');
+  const aiText = document.getElementById('mockup-ai-text');
+  const aiDots = document.getElementById('mockup-ai-dots');
+
+  if (!container) return;
+
+  let cycle = 0;
+
+  function createEmailEl(email, delay) {
+    const el = document.createElement('div');
+    el.className = 'mockup-email';
+    el.style.animationDelay = delay + 'ms';
+    el.innerHTML = `
+      <div class="mockup-avatar">${email.initials}</div>
+      <div class="mockup-email-body">
+        <div class="mockup-email-name">${email.name}</div>
+        <div class="mockup-email-subject">${email.subject}</div>
+        <div class="mockup-typing-row">
+          <div class="mockup-typing-bubble">
+            <span></span><span></span><span></span>
+          </div>
+          <span class="mockup-typing-label">AI drafting...</span>
+        </div>
+        <div class="mockup-replied-badge">Replied ✓</div>
+      </div>
+      <div class="mockup-email-time">${email.time}</div>
+      <div class="mockup-email-status">✓</div>
+    `;
+    return el;
+  }
+
+  async function sleep(ms) {
+    return new Promise(r => setTimeout(r, ms));
+  }
+
+  async function runCycle() {
+    // Clear previous emails
+    container.innerHTML = '';
+    badge.textContent = '0 new';
+    badge.classList.remove('has-new');
+    aiText.textContent = 'AutoInbox Active';
+    aiDots.classList.remove('active');
+
+    // Pick 4 emails for this cycle (rotate through pool)
+    const start = (cycle * 4) % emails.length;
+    const batch = [];
+    for (let i = 0; i < 4; i++) {
+      batch.push(emails[(start + i) % emails.length]);
+    }
+
+    // Phase 1: Slide in emails one by one
+    for (let i = 0; i < batch.length; i++) {
+      const el = createEmailEl(batch[i], 0);
+      container.appendChild(el);
+      badge.textContent = (i + 1) + ' new';
+      badge.classList.add('has-new');
+      await sleep(700);
+    }
+
+    await sleep(800);
+
+    // Phase 2: AI starts replying to each email
+    const emailEls = container.querySelectorAll('.mockup-email');
+    for (let i = 0; i < emailEls.length; i++) {
+      const el = emailEls[i];
+
+      // AI starts drafting — show typing indicator
+      el.classList.add('replying');
+      aiText.textContent = 'Drafting reply to ' + batch[i].name + '...';
+      aiDots.classList.add('active');
+
+      await sleep(1600);
+
+      // Reply sent — hide typing, show replied badge
+      el.classList.remove('replying');
+      el.classList.add('replied');
+      const statusIcon = el.querySelector('.mockup-email-status');
+      if (statusIcon) statusIcon.classList.add('show');
+      aiDots.classList.remove('active');
+      aiText.textContent = 'Reply sent ✓';
+
+      await sleep(600);
+    }
+
+    // Phase 3: All done
+    aiText.textContent = 'All replies sent ✓';
+    badge.textContent = '0 new';
+    badge.classList.remove('has-new');
+
+    await sleep(2000);
+
+    // Fade out all emails
+    emailEls.forEach((el, i) => {
+      el.style.transition = 'opacity 0.4s ease ' + (i * 0.1) + 's, transform 0.4s ease ' + (i * 0.1) + 's';
+      el.style.opacity = '0';
+      el.style.transform = 'translateX(-30px)';
+    });
+
+    await sleep(1200);
+
+    cycle++;
+    runCycle(); // Loop forever
+  }
+
+  // Start after a short delay
+  setTimeout(runCycle, 1500);
 })();
