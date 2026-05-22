@@ -997,7 +997,7 @@ if (setNewPass && changePassBar && changePassLabel) {
 }
 
 // Change Password form submit
-document.getElementById('form-change-password')?.addEventListener('submit', async (e) => {
+document.getElementById('form-change-password')?.addEventListener('submit', (e) => {
   e.preventDefault();
   const errEl = document.getElementById('change-pass-error');
   const succEl = document.getElementById('change-pass-success');
@@ -1014,9 +1014,28 @@ document.getElementById('form-change-password')?.addEventListener('submit', asyn
     return;
   }
 
-  if (!confirm('Are you sure you want to update your password? This will log you out of all active sessions.')) {
-    return;
-  }
+  // Show custom confirmation modal
+  document.getElementById('change-pass-modal')?.classList.remove('hidden');
+});
+
+// Close password change modal when Cancel is clicked
+document.getElementById('change-pass-cancel')?.addEventListener('click', () => {
+  document.getElementById('change-pass-modal')?.classList.add('hidden');
+});
+
+// Close password change modal when clicking background
+document.getElementById('change-pass-modal')?.querySelector('.modal-bg')?.addEventListener('click', () => {
+  document.getElementById('change-pass-modal')?.classList.add('hidden');
+});
+
+// Handle custom password change confirmation
+document.getElementById('change-pass-confirm')?.addEventListener('click', async () => {
+  document.getElementById('change-pass-modal')?.classList.add('hidden');
+
+  const errEl = document.getElementById('change-pass-error');
+  const succEl = document.getElementById('change-pass-success');
+  const currPass = document.getElementById('set-curr-pass').value;
+  const newPass = document.getElementById('set-new-pass').value;
 
   try {
     await api('/auth/change-password', {
