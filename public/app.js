@@ -147,6 +147,11 @@ window.addEventListener('popstate', (e) => {
   closeLandingModals();
   closeGuideModal();
 
+  // Close menu panel without changing history state
+  if (menuPanel) {
+    menuPanel.classList.remove('open');
+  }
+
   if (e.state) {
     if (e.state.page) {
       showPage(e.state.page, false);
@@ -189,9 +194,38 @@ document.getElementById('register-back-home')?.addEventListener('click', (e) => 
 const menuTrigger = document.getElementById('menu-trigger');
 const menuPanel = document.getElementById('menu-panel');
 
+function openMenu() {
+  if (menuPanel && !menuPanel.classList.contains('open')) {
+    menuPanel.classList.add('open');
+    history.pushState({ page: currentPage, menuOpen: true }, '', '#menu');
+  }
+}
+
+function closeMenu(goBack = true) {
+  if (menuPanel && menuPanel.classList.contains('open')) {
+    menuPanel.classList.remove('open');
+    if (goBack && history.state && history.state.menuOpen) {
+      history.back();
+    }
+  }
+}
+
 menuTrigger?.addEventListener('click', (e) => {
   e.stopPropagation();
-  menuPanel.classList.toggle('open');
+  if (menuPanel) {
+    if (menuPanel.classList.contains('open')) {
+      closeMenu(true);
+    } else {
+      openMenu();
+    }
+  }
+});
+
+// Close menu if clicking outside
+document.addEventListener('click', (e) => {
+  if (menuPanel && menuPanel.classList.contains('open') && !menuPanel.contains(e.target) && e.target !== menuTrigger) {
+    closeMenu(true);
+  }
 });
 
 function closeLandingModals() {
@@ -258,14 +292,29 @@ function closeModal(modalId) {
 document.querySelectorAll('.menu-item').forEach(item => {
   item.addEventListener('click', (e) => {
     e.preventDefault();
-    menuPanel?.classList.remove('open');
+    const inMenuState = history.state && history.state.menuOpen;
+    if (menuPanel) {
+      menuPanel.classList.remove('open');
+    }
     const id = item.id;
     const modalId = MODAL_MAPPING[id];
     if (modalId) {
       if (modalId === 'guide-modal') {
-        openGuideModal('gmail');
+        if (inMenuState) {
+          const hash = MODAL_HASHES[modalId];
+          history.replaceState({ page: currentPage, modal: modalId, extra: 'gmail' }, '', '#' + hash);
+          openModal(modalId, false, 'gmail');
+        } else {
+          openGuideModal('gmail');
+        }
       } else {
-        openModal(modalId, true);
+        if (inMenuState) {
+          const hash = MODAL_HASHES[modalId];
+          history.replaceState({ page: currentPage, modal: modalId }, '', '#' + hash);
+          openModal(modalId, false);
+        } else {
+          openModal(modalId, true);
+        }
       }
     }
   });
