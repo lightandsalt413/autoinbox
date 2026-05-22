@@ -109,9 +109,32 @@ app.post('/api/email/connect', async (req, res) => {
     const { email_address, email_password, imap_host, imap_port, smtp_host, smtp_port } = req.body;
     if (!email_address || !email_password) return res.status(400).json({ error: 'Email and password required' });
 
+    let detectedImapHost = imap_host;
+    let detectedImapPort = imap_port;
+    let detectedSmtpHost = smtp_host;
+    let detectedSmtpPort = smtp_port;
+
+    if (!detectedImapHost) {
+      const domain = email_address.split('@')[1]?.toLowerCase();
+      const isYahoo = domain && (domain === 'yahoo.com' || domain.endsWith('.yahoo.com') || domain === 'ymail.com');
+      if (isYahoo) {
+        detectedImapHost = 'imap.mail.yahoo.com';
+        detectedImapPort = 993;
+        detectedSmtpHost = 'smtp.mail.yahoo.com';
+        detectedSmtpPort = 587;
+      } else {
+        detectedImapHost = 'imap.gmail.com';
+        detectedImapPort = 993;
+        detectedSmtpHost = 'smtp.gmail.com';
+        detectedSmtpPort = 587;
+      }
+    }
+
     const config = {
-      imap_host: imap_host || 'imap.gmail.com', imap_port: imap_port || 993,
-      smtp_host: smtp_host || 'smtp.gmail.com', smtp_port: smtp_port || 587,
+      imap_host: detectedImapHost,
+      imap_port: detectedImapPort || 993,
+      smtp_host: detectedSmtpHost,
+      smtp_port: detectedSmtpPort || 587,
       email_address, email_password_enc: encrypt(email_password), is_active: true
     };
 

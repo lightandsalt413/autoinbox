@@ -287,8 +287,47 @@ document.getElementById('logout-modal')?.querySelector('.modal-bg')?.addEventLis
 // ===== Onboarding =====
 let obStep = 1;
 
+function switchOnboardingProvider(provider) {
+  const tabs = document.querySelectorAll('#ob-provider-tabs .tab');
+  tabs.forEach(tab => {
+    tab.classList.toggle('active', tab.getAttribute('data-provider') === provider);
+  });
+
+  const desc = document.getElementById('ob-desc');
+  const emailLbl = document.getElementById('ob-email-lbl');
+  const emailInput = document.getElementById('ob-email');
+  const passGuide = document.getElementById('ob-pass-guide');
+
+  if (provider === 'yahoo') {
+    if (desc) desc.textContent = 'Link your Yahoo Mail so our AI can monitor your inbox.';
+    if (emailLbl) emailLbl.textContent = 'Yahoo Mail Address';
+    if (emailInput) emailInput.placeholder = 'you@yahoo.com';
+    if (passGuide) {
+      passGuide.href = 'https://login.yahoo.com/account/security';
+      passGuide.textContent = 'Yahoo Security →';
+    }
+  } else {
+    if (desc) desc.textContent = 'Link your Gmail so our AI can monitor your inbox.';
+    if (emailLbl) emailLbl.textContent = 'Gmail Address';
+    if (emailInput) emailInput.placeholder = 'you@gmail.com';
+    if (passGuide) {
+      passGuide.href = 'https://myaccount.google.com/apppasswords';
+      passGuide.textContent = 'Get here →';
+    }
+  }
+}
+
+// Add onboarding tab click listeners
+document.querySelectorAll('#ob-provider-tabs .tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    const provider = tab.getAttribute('data-provider');
+    switchOnboardingProvider(provider);
+  });
+});
+
 function initOnboarding() {
   obStep = 1;
+  switchOnboardingProvider('gmail');
   updateOnboardUI();
 }
 
@@ -691,6 +730,41 @@ document.getElementById('dash-analyze')?.addEventListener('click', async () => {
 });
 
 // ===== Settings =====
+function switchSettingsProvider(provider) {
+  const tabs = document.querySelectorAll('#set-provider-tabs .tab');
+  tabs.forEach(tab => {
+    tab.classList.toggle('active', tab.getAttribute('data-provider') === provider);
+  });
+
+  const emailLbl = document.getElementById('set-email-lbl');
+  const emailInput = document.getElementById('set-email');
+  const passGuide = document.getElementById('set-pass-guide');
+
+  if (provider === 'yahoo') {
+    if (emailLbl) emailLbl.textContent = 'Yahoo Mail Address';
+    if (emailInput) emailInput.placeholder = 'you@yahoo.com';
+    if (passGuide) {
+      passGuide.href = 'https://login.yahoo.com/account/security';
+      passGuide.textContent = 'Yahoo Security →';
+    }
+  } else {
+    if (emailLbl) emailLbl.textContent = 'Gmail Address';
+    if (emailInput) emailInput.placeholder = 'you@gmail.com';
+    if (passGuide) {
+      passGuide.href = 'https://myaccount.google.com/apppasswords';
+      passGuide.textContent = 'Get here →';
+    }
+  }
+}
+
+// Add settings tab click listeners
+document.querySelectorAll('#set-provider-tabs .tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    const provider = tab.getAttribute('data-provider');
+    switchSettingsProvider(provider);
+  });
+});
+
 async function loadSettings() {
   try {
     const s = await api('/settings');
@@ -706,6 +780,14 @@ async function loadSettings() {
       : 'Not connected';
     document.getElementById('set-email').value = es.email || '';
     document.getElementById('set-email-disconnect').classList.toggle('hidden', !es.configured);
+    
+    // Auto-select provider tab based on email domain
+    if (es.configured && es.email) {
+      const isYahoo = es.email.toLowerCase().endsWith('@yahoo.com') || es.email.toLowerCase().endsWith('@ymail.com');
+      switchSettingsProvider(isYahoo ? 'yahoo' : 'gmail');
+    } else {
+      switchSettingsProvider('gmail');
+    }
   } catch (e) { /* silent */ }
 }
 

@@ -349,9 +349,9 @@
       <h2 class="section-h">Simple. Transparent. <span class="glow-text">Affordable.</span></h2>
       <p class="section-p">Start free. Upgrade when your business grows.</p>
       <div class="price-row">
-        <div class="price-card"><h4>Free</h4><div class="price-val">₱0<span>/mo</span></div><ul><li>10 AI replies / month</li><li>1 Gmail account</li><li>Basic voice clone</li><li>Dashboard access</li><li class="dim">— Priority AI speed</li><li class="dim">— Multiple accounts</li></ul><button class="btn-ghost btn-full" id="price-free">Sign Up Free</button></div>
-        <div class="price-card pop"><div class="pop-tag">Best Value</div><h4>Basic</h4><div class="price-val">₱499<span>/mo</span></div><div style="font-size:.75rem;color:var(--g);margin-top:-8px;margin-bottom:8px;font-weight:600">✨ 7-day free trial</div><ul><li>200 AI replies / month</li><li>1 Gmail account</li><li>Full voice clone</li><li>Edit & customize drafts</li><li>Priority AI speed</li><li class="dim">— Multiple accounts</li></ul><button class="btn-accent btn-full pulse-glow" id="price-basic">Start 7-Day Free Trial</button></div>
-        <div class="price-card"><h4>Pro</h4><div class="price-val">₱999<span>/mo</span></div><ul><li>Unlimited AI replies</li><li>3 Gmail accounts</li><li>Full voice clone</li><li>Edit & customize drafts</li><li>Fastest AI priority</li><li>Multi-account dashboard</li></ul><button class="btn-ghost btn-full" id="price-pro">Subscribe Now</button></div>
+        <div class="price-card"><h4>Free</h4><div class="price-val">₱0<span>/mo</span></div><ul><li>10 AI replies / month</li><li>1 Gmail / Yahoo Mail account</li><li>Basic voice clone</li><li>Dashboard access</li><li class="dim">— Priority AI speed</li><li class="dim">— Multiple accounts</li></ul><button class="btn-ghost btn-full" id="price-free">Sign Up Free</button></div>
+        <div class="price-card pop"><div class="pop-tag">Best Value</div><h4>Basic</h4><div class="price-val">₱499<span>/mo</span></div><div style="font-size:.75rem;color:var(--g);margin-top:-8px;margin-bottom:8px;font-weight:600">✨ 7-day free trial</div><ul><li>200 AI replies / month</li><li>1 Gmail / Yahoo Mail account</li><li>Full voice clone</li><li>Edit & customize drafts</li><li>Priority AI speed</li><li class="dim">— Multiple accounts</li></ul><button class="btn-accent btn-full pulse-glow" id="price-basic">Start 7-Day Free Trial</button></div>
+        <div class="price-card"><h4>Pro</h4><div class="price-val">₱999<span>/mo</span></div><ul><li>Unlimited AI replies</li><li>3 Gmail / Yahoo Mail accounts</li><li>Full voice clone</li><li>Edit & customize drafts</li><li>Fastest AI priority</li><li>Multi-account dashboard</li></ul><button class="btn-ghost btn-full" id="price-pro">Subscribe Now</button></div>
       </div>
     </section>
 
@@ -361,7 +361,7 @@
       <h2 class="section-h">Common Questions</h2>
       <div class="faq-list">
         <div class="faq-item"><button class="faq-q">Is my data safe?</button><div class="faq-a"><p>Absolutely. We use AES-256 encryption (military-grade). We never read your emails.</p></div></div>
-        <div class="faq-item"><button class="faq-q">Which email providers are supported?</button><div class="faq-a"><p>Gmail is currently supported via App Password. Yahoo and Outlook coming soon.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Which email providers are supported?</button><div class="faq-a"><p>Gmail and Yahoo Mail are currently supported via App Password. Outlook coming soon.</p></div></div>
         <div class="faq-item"><button class="faq-q">Can I edit the AI reply?</button><div class="faq-a"><p>Yes! All drafts can be edited, regenerated, or skipped.</p></div></div>
         <div class="faq-item"><button class="faq-q">How do I cancel?</button><div class="faq-a"><p>Anytime — no lock-in. Disconnect your email, delete your account. Done.</p></div></div>
         <div class="faq-item"><button class="faq-q">Do I need technical skills?</button><div class="faq-a"><p>Not at all. If you can copy and paste, you can use AutoInbox.</p></div></div>
@@ -399,7 +399,10 @@
     <div class="fg"><label for="reg-mname">Middle Name <span class="optional">(Optional)</span></label><input type="text" id="reg-mname" placeholder="e.g. Dela Cruz"></div>
     <div class="fg"><label for="reg-lname">Surname</label><input type="text" id="reg-lname" placeholder="e.g. Santos" required></div>
     <div class="fg"><label for="reg-suffix">Suffix <span class="optional">(Optional — e.g. Jr., III)</span></label><input type="text" id="reg-suffix" placeholder="e.g. Jr., III, Sr."></div>
-    <div class="fg"><label for="reg-email">Email Address</label><input type="email" id="reg-email" placeholder="you@email.com" required></div>
+    <div class="fg">
+      <label for="reg-email">Email Address <span style="font-size:0.75rem;color:var(--t3);font-weight:normal;display:block;margin-top:2px">(Para sa iyong AutoInbox account login — hindi pa ito ang Gmail/Yahoo Mail connection)</span></label>
+      <input type="email" id="reg-email" placeholder="you@email.com" required>
+    </div>
     <div class="fg"><label for="reg-pass">Create Password</label><div class="pass-wrap"><input type="password" id="reg-pass" placeholder="Min 6 characters" required minlength="6"><button type="button" class="pass-toggle" id="toggle-pass" tabindex="-1">Show</button></div><div class="pass-strength" id="pass-strength"><div class="pass-bar" id="pass-bar"></div></div><span class="pass-label" id="pass-label"></span></div>
     <div class="fg"><label for="reg-pass-confirm">Confirm Password</label><div class="pass-wrap"><input type="password" id="reg-pass-confirm" placeholder="Re-enter your password" required minlength="6"><button type="button" class="pass-toggle" id="toggle-pass-confirm" tabindex="-1">Show</button></div></div>
     <div class="fg"><label class="checkbox-label"><input type="checkbox" id="reg-agree" required><span>I agree to the <a href="/terms.html" target="_blank" style="color:var(--p)">Terms of Service</a> and <a href="/privacy.html" target="_blank" style="color:var(--p)">Privacy Policy</a></span></label></div>
@@ -407,7 +410,25 @@
     <button type="submit" class="btn-accent btn-full">Create Account</button>
   </form><div class="trust-badge">Your data is protected with AES-256 encryption</div><p class="auth-sw">Already have an account? <a href="#" id="link-login">Log In</a></p></div></div></div>
   <div id="page-onboard" class="page hidden"><div class="auth-wrap"><div class="auth-box glass" style="max-width:560px"><div class="ob-prog"><div class="ob-bar"><div class="ob-fill" id="onboard-progress"></div></div><span id="onboard-step-label">Step 1 of 3</span></div>
-    <div class="onboard-step" id="onboard-step-1"><h2>Connect Email</h2><p>Link your Gmail so our AI can monitor your inbox.</p><div class="fg"><label for="ob-email">Gmail Address</label><input type="email" id="ob-email" placeholder="you@gmail.com"></div><div class="fg"><label for="ob-pass">App Password <a href="https://myaccount.google.com/apppasswords" target="_blank" class="hl">Get here →</a></label><input type="password" id="ob-pass" placeholder="xxxx xxxx xxxx xxxx"></div><div id="ob-email-error" class="form-err hidden"></div><div class="ob-btns"><button class="btn-ghost" id="ob-skip-1">Skip</button><button class="btn-accent" id="ob-next-1">Connect</button></div></div>
+    <div class="onboard-step" id="onboard-step-1">
+      <h2>Connect Email</h2>
+      <div class="provider-tabs" id="ob-provider-tabs" style="display:flex;gap:10px;margin:20px 0">
+        <button type="button" class="tab active" data-provider="gmail" style="flex:1">Gmail</button>
+        <button type="button" class="tab" data-provider="yahoo" style="flex:1">Yahoo Mail</button>
+      </div>
+      <p id="ob-desc">Link your Gmail so our AI can monitor your inbox.</p>
+      <div class="fg">
+        <label for="ob-email" id="ob-email-lbl">Gmail Address</label>
+        <input type="email" id="ob-email" placeholder="you@gmail.com">
+      </div>
+      <div class="fg">
+        <label for="ob-pass">App Password <a href="https://myaccount.google.com/apppasswords" target="_blank" class="hl" id="ob-pass-guide">Get here →</a></label>
+        <input type="password" id="ob-pass" placeholder="xxxx xxxx xxxx xxxx">
+        <p style="font-size:0.75rem;color:var(--t3);margin-top:6px">Nalilito kung paano ito kuhanin? <a href="/guide.html" target="_blank" style="color:var(--p);text-decoration:underline">Basahin ang Setup Guide →</a></p>
+      </div>
+      <div id="ob-email-error" class="form-err hidden"></div>
+      <div class="ob-btns"><button class="btn-ghost" id="ob-skip-1">Skip</button><button class="btn-accent" id="ob-next-1">Connect</button></div>
+    </div>
     <div class="onboard-step hidden" id="onboard-step-2"><h2>Train AI Clone</h2><p>Paste <strong>3+ of your real replies</strong> below.</p><div id="voice-samples-container"><div class="fg sg"><label>Sample 1</label><textarea class="voice-sample" rows="3" placeholder='e.g. "Hi! Yes, I am available..."'></textarea></div><div class="fg sg"><label>Sample 2</label><textarea class="voice-sample" rows="3" placeholder='e.g. "Thank you for your order!"'></textarea></div><div class="fg sg"><label>Sample 3</label><textarea class="voice-sample" rows="3" placeholder='e.g. "Hello! Sorry for the delay..."'></textarea></div></div><button class="btn-ghost btn-sm" id="ob-add-sample">+ Add More</button><div id="ob-voice-error" class="form-err hidden"></div><div class="ob-btns"><button class="btn-ghost" id="ob-skip-2">Skip</button><button class="btn-accent" id="ob-next-2">Analyze Style</button></div></div>
     <div class="onboard-step hidden" id="onboard-step-3"><div style="text-align:center;padding:20px 0"><h2>All Set!</h2><p style="color:var(--t2);margin:8px 0 20px">Your AI clone is ready.</p><div id="voice-profile-preview" class="profile-box hidden"><h4>Voice Profile</h4><div id="profile-details"></div></div><button class="btn-accent btn-xl" id="ob-finish">Go to Dashboard</button></div></div>
   </div></div></div>
@@ -421,13 +442,85 @@
       <section id="dash-plan" class="dash-section hidden"><div class="dash-head"><h1>Plan & Billing</h1></div>
         <div class="card glass" id="current-plan-card"><h3>Current Plan</h3><div class="current-plan-display"><div class="cpd-name" id="cpd-name">Free</div><div class="cpd-price" id="cpd-price">₱0/mo</div><div class="cpd-status" id="cpd-status">Active</div></div></div>
         <div class="plan-grid">
-          <div class="plan-option" id="po-free"><h4>Free</h4><div class="po-price">₱0<span>/mo</span></div><ul><li>10 AI replies/mo</li><li>1 Gmail</li><li>Basic voice clone</li></ul><button class="btn-ghost btn-full" disabled>Current Plan</button></div>
-          <div class="plan-option featured" id="po-basic"><div class="po-tag">Best Value</div><h4>Basic</h4><div class="po-price">₱499<span>/mo</span></div><div class="po-trial">✨ 7-day free trial</div><ul><li>200 AI replies/mo</li><li>1 Gmail</li><li>Full voice clone</li><li>Priority AI speed</li></ul><button class="btn-accent btn-full" id="btn-upgrade-basic">Start 7-Day Free Trial</button></div>
-          <div class="plan-option" id="po-pro"><h4>Pro</h4><div class="po-price">₱999<span>/mo</span></div><ul><li>Unlimited AI replies</li><li>3 Gmail accounts</li><li>Full voice clone</li><li>Fastest AI priority</li><li>Multi-account dashboard</li></ul><button class="btn-accent btn-full" id="btn-upgrade-pro">Subscribe Now</button></div>
+          <div class="plan-option" id="po-free"><h4>Free</h4><div class="po-price">₱0<span>/mo</span></div><ul><li>10 AI replies/mo</li><li>1 Gmail / Yahoo Mail</li><li>Basic voice clone</li></ul><button class="btn-ghost btn-full" disabled>Current Plan</button></div>
+          <div class="plan-option featured" id="po-basic"><div class="po-tag">Best Value</div><h4>Basic</h4><div class="po-price">₱499<span>/mo</span></div><div class="po-trial">✨ 7-day free trial</div><ul><li>200 AI replies/mo</li><li>1 Gmail / Yahoo Mail</li><li>Full voice clone</li><li>Priority AI speed</li></ul><button class="btn-accent btn-full" id="btn-upgrade-basic">Start 7-Day Free Trial</button></div>
+          <div class="plan-option" id="po-pro"><h4>Pro</h4><div class="po-price">₱999<span>/mo</span></div><ul><li>Unlimited AI replies</li><li>3 Gmail / Yahoo Mail accounts</li><li>Full voice clone</li><li>Fastest AI priority</li><li>Multi-account dashboard</li></ul><button class="btn-accent btn-full" id="btn-upgrade-pro">Subscribe Now</button></div>
         </div>
         <div class="card glass" style="margin-top:20px"><h3>Payment Methods</h3><div class="pay-methods"><span class="pay-pill">💳 Visa/Mastercard</span><span class="pay-pill">📱 GCash</span><span class="pay-pill">📱 Maya</span></div><p style="color:var(--t3);font-size:.8rem;margin-top:12px">Powered by PayMongo · Secure encrypted payments</p></div>
       </section>
-      <section id="dash-settings" class="dash-section hidden"><div class="dash-head"><h1>Settings</h1></div><div class="set-grid"><div class="card glass"><h3>Email</h3><p id="email-status-text" style="margin-bottom:12px">Not connected</p><div class="fg"><label for="set-email">Gmail</label><input type="email" id="set-email" placeholder="you@gmail.com"></div><div class="fg"><label for="set-email-pass">App Password</label><input type="password" id="set-email-pass" placeholder="xxxx xxxx xxxx xxxx"></div><button class="btn-accent btn-sm" id="set-email-connect">Connect</button><button class="btn-ghost btn-sm hidden" id="set-email-disconnect">Disconnect</button></div><div class="card glass"><h3>AI Personality</h3><div class="fg"><label for="set-name">Name</label><input type="text" id="set-name" placeholder="Your name"></div><div class="fg"><label for="set-tone">Tone</label><select id="set-tone"><option value="professional-friendly">Professional Friendly</option><option value="casual">Casual</option><option value="formal">Formal</option><option value="taglish">Taglish Casual</option></select></div><div class="fg"><label for="set-lang">Language</label><select id="set-lang"><option value="auto">🌍 Auto-Detect (match sender)</option><option value="en">🇺🇸 English</option><option value="tl">🇵🇭 Filipino</option><option value="taglish">🇵🇭 Taglish</option><option value="es">🇪🇸 Spanish</option><option value="fr">🇫🇷 French</option><option value="de">🇩🇪 German</option><option value="it">🇮🇹 Italian</option><option value="pt">🇵🇹 Portuguese</option><option value="ja">🇯🇵 Japanese</option><option value="ko">🇰🇷 Korean</option><option value="zh">🇨🇳 Chinese (Simplified)</option><option value="zh-tw">🇹🇼 Chinese (Traditional)</option><option value="ar">🇸🇦 Arabic</option><option value="hi">🇮🇳 Hindi</option><option value="ru">🇷🇺 Russian</option><option value="nl">🇳🇱 Dutch</option><option value="sv">🇸🇪 Swedish</option><option value="th">🇹🇭 Thai</option><option value="vi">🇻🇳 Vietnamese</option><option value="id">🇮🇩 Bahasa Indonesia</option><option value="ms">🇲🇾 Bahasa Malay</option><option value="tr">🇹🇷 Turkish</option><option value="pl">🇵🇱 Polish</option><option value="uk">🇺🇦 Ukrainian</option></select></div></div><div class="card glass full-w"><h3>Instructions</h3><div class="fg"><label for="set-services">Services</label><textarea id="set-services" rows="3" placeholder="Your services..."></textarea></div><div class="fg"><label for="set-custom">Custom Rules</label><textarea id="set-custom" rows="3" placeholder="Special instructions..."></textarea></div></div></div><button class="btn-accent" id="btn-save-settings">Save Settings</button></section>
+      <section id="dash-settings" class="dash-section hidden">
+        <div class="dash-head"><h1>Settings</h1></div>
+        <div class="set-grid">
+          <div class="card glass">
+            <h3>Email</h3>
+            <p id="email-status-text" style="margin-bottom:12px">Not connected</p>
+            <div class="provider-tabs" id="set-provider-tabs" style="display:flex;gap:10px;margin-bottom:15px">
+              <button type="button" class="tab active" data-provider="gmail" style="flex:1;padding:6px 12px;font-size:.78rem">Gmail</button>
+              <button type="button" class="tab" data-provider="yahoo" style="flex:1;padding:6px 12px;font-size:.78rem">Yahoo Mail</button>
+            </div>
+            <div class="fg">
+              <label for="set-email" id="set-email-lbl">Gmail Address</label>
+              <input type="email" id="set-email" placeholder="you@gmail.com">
+            </div>
+            <div class="fg">
+              <label for="set-email-pass" id="set-pass-lbl">App Password <a href="https://myaccount.google.com/apppasswords" target="_blank" style="color:var(--p)" id="set-pass-guide">Get here →</a></label>
+              <input type="password" id="set-email-pass" placeholder="xxxx xxxx xxxx xxxx">
+              <p style="font-size:0.75rem;color:var(--t3);margin-top:6px">Nalilito kung paano ito kuhanin? <a href="/guide.html" target="_blank" style="color:var(--p);text-decoration:underline">Basahin ang Setup Guide →</a></p>
+            </div>
+            <button class="btn-accent btn-sm" id="set-email-connect">Connect</button>
+            <button class="btn-ghost btn-sm hidden" id="set-email-disconnect">Disconnect</button>
+          </div>
+          <div class="card glass">
+            <h3>AI Personality</h3>
+            <div class="fg"><label for="set-name">Name</label><input type="text" id="set-name" placeholder="Your name"></div>
+            <div class="fg">
+              <label for="set-tone">Tone</label>
+              <select id="set-tone">
+                <option value="professional-friendly">Professional Friendly</option>
+                <option value="casual">Casual</option>
+                <option value="formal">Formal</option>
+                <option value="taglish">Taglish Casual</option>
+              </select>
+            </div>
+            <div class="fg">
+              <label for="set-lang">Language</label>
+              <select id="set-lang">
+                <option value="auto">🌍 Auto-Detect (match sender)</option>
+                <option value="en">🇺🇸 English</option>
+                <option value="tl">🇵🇭 Filipino</option>
+                <option value="taglish">🇵🇭 Taglish</option>
+                <option value="es">🇪🇸 Spanish</option>
+                <option value="fr">🇫🇷 French</option>
+                <option value="de">🇩🇪 German</option>
+                <option value="it">🇮🇹 Italian</option>
+                <option value="pt">🇵🇹 Portuguese</option>
+                <option value="ja">🇯🇵 Japanese</option>
+                <option value="ko">🇰🇷 Korean</option>
+                <option value="zh">🇨🇳 Chinese (Simplified)</option>
+                <option value="zh-tw">🇹🇼 Chinese (Traditional)</option>
+                <option value="ar">🇸🇦 Arabic</option>
+                <option value="hi">🇮🇳 Hindi</option>
+                <option value="ru">🇷🇺 Russian</option>
+                <option value="nl">🇳🇱 Dutch</option>
+                <option value="sv">🇸🇪 Swedish</option>
+                <option value="th">🇹🇭 Thai</option>
+                <option value="vi">🇻🇳 Vietnamese</option>
+                <option value="id">🇮🇩 Bahasa Indonesia</option>
+                <option value="ms">🇲🇾 Bahasa Malay</option>
+                <option value="tr">🇹🇷 Turkish</option>
+                <option value="pl">🇵🇱 Polish</option>
+                <option value="uk">🇺🇦 Ukrainian</option>
+              </select>
+            </div>
+          </div>
+          <div class="card glass full-w">
+            <h3>Instructions</h3>
+            <div class="fg"><label for="set-services">Services</label><textarea id="set-services" rows="3" placeholder="Your services..."></textarea></div>
+            <div class="fg"><label for="set-custom">Custom Rules</label><textarea id="set-custom" rows="3" placeholder="Special instructions..."></textarea></div>
+          </div>
+        </div>
+        <button class="btn-accent" id="btn-save-settings">Save Settings</button>
+      </section>
       <section id="dash-admin" class="dash-section hidden"><div class="dash-head"><h1>👑 Admin Dashboard</h1></div>
         <div class="admin-stats-grid">
           <div class="stat-card admin-stat"><span class="stat-num" id="admin-total-users">0</span><span class="stat-lbl">Total Users</span></div>
