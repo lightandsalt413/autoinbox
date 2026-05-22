@@ -261,6 +261,106 @@ app.post('/api/settings', async (req, res) => {
   } catch (e) { res.status(500).json({ error: e.message }); }
 });
 
+// --- Change Password ---
+app.post('/api/auth/change-password', async (req, res) => {
+  try {
+    const { currentPassword, newPassword } = req.body;
+    if (!currentPassword || !newPassword) {
+      return res.status(400).json({ error: 'Current password and new password are required' });
+    }
+    if (newPassword.length < 6) {
+      return res.status(400).json({ error: 'New password must be at least 6 characters' });
+    }
+
+    const user = await db.getUserById(req.userId);
+    if (!user) {
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    const bcrypt = require('bcryptjs');
+    const valid = await bcrypt.compare(currentPassword, user.password_hash);
+    if (!valid) {
+      return res.status(400).json({ error: 'Incorrect current password' });
+    }
+
+    const SALT_ROUNDS = 12;
+    const newHash = await bcrypt.hash(newPassword, SALT_ROUNDS);
+    await db.updateUserPassword(req.userId, newHash);
+
+    res.json({ success: true, message: 'Password updated successfully' });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// --- Email Connection Test ---
+app.post('/api/email/test', async (req, res) => {
+  try {
+    const config = await db.getEmailConfig(req.userId);
+    if (!config) {
+      return res.status(400).json({ error: 'Email connection not configured' });
+    }
+
+    const { decrypt } = require('./crypto');
+    const password = decrypt(config.email_password_enc);
+
+    // 1. Test IMAP Connection
+    const { ImapFlow } = require('imapflow');
+    const imapClient = new ImapFlow({
+      host: config.imap_host || 'imap.gmail.com',
+      port: config.imap_port || 993,
+      secure: true,
+      auth: { user: config.email_address, pass: password },
+      logger: false
+    });
+
+    let imapSuccess = false;
+    let imapError = null;
+    try {
+      await imapClient.connect();
+      await imapClient.mailboxOpen('INBOX');
+      imapSuccess = true;
+      await imapClient.logout();
+    } catch (err) {
+      imapError = err.message;
+    }
+
+    // 2. Test SMTP Connection
+    const nodemailer = require('nodemailer');
+    const smtpTransporter = nodemailer.createTransport({
+      host: config.smtp_host || 'smtp.gmail.com',
+      port: config.smtp_port || 587,
+      secure: (config.smtp_port || 587) === 465,
+      auth: { user: config.email_address, pass: password }
+    });
+
+    let smtpSuccess = false;
+    let smtpError = null;
+    try {
+      await smtpTransporter.verify();
+      smtpSuccess = true;
+    } catch (err) {
+      smtpError = err.message;
+    }
+
+    if (imapSuccess && smtpSuccess) {
+      res.json({ success: true, message: 'Both IMAP and SMTP connections are healthy! ✅' });
+    } else {
+      let errorDetails = [];
+      if (!imapSuccess) errorDetails.push(`IMAP failed: ${imapError}`);
+      if (!smtpSuccess) errorDetails.push(`SMTP failed: ${smtpError}`);
+      res.status(400).json({
+        error: errorDetails.join(' | '),
+        imap: imapSuccess ? 'healthy' : imapError,
+        smtp: smtpSuccess ? 'healthy' : smtpError
+      });
+    }
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+
 // --- Stats ---
 app.get('/api/stats', async (req, res) => {
   try {

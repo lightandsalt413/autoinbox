@@ -836,6 +836,22 @@ document.querySelectorAll('#set-provider-tabs .tab').forEach(tab => {
   });
 });
 
+// Settings sidebar panel navigation
+document.querySelectorAll('.settings-sidebar .snav-item').forEach(item => {
+  item.addEventListener('click', () => {
+    document.querySelectorAll('.settings-sidebar .snav-item').forEach(btn => btn.classList.remove('active'));
+    item.classList.add('active');
+
+    document.querySelectorAll('.settings-content .settings-panel').forEach(panel => panel.classList.add('hidden'));
+
+    const section = item.getAttribute('data-settings-section');
+    const targetPanel = document.getElementById(`settings-sec-${section}`);
+    if (targetPanel) {
+      targetPanel.classList.remove('hidden');
+    }
+  });
+});
+
 async function loadSettings() {
   try {
     const s = await api('/settings');
@@ -851,6 +867,12 @@ async function loadSettings() {
       : 'Not connected';
     document.getElementById('set-email').value = es.email || '';
     document.getElementById('set-email-disconnect').classList.toggle('hidden', !es.configured);
+    document.getElementById('set-email-test').classList.toggle('hidden', !es.configured);
+    const details = document.getElementById('connection-health-details');
+    if (details) {
+      details.classList.add('hidden');
+      details.textContent = '';
+    }
     
     // Auto-select provider tab based on email domain
     if (es.configured && es.email) {
@@ -890,6 +912,140 @@ document.getElementById('btn-save-settings')?.addEventListener('click', async ()
     }) });
     showToast('Settings saved! ✅');
   } catch (e) { showToast(e.message, 'error'); }
+});
+
+// Test Connection Check
+document.getElementById('set-email-test')?.addEventListener('click', async () => {
+  const btn = document.getElementById('set-email-test');
+  const details = document.getElementById('connection-health-details');
+  if (!btn || !details) return;
+
+  btn.disabled = true;
+  btn.textContent = 'Testing...';
+  details.classList.add('hidden');
+  details.textContent = '';
+
+  try {
+    const data = await api('/email/test', { method: 'POST' });
+    details.textContent = data.message || 'Both IMAP and SMTP connections are healthy! ✅';
+    details.style.color = 'var(--g)';
+    details.classList.remove('hidden');
+  } catch (e) {
+    details.textContent = e.message || 'Connection test failed.';
+    details.style.color = 'var(--r)';
+    details.classList.remove('hidden');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Test Connection';
+  }
+});
+
+// Password toggles in Settings
+document.getElementById('toggle-curr-pass')?.addEventListener('click', function() {
+  const inp = document.getElementById('set-curr-pass');
+  const show = inp.type === 'password';
+  inp.type = show ? 'text' : 'password';
+  this.textContent = show ? 'Hide' : 'Show';
+});
+document.getElementById('toggle-new-pass')?.addEventListener('click', function() {
+  const inp = document.getElementById('set-new-pass');
+  const show = inp.type === 'password';
+  inp.type = show ? 'text' : 'password';
+  this.textContent = show ? 'Hide' : 'Show';
+});
+document.getElementById('toggle-new-pass-confirm')?.addEventListener('click', function() {
+  const inp = document.getElementById('set-new-pass-confirm');
+  const show = inp.type === 'password';
+  inp.type = show ? 'text' : 'password';
+  this.textContent = show ? 'Hide' : 'Show';
+});
+
+// Password strength meter for new password in Settings
+const setNewPass = document.getElementById('set-new-pass');
+const changePassBar = document.getElementById('change-pass-bar');
+const changePassLabel = document.getElementById('change-pass-label');
+if (setNewPass && changePassBar && changePassLabel) {
+  setNewPass.addEventListener('input', () => {
+    const v = setNewPass.value;
+    let score = 0;
+    if (v.length >= 6) score++;
+    if (v.length >= 8) score++;
+    if (/[A-Z]/.test(v) && /[a-z]/.test(v)) score++;
+    if (/[0-9]/.test(v)) score++;
+    if (/[^A-Za-z0-9]/.test(v)) score++;
+    
+    changePassBar.className = 'pass-bar';
+    changePassLabel.className = 'pass-label';
+    if (v.length === 0) {
+      changePassLabel.textContent = '';
+      return;
+    }
+    if (score <= 2) {
+      changePassBar.classList.add('weak');
+      changePassLabel.classList.add('weak');
+      changePassLabel.textContent = 'Weak — add uppercase, numbers, or symbols';
+    } else if (score <= 3) {
+      changePassBar.classList.add('medium');
+      changePassLabel.classList.add('medium');
+      changePassLabel.textContent = 'Medium — getting better';
+    } else {
+      changePassBar.classList.add('strong');
+      changePassLabel.classList.add('strong');
+      changePassLabel.textContent = 'Strong — great password!';
+    }
+  });
+}
+
+// Change Password form submit
+document.getElementById('form-change-password')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const errEl = document.getElementById('change-pass-error');
+  const succEl = document.getElementById('change-pass-success');
+  const currPass = document.getElementById('set-curr-pass').value;
+  const newPass = document.getElementById('set-new-pass').value;
+  const confirmNewPass = document.getElementById('set-new-pass-confirm').value;
+
+  errEl.classList.add('hidden');
+  succEl.classList.add('hidden');
+
+  if (newPass !== confirmNewPass) {
+    errEl.textContent = 'New passwords do not match.';
+    errEl.classList.remove('hidden');
+    return;
+  }
+
+  try {
+    await api('/auth/change-password', {
+      method: 'POST',
+      body: JSON.stringify({ currentPassword: currPass, newPassword: newPass })
+    });
+    
+    // Clear inputs
+    document.getElementById('set-curr-pass').value = '';
+    document.getElementById('set-new-pass').value = '';
+    document.getElementById('set-new-pass-confirm').value = '';
+    if (changePassLabel) changePassLabel.textContent = '';
+    if (changePassBar) changePassBar.className = 'pass-bar';
+
+    succEl.textContent = 'Password updated successfully. Logging out...';
+    succEl.classList.remove('hidden');
+
+    setTimeout(() => {
+      token = '';
+      localStorage.removeItem('kk_token');
+      localStorage.removeItem('autoinbox_name');
+      sessionStorage.removeItem('kk_token');
+      sessionStorage.removeItem('autoinbox_name');
+      if (refreshTimer) clearInterval(refreshTimer);
+      window._isAdmin = false;
+      history.replaceState(null, '', window.location.pathname);
+      showPage('landing');
+    }, 2000);
+
+  } catch (err) {
+    errEl.textContent = err.message || 'Failed to update password.';
+    errEl.classList.remove('hidden');
+  }
 });
 
 // ===== FAQ Accordion =====

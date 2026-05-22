@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { createUser, getUserByEmail } = require('./db');
+const { createUser, getUserByEmail, getUserById } = require('./db');
 
 const SALT_ROUNDS = 12;
 
@@ -18,7 +18,7 @@ async function register(email, password, name) {
   const hash = await bcrypt.hash(password, SALT_ROUNDS);
   const userId = await createUser(email.toLowerCase(), hash, name);
 
-  const token = jwt.sign({ userId, email: email.toLowerCase() }, getSecret(), { expiresIn: '7d' });
+  const token = jwt.sign({ userId, email: email.toLowerCase(), passHash: hash.substring(0, 10) }, getSecret(), { expiresIn: '7d' });
   return { userId, token };
 }
 
@@ -31,11 +31,11 @@ async function login(email, password) {
   const valid = await bcrypt.compare(password, user.password_hash);
   if (!valid) throw new Error('Invalid email or password');
 
-  const token = jwt.sign({ userId: user.id, email: user.email }, getSecret(), { expiresIn: '7d' });
+  const token = jwt.sign({ userId: user.id, email: user.email, passHash: user.password_hash.substring(0, 10) }, getSecret(), { expiresIn: '7d' });
   return { userId: user.id, token, name: user.name };
 }
 
-function requireAuth(req, res, next) {
+async function requireAuth(req, res, next) {
   const authHeader = req.headers.authorization;
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
     return res.status(401).json({ error: 'No token provided' });
@@ -44,6 +44,18 @@ function requireAuth(req, res, next) {
   const token = authHeader.split(' ')[1];
   try {
     const decoded = jwt.verify(token, getSecret());
+    
+    // Perform database check for session invalidation on password change
+    const user = await getUserById(decoded.userId);
+    if (!user) {
+      return res.status(401).json({ error: 'User not found or deleted' });
+    }
+
+    const currentPassHashSlice = user.password_hash.substring(0, 10);
+    if (decoded.passHash !== currentPassHashSlice) {
+      return res.status(401).json({ error: 'Session invalidated. Please log in again.' });
+    }
+
     req.userId = decoded.userId;
     req.userEmail = decoded.email;
     next();
