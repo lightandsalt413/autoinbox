@@ -25,6 +25,46 @@ const CURRENCY = {
   freeFull: isPH ? '₱0/mo' : '$0/mo'
 };
 
+// ===== Navigation Configurations =====
+const MODAL_HASHES = {
+  'features-modal': 'features',
+  'languages-modal': 'languages',
+  'how-modal': 'how-it-works',
+  'guide-modal': 'setup-guide',
+  'pricing-modal': 'pricing',
+  'faq-modal': 'faq',
+  'feedback-modal': 'feedback'
+};
+
+const HASH_TO_MODAL = {
+  'features': 'features-modal',
+  'languages': 'languages-modal',
+  'how-it-works': 'how-modal',
+  'setup-guide': 'guide-modal',
+  'pricing': 'pricing-modal',
+  'faq': 'faq-modal',
+  'feedback': 'feedback-modal'
+};
+
+const MODAL_MAPPING = {
+  'menu-features': 'features-modal',
+  'menu-languages': 'languages-modal',
+  'menu-how': 'how-modal',
+  'menu-guide': 'guide-modal',
+  'menu-pricing': 'pricing-modal',
+  'menu-faq': 'faq-modal',
+  'menu-feedback': 'feedback-modal'
+};
+
+const modalCloseConfig = [
+  { id: 'features-modal', closeBtn: 'features-modal-close', bg: 'features-modal-bg' },
+  { id: 'languages-modal', closeBtn: 'languages-modal-close', bg: 'languages-modal-bg' },
+  { id: 'how-modal', closeBtn: 'how-modal-close', bg: 'how-modal-bg' },
+  { id: 'pricing-modal', closeBtn: 'pricing-modal-close', bg: 'pricing-modal-bg' },
+  { id: 'faq-modal', closeBtn: 'faq-modal-close', bg: 'faq-modal-bg' },
+  { id: 'feedback-modal', closeBtn: 'feedback-modal-close', bg: 'feedback-modal-bg' }
+];
+
 // ===== API =====
 async function api(path, opts = {}) {
   const headers = { 'Content-Type': 'application/json' };
@@ -165,25 +205,7 @@ function closeLandingModals() {
   stopDemoCycle();
 }
 
-const MODAL_HASHES = {
-  'features-modal': 'features',
-  'languages-modal': 'languages',
-  'how-modal': 'how-it-works',
-  'guide-modal': 'setup-guide',
-  'pricing-modal': 'pricing',
-  'faq-modal': 'faq',
-  'feedback-modal': 'feedback'
-};
-
-const HASH_TO_MODAL = {
-  'features': 'features-modal',
-  'languages': 'languages-modal',
-  'how-it-works': 'how-modal',
-  'setup-guide': 'guide-modal',
-  'pricing': 'pricing-modal',
-  'faq': 'faq-modal',
-  'feedback': 'feedback-modal'
-};
+// MODAL_HASHES and HASH_TO_MODAL moved to top to prevent temporal dead zone (TDZ) errors
 
 function openModal(modalId, addHistory = true, extra = null) {
   const el = document.getElementById(modalId);
@@ -231,15 +253,7 @@ function closeModal(modalId) {
   }
 }
 
-const MODAL_MAPPING = {
-  'menu-features': 'features-modal',
-  'menu-languages': 'languages-modal',
-  'menu-how': 'how-modal',
-  'menu-guide': 'guide-modal',
-  'menu-pricing': 'pricing-modal',
-  'menu-faq': 'faq-modal',
-  'menu-feedback': 'feedback-modal'
-};
+// MODAL_MAPPING moved to top
 
 document.querySelectorAll('.menu-item').forEach(item => {
   item.addEventListener('click', (e) => {
@@ -258,14 +272,7 @@ document.querySelectorAll('.menu-item').forEach(item => {
 });
 
 // Close all modal handlers for landing page
-const modalCloseConfig = [
-  { id: 'features-modal', closeBtn: 'features-modal-close', bg: 'features-modal-bg' },
-  { id: 'languages-modal', closeBtn: 'languages-modal-close', bg: 'languages-modal-bg' },
-  { id: 'how-modal', closeBtn: 'how-modal-close', bg: 'how-modal-bg' },
-  { id: 'pricing-modal', closeBtn: 'pricing-modal-close', bg: 'pricing-modal-bg' },
-  { id: 'faq-modal', closeBtn: 'faq-modal-close', bg: 'faq-modal-bg' },
-  { id: 'feedback-modal', closeBtn: 'feedback-modal-close', bg: 'feedback-modal-bg' }
-];
+// modalCloseConfig moved to top
 
 modalCloseConfig.forEach(m => {
   const btnEl = document.getElementById(m.closeBtn);
@@ -315,9 +322,9 @@ document.querySelectorAll('#modal-guide-tabs .tab').forEach(tab => {
 });
 
 // Open Setup Guide Modal (Onboarding & Settings)
-const openGuideModal = (provider) => {
+function openGuideModal(provider) {
   openModal('guide-modal', true, provider);
-};
+}
 
 document.getElementById('ob-open-guide')?.addEventListener('click', (e) => {
   e.preventDefault();
@@ -334,9 +341,9 @@ document.getElementById('set-open-guide')?.addEventListener('click', (e) => {
 });
 
 // Close Setup Guide Modal
-const closeGuideModal = () => {
+function closeGuideModal() {
   document.getElementById('guide-modal')?.classList.add('hidden');
-};
+}
 
 document.getElementById('guide-modal-close')?.addEventListener('click', () => closeModal('guide-modal'));
 document.getElementById('guide-modal-bg')?.addEventListener('click', () => closeModal('guide-modal'));
