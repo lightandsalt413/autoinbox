@@ -25,7 +25,7 @@
       display: none !important;
     }
   </style>
-  <link rel="stylesheet" href="/styles.css?v=48">
+  <link rel="stylesheet" href="/styles.css?v=52">
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SEF5Y7KP9Z"></script>
   <script>
@@ -40,42 +40,112 @@
   <div id="page-landing" class="page hidden">
     <canvas id="particles"></canvas>
 
-    <!-- Top Nav -->
-    <nav class="nav">
-      <div class="logo"><a href="/" id="logo-home" style="text-decoration:none"><span>AutoInbox</span></a></div>
-      <div class="nav-right">
-        <div class="menu-dropdown" id="menu-dropdown">
-          <button class="btn-ghost btn-sm menu-trigger" id="menu-trigger">☰ Menu</button>
-          <div class="menu-panel" id="menu-panel">
-            <a href="#" class="menu-item" id="menu-features">Features</a>
-            <a href="#" class="menu-item" id="menu-languages">Languages</a>
-            <a href="#" class="menu-item" id="menu-how">How It Works</a>
-            <a href="#" class="menu-item" id="menu-guide">Setup Guide</a>
-            <a href="#" class="menu-item" id="menu-pricing">Pricing</a>
-            <a href="#" class="menu-item" id="menu-faq">FAQ</a>
-            <a href="#" class="menu-item" id="menu-feedback">Feedback</a>
+    <div class="landing-frame">
+      <div class="landing-canvas">
+        
+        <!-- Top Left Dark Cutout (Logo Area) -->
+        <div class="cutout-top-left">
+          <div class="outer-logo">
+            <a href="/" id="logo-home" style="text-decoration:none">
+              <span class="logo-box">
+                <span class="logo-dot"></span>
+              </span>
+              <span class="logo-text">AutoInbox</span>
+            </a>
           </div>
         </div>
-        <button class="btn-ghost btn-sm" id="btn-goto-login">Log In</button>
-        <button class="btn-accent btn-sm" id="btn-goto-register">Sign Up</button>
-      </div>
-    </nav>
 
-    <!-- Hero Split -->
-    <section class="hero">
-      <div class="hero-left">
-        <div class="hero-eyebrow">AI-Powered Auto-Reply</div>
-        <h1>Stop Typing.<br><span class="glow-text">Let Your AI Clone Reply.</span></h1>
-        <p class="hero-desc">AI clones your exact reply style — same tone, same words, same vibe. So it always sounds like you. <strong>Always.</strong></p>
-        <div class="hero-btns">
-          <button class="btn-accent btn-xl pulse-glow" id="btn-hero-start">Get Started</button>
+        <!-- Top Right Dark Cutout (Actions Area) -->
+        <div class="cutout-top-right">
+          <div class="outer-actions">
+            <button class="outer-login-btn" id="btn-goto-login">Log In</button>
+            <button class="outer-connect-btn" id="btn-goto-register">
+              <span>Let's Connect</span>
+              <span class="connect-arrow">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+              </span>
+            </button>
+          </div>
         </div>
-      </div>
-    </section>
 
-    <!-- Simple footer to align at the bottom of the viewport -->
-    <footer class="footer-simple" style="position: absolute; bottom: 20px; left: 0; right: 0; text-align: center; font-size: 0.8rem; color: var(--t3); z-index: 10;">
-      © 2026 AutoInbox · <a href="/privacy.html" style="color:var(--t3);text-decoration:none;margin:0 8px;">Privacy Policy</a> · <a href="/terms.html" style="color:var(--t3);text-decoration:none;margin:0 8px;">Terms of Service</a>
+        <!-- Fillets for organic transitions (concave corners) -->
+        <div class="fillet fillet-tl-bottom"></div>
+        <div class="fillet fillet-tl-right"></div>
+        <div class="fillet fillet-tr-bottom"></div>
+        <div class="fillet fillet-tr-left"></div>
+
+        <!-- Inner Canvas Content -->
+        <div class="canvas-content">
+          
+          <!-- Inner Nav Pill -->
+          <header class="canvas-header">
+            <div class="nav-pill">
+              <a href="#" class="nav-pill-item menu-item" id="menu-features">Features</a>
+              <a href="#" class="nav-pill-item menu-item" id="menu-pricing">Pricing</a>
+              <a href="#" class="nav-pill-item menu-item" id="menu-how">How It Works</a>
+              <a href="#" class="nav-pill-item menu-item" id="menu-faq">FAQ</a>
+              <a href="#" class="nav-pill-item menu-item" id="menu-feedback">Contact us</a>
+              <a href="#" class="nav-pill-item menu-item" id="menu-languages">
+                <span>Languages</span>
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 4px; vertical-align: middle;"><path d="m6 9 6 6 6-6"/></svg>
+              </a>
+            </div>
+          </header>
+
+          <!-- Main Hero Inside Canvas -->
+          <div class="canvas-hero-grid">
+            <div class="hero-left-col">
+              
+              <!-- Stacked Envelope SVG Decoration -->
+              <div class="stacked-envelope-decoration">
+                <svg width="48" height="48" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Bottom sheet -->
+                  <rect x="12" y="24" width="40" height="28" rx="6" fill="#EADFCE" stroke="#1A1A1C" stroke-width="2"/>
+                  <!-- Middle sheet -->
+                  <rect x="8" y="16" width="48" height="32" rx="6" fill="#F3ECE2" stroke="#1A1A1C" stroke-width="2"/>
+                  <!-- Top sheet / Envelope face -->
+                  <rect x="4" y="8" width="56" height="36" rx="6" fill="#FFFFFF" stroke="#1A1A1C" stroke-width="2"/>
+                  <!-- Envelope flap lines -->
+                  <path d="M4 8L32 26L60 8" stroke="#1A1A1C" stroke-width="2" stroke-linejoin="round"/>
+                  <!-- Small gold lock emblem inside envelope center -->
+                  <rect x="25" y="24" width="14" height="12" rx="2" fill="#C5A55A" stroke="#1A1A1C" stroke-width="2"/>
+                  <path d="M28 24V21C28 19.3431 29.3431 18 31 18C32.6569 18 34 19.3431 34 21V24" stroke="#1A1A1C" stroke-width="2"/>
+                </svg>
+              </div>
+
+              <h1 class="canvas-title">There is a<br>Better Way<br>to Reply.</h1>
+              
+              <div class="canvas-cta-area">
+                <button class="canvas-contact-btn" id="btn-hero-contact">
+                  <span class="cta-arrow-circle">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  </span>
+                  <span>Contact Us</span>
+                </button>
+              </div>
+
+              <hr class="canvas-divider">
+
+              <p class="canvas-desc">
+                AutoInbox is an AI email auto-reply assistant that drafts replies in seconds and automatically handles your inbox 24/7, keeping your reply rates perfect.
+              </p>
+            </div>
+            
+            <div class="hero-right-col">
+              <div class="canvas-hero-image-wrap">
+                <img src="/autoinbox_canvas_hero.png" alt="AutoInbox AI Hero" class="canvas-hero-img">
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Elegant overlay footer centered at the bottom of the outer dark layout -->
+    <footer class="footer-simple">
+      © 2026 AutoInbox · <a href="/privacy.html">Privacy Policy</a> · <a href="/terms.html">Terms of Service</a>
     </footer>
   </div>
   
@@ -676,6 +746,6 @@
       </form>
     </div>
   </div>
-  <script src="/app.js?v=24"></script>
+  <script src="/app.js?v=25"></script>
 </body>
 </html>

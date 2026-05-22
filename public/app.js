@@ -103,6 +103,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   // Initialize multi-language playground
   initDemoPlayground();
+
+
+  // Hero CTA Contact Us button
+  document.getElementById('btn-hero-contact')?.addEventListener('click', () => {
+    openModal('feedback-modal');
+  });
 });
 
 // ===== Navigation =====
@@ -1706,7 +1712,7 @@ document.getElementById('form-feedback')?.addEventListener('submit', async (e) =
         x: Math.random() * w,
         y: Math.random() * h,
         r: 1.5 + Math.random() * 2,
-        hasEnvelope: Math.random() < 0.4 // 40% of nodes get an envelope
+        hasEnvelope: false // Removed envelopes from the background network
       });
     }
     // Build edges once (static lines)
