@@ -1047,3 +1047,56 @@ a{color:var(--p2);text-decoration:none}
   margin-right: 0;
 }
 
+/* === Global Custom Scrollbars === */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0A0A0B;
+}
+
+#page-dashboard ::-webkit-scrollbar-track {
+  background: #111111;
+}
+
+.modal-box ::-webkit-scrollbar-track {
+  background: #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border: 2px solid #0A0A0B;
+  border-radius: 5px;
+}
+
+#page-dashboard ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border: 2px solid #111111;
+}
+
+.modal-box ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border: 2px solid #1a1a1a;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--p);
+}
+
+/* Firefox scrollbar compatibility */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.12) #0A0A0B;
+}
+
+#page-dashboard * {
+  scrollbar-color: rgba(255, 255, 255, 0.12) #111111;
+}
+
+.modal-box * {
+  scrollbar-color: rgba(255, 255, 255, 0.12) #1a1a1a;
+}
+
+
