@@ -227,75 +227,87 @@
             <div class="lang-pill">🇹🇼 繁體中文</div>
           </div>
         </div>
-        <div class="lang-demos-carousel">
-          <!-- Japanese -->
-          <div class="lang-demo-pair">
-            <div class="lang-demo-card mini">
-              <div class="lang-demo-flag">🇯🇵</div>
-              <div class="lang-demo-label">Client writes in Japanese</div>
-              <div class="lang-demo-msg">"ウェブサイトの料金を教えてください。"</div>
-            </div>
-            <div class="lang-demo-arrow">→</div>
-            <div class="lang-demo-card mini ai-card">
-              <div class="lang-demo-flag">🤖</div>
-              <div class="lang-demo-label">AI replies in Japanese</div>
-              <div class="lang-demo-msg">"基本的なウェブサイトは$150からです。5〜7日で完成いたします。"</div>
-            </div>
+
+        <!-- Interactive Demo Simulator -->
+        <div class="demo-playground">
+          <!-- Left/Top: Tabs -->
+          <div class="demo-tabs">
+            <button class="demo-tab active" data-lang="ja">
+              <span class="tab-flag">🇯🇵</span>
+              <div class="tab-info">
+                <span class="tab-name">Japanese</span>
+                <span class="tab-user">Yuki Tanaka</span>
+              </div>
+              <span class="tab-pulse"></span>
+            </button>
+            <button class="demo-tab" data-lang="ko">
+              <span class="tab-flag">🇰🇷</span>
+              <div class="tab-info">
+                <span class="tab-name">Korean</span>
+                <span class="tab-user">Min-Jun Kim</span>
+              </div>
+              <span class="tab-pulse"></span>
+            </button>
+            <button class="demo-tab" data-lang="es">
+              <span class="tab-flag">🇪🇸</span>
+              <div class="tab-info">
+                <span class="tab-name">Spanish</span>
+                <span class="tab-user">Sofía Rodríguez</span>
+              </div>
+              <span class="tab-pulse"></span>
+            </button>
+            <button class="demo-tab" data-lang="fr">
+              <span class="tab-flag">🇫🇷</span>
+              <div class="tab-info">
+                <span class="tab-name">French</span>
+                <span class="tab-user">Lucas Martin</span>
+              </div>
+              <span class="tab-pulse"></span>
+            </button>
+            <button class="demo-tab" data-lang="ar">
+              <span class="tab-flag">🇸🇦</span>
+              <div class="tab-info">
+                <span class="tab-name">Arabic</span>
+                <span class="tab-user">Yousef Al-Harbi</span>
+              </div>
+              <span class="tab-pulse"></span>
+            </button>
+            <button class="demo-tab" data-lang="tl">
+              <span class="tab-flag">🇵🇭</span>
+              <div class="tab-info">
+                <span class="tab-name">Filipino</span>
+                <span class="tab-user">Jay dela Cruz</span>
+              </div>
+              <span class="tab-pulse"></span>
+            </button>
           </div>
-          <!-- Korean -->
-          <div class="lang-demo-pair">
-            <div class="lang-demo-card mini">
-              <div class="lang-demo-flag">🇰🇷</div>
-              <div class="lang-demo-label">Client writes in Korean</div>
-              <div class="lang-demo-msg">"로고 디자인 가격이 얼마인가요?"</div>
-            </div>
-            <div class="lang-demo-arrow">→</div>
-            <div class="lang-demo-card mini ai-card">
-              <div class="lang-demo-flag">🤖</div>
-              <div class="lang-demo-label">AI replies in Korean</div>
-              <div class="lang-demo-msg">"로고 디자인은 $80부터 시작합니다. 3~5일 내 완성됩니다."</div>
-            </div>
-          </div>
-          <!-- Spanish -->
-          <div class="lang-demo-pair">
-            <div class="lang-demo-card mini">
-              <div class="lang-demo-flag">🇪🇸</div>
-              <div class="lang-demo-label">Client writes in Spanish</div>
-              <div class="lang-demo-msg">"¿Cuánto cuesta una tienda online?"</div>
-            </div>
-            <div class="lang-demo-arrow">→</div>
-            <div class="lang-demo-card mini ai-card">
-              <div class="lang-demo-flag">🤖</div>
-              <div class="lang-demo-label">AI replies in Spanish</div>
-              <div class="lang-demo-msg">"¡Hola! Una tienda online comienza en $300. Incluye pasarela de pago."</div>
-            </div>
-          </div>
-          <!-- French -->
-          <div class="lang-demo-pair">
-            <div class="lang-demo-card mini">
-              <div class="lang-demo-flag">🇫🇷</div>
-              <div class="lang-demo-label">Client writes in French</div>
-              <div class="lang-demo-msg">"Bonjour, faites-vous des applications mobiles?"</div>
-            </div>
-            <div class="lang-demo-arrow">→</div>
-            <div class="lang-demo-card mini ai-card">
-              <div class="lang-demo-flag">🤖</div>
-              <div class="lang-demo-label">AI replies in French</div>
-              <div class="lang-demo-msg">"Bonjour! Oui, je développe des apps mobiles à partir de $500."</div>
-            </div>
-          </div>
-          <!-- Arabic -->
-          <div class="lang-demo-pair">
-            <div class="lang-demo-card mini">
-              <div class="lang-demo-flag">🇸🇦</div>
-              <div class="lang-demo-label">Client writes in Arabic</div>
-              <div class="lang-demo-msg">"كم تكلفة تصميم موقع إلكتروني؟"</div>
-            </div>
-            <div class="lang-demo-arrow">→</div>
-            <div class="lang-demo-card mini ai-card">
-              <div class="lang-demo-flag">🤖</div>
-              <div class="lang-demo-label">AI replies in Arabic</div>
-              <div class="lang-demo-msg">"مرحباً! يبدأ سعر الموقع من 150 دولار. التسليم خلال 5-7 أيام."</div>
+
+          <!-- Right/Bottom: Smartphone Simulator -->
+          <div class="demo-simulator">
+            <div class="phone-frame">
+              <div class="phone-notch"></div>
+              <div class="phone-bar">
+                <div class="phone-user-info">
+                  <div class="phone-avatar" id="demo-avatar">YT</div>
+                  <div>
+                    <div class="phone-username" id="demo-name">Yuki Tanaka</div>
+                    <div class="phone-status-row">
+                      <span class="phone-status-dot"></span>
+                      <span class="phone-status-text">Active Now</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="phone-badge">AutoInbox Active ⚡</div>
+              </div>
+              <div class="phone-chat-body" id="demo-chat-body">
+                <!-- Dynamically loaded conversation will live here -->
+              </div>
+              <div class="phone-footer-mock">
+                <div class="phone-input-bar">
+                  <span>AI Clone drafting reply...</span>
+                  <span class="phone-send-icon">⚡</span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
