@@ -1014,6 +1014,10 @@ document.getElementById('form-change-password')?.addEventListener('submit', asyn
     return;
   }
 
+  if (!confirm('Are you sure you want to update your password? This will log you out of all active sessions.')) {
+    return;
+  }
+
   try {
     await api('/auth/change-password', {
       method: 'POST',
