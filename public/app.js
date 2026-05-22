@@ -114,13 +114,6 @@ function showDashSection(id) {
 document.getElementById('btn-goto-login')?.addEventListener('click', () => showPage('login'));
 document.getElementById('btn-goto-register')?.addEventListener('click', () => showPage('register'));
 document.getElementById('btn-hero-start')?.addEventListener('click', () => showPage('register'));
-document.getElementById('btn-hero-features')?.addEventListener('click', () => {
-  const el = document.getElementById('features');
-  if (el) {
-    el.classList.add('revealed');
-    el.scrollIntoView({ behavior: 'smooth' });
-  }
-});
 document.getElementById('btn-how-signup')?.addEventListener('click', () => showPage('register'));
 document.getElementById('link-register')?.addEventListener('click', (e) => { e.preventDefault(); showPage('register'); });
 document.getElementById('link-login')?.addEventListener('click', (e) => { e.preventDefault(); showPage('login'); });
