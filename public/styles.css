@@ -125,7 +125,7 @@ a{color:var(--p2);text-decoration:none}
 .faq-item:hover{border-color:rgba(197,165,90,.2);box-shadow:0 4px 20px rgba(197,165,90,.05)}
 .faq-item.open{border-color:rgba(197,165,90,.3);box-shadow:0 8px 30px rgba(197,165,90,.08)}
 .faq-q{width:100%;text-align:left;background:none;border:none;color:var(--t);padding:18px 22px;font-size:.92rem;cursor:pointer;font-family:var(--f);font-weight:500}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .3s}.faq-item.open .faq-a{max-height:200px}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s}.faq-item.open .faq-a{max-height:500px}
 .faq-a p{padding:0 22px 18px;font-size:.88rem;color:var(--t2)}
 .cta-section{text-align:center;padding:120px 48px;position:relative}
 .cta-section::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(197,165,90,.08),transparent 70%);pointer-events:none;z-index:-1}
@@ -267,7 +267,8 @@ a{color:var(--p2);text-decoration:none}
 .modal{position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px}
 .modal-bg{position:absolute;inset:0;background:rgba(0,0,0,.7);backdrop-filter:blur(6px)}
 .modal-box{position:relative;background:var(--bg2);border:1px solid var(--s2);border-radius:var(--rad);padding:28px;max-width:620px;width:100%;max-height:85vh;overflow-y:auto;z-index:1}
-.modal-x{position:absolute;top:12px;right:16px;background:none;border:none;color:var(--t3);font-size:1.6rem;cursor:pointer}
+.modal-x{position:absolute;top:12px;right:32px;background:none;border:none;color:var(--t3);font-size:1.6rem;cursor:pointer;z-index:100;transition:color 0.2s}
+.modal-x:hover{color:var(--t)}
 .modal-head{margin-bottom:20px}.modal-head h3{font-size:1.2rem}
 .modal-sec{margin-bottom:16px}.modal-sec label{font-size:.78rem;color:var(--t3);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;display:block}
 .modal-msg{background:var(--s);padding:14px;border-radius:10px;font-size:.9rem;color:var(--t2);max-height:150px;overflow-y:auto;white-space:pre-wrap}
@@ -1014,5 +1015,35 @@ a{color:var(--p2);text-decoration:none}
     border-bottom-color: var(--p);
     border-radius: 6px 6px 0 0;
   }
+}
+
+/* === Flag Badges (Custom Country Flag initials badges for Windows compatibility) === */
+.flag-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FFE8A3 0%, #C5A55A 50%, #8A7540 100%);
+  color: #111111;
+  font-size: 0.72rem;
+  font-weight: 800;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  text-shadow: 0 0.5px 0.5px rgba(255, 255, 255, 0.3);
+  letter-spacing: -0.2px;
+  flex-shrink: 0;
+  margin-right: 8px;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+/* Adjustments for flags inside tab buttons */
+.tab-flag.flag-badge {
+  width: 38px;
+  height: 38px;
+  font-size: 1rem;
+  margin-right: 0;
 }
 

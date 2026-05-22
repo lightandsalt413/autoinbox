@@ -138,6 +138,7 @@ function closeLandingModals() {
   document.getElementById('faq-modal')?.classList.add('hidden');
   document.getElementById('feedback-modal')?.classList.add('hidden');
   document.getElementById('guide-modal')?.classList.add('hidden');
+  stopDemoCycle();
 }
 
 const MODAL_MAPPING = {
@@ -162,6 +163,9 @@ document.querySelectorAll('.menu-item').forEach(item => {
         openGuideModal('gmail');
       } else {
         document.getElementById(modalId)?.classList.remove('hidden');
+        if (modalId === 'languages-modal') {
+          startDemoCycle();
+        }
       }
     }
   });
@@ -181,7 +185,12 @@ modalCloseConfig.forEach(m => {
   const modalEl = document.getElementById(m.id);
   const btnEl = document.getElementById(m.closeBtn);
   const bgEl = document.getElementById(m.bg);
-  const close = () => modalEl?.classList.add('hidden');
+  const close = () => {
+    modalEl?.classList.add('hidden');
+    if (m.id === 'languages-modal') {
+      stopDemoCycle();
+    }
+  };
   btnEl?.addEventListener('click', close);
   bgEl?.addEventListener('click', close);
 });
@@ -1398,6 +1407,134 @@ const DEMO_DATA = {
 
 let demoTimer = null;
 let currentDemoLang = 'ja';
+let demoAutoCycleRunning = false;
+
+function setActiveTab(lang) {
+  const tabs = document.querySelectorAll('.demo-tab');
+  tabs.forEach(t => {
+    if (t.dataset.lang === lang) {
+      t.classList.add('active');
+      // Scroll tab into view for mobile overflow layout (container-only scroll to prevent window jumping)
+      const container = t.parentElement;
+      if (container && window.innerWidth <= 768) {
+        const tabLeft = t.offsetLeft;
+        const tabWidth = t.offsetWidth;
+        const containerWidth = container.offsetWidth;
+        container.scrollTo({
+          left: tabLeft - (containerWidth / 2) + (tabWidth / 2),
+          behavior: 'smooth'
+        });
+      }
+    } else {
+      t.classList.remove('active');
+    }
+  });
+  currentDemoLang = lang;
+}
+
+function playDemo(lang) {
+  const data = DEMO_DATA[lang];
+  if (!data) return;
+
+  const chatBody = document.getElementById('demo-chat-body');
+  const avatarEl = document.getElementById('demo-avatar');
+  const nameEl = document.getElementById('demo-name');
+
+  if (!chatBody) return;
+
+  // Update user info
+  if (avatarEl) avatarEl.textContent = data.avatar;
+  if (nameEl) nameEl.textContent = data.name;
+
+  // Clear and play animations
+  chatBody.innerHTML = '';
+
+  // Step 1: Add Client Message after 200ms
+  const clientTimer = setTimeout(() => {
+    const clientBubble = document.createElement('div');
+    clientBubble.className = 'bubble client';
+    clientBubble.dir = 'auto';
+    clientBubble.innerHTML = `
+      <span class="bubble-tag">Client</span>
+      <div>${data.clientMsg}</div>
+      <span class="bubble-time">Received</span>
+    `;
+    chatBody.appendChild(clientBubble);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }, 200);
+
+  // Step 2: Show Typing Indicator after 1200ms
+  const typingTimer = setTimeout(() => {
+    const typingBubble = document.createElement('div');
+    typingBubble.className = 'bubble typing';
+    typingBubble.id = 'demo-typing-indicator';
+    typingBubble.innerHTML = `
+      <span class="typing-dot"></span>
+      <span class="typing-dot"></span>
+      <span class="typing-dot"></span>
+    `;
+    chatBody.appendChild(typingBubble);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }, 1200);
+
+  // Step 3: Show AI reply after 2700ms (1.5s typing)
+  const replyTimer = setTimeout(() => {
+    // Remove typing bubble
+    const typingInd = document.getElementById('demo-typing-indicator');
+    if (typingInd) typingInd.remove();
+
+    const aiBubble = document.createElement('div');
+    aiBubble.className = 'bubble ai';
+    aiBubble.dir = 'auto';
+    aiBubble.innerHTML = `
+      <span class="bubble-tag">${data.replyBadge}</span>
+      <div>${data.aiReply}</div>
+      <span class="bubble-time">Sent Automatically</span>
+    `;
+    chatBody.appendChild(aiBubble);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }, 2700);
+
+  // Store timers on the element to cancel them if tab changes mid-animation
+  // This prevents overlapping text/animations from previous plays
+  if (chatBody._timers) {
+    chatBody._timers.forEach(t => clearTimeout(t));
+  }
+  chatBody._timers = [clientTimer, typingTimer, replyTimer];
+}
+
+function startDemoCycle() {
+  if (demoAutoCycleRunning) return;
+  demoAutoCycleRunning = true;
+
+  const langs = ['ja', 'ko', 'es', 'fr', 'ar', 'tl'];
+  let idx = langs.indexOf(currentDemoLang);
+  if (idx === -1) idx = 0;
+
+  // Play current demo
+  setActiveTab(currentDemoLang);
+  playDemo(currentDemoLang);
+
+  demoTimer = setInterval(() => {
+    idx = (idx + 1) % langs.length;
+    currentDemoLang = langs[idx];
+    setActiveTab(currentDemoLang);
+    playDemo(currentDemoLang);
+  }, 8000);
+}
+
+function stopDemoCycle() {
+  demoAutoCycleRunning = false;
+  if (demoTimer) {
+    clearInterval(demoTimer);
+    demoTimer = null;
+  }
+  const chatBody = document.getElementById('demo-chat-body');
+  if (chatBody && chatBody._timers) {
+    chatBody._timers.forEach(t => clearTimeout(t));
+    chatBody._timers = [];
+  }
+}
 
 function initDemoPlayground() {
   const tabs = document.querySelectorAll('.demo-tab');
@@ -1410,126 +1547,12 @@ function initDemoPlayground() {
       if (!lang) return;
       
       // Stop auto cycling
-      if (demoTimer) {
-        clearInterval(demoTimer);
-        demoTimer = null;
-      }
+      stopDemoCycle();
       
       setActiveTab(lang);
       playDemo(lang);
     });
   });
-
-  // Set active tab helper
-  function setActiveTab(lang) {
-    tabs.forEach(t => {
-      if (t.dataset.lang === lang) {
-        t.classList.add('active');
-        // Scroll tab into view for mobile overflow layout (container-only scroll to prevent window jumping)
-        const container = t.parentElement;
-        if (container && window.innerWidth <= 768) {
-          const tabLeft = t.offsetLeft;
-          const tabWidth = t.offsetWidth;
-          const containerWidth = container.offsetWidth;
-          container.scrollTo({
-            left: tabLeft - (containerWidth / 2) + (tabWidth / 2),
-            behavior: 'smooth'
-          });
-        }
-      } else {
-        t.classList.remove('active');
-      }
-    });
-    currentDemoLang = lang;
-  }
-
-  // Play demo helper
-  function playDemo(lang) {
-    const data = DEMO_DATA[lang];
-    if (!data) return;
-
-    const chatBody = document.getElementById('demo-chat-body');
-    const avatarEl = document.getElementById('demo-avatar');
-    const nameEl = document.getElementById('demo-name');
-
-    if (!chatBody) return;
-
-    // Update user info
-    if (avatarEl) avatarEl.textContent = data.avatar;
-    if (nameEl) nameEl.textContent = data.name;
-
-    // Clear and play animations
-    chatBody.innerHTML = '';
-
-    // Step 1: Add Client Message after 200ms
-    const clientTimer = setTimeout(() => {
-      const clientBubble = document.createElement('div');
-      clientBubble.className = 'bubble client';
-      clientBubble.innerHTML = `
-        <span class="bubble-tag">Client</span>
-        <div>${data.clientMsg}</div>
-        <span class="bubble-time">Received</span>
-      `;
-      chatBody.appendChild(clientBubble);
-      chatBody.scrollTop = chatBody.scrollHeight;
-    }, 200);
-
-    // Step 2: Show Typing Indicator after 1200ms
-    const typingTimer = setTimeout(() => {
-      const typingBubble = document.createElement('div');
-      typingBubble.className = 'bubble typing';
-      typingBubble.id = 'demo-typing-indicator';
-      typingBubble.innerHTML = `
-        <span class="typing-dot"></span>
-        <span class="typing-dot"></span>
-        <span class="typing-dot"></span>
-      `;
-      chatBody.appendChild(typingBubble);
-      chatBody.scrollTop = chatBody.scrollHeight;
-    }, 1200);
-
-    // Step 3: Show AI reply after 2700ms (1.5s typing)
-    const replyTimer = setTimeout(() => {
-      // Remove typing bubble
-      const typingInd = document.getElementById('demo-typing-indicator');
-      if (typingInd) typingInd.remove();
-
-      const aiBubble = document.createElement('div');
-      aiBubble.className = 'bubble ai';
-      aiBubble.innerHTML = `
-        <span class="bubble-tag">${data.replyBadge}</span>
-        <div>${data.aiReply}</div>
-        <span class="bubble-time">Sent Automatically</span>
-      `;
-      chatBody.appendChild(aiBubble);
-      chatBody.scrollTop = chatBody.scrollHeight;
-    }, 2700);
-
-    // Store timers on the element to cancel them if tab changes mid-animation
-    // This prevents overlapping text/animations from previous plays
-    if (chatBody._timers) {
-      chatBody._timers.forEach(t => clearTimeout(t));
-    }
-    chatBody._timers = [clientTimer, typingTimer, replyTimer];
-  }
-
-  // Start auto cycle
-  function startAutoCycle() {
-    const langs = ['ja', 'ko', 'es', 'fr', 'ar', 'tl'];
-    let idx = 0;
-    
-    // Play initial demo
-    setActiveTab(langs[idx]);
-    playDemo(langs[idx]);
-
-    demoTimer = setInterval(() => {
-      idx = (idx + 1) % langs.length;
-      setActiveTab(langs[idx]);
-      playDemo(langs[idx]);
-    }, 8000);
-  }
-
-  startAutoCycle();
 }
 
 // ===== Nav Scroll Shadow =====
