@@ -1356,69 +1356,7 @@ document.getElementById('btn-final-cta')?.addEventListener('click', () => {
   }
 })();
 
-// ===== Init =====
-(async () => {
-  try {
-    const hash = window.location.hash.replace('#', '');
-    const publicPages = ['login', 'register'];
-    const landingSections = ['features', 'languages', 'how', 'pricing', 'faq'];
 
-    // Handle landing section hashes on load to prevent native jump and do smooth scroll instead
-    let targetSection = null;
-    if (landingSections.includes(hash)) {
-      const el = document.getElementById(hash);
-      if (el) {
-        targetSection = el;
-        // Temporarily change ID to prevent browser instant scroll
-        el.id = `temp-scroll-${hash}`;
-      }
-    }
-
-    if (token) {
-      try {
-        await api('/stats');
-        enterDashboard();
-      } catch (e) {
-        token = '';
-        localStorage.removeItem('kk_token');
-        sessionStorage.removeItem('kk_token');
-        // If hash points to a public page, go there; otherwise landing
-        if (publicPages.includes(hash)) {
-          showPage(hash, false);
-        } else {
-          showPage('landing');
-          const modalId = HASH_TO_MODAL[hash];
-          if (modalId) {
-            openModal(modalId, false);
-          }
-        }
-      }
-    } else if (publicPages.includes(hash)) {
-      // Restore public page from hash (e.g. #register after refresh)
-      showPage(hash, false);
-    } else {
-      showPage('landing');
-      const modalId = HASH_TO_MODAL[hash];
-      if (modalId) {
-        openModal(modalId, false);
-      }
-    }
-
-    // Smoothly scroll to target section if it was intercepted
-    if (targetSection) {
-      setTimeout(() => {
-        // Restore original ID
-        targetSection.id = hash;
-        if (currentPage === 'landing') {
-          targetSection.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 200);
-    }
-  } catch (e) {
-    console.error('Init error:', e);
-    showPage('landing');
-  }
-})();
 
 // ===== Scroll Reveal =====
 const revealObserver = new IntersectionObserver((entries) => {
@@ -1876,4 +1814,68 @@ document.getElementById('form-feedback')?.addEventListener('submit', async (e) =
   resize();
   window.addEventListener('resize', resize);
   animate();
+})();
+
+// ===== Init =====
+(async () => {
+  try {
+    const hash = window.location.hash.replace('#', '');
+    const publicPages = ['login', 'register'];
+    const landingSections = ['features', 'languages', 'how', 'pricing', 'faq'];
+
+    // Handle landing section hashes on load to prevent native jump and do smooth scroll instead
+    let targetSection = null;
+    if (landingSections.includes(hash)) {
+      const el = document.getElementById(hash);
+      if (el) {
+        targetSection = el;
+        // Temporarily change ID to prevent browser instant scroll
+        el.id = `temp-scroll-${hash}`;
+      }
+    }
+
+    if (token) {
+      try {
+        await api('/stats');
+        enterDashboard();
+      } catch (e) {
+        token = '';
+        localStorage.removeItem('kk_token');
+        sessionStorage.removeItem('kk_token');
+        // If hash points to a public page, go there; otherwise landing
+        if (publicPages.includes(hash)) {
+          showPage(hash, false);
+        } else {
+          showPage('landing');
+          const modalId = HASH_TO_MODAL[hash];
+          if (modalId) {
+            openModal(modalId, false);
+          }
+        }
+      }
+    } else if (publicPages.includes(hash)) {
+      // Restore public page from hash (e.g. #register after refresh)
+      showPage(hash, false);
+    } else {
+      showPage('landing');
+      const modalId = HASH_TO_MODAL[hash];
+      if (modalId) {
+        openModal(modalId, false);
+      }
+    }
+
+    // Smoothly scroll to target section if it was intercepted
+    if (targetSection) {
+      setTimeout(() => {
+        // Restore original ID
+        targetSection.id = hash;
+        if (currentPage === 'landing') {
+          targetSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 200);
+    }
+  } catch (e) {
+    console.error('Init error:', e);
+    showPage('landing');
+  }
 })();
