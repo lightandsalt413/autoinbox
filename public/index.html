@@ -47,12 +47,13 @@
         <div class="menu-dropdown" id="menu-dropdown">
           <button class="btn-ghost btn-sm menu-trigger" id="menu-trigger">☰ Menu</button>
           <div class="menu-panel" id="menu-panel">
-            <a href="#features" class="menu-item">Features</a>
-            <a href="#languages" class="menu-item">Languages</a>
-            <a href="#how" class="menu-item">How It Works</a>
-            <a href="#guide" class="menu-item">Setup Guide</a>
-            <a href="#pricing" class="menu-item">Pricing</a>
-            <a href="#faq" class="menu-item">FAQ</a>
+            <a href="#" class="menu-item" id="menu-features">Features</a>
+            <a href="#" class="menu-item" id="menu-languages">Languages</a>
+            <a href="#" class="menu-item" id="menu-how">How It Works</a>
+            <a href="#" class="menu-item" id="menu-guide">Setup Guide</a>
+            <a href="#" class="menu-item" id="menu-pricing">Pricing</a>
+            <a href="#" class="menu-item" id="menu-faq">FAQ</a>
+            <a href="#" class="menu-item" id="menu-feedback">Feedback</a>
           </div>
         </div>
         <button class="btn-ghost btn-sm" id="btn-goto-login">Log In</button>
@@ -72,380 +73,12 @@
       </div>
     </section>
 
-    <!-- How It Works -->
-    <section class="section" id="how">
-      <div class="section-tag">How It Works</div>
-      <h2 class="section-h">Your AI Clone in <span class="glow-text">3 Easy Steps</span></h2>
-      <p class="section-p">No technical skills needed. No downloads. Setup takes under 2 minutes.</p>
-      <div class="timeline">
-        <div class="timeline-step">
-          <div class="timeline-left">
-            <div class="timeline-num">01</div>
-          </div>
-          <div class="timeline-line"></div>
-          <div class="timeline-content">
-            <div class="timeline-badge">Step 1</div>
-            <h3>Connect Your Gmail</h3>
-            <p>Enter your Gmail address and a Google App Password. This is a special 16-character code from Google — <strong>not your real password</strong>. You can revoke it anytime from your Google Account.</p>
-            <div class="timeline-note">Your credentials are encrypted with AES-256 — the same standard used by banks.</div>
-          </div>
-        </div>
-        <div class="timeline-step">
-          <div class="timeline-left">
-            <div class="timeline-num">02</div>
-          </div>
-          <div class="timeline-line"></div>
-          <div class="timeline-content">
-            <div class="timeline-badge">Step 2</div>
-            <h3>Train Your AI Clone</h3>
-            <p>Paste 3-5 examples of your real email replies. The AI analyzes your writing style — your tone, greeting, sign-off, language preference, and personality — to create a unique <strong>Voice Profile</strong>.</p>
-            <div class="timeline-note">The more samples you provide, the more accurate your AI clone becomes.</div>
-          </div>
-        </div>
-        <div class="timeline-step">
-          <div class="timeline-left">
-            <div class="timeline-num">03</div>
-          </div>
-          <div class="timeline-line"></div>
-          <div class="timeline-content">
-            <div class="timeline-badge">Step 3</div>
-            <h3>Review, Approve & Send</h3>
-            <p>When a new email arrives, your AI clone instantly drafts a reply that sounds exactly like you. Open your dashboard, review the draft, make edits if needed, then <strong>approve with one click</strong>.</p>
-            <div class="timeline-note">You stay in full control. Nothing gets sent without your approval.</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- Dashboard Preview -->
-    <section class="section dash-preview-section">
-      <div class="section-tag">See It In Action</div>
-      <h2 class="section-h">Your <span class="glow-text">Dashboard</span></h2>
-      <p class="section-p">This is what your AutoInbox dashboard looks like after setup.</p>
-      <div class="dash-mock">
-        <div class="dm-bar"><span class="dm-title">AutoInbox Dashboard</span><span class="dm-date">May 18, 2026 · 10:00 AM</span></div>
-        <div class="dm-body">
-          <div class="dm-sidebar">
-            <div class="dm-nav-item active">Overview</div>
-            <div class="dm-nav-item">Inbox</div>
-            <div class="dm-nav-item">Voice Clone</div>
-            <div class="dm-nav-item">Settings</div>
-          </div>
-          <div class="dm-main">
-            <h4>Welcome back, Alex!</h4>
-            <p>Here's what's happening with your inbox today.</p>
-            <div class="dm-stats">
-              <div class="dm-stat"><span class="dm-stat-num">24</span><span>Total Replies</span></div>
-              <div class="dm-stat"><span class="dm-stat-num">18</span><span>Auto-Drafted</span></div>
-              <div class="dm-stat"><span class="dm-stat-num">5</span><span>Approved</span></div>
-              <div class="dm-stat"><span class="dm-stat-num">98%</span><span>Accuracy</span></div>
-            </div>
-            <div class="dm-inbox-list">
-              <div class="dm-inbox-item"><span class="dm-av">JR</span><div><strong>John Reyes</strong> <small>john.reyes@gmail.com</small><p>Interested in your SMM services...</p></div><span class="dm-tag sent">Sent</span></div>
-              <div class="dm-inbox-item"><span class="dm-av">AL</span><div><strong>Anna Lim</strong> <small>anna.lim@yahoo.com</small><p>How much for a logo design?</p></div><span class="dm-tag draft">Draft</span></div>
-              <div class="dm-inbox-item"><span class="dm-av">KB</span><div><strong>Kate Brooks</strong> <small>kbrooks@outlook.com</small><p>Are you available for a rush project?</p></div><span class="dm-tag pending">Pending</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Features Grid -->
-    <section class="section" id="features">
-      <div class="section-tag">Features</div>
-      <h2 class="section-h">Powerful Features for <span class="glow-text">Smarter Replies</span></h2>
-      <div class="feat-grid">
-        <div class="feat-card"><div class="feat-icon">01</div><h4>Voice Cloning AI</h4><p>Learns your exact tone, language, and emoji style from real reply samples.</p></div>
-        <div class="feat-card"><div class="feat-icon">02</div><h4>Instant Auto-Reply</h4><p>AI drafts replies in seconds. No more late responses or lost clients.</p></div>
-        <div class="feat-card"><div class="feat-icon">03</div><h4>Military Encryption</h4><p>AES-256 encryption. Your emails and data are 100% secure and private.</p></div>
-        <div class="feat-card"><div class="feat-icon">04</div><h4>Review & Approve</h4><p>Edit, regenerate, or approve every AI draft before it gets sent.</p></div>
-        <div class="feat-card"><div class="feat-icon">05</div><h4>24/7 Monitoring</h4><p>Works while you sleep. Never miss a client message again.</p></div>
-        <div class="feat-card"><div class="feat-icon">06</div><h4>25+ Languages</h4><p>Auto-detect and reply in your client's language — English, Japanese, Korean, Spanish, and more.</p></div>
-      </div>
-    </section>
-
-    <!-- Multi-Language Showcase -->
-    <section class="section" id="languages">
-      <div class="section-tag">Global Ready</div>
-      <h2 class="section-h">One Inbox. <span class="glow-text">Every Language.</span></h2>
-      <p class="section-p">AutoInbox auto-detects your client's language and replies naturally — no translation apps needed.</p>
-      <div class="lang-showcase">
-        <div class="lang-scroll-row">
-          <div class="lang-scroll-track">
-            <div class="lang-pill">🇺🇸 English</div>
-            <div class="lang-pill">🇯🇵 日本語</div>
-            <div class="lang-pill">🇰🇷 한국어</div>
-            <div class="lang-pill">🇪🇸 Español</div>
-            <div class="lang-pill">🇫🇷 Français</div>
-            <div class="lang-pill">🇩🇪 Deutsch</div>
-            <div class="lang-pill">🇵🇹 Português</div>
-            <div class="lang-pill">🇮🇹 Italiano</div>
-            <div class="lang-pill">🇷🇺 Русский</div>
-            <div class="lang-pill">🇸🇦 العربية</div>
-            <div class="lang-pill">🇮🇳 हिन्दी</div>
-            <div class="lang-pill">🇨🇳 中文</div>
-            <div class="lang-pill">🇹🇭 ไทย</div>
-            <!-- duplicate for seamless loop -->
-            <div class="lang-pill">🇺🇸 English</div>
-            <div class="lang-pill">🇯🇵 日本語</div>
-            <div class="lang-pill">🇰🇷 한국어</div>
-            <div class="lang-pill">🇪🇸 Español</div>
-            <div class="lang-pill">🇫🇷 Français</div>
-            <div class="lang-pill">🇩🇪 Deutsch</div>
-            <div class="lang-pill">🇵🇹 Português</div>
-            <div class="lang-pill">🇮🇹 Italiano</div>
-            <div class="lang-pill">🇷🇺 Русский</div>
-            <div class="lang-pill">🇸🇦 العربية</div>
-            <div class="lang-pill">🇮🇳 हिन्दी</div>
-            <div class="lang-pill">🇨🇳 中文</div>
-            <div class="lang-pill">🇹🇭 ไทย</div>
-          </div>
-        </div>
-        <div class="lang-scroll-row reverse">
-          <div class="lang-scroll-track">
-            <div class="lang-pill">🇵🇭 Filipino</div>
-            <div class="lang-pill">🇻🇳 Tiếng Việt</div>
-            <div class="lang-pill">🇮🇩 Indonesia</div>
-            <div class="lang-pill">🇲🇾 Malay</div>
-            <div class="lang-pill">🇹🇷 Türkçe</div>
-            <div class="lang-pill">🇵🇱 Polski</div>
-            <div class="lang-pill">🇺🇦 Українська</div>
-            <div class="lang-pill">🇳🇱 Nederlands</div>
-            <div class="lang-pill">🇸🇪 Svenska</div>
-            <div class="lang-pill">🇹🇼 繁體中文</div>
-            <!-- duplicate for seamless loop -->
-            <div class="lang-pill">🇵🇭 Filipino</div>
-            <div class="lang-pill">🇻🇳 Tiếng Việt</div>
-            <div class="lang-pill">🇮🇩 Indonesia</div>
-            <div class="lang-pill">🇲🇾 Malay</div>
-            <div class="lang-pill">🇹🇷 Türkçe</div>
-            <div class="lang-pill">🇵🇱 Polski</div>
-            <div class="lang-pill">🇺🇦 Українська</div>
-            <div class="lang-pill">🇳🇱 Nederlands</div>
-            <div class="lang-pill">🇸🇪 Svenska</div>
-            <div class="lang-pill">🇹🇼 繁體中文</div>
-          </div>
-        </div>
-
-        <!-- Interactive Demo Simulator -->
-        <div class="demo-playground">
-          <!-- Left/Top: Tabs -->
-          <div class="demo-tabs">
-            <button class="demo-tab active" data-lang="ja">
-              <span class="tab-flag">🇯🇵</span>
-              <div class="tab-info">
-                <span class="tab-name">Japanese</span>
-                <span class="tab-user">Yuki Tanaka</span>
-              </div>
-              <span class="tab-pulse"></span>
-            </button>
-            <button class="demo-tab" data-lang="ko">
-              <span class="tab-flag">🇰🇷</span>
-              <div class="tab-info">
-                <span class="tab-name">Korean</span>
-                <span class="tab-user">Min-Jun Kim</span>
-              </div>
-              <span class="tab-pulse"></span>
-            </button>
-            <button class="demo-tab" data-lang="es">
-              <span class="tab-flag">🇪🇸</span>
-              <div class="tab-info">
-                <span class="tab-name">Spanish</span>
-                <span class="tab-user">Sofía Rodríguez</span>
-              </div>
-              <span class="tab-pulse"></span>
-            </button>
-            <button class="demo-tab" data-lang="fr">
-              <span class="tab-flag">🇫🇷</span>
-              <div class="tab-info">
-                <span class="tab-name">French</span>
-                <span class="tab-user">Lucas Martin</span>
-              </div>
-              <span class="tab-pulse"></span>
-            </button>
-            <button class="demo-tab" data-lang="ar">
-              <span class="tab-flag">🇸🇦</span>
-              <div class="tab-info">
-                <span class="tab-name">Arabic</span>
-                <span class="tab-user">Yousef Al-Harbi</span>
-              </div>
-              <span class="tab-pulse"></span>
-            </button>
-            <button class="demo-tab" data-lang="tl">
-              <span class="tab-flag">🇵🇭</span>
-              <div class="tab-info">
-                <span class="tab-name">Filipino</span>
-                <span class="tab-user">Jay dela Cruz</span>
-              </div>
-              <span class="tab-pulse"></span>
-            </button>
-          </div>
-
-          <!-- Right/Bottom: Smartphone Simulator -->
-          <div class="demo-simulator">
-            <div class="phone-frame">
-              <div class="phone-notch"></div>
-              <div class="phone-bar">
-                <div class="phone-user-info">
-                  <div class="phone-avatar" id="demo-avatar">YT</div>
-                  <div>
-                    <div class="phone-username" id="demo-name">Yuki Tanaka</div>
-                    <div class="phone-status-row">
-                      <span class="phone-status-dot"></span>
-                      <span class="phone-status-text">Active Now</span>
-                    </div>
-                  </div>
-                </div>
-                <div class="phone-badge">AutoInbox Active ⚡</div>
-              </div>
-              <div class="phone-chat-body" id="demo-chat-body">
-                <!-- Dynamically loaded conversation will live here -->
-              </div>
-              <div class="phone-footer-mock">
-                <div class="phone-input-bar">
-                  <span>AI Clone drafting reply...</span>
-                  <span class="phone-send-icon">⚡</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Before vs After -->
-    <section class="section" id="compare">
-      <div class="section-tag">The Difference</div>
-      <h2 class="section-h">Before vs After <span class="glow-text">AutoInbox</span></h2>
-      <div class="bva-grid">
-        <div class="bva-card before">
-          <div class="bva-label">Without AutoInbox</div>
-          <ul class="bva-list"><li>2+ hours daily replying</li><li>Slow response = lost clients</li><li>No replies while you sleep</li><li>Copy-paste the same answers</li><li>Missed opportunities everyday</li></ul>
-          <div class="bva-stat">~120 mins<span>wasted daily</span></div>
-        </div>
-        <div class="bva-vs"><div class="vs-circle">VS</div></div>
-        <div class="bva-card after">
-          <div class="bva-label">With AutoInbox</div>
-          <ul class="bva-list"><li>AI replies in seconds — 24/7</li><li>Instant response = happy clients</li><li>Works while you sleep</li><li>Personalized — sounds like YOU</li><li>More sales, less stress</li></ul>
-          <div class="bva-stat glow">~10 mins<span>approve & done</span></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="section">
-      <div class="section-tag">Testimonials</div>
-      <h2 class="section-h">Loved by Professionals <span class="glow-text">Worldwide</span></h2>
-      <div class="testi-row">
-        <div class="testi-card"><p>"This has been a huge help! I used to spend 2 hours on replies, now it only takes 10 minutes. It still sounds exactly like me!"</p><div class="testi-who"><span class="testi-av">MG</span><div><strong>Maria Garcia</strong><small>Freelance Designer · New York</small></div></div></div>
-              <div class="testi-card"><p>"Game changer for my online business. Auto-reply to 'is this still available?' — finally! Amazing."</p><div class="testi-who"><span class="testi-av">JR</span><div><strong>Jay Roberts</strong><small>Online Seller · London</small></div></div></div>
-        <div class="testi-card"><p>"Even with my casual writing style, the AI copies my exact tone perfectly. You can't even tell it's AI!"</p><div class="testi-who"><span class="testi-av">AL</span><div><strong>Anna Lee</strong><small>Virtual Assistant · Toronto</small></div></div></div>
-      </div>
-    </section>
-
-    <!-- Setup Guide Section -->
-    <section class="section" id="guide">
-      <div class="section-tag">Help & Setup</div>
-      <h2 class="section-h">Easy Email <span class="glow-text">Setup Guide</span></h2>
-      <p class="section-p">Learn how to connect your Gmail or Yahoo Mail using an App Password.</p>
-      
-      <div class="guide-tabs-container" style="max-width: 800px; margin: 30px auto 0;">
-        <div class="provider-tabs" id="lp-guide-tabs" style="display:flex;gap:10px;margin-bottom:24px">
-          <button type="button" class="tab active" data-provider="gmail" style="flex:1">Gmail Setup</button>
-          <button type="button" class="tab" data-provider="yahoo" style="flex:1">Yahoo Mail Setup</button>
-        </div>
-        
-        <div class="guide-card glass" id="lp-guide-gmail" style="text-align: left; padding: 32px;">
-          <h3 style="color: #ea4335; display: flex; align-items: center; gap: 8px; margin-bottom: 15px;">
-            <span style="font-size: 1.4rem;">🔴</span> Gmail App Password Setup
-          </h3>
-          <p style="font-size: 0.9rem; color: var(--t2); margin-bottom: 20px;">
-            An <strong>App Password</strong> is a secure 16-character code generated by Google. It allows AutoInbox to interact with your mail securely without knowing your real password.
-          </p>
-          <ol style="margin-left: 20px; color: var(--t2); font-size: 0.92rem; line-height: 1.8;">
-            <li style="margin-bottom: 12px;">Make sure <strong>2-Step Verification</strong> is enabled on your Google Account.</li>
-            <li style="margin-bottom: 12px;">
-              Go to Google's App Passwords page:
-              <a href="https://myaccount.google.com/apppasswords" target="_blank" class="btn-accent btn-sm" style="display: inline-block; margin-top: 6px; text-decoration: none;">Open App Passwords →</a>
-            </li>
-            <li style="margin-bottom: 12px;">Log in to your Google Account if prompted.</li>
-            <li style="margin-bottom: 12px;">Enter a custom name for the app (e.g., <code>AutoInbox</code>) and click <strong>Create</strong>.</li>
-            <li style="margin-bottom: 12px;">Copy the 16-character code from the popup box.</li>
-            <li style="margin-bottom: 12px;">Paste the code into the AutoInbox connection input (remove any spaces).</li>
-          </ol>
-        </div>
-
-        <div class="guide-card glass hidden" id="lp-guide-yahoo" style="text-align: left; padding: 32px;">
-          <h3 style="color: #6001d2; display: flex; align-items: center; gap: 8px; margin-bottom: 15px;">
-            <span style="font-size: 1.4rem;">🟣</span> Yahoo Mail App Password Setup
-          </h3>
-          <p style="font-size: 0.9rem; color: var(--t2); margin-bottom: 20px;">
-            An App Password allows AutoInbox to read and send emails securely without needing your primary Yahoo account password.
-          </p>
-          <ol style="margin-left: 20px; color: var(--t2); font-size: 0.92rem; line-height: 1.8;">
-            <li style="margin-bottom: 12px;">
-              Log in to your Yahoo account and open the Account Security page:
-              <a href="https://login.yahoo.com/account/security" target="_blank" class="btn-accent btn-sm" style="display: inline-block; margin-top: 6px; text-decoration: none;">Open Yahoo Security →</a>
-            </li>
-            <li style="margin-bottom: 12px;">Scroll down and click <strong>Generate app password</strong>.</li>
-            <li style="margin-bottom: 12px;">Type <code>AutoInbox</code> and click the <strong>Generate</strong> button.</li>
-            <li style="margin-bottom: 12px;">Copy the generated 16-character code.</li>
-            <li style="margin-bottom: 12px;">Paste it into the AutoInbox connection input without spaces.</li>
-          </ol>
-        </div>
-      </div>
-    </section>
-
-    <!-- Pricing -->
-    <section class="section" id="pricing">
-      <div class="section-tag">Pricing</div>
-      <h2 class="section-h">Simple. Transparent. <span class="glow-text">Affordable.</span></h2>
-      <p class="section-p">Start free. Upgrade when your business grows.</p>
-      <div class="price-row">
-        <div class="price-card"><h4>Free</h4><div class="price-val">₱0<span>/mo</span></div><ul><li>10 AI replies / month</li><li>1 Gmail / Yahoo Mail account</li><li>Basic voice clone</li><li>Dashboard access</li><li class="dim">— Priority AI speed</li><li class="dim">— Multiple accounts</li></ul><button class="btn-ghost btn-full" id="price-free">Sign Up Free</button></div>
-        <div class="price-card pop"><div class="pop-tag">Best Value</div><h4>Basic</h4><div class="price-val">₱499<span>/mo</span></div><div style="font-size:.75rem;color:var(--g);margin-top:-8px;margin-bottom:8px;font-weight:600">✨ 7-day free trial</div><ul><li>200 AI replies / month</li><li>1 Gmail / Yahoo Mail account</li><li>Full voice clone</li><li>Edit & customize drafts</li><li>Priority AI speed</li><li class="dim">— Multiple accounts</li></ul><button class="btn-accent btn-full pulse-glow" id="price-basic">Start 7-Day Free Trial</button></div>
-        <div class="price-card"><h4>Pro</h4><div class="price-val">₱999<span>/mo</span></div><ul><li>Unlimited AI replies</li><li>3 Gmail / Yahoo Mail accounts</li><li>Full voice clone</li><li>Edit & customize drafts</li><li>Fastest AI priority</li><li>Multi-account dashboard</li></ul><button class="btn-ghost btn-full" id="price-pro">Subscribe Now</button></div>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="section narrow" id="faq">
-      <div class="section-tag">FAQ</div>
-      <h2 class="section-h">Common Questions</h2>
-      <div class="faq-list">
-        <div class="faq-item"><button class="faq-q">Is my data safe?</button><div class="faq-a"><p>Absolutely. We use AES-256 encryption (military-grade). We never read your emails.</p></div></div>
-        <div class="faq-item"><button class="faq-q">Which email providers are supported?</button><div class="faq-a"><p>Gmail and Yahoo Mail are currently supported via App Password. Outlook coming soon.</p></div></div>
-        <div class="faq-item"><button class="faq-q">Can I edit the AI reply?</button><div class="faq-a"><p>Yes! All drafts can be edited, regenerated, or skipped.</p></div></div>
-        <div class="faq-item"><button class="faq-q">How do I cancel?</button><div class="faq-a"><p>Anytime — no lock-in. Disconnect your email, delete your account. Done.</p></div></div>
-        <div class="faq-item"><button class="faq-q">Do I need technical skills?</button><div class="faq-a"><p>Not at all. If you can copy and paste, you can use AutoInbox.</p></div></div>
-        <div class="faq-item"><button class="faq-q">What languages does AutoInbox support?</button><div class="faq-a"><p>AutoInbox supports 25+ languages including English, Japanese, Korean, Chinese, Spanish, French, German, Arabic, Hindi, Filipino, and more. With Auto-Detect mode, the AI automatically replies in the same language your client uses — no setup needed.</p></div></div>
-      </div>
-    </section>
-
-    <!-- Final CTA -->
-    <section class="section cta-section">
-      <h2 class="cta-h">Ready to Clone<br><span class="glow-text">Your Replies?</span></h2>
-      <p class="section-p">Join 500+ professionals worldwide. Start in 2 minutes — completely free.</p>
-      <button class="btn-accent btn-xl pulse-glow" id="btn-final-cta">Sign Up Free</button>
-      <div class="trust-row" style="margin-top:20px">
-        <span class="trust-item">AES-256 Encrypted</span>
-        <span class="trust-item">No Credit Card</span>
-        <span class="trust-item">Cancel Anytime</span>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        <div class="footer-brand"><div class="logo"><span>AutoInbox</span></div><p>Smart AI Auto-Reply for freelancers and online sellers.</p></div>
-        <div class="footer-col"><h5>Product</h5><a href="#features">Features</a><a href="#languages">Languages</a><a href="#guide">Setup Guide</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div>
-        <div class="footer-col"><h5>Legal</h5><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a></div>
-        <div class="footer-col"><h5>Connect</h5><a href="mailto:autoinbox.app@gmail.com">Email Us</a><a href="mailto:autoinbox.app@gmail.com">Support</a></div>
-      </div>
-      <div class="footer-bot">© 2026 AutoInbox · All Rights Reserved</div>
+    <!-- Simple footer to align at the bottom of the viewport -->
+    <footer class="footer-simple" style="position: absolute; bottom: 20px; left: 0; right: 0; text-align: center; font-size: 0.8rem; color: var(--t3); z-index: 10;">
+      © 2026 AutoInbox · <a href="/privacy.html" style="color:var(--t3);text-decoration:none;margin:0 8px;">Privacy Policy</a> · <a href="/terms.html" style="color:var(--t3);text-decoration:none;margin:0 8px;">Terms of Service</a>
     </footer>
   </div>
-
+  
   <!-- Auth Pages (unchanged) -->
   <div id="page-login" class="page hidden"><div class="auth-wrap"><div class="auth-box glass"><div class="auth-top"><div class="logo"><span>AutoInbox</span></div><h2>Welcome Back</h2><p>Log in to your dashboard</p></div><form id="form-login" class="auth-form"><div class="fg"><label for="login-email">Email</label><input type="email" id="login-email" placeholder="you@email.com" required></div><div class="fg"><label for="login-pass">Password</label><div class="pass-wrap"><input type="password" id="login-pass" placeholder="••••••••" required><button type="button" class="pass-toggle" id="toggle-login-pass" tabindex="-1">Show</button></div></div><div id="login-error" class="form-err hidden"></div><label class="remember-me"><input type="checkbox" id="remember-me" checked><span>Remember me</span></label><button type="submit" class="btn-accent btn-full">Log In</button></form><p class="auth-sw">No account? <a href="#" id="link-register">Sign Up Free</a></p></div></div></div>
   <div id="page-register" class="page hidden"><div class="auth-wrap"><div class="auth-box glass"><div class="auth-top"><div class="logo"><span>AutoInbox</span></div><h2>Create Your Free Account</h2><p>No credit card needed. Start replying smarter in 2 minutes.</p></div><form id="form-register" class="auth-form">
@@ -671,6 +304,12 @@
             <tbody id="admin-users-body"><tr><td colspan="4" style="color:var(--t3)">Loading...</td></tr></tbody>
           </table></div>
         </div>
+        <div class="card glass" style="margin-top:20px"><h3>Recent Feedback</h3>
+          <div style="overflow-x:auto"><table class="admin-table" id="admin-feedback-table">
+            <thead><tr><th>#</th><th>Name</th><th>Email</th><th>Message</th><th>Received</th></tr></thead>
+            <tbody id="admin-feedback-body"><tr><td colspan="5" style="color:var(--t3)">Loading...</td></tr></tbody>
+          </table></div>
+        </div>
       </section>
     </main>
     <nav class="mobile-nav"><button class="mnav-item active" data-page="inbox"><span>Inbox</span></button><button class="mnav-item" data-page="voice"><span>Clone</span></button><button class="mnav-item" data-page="plan"><span>Plan</span></button><button class="mnav-item" data-page="settings"><span>Settings</span></button></nav>
@@ -721,5 +360,325 @@
 
   <div id="toast" class="toast hidden"></div>
   <script src="/app.js?v=23"></script>
+
+  <!-- Features Modal -->
+  <div id="features-modal" class="modal hidden">
+    <div class="modal-bg" id="features-modal-bg"></div>
+    <div class="modal-box glass" style="max-width: 900px; max-height: 85vh; overflow-y: auto; text-align: left;">
+      <button class="modal-x" id="features-modal-close">×</button>
+      <div class="modal-head">
+        <div class="section-tag" style="margin-bottom:6px">Features</div>
+        <h3>⚡ Powerful Features for Smarter Replies</h3>
+      </div>
+      <div class="feat-grid" style="margin-top: 20px;">
+        <div class="feat-card"><div class="feat-icon">01</div><h4>Voice Cloning AI</h4><p>Learns your exact tone, language, and emoji style from real reply samples.</p></div>
+        <div class="feat-card"><div class="feat-icon">02</div><h4>Instant Auto-Reply</h4><p>AI drafts replies in seconds. No more late responses or lost clients.</p></div>
+        <div class="feat-card"><div class="feat-icon">03</div><h4>Military Encryption</h4><p>AES-256 encryption. Your emails and data are 100% secure and private.</p></div>
+        <div class="feat-card"><div class="feat-icon">04</div><h4>Review & Approve</h4><p>Edit, regenerate, or approve every AI draft before it gets sent.</p></div>
+        <div class="feat-card"><div class="feat-icon">05</div><h4>24/7 Monitoring</h4><p>Works while you sleep. Never miss a client message again.</p></div>
+        <div class="feat-card"><div class="feat-icon">06</div><h4>25+ Languages</h4><p>Auto-detect and reply in your client's language — English, Japanese, Korean, Spanish, and more.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Languages Modal -->
+  <div id="languages-modal" class="modal hidden">
+    <div class="modal-bg" id="languages-modal-bg"></div>
+    <div class="modal-box glass" style="max-width: 950px; max-height: 85vh; overflow-y: auto; text-align: left;">
+      <button class="modal-x" id="languages-modal-close">×</button>
+      <div class="modal-head">
+        <div class="section-tag" style="margin-bottom:6px">Global Ready</div>
+        <h3>🌍 One Inbox. Every Language.</h3>
+        <p style="color:var(--t2);font-size:.9rem;margin-top:4px">AutoInbox auto-detects your client's language and replies naturally — no translation apps needed.</p>
+      </div>
+      <div class="lang-showcase" style="margin-top: 20px;">
+        <div class="lang-scroll-row" style="margin-bottom:15px">
+          <div class="lang-scroll-track">
+            <div class="lang-pill">🇺🇸 English</div>
+            <div class="lang-pill">🇯🇵 日本語</div>
+            <div class="lang-pill">🇰🇷 한국어</div>
+            <div class="lang-pill">🇪🇸 Español</div>
+            <div class="lang-pill">🇫🇷 Français</div>
+            <div class="lang-pill">🇩🇪 Deutsch</div>
+            <div class="lang-pill">🇵🇹 Português</div>
+            <div class="lang-pill">🇮🇹 Italiano</div>
+            <div class="lang-pill">🇷🇺 Русский</div>
+            <div class="lang-pill">🇸🇦 العربية</div>
+            <div class="lang-pill">🇮🇳 हिन्दी</div>
+            <div class="lang-pill">🇨🇳 中文</div>
+            <div class="lang-pill">🇹🇭 ไทย</div>
+            <div class="lang-pill">🇺🇸 English</div>
+            <div class="lang-pill">🇯🇵 日本語</div>
+            <div class="lang-pill">🇰🇷 한국어</div>
+            <div class="lang-pill">🇪🇸 Español</div>
+            <div class="lang-pill">🇫🇷 Français</div>
+            <div class="lang-pill">🇩🇪 Deutsch</div>
+            <div class="lang-pill">🇵🇹 Português</div>
+            <div class="lang-pill">🇮🇹 Italiano</div>
+            <div class="lang-pill">🇷🇺 Русский</div>
+            <div class="lang-pill">🇸🇦 العربية</div>
+            <div class="lang-pill">🇮🇳 हिन्दी</div>
+            <div class="lang-pill">🇨🇳 中文</div>
+            <div class="lang-pill">🇹🇭 ไทย</div>
+          </div>
+        </div>
+        <div class="lang-scroll-row reverse" style="margin-bottom:30px">
+          <div class="lang-scroll-track">
+            <div class="lang-pill">🇵🇭 Filipino</div>
+            <div class="lang-pill">🇻🇳 Tiếng Việt</div>
+            <div class="lang-pill">🇮🇩 Indonesia</div>
+            <div class="lang-pill">🇲🇾 Malay</div>
+            <div class="lang-pill">🇹🇷 Türkçe</div>
+            <div class="lang-pill">🇵🇱 Polski</div>
+            <div class="lang-pill">🇺🇦 Українська</div>
+            <div class="lang-pill">🇳🇱 Nederlands</div>
+            <div class="lang-pill">🇸🇪 Svenska</div>
+            <div class="lang-pill">🇹🇼 繁體中文</div>
+            <div class="lang-pill">🇵🇭 Filipino</div>
+            <div class="lang-pill">🇻🇳 Tiếng Việt</div>
+            <div class="lang-pill">🇮🇩 Indonesia</div>
+            <div class="lang-pill">🇲🇾 Malay</div>
+            <div class="lang-pill">🇹🇷 Türkçe</div>
+            <div class="lang-pill">🇵🇱 Polski</div>
+            <div class="lang-pill">🇺🇦 Українська</div>
+            <div class="lang-pill">🇳🇱 Nederlands</div>
+            <div class="lang-pill">🇸🇪 Svenska</div>
+            <div class="lang-pill">🇹🇼 繁體中文</div>
+          </div>
+        </div>
+
+        <div class="demo-playground">
+          <div class="demo-tabs">
+            <button class="demo-tab active" data-lang="ja">
+              <span class="tab-flag">🇯🇵</span>
+              <div class="tab-info">
+                <span class="tab-name">Japanese</span>
+                <span class="tab-user">Yuki Tanaka</span>
+              </div>
+              <span class="tab-pulse"></span>
+            </button>
+            <button class="demo-tab" data-lang="ko">
+              <span class="tab-flag">🇰🇷</span>
+              <div class="tab-info">
+                <span class="tab-name">Korean</span>
+                <span class="tab-user">Min-Jun Kim</span>
+              </div>
+              <span class="tab-pulse"></span>
+            </button>
+            <button class="demo-tab" data-lang="es">
+              <span class="tab-flag">🇪🇸</span>
+              <div class="tab-info">
+                <span class="tab-name">Spanish</span>
+                <span class="tab-user">Sofía Rodríguez</span>
+              </div>
+              <span class="tab-pulse"></span>
+            </button>
+            <button class="demo-tab" data-lang="fr">
+              <span class="tab-flag">🇫🇷</span>
+              <div class="tab-info">
+                <span class="tab-name">French</span>
+                <span class="tab-user">Lucas Martin</span>
+              </div>
+              <span class="tab-pulse"></span>
+            </button>
+            <button class="demo-tab" data-lang="ar">
+              <span class="tab-flag">🇸🇦</span>
+              <div class="tab-info">
+                <span class="tab-name">Arabic</span>
+                <span class="tab-user">Yousef Al-Harbi</span>
+              </div>
+              <span class="tab-pulse"></span>
+            </button>
+            <button class="demo-tab" data-lang="tl">
+              <span class="tab-flag">🇵🇭</span>
+              <div class="tab-info">
+                <span class="tab-name">Filipino</span>
+                <span class="tab-user">Jay dela Cruz</span>
+              </div>
+              <span class="tab-pulse"></span>
+            </button>
+          </div>
+
+          <div class="demo-simulator">
+            <div class="phone-frame">
+              <div class="phone-notch"></div>
+              <div class="phone-bar">
+                <div class="phone-user-info">
+                  <div class="phone-avatar" id="demo-avatar">YT</div>
+                  <div>
+                    <div class="phone-username" id="demo-name">Yuki Tanaka</div>
+                    <div class="phone-status-row">
+                      <span class="phone-status-dot"></span>
+                      <span class="phone-status-text">Active Now</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="phone-badge">AutoInbox Active ⚡</div>
+              </div>
+              <div class="phone-chat-body" id="demo-chat-body"></div>
+              <div class="phone-footer-mock">
+                <div class="phone-input-bar">
+                  <span>AI Clone drafting reply...</span>
+                  <span class="phone-send-icon">⚡</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- How It Works Modal -->
+  <div id="how-modal" class="modal hidden">
+    <div class="modal-bg" id="how-modal-bg"></div>
+    <div class="modal-box glass" style="max-width: 900px; max-height: 85vh; overflow-y: auto; text-align: left;">
+      <button class="modal-x" id="how-modal-close">×</button>
+      <div class="modal-head">
+        <div class="section-tag" style="margin-bottom:6px">How It Works</div>
+        <h3>🛠️ Your AI Clone in 3 Easy Steps</h3>
+        <p style="color:var(--t2);font-size:.9rem;margin-top:4px">No technical skills needed. No downloads. Setup takes under 2 minutes.</p>
+      </div>
+
+      <div class="timeline" style="margin-top:30px">
+        <div class="timeline-step">
+          <div class="timeline-left">
+            <div class="timeline-num">01</div>
+          </div>
+          <div class="timeline-line"></div>
+          <div class="timeline-content">
+            <div class="timeline-badge">Step 1</div>
+            <h3>Connect Your Gmail</h3>
+            <p>Enter your Gmail address and a Google App Password. This is a special 16-character code from Google — <strong>not your real password</strong>. You can revoke it anytime from your Google Account.</p>
+            <div class="timeline-note">Your credentials are encrypted with AES-256 — the same standard used by banks.</div>
+          </div>
+        </div>
+        <div class="timeline-step">
+          <div class="timeline-left">
+            <div class="timeline-num">02</div>
+          </div>
+          <div class="timeline-line"></div>
+          <div class="timeline-content">
+            <div class="timeline-badge">Step 2</div>
+            <h3>Train Your AI Clone</h3>
+            <p>Paste 3-5 examples of your real email replies. The AI analyzes your writing style — your tone, greeting, sign-off, language preference, and personality — to create a unique <strong>Voice Profile</strong>.</p>
+            <div class="timeline-note">The more samples you provide, the more accurate your AI clone becomes.</div>
+          </div>
+        </div>
+        <div class="timeline-step">
+          <div class="timeline-left">
+            <div class="timeline-num">03</div>
+          </div>
+          <div class="timeline-line"></div>
+          <div class="timeline-content">
+            <div class="timeline-badge">Step 3</div>
+            <h3>Review, Approve & Send</h3>
+            <p>When a new email arrives, your AI clone instantly drafts a reply that sounds exactly like you. Open your dashboard, review the draft, make edits if needed, then <strong>approve with one click</strong>.</p>
+            <div class="timeline-note">You stay in full control. Nothing gets sent without your approval.</div>
+          </div>
+        </div>
+      </div>
+
+      <hr style="border:0;border-top:1px solid var(--s2);margin:40px 0;">
+
+      <div style="text-align:center">
+        <div class="section-tag" style="margin-bottom:6px">The Difference</div>
+        <h3 style="margin-bottom:20px">Before vs After AutoInbox</h3>
+      </div>
+      <div class="bva-grid" style="margin-top:20px">
+        <div class="bva-card before">
+          <div class="bva-label">Without AutoInbox</div>
+          <ul class="bva-list"><li>2+ hours daily replying</li><li>Slow response = lost clients</li><li>No replies while you sleep</li><li>Copy-paste the same answers</li><li>Missed opportunities everyday</li></ul>
+          <div class="bva-stat">~120 mins<span>wasted daily</span></div>
+        </div>
+        <div class="bva-vs"><div class="vs-circle">VS</div></div>
+        <div class="bva-card after">
+          <div class="bva-label">With AutoInbox</div>
+          <ul class="bva-list"><li>AI replies in seconds — 24/7</li><li>Instant response = happy clients</li><li>Works while you sleep</li><li>Personalized — sounds like YOU</li><li>More sales, less stress</li></ul>
+          <div class="bva-stat glow">~10 mins<span>approve & done</span></div>
+        </div>
+      </div>
+
+      <hr style="border:0;border-top:1px solid var(--s2);margin:40px 0;">
+
+      <div style="text-align:center">
+        <div class="section-tag" style="margin-bottom:6px">Testimonials</div>
+        <h3 style="margin-bottom:20px">Loved by Professionals Worldwide</h3>
+      </div>
+      <div class="testi-row" style="margin-top:20px; display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:20px;">
+        <div class="testi-card" style="margin:0;"><p>"This has been a help! I used to spend 2 hours on replies, now it only takes 10 minutes. It still sounds exactly like me!"</p><div class="testi-who"><span class="testi-av">MG</span><div><strong>Maria Garcia</strong><small>Freelance Designer</small></div></div></div>
+        <div class="testi-card" style="margin:0;"><p>"Game changer for my online business. Auto-reply to 'is this still available?' — finally! Amazing."</p><div class="testi-who"><span class="testi-av">JR</span><div><strong>Jay Roberts</strong><small>Online Seller</small></div></div></div>
+        <div class="testi-card" style="margin:0;"><p>"Even with my casual writing style, the AI copies my exact tone perfectly. You can't even tell it's AI!"</p><div class="testi-who"><span class="testi-av">AL</span><div><strong>Anna Lee</strong><small>Virtual Assistant</small></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pricing Modal -->
+  <div id="pricing-modal" class="modal hidden">
+    <div class="modal-bg" id="pricing-modal-bg"></div>
+    <div class="modal-box glass" style="max-width: 900px; max-height: 85vh; overflow-y: auto; text-align: left;">
+      <button class="modal-x" id="pricing-modal-close">×</button>
+      <div class="modal-head" style="text-align:center">
+        <div class="section-tag" style="margin-bottom:6px">Pricing</div>
+        <h3>💰 Simple. Transparent. Affordable.</h3>
+        <p style="color:var(--t2);font-size:.9rem;margin-top:4px">Start free. Upgrade when your business grows.</p>
+      </div>
+      <div class="price-row" style="margin-top:30px">
+        <div class="price-card"><h4>Free</h4><div class="price-val">₱0<span>/mo</span></div><ul><li>10 AI replies / month</li><li>1 Gmail / Yahoo Mail account</li><li>Basic voice clone</li><li>Dashboard access</li><li class="dim">— Priority AI speed</li><li class="dim">— Multiple accounts</li></ul><button class="btn-ghost btn-full" id="price-free">Sign Up Free</button></div>
+        <div class="price-card pop"><div class="pop-tag">Best Value</div><h4>Basic</h4><div class="price-val">₱499<span>/mo</span></div><div style="font-size:.75rem;color:var(--g);margin-top:-8px;margin-bottom:8px;font-weight:600">✨ 7-day free trial</div><ul><li>200 AI replies / month</li><li>1 Gmail / Yahoo Mail account</li><li>Full voice clone</li><li>Edit & customize drafts</li><li>Priority AI speed</li><li class="dim">— Multiple accounts</li></ul><button class="btn-accent btn-full pulse-glow" id="price-basic">Start 7-Day Free Trial</button></div>
+        <div class="price-card"><h4>Pro</h4><div class="price-val">₱999<span>/mo</span></div><ul><li>Unlimited AI replies</li><li>3 Gmail / Yahoo Mail accounts</li><li>Full voice clone</li><li>Edit & customize drafts</li><li>Fastest AI priority</li><li>Multi-account dashboard</li></ul><button class="btn-ghost btn-full" id="price-pro">Subscribe Now</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ Modal -->
+  <div id="faq-modal" class="modal hidden">
+    <div class="modal-bg" id="faq-modal-bg"></div>
+    <div class="modal-box glass" style="max-width: 700px; max-height: 85vh; overflow-y: auto; text-align: left;">
+      <button class="modal-x" id="faq-modal-close">×</button>
+      <div class="modal-head">
+        <div class="section-tag" style="margin-bottom:6px">FAQ</div>
+        <h3>❓ Common Questions</h3>
+      </div>
+      <div class="faq-list" style="margin-top:20px">
+        <div class="faq-item"><button class="faq-q">Is my data safe?</button><div class="faq-a"><p>Absolutely. We use AES-256 encryption (military-grade). We never read your emails.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Which email providers are supported?</button><div class="faq-a"><p>Gmail and Yahoo Mail are currently supported via App Password. Outlook coming soon.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Can I edit the AI reply?</button><div class="faq-a"><p>Yes! All drafts can be edited, regenerated, or skipped.</p></div></div>
+        <div class="faq-item"><button class="faq-q">How do I cancel?</button><div class="faq-a"><p>Anytime — no lock-in. Disconnect your email, delete your account. Done.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Do I need technical skills?</button><div class="faq-a"><p>Not at all. If you can copy and paste, you can use AutoInbox.</p></div></div>
+        <div class="faq-item"><button class="faq-q">What languages does AutoInbox support?</button><div class="faq-a"><p>AutoInbox supports 25+ languages including English, Japanese, Korean, Chinese, Spanish, French, German, Arabic, Hindi, Filipino, and more. With Auto-Detect mode, the AI automatically replies in the same language your client uses — no setup needed.</p></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Feedback Modal -->
+  <div id="feedback-modal" class="modal hidden">
+    <div class="modal-bg" id="feedback-modal-bg"></div>
+    <div class="modal-box glass" style="max-width: 500px; text-align: left;">
+      <button class="modal-x" id="feedback-modal-close">×</button>
+      <div class="modal-head">
+        <div class="section-tag" style="margin-bottom:6px">Feedback</div>
+        <h3>💬 We'd Love to Hear From You</h3>
+        <p style="color:var(--t2);font-size:.9rem;margin-top:4px">Send us your comments, suggestions, or questions.</p>
+      </div>
+      <form id="form-feedback">
+        <div class="fg">
+          <label for="feedback-name">Name</label>
+          <input type="text" id="feedback-name" placeholder="Your Name" required>
+        </div>
+        <div class="fg" style="margin-top: 16px;">
+          <label for="feedback-email">Email Address</label>
+          <input type="email" id="feedback-email" placeholder="you@example.com" required>
+        </div>
+        <div class="fg" style="margin-top: 16px;">
+          <label for="feedback-message">Message</label>
+          <textarea id="feedback-message" rows="5" placeholder="Write your thoughts..." required style="background:var(--bg2); border:1px solid var(--s2); color:var(--t); padding:12px 14px; border-radius:10px; font-size:.95rem; font-family:var(--f); width:100%; box-sizing:border-box; resize:vertical;"></textarea>
+        </div>
+        <div id="feedback-error" class="form-err hidden" style="margin-top: 16px;"></div>
+        <div id="feedback-success" class="form-err hidden" style="margin-top: 16px; color: var(--g); background: rgba(16, 185, 129, 0.1); border-color: var(--g);"></div>
+        <button type="submit" class="btn-accent btn-sm" style="width: 100%; padding: 12px; font-size: 1rem; margin-top: 20px;">Send Message</button>
+      </form>
+    </div>
+  </div>
 </body>
 </html>

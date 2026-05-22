@@ -99,6 +99,20 @@ app.post('/api/webhook/paymongo', async (req, res) => {
   }
 });
 
+// --- Public Feedback Route ---
+app.post('/api/feedback', async (req, res) => {
+  try {
+    const { name, email, message } = req.body;
+    if (!email || !message) {
+      return res.status(400).json({ error: 'Email and message are required.' });
+    }
+    const result = await db.insertFeedback(name, email, message);
+    res.json({ success: true, id: result.id });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
 // --- Protected Routes ---
 app.use('/api', requireAuth);
 app.use('/api', apiLimiter);

@@ -130,17 +130,60 @@ menuTrigger?.addEventListener('click', (e) => {
   menuPanel.classList.toggle('open');
 });
 
+function closeLandingModals() {
+  document.getElementById('features-modal')?.classList.add('hidden');
+  document.getElementById('languages-modal')?.classList.add('hidden');
+  document.getElementById('how-modal')?.classList.add('hidden');
+  document.getElementById('pricing-modal')?.classList.add('hidden');
+  document.getElementById('faq-modal')?.classList.add('hidden');
+  document.getElementById('feedback-modal')?.classList.add('hidden');
+  document.getElementById('guide-modal')?.classList.add('hidden');
+}
+
+const MODAL_MAPPING = {
+  'menu-features': 'features-modal',
+  'menu-languages': 'languages-modal',
+  'menu-how': 'how-modal',
+  'menu-guide': 'guide-modal',
+  'menu-pricing': 'pricing-modal',
+  'menu-faq': 'faq-modal',
+  'menu-feedback': 'feedback-modal'
+};
+
 document.querySelectorAll('.menu-item').forEach(item => {
-  item.addEventListener('click', () => {
+  item.addEventListener('click', (e) => {
+    e.preventDefault();
     menuPanel?.classList.remove('open');
-    const href = item.getAttribute('href');
-    if (href && href.startsWith('#')) {
-      const target = document.getElementById(href.substring(1));
-      if (target) {
-        target.classList.add('revealed');
+    const id = item.id;
+    const modalId = MODAL_MAPPING[id];
+    if (modalId) {
+      closeLandingModals();
+      if (modalId === 'guide-modal') {
+        openGuideModal('gmail');
+      } else {
+        document.getElementById(modalId)?.classList.remove('hidden');
       }
     }
   });
+});
+
+// Close all modal handlers for landing page
+const modalCloseConfig = [
+  { id: 'features-modal', closeBtn: 'features-modal-close', bg: 'features-modal-bg' },
+  { id: 'languages-modal', closeBtn: 'languages-modal-close', bg: 'languages-modal-bg' },
+  { id: 'how-modal', closeBtn: 'how-modal-close', bg: 'how-modal-bg' },
+  { id: 'pricing-modal', closeBtn: 'pricing-modal-close', bg: 'pricing-modal-bg' },
+  { id: 'faq-modal', closeBtn: 'faq-modal-close', bg: 'faq-modal-bg' },
+  { id: 'feedback-modal', closeBtn: 'feedback-modal-close', bg: 'feedback-modal-bg' }
+];
+
+modalCloseConfig.forEach(m => {
+  const modalEl = document.getElementById(m.id);
+  const btnEl = document.getElementById(m.closeBtn);
+  const bgEl = document.getElementById(m.bg);
+  const close = () => modalEl?.classList.add('hidden');
+  btnEl?.addEventListener('click', close);
+  bgEl?.addEventListener('click', close);
 });
 
 document.addEventListener('click', (e) => {
@@ -512,6 +555,15 @@ async function loadAdminStats() {
       ).join('');
     } else if (tbody) {
       tbody.innerHTML = '<tr><td colspan="4" style="color:var(--t3)">No users yet</td></tr>';
+    }
+
+    const fTbody = document.getElementById('admin-feedback-body');
+    if (fTbody && data.recentFeedback && data.recentFeedback.length) {
+      fTbody.innerHTML = data.recentFeedback.map((f, i) => 
+        `<tr><td>${i+1}</td><td>${f.name || 'Anonymous'}</td><td>${f.email}</td><td style="white-space:pre-wrap;max-width:300px">${f.message}</td><td>${new Date(f.created_at).toLocaleDateString()}</td></tr>`
+      ).join('');
+    } else if (fTbody) {
+      fTbody.innerHTML = '<tr><td colspan="5" style="color:var(--t3)">No feedback received yet</td></tr>';
     }
   } catch (e) { console.error('Admin stats error:', e); }
 }
@@ -1173,6 +1225,7 @@ if ('serviceWorker' in navigator) {
 async function startCheckout(plan) {
   if (!token) {
     showToast('Please create an account first', 'error');
+    closeLandingModals();
     showPage('register');
     return;
   }
@@ -1183,6 +1236,7 @@ async function startCheckout(plan) {
       body: JSON.stringify({ plan })
     });
     if (data.checkout_url) {
+      closeLandingModals();
       window.location.href = data.checkout_url;
     }
   } catch (e) {
@@ -1191,12 +1245,14 @@ async function startCheckout(plan) {
 }
 
 document.getElementById('price-free')?.addEventListener('click', () => {
+  closeLandingModals();
   if (token) { enterDashboard(); }
   else { showPage('register'); }
 });
 document.getElementById('price-basic')?.addEventListener('click', () => startCheckout('basic'));
 document.getElementById('price-pro')?.addEventListener('click', () => startCheckout('pro'));
 document.getElementById('btn-final-cta')?.addEventListener('click', () => {
+  closeLandingModals();
   if (token) { enterDashboard(); }
   else { showPage('register'); }
 });
@@ -1481,6 +1537,57 @@ window.addEventListener('scroll', () => {
   const nav = document.querySelector('.nav');
   if (nav) nav.classList.toggle('scrolled', window.scrollY > 50);
 }, { passive: true });
+
+// ===== Public Feedback Form Submission =====
+document.getElementById('form-feedback')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const errEl = document.getElementById('feedback-error');
+  const succEl = document.getElementById('feedback-success');
+  const name = document.getElementById('feedback-name').value;
+  const email = document.getElementById('feedback-email').value;
+  const message = document.getElementById('feedback-message').value;
+
+  if (errEl) errEl.classList.add('hidden');
+  if (succEl) succEl.classList.add('hidden');
+
+  try {
+    const btn = e.target.querySelector('button[type="submit"]');
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+    }
+
+    await api('/feedback', {
+      method: 'POST',
+      body: JSON.stringify({ name, email, message })
+    });
+    
+    document.getElementById('feedback-name').value = '';
+    document.getElementById('feedback-email').value = '';
+    document.getElementById('feedback-message').value = '';
+
+    if (succEl) {
+      succEl.textContent = 'Feedback sent successfully! Thank you for sharing your thoughts. ✅';
+      succEl.classList.remove('hidden');
+    }
+
+    setTimeout(() => {
+      document.getElementById('feedback-modal')?.classList.add('hidden');
+      if (succEl) succEl.classList.add('hidden');
+    }, 2000);
+  } catch (err) {
+    if (errEl) {
+      errEl.textContent = err.message || 'Failed to send feedback.';
+      errEl.classList.remove('hidden');
+    }
+  } finally {
+    const btn = e.target.querySelector('button[type="submit"]');
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = 'Send Message';
+    }
+  }
+});
 
 // ===== Animated Network Background with Running Lights =====
 (function() {

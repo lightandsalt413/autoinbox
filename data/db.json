@@ -1,10 +1,77 @@
 {
-  "users": [],
+  "users": [
+    {
+      "id": 1,
+      "email": "admin@autoinbox.com",
+      "password_hash": "$2a$12$6qJ1EAnACO2xaaO4VJtrluLR2FNXDn1zW4V3sFsGvXOWPUru5Vl9S",
+      "name": "Admin User",
+      "created_at": "2026-05-22T06:25:51.714Z"
+    }
+  ],
   "user_email_config": [],
   "messages": [],
   "drafts": [],
   "sent_replies": [],
-  "settings": [],
+  "settings": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "key": "agent_name",
+      "value": "Admin User"
+    },
+    {
+      "id": 2,
+      "user_id": 1,
+      "key": "agent_tone",
+      "value": "professional-friendly"
+    },
+    {
+      "id": 3,
+      "user_id": 1,
+      "key": "agent_language",
+      "value": "en"
+    },
+    {
+      "id": 4,
+      "user_id": 1,
+      "key": "auto_draft",
+      "value": "true"
+    },
+    {
+      "id": 5,
+      "user_id": 1,
+      "key": "services",
+      "value": ""
+    },
+    {
+      "id": 6,
+      "user_id": 1,
+      "key": "custom_instructions",
+      "value": ""
+    },
+    {
+      "id": 7,
+      "user_id": 1,
+      "key": "voice_profile",
+      "value": ""
+    }
+  ],
   "voice_samples": [],
-  "subscriptions": []
+  "subscriptions": [],
+  "feedback": [
+    {
+      "id": 1,
+      "name": "Juan Dela Cruz",
+      "email": "juan@example.com",
+      "message": "Magandang araw! Subukan natin ito.",
+      "created_at": "2026-05-22T06:24:34.243Z"
+    },
+    {
+      "id": 2,
+      "name": "Antigravity Tester",
+      "email": "test@antigravity.ai",
+      "message": "Hello, testing the public feedback form submission.",
+      "created_at": "2026-05-22T06:53:21.274Z"
+    }
+  ]
 }

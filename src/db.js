@@ -13,7 +13,8 @@ let mockData = {
   sent_replies: [],
   settings: [],
   voice_samples: [],
-  subscriptions: []
+  subscriptions: [],
+  feedback: []
 };
 
 function loadMockData() {
@@ -151,6 +152,14 @@ async function initDB() {
         status TEXT DEFAULT 'active',
         started_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         expires_at TIMESTAMP
+      )`);
+
+      await client.query(`CREATE TABLE IF NOT EXISTS feedback (
+        id SERIAL PRIMARY KEY,
+        name TEXT,
+        email TEXT NOT NULL,
+        message TEXT NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )`);
 
       console.log('✅ PostgreSQL database initialized (Supabase)');
@@ -592,6 +601,9 @@ async function getAdminStats() {
       .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
       .slice(0, 10)
       .map(u => ({ id: u.id, name: u.name, email: u.email, created_at: u.created_at }));
+    const recentFeedback = [...(mockData.feedback || [])]
+      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+      .slice(0, 10);
       
     return {
       totalUsers,
@@ -599,7 +611,8 @@ async function getAdminStats() {
       freeUsers: totalUsers - payingUsers,
       todaySignups,
       totalRevenue,
-      recentUsers
+      recentUsers,
+      recentFeedback
     };
   }
 
@@ -608,6 +621,7 @@ async function getAdminStats() {
   const todaySignups = await pool.query("SELECT COUNT(*) as count FROM users WHERE created_at >= CURRENT_DATE");
   const totalRevenue = await pool.query("SELECT COALESCE(SUM(amount), 0) as total FROM subscriptions WHERE status = 'active' AND plan != 'free'");
   const recentUsers = await pool.query("SELECT id, name, email, created_at FROM users ORDER BY created_at DESC LIMIT 10");
+  const recentFeedback = await pool.query("SELECT id, name, email, message, created_at FROM feedback ORDER BY created_at DESC LIMIT 10");
   
   return {
     totalUsers: parseInt(totalUsers.rows[0].count),
@@ -615,8 +629,31 @@ async function getAdminStats() {
     freeUsers: parseInt(totalUsers.rows[0].count) - parseInt(payingUsers.rows[0].count),
     todaySignups: parseInt(todaySignups.rows[0].count),
     totalRevenue: parseInt(totalRevenue.rows[0].total),
-    recentUsers: recentUsers.rows
+    recentUsers: recentUsers.rows,
+    recentFeedback: recentFeedback.rows
   };
+}
+
+async function insertFeedback(name, email, message) {
+  if (isMock) {
+    if (!mockData.feedback) mockData.feedback = [];
+    const id = mockData.feedback.length + 1;
+    const item = {
+      id,
+      name,
+      email,
+      message,
+      created_at: new Date().toISOString()
+    };
+    mockData.feedback.push(item);
+    saveMockData();
+    return item;
+  }
+  const r = await pool.query(
+    "INSERT INTO feedback (name, email, message) VALUES ($1, $2, $3) RETURNING id, name, email, message, created_at",
+    [name, email, message]
+  );
+  return r.rows[0];
 }
 
 async function closeDB() {
@@ -632,5 +669,5 @@ module.exports = {
   insertDraft, getDraftByMessageId, updateDraftContent, insertSentReply,
   getSetting, upsertSetting, getAllSettings,
   addVoiceSample, getVoiceSamples, clearVoiceSamples, getStats,
-  getUserPlan, setUserPlan, getSubByCheckoutId, getAdminStats
+  getUserPlan, setUserPlan, getSubByCheckoutId, getAdminStats, insertFeedback
 };
