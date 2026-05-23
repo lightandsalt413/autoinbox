@@ -2485,6 +2485,8 @@ body::-webkit-scrollbar {
 #page-login, #page-register {
   background: #0A0A0B !important;
   animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
 }
 
 #page-landing.auth-blur {
