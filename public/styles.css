@@ -2483,7 +2483,7 @@ body::-webkit-scrollbar {
    ========================================== */
 
 #page-login, #page-register {
-  background: transparent !important;
+  background: #0A0A0B !important;
   animation: none !important;
 }
 
@@ -2503,13 +2503,9 @@ body::-webkit-scrollbar {
   animation: none !important;
 }
 
-/* Dark blurred-look background for auth pages */
+/* Dark background for auth pages — no overlay needed */
 .modal-page .modal-bg {
-  position: fixed;
-  inset: 0;
-  background: rgba(10, 10, 11, 0.85);
-  z-index: 0;
-  pointer-events: none;
+  display: none;
 }
 
 .modal-page .modal-box.auth-modal-box {
