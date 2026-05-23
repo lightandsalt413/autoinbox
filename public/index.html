@@ -24,18 +24,19 @@
     .page.hidden {
       display: none !important;
     }
-    /* Hide scrollbars globally */
-    *::-webkit-scrollbar {
+    /* Hide scrollbars on main page only */
+    html::-webkit-scrollbar,
+    body::-webkit-scrollbar {
       display: none !important;
       width: 0 !important;
       height: 0 !important;
     }
-    * {
+    html, body {
       -ms-overflow-style: none !important;
       scrollbar-width: none !important;
     }
   </style>
-  <link rel="stylesheet" href="/styles.css?v=69">
+  <link rel="stylesheet" href="/styles.css?v=106">
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SEF5Y7KP9Z"></script>
   <script>
@@ -192,22 +193,108 @@
   </div>
   
   <!-- Auth Pages (unchanged) -->
-  <div id="page-login" class="page hidden"><div class="auth-wrap"><div class="auth-box glass"><div class="auth-top"><div class="logo"><span>AutoInbox</span></div><h2>Welcome Back</h2><p>Log in to your dashboard</p></div><form id="form-login" class="auth-form"><div class="fg"><label for="login-email">Email</label><input type="email" id="login-email" placeholder="you@email.com" required></div><div class="fg"><label for="login-pass">Password</label><div class="pass-wrap"><input type="password" id="login-pass" placeholder="••••••••" required><button type="button" class="pass-toggle" id="toggle-login-pass" tabindex="-1">Show</button></div></div><div id="login-error" class="form-err hidden"></div><label class="remember-me"><input type="checkbox" id="remember-me" checked><span>Remember me</span></label><button type="submit" class="btn-accent btn-full">Log In</button></form><p class="auth-sw">No account? <a href="#" id="link-register">Sign Up Free</a></p></div></div></div>
-  <div id="page-register" class="page hidden"><div class="auth-wrap"><div class="auth-box glass"><div class="auth-top"><div class="logo"><span>AutoInbox</span></div><h2>Create Your Free Account</h2><p>No credit card needed. Start replying smarter in 2 minutes.</p></div><form id="form-register" class="auth-form">
-    <div class="fg"><label for="reg-fname">First Name</label><input type="text" id="reg-fname" placeholder="e.g. Maria" required></div>
-    <div class="fg"><label for="reg-mname">Middle Name <span class="optional">(Optional)</span></label><input type="text" id="reg-mname" placeholder="e.g. Dela Cruz"></div>
-    <div class="fg"><label for="reg-lname">Surname</label><input type="text" id="reg-lname" placeholder="e.g. Santos" required></div>
-    <div class="fg"><label for="reg-suffix">Suffix <span class="optional">(Optional — e.g. Jr., III)</span></label><input type="text" id="reg-suffix" placeholder="e.g. Jr., III, Sr."></div>
-    <div class="fg">
-      <label for="reg-email">Email Address <span style="font-size:0.75rem;color:var(--t3);font-weight:normal;display:block;margin-top:2px">(Para sa iyong AutoInbox account login — hindi pa ito ang Gmail/Yahoo Mail connection)</span></label>
-      <input type="email" id="reg-email" placeholder="you@email.com" required>
+  <!-- Auth Pages -->
+  <div id="page-login" class="page hidden modal-page">
+    <div class="modal-bg" id="login-modal-bg"></div>
+    <div class="modal-box auth-modal-box">
+      <button class="modal-x" id="login-modal-close" type="button">×</button>
+      <div class="modal-head">
+        <div class="section-tag" style="margin-bottom:6px">Account</div>
+        <h3>👋 Welcome Back</h3>
+        <p style="color:#666;font-size:.9rem;margin-top:4px">Log in to your dashboard</p>
+      </div>
+      <form id="form-login" class="auth-form">
+        <div class="fg">
+          <label for="login-email">Email</label>
+          <input type="email" id="login-email" placeholder="you@email.com" required>
+        </div>
+        <div class="fg" style="margin-top:16px">
+          <label for="login-pass">Password</label>
+          <div class="pass-wrap">
+            <input type="password" id="login-pass" placeholder="••••••••" required>
+            <button type="button" class="pass-toggle" id="toggle-login-pass" tabindex="-1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Show</button>
+          </div>
+        </div>
+        <div id="login-error" class="form-err hidden" style="margin-top:16px"></div>
+        <label class="remember-me" style="margin-top:16px;display:flex;align-items:center;gap:8px;color:#1A1A1C;font-size:.85rem">
+          <input type="checkbox" id="remember-me" checked>
+          <span>Remember me</span>
+        </label>
+        <button type="submit" class="btn-accent btn-sm" style="width:100%;padding:12px;font-size:1rem;margin-top:20px;background:#1A1A1C;color:#F6F0E6;border:none;border-radius:10px;cursor:pointer;">Log In</button>
+      </form>
+      <p class="auth-sw" style="margin-top:16px;text-align:center;color:#1A1A1C;font-size:.85rem">No account? <a href="#" id="link-register" style="color:var(--p);font-weight:600">Sign Up Free</a></p>
     </div>
-    <div class="fg"><label for="reg-pass">Create Password</label><div class="pass-wrap"><input type="password" id="reg-pass" placeholder="Min 6 characters" required minlength="6"><button type="button" class="pass-toggle" id="toggle-pass" tabindex="-1">Show</button></div><div class="pass-strength" id="pass-strength"><div class="pass-bar" id="pass-bar"></div></div><span class="pass-label" id="pass-label"></span></div>
-    <div class="fg"><label for="reg-pass-confirm">Confirm Password</label><div class="pass-wrap"><input type="password" id="reg-pass-confirm" placeholder="Re-enter your password" required minlength="6"><button type="button" class="pass-toggle" id="toggle-pass-confirm" tabindex="-1">Show</button></div></div>
-    <div class="fg"><label class="checkbox-label"><input type="checkbox" id="reg-agree" required><span>I agree to the <a href="/terms.html" target="_blank" style="color:var(--p)">Terms of Service</a> and <a href="/privacy.html" target="_blank" style="color:var(--p)">Privacy Policy</a></span></label></div>
-    <div id="reg-error" class="form-err hidden"></div>
-    <button type="submit" class="btn-accent btn-full">Create Account</button>
-  </form><div class="trust-badge">Your data is protected with AES-256 encryption</div><p class="auth-sw">Already have an account? <a href="#" id="link-login">Log In</a></p></div></div></div>
+  </div>
+
+  <div id="page-register" class="page hidden modal-page">
+    <div class="modal-bg" id="register-modal-bg"></div>
+    <div class="modal-box auth-modal-box">
+      <button class="modal-x" id="register-modal-close" type="button">×</button>
+      <div class="modal-head">
+        <div class="section-tag" style="margin-bottom:6px">Sign Up</div>
+        <h3>🚀 Create Your Free Account</h3>
+        <p style="color:#666;font-size:.9rem;margin-top:4px">No credit card needed. Start replying smarter in 2 minutes.</p>
+      </div>
+      <form id="form-register" class="auth-form">
+        <div class="fg-row">
+          <div class="fg">
+            <label for="reg-fname">First Name</label>
+            <input type="text" id="reg-fname" placeholder="e.g. Maria" required>
+          </div>
+          <div class="fg">
+            <label for="reg-mname">Middle Name <span class="optional">(Optional)</span></label>
+            <input type="text" id="reg-mname" placeholder="e.g. Dela Cruz">
+          </div>
+        </div>
+        <div class="fg-row" style="margin-top:16px">
+          <div class="fg">
+            <label for="reg-lname">Surname</label>
+            <input type="text" id="reg-lname" placeholder="e.g. Santos" required>
+          </div>
+          <div class="fg fg-small">
+            <label for="reg-suffix">Suffix <span class="optional">(Opt)</span></label>
+            <input type="text" id="reg-suffix" placeholder="e.g. Jr.">
+          </div>
+        </div>
+        <div class="fg" style="margin-top:16px">
+          <label for="reg-email">Email Address <span style="font-size:0.75rem;color:#888;font-weight:normal;display:block;margin-top:2px">(Para sa iyong AutoInbox account login — hindi pa ito ang Gmail/Yahoo Mail connection)</span></label>
+          <input type="email" id="reg-email" placeholder="you@email.com" required>
+        </div>
+        <div class="fg" style="margin-top:16px">
+          <label for="reg-pass">Create Password</label>
+          <div class="pass-wrap">
+            <input type="password" id="reg-pass" placeholder="Min 6 characters" required minlength="6">
+            <button type="button" class="pass-toggle" id="toggle-pass" tabindex="-1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Show</button>
+          </div>
+          <div class="pass-strength" id="pass-strength">
+            <div class="pass-bar" id="pass-bar"></div>
+          </div>
+          <span class="pass-label" id="pass-label"></span>
+        </div>
+        <div class="fg" style="margin-top:16px">
+          <label for="reg-pass-confirm">Confirm Password</label>
+          <div class="pass-wrap">
+            <input type="password" id="reg-pass-confirm" placeholder="Re-enter your password" required minlength="6">
+            <button type="button" class="pass-toggle" id="toggle-pass-confirm" tabindex="-1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Show</button>
+          </div>
+          <div class="pass-strength" id="confirm-strength">
+            <div class="pass-bar" id="confirm-bar"></div>
+          </div>
+          <span class="pass-label" id="confirm-label"></span>
+        </div>
+        <div class="fg" style="margin-top:16px">
+          <label class="checkbox-label" style="color:#1A1A1C;font-size:.82rem;display:flex;align-items:flex-start;gap:10px;line-height:1.5;cursor:pointer">
+            <input type="checkbox" id="reg-agree" required style="width:16px;height:16px;min-width:16px;flex-shrink:0;margin-top:3px;accent-color:#1A1A1C;cursor:pointer">
+            <span>I agree to the <a href="/terms.html" target="_blank" style="color:var(--p);text-decoration:underline">Terms of Service</a> and <a href="/privacy.html" target="_blank" style="color:var(--p);text-decoration:underline">Privacy Policy</a></span>
+          </label>
+        </div>
+        <div id="reg-error" class="form-err hidden" style="margin-top:16px"></div>
+        <button type="submit" class="btn-accent btn-sm" style="width:100%;padding:12px;font-size:1rem;margin-top:20px;background:#1A1A1C;color:#F6F0E6;border:none;border-radius:10px;cursor:pointer;">Create Account</button>
+      </form>
+      <p style="margin-top:14px;color:#999;font-size:.75rem;text-align:center">🔒 Your data is protected with AES-256 encryption</p>
+      <p class="auth-sw" style="margin-top:10px;text-align:center;color:#1A1A1C;font-size:.85rem">Already have an account? <a href="#" id="link-login" style="color:var(--p);font-weight:600">Log In</a></p>
+    </div>
+  </div>
   <div id="page-onboard" class="page hidden"><div class="auth-wrap"><div class="auth-box glass onboard-box"><div class="ob-prog"><div class="ob-bar"><div class="ob-fill" id="onboard-progress"></div></div><span id="onboard-step-label">Step 1 of 3</span></div>
     <div class="onboard-step" id="onboard-step-1">
       <h2>Connect Email</h2>
@@ -791,6 +878,6 @@
       </form>
     </div>
   </div>
-  <script src="/app.js?v=27"></script>
+  <script src="/app.js?v=48"></script>
 </body>
 </html>

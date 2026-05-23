@@ -5,7 +5,7 @@ body{font-family:var(--f);background:#0A0A0B;color:var(--t);line-height:1.7;over
 #page-landing::before{content:'';position:absolute;inset:0;background:rgba(10,10,11,.85);pointer-events:none;z-index:0}
 #page-login,#page-register{background:#0A0A0B}
 #page-dashboard{background:#111111}
-html{scroll-behavior:smooth}.hidden{display:none!important}.page{min-height:100vh;position:relative;animation:pageFadeIn .4s ease}
+html{scroll-behavior:smooth}.hidden{display:none!important}.page{min-height:100vh;position:relative}.page:not(.hidden){animation:pageFadeIn .4s ease forwards}
 @keyframes pageFadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 a{color:var(--p2);text-decoration:none}
 #particles{display:none}
@@ -1230,8 +1230,9 @@ body::-webkit-scrollbar {
 #faq-modal .modal-bg,
 #feedback-modal .modal-bg,
 #languages-modal .modal-bg {
-  background: rgba(10, 10, 11, 0.5);
-  backdrop-filter: blur(12px);
+  background: rgba(10, 10, 11, 0.6);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
 }
 
 /* Modal box - cream background instead of dark glass */
@@ -1651,29 +1652,29 @@ body::-webkit-scrollbar {
   position: absolute;
   top: -1px;
   left: -1px;
-  width: 240px;
-  height: 80px;
+  width: 220px;
+  height: 72px;
   background-color: #0A0A0B;
   border-bottom-right-radius: 40px;
   z-index: 3;
   display: flex;
   align-items: center;
-  padding-left: 24px;
+  padding-left: 28px;
 }
 
 .cutout-top-right {
   position: absolute;
   top: -1px;
   right: -1px;
-  width: 280px;
-  height: 80px;
+  width: 270px;
+  height: 72px;
   background-color: #0A0A0B;
   border-bottom-left-radius: 40px;
   z-index: 3;
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  padding-right: 24px;
+  padding-right: 28px;
 }
 
 .cutout-bottom-right {
@@ -1715,12 +1716,13 @@ body::-webkit-scrollbar {
   background: transparent;
   color: #d9d0c3;
   border: none;
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 600;
   cursor: pointer;
-  padding: 8px 16px;
+  padding: 8px 14px;
   transition: color 0.2s;
   white-space: nowrap;
+  font-family: var(--f);
 }
 .outer-login-btn:hover {
   color: #FAFAFA;
@@ -1750,8 +1752,8 @@ body::-webkit-scrollbar {
   color: #FAFAFA;
   border: 1.5px solid #C5A55A;
   border-radius: 24px;
-  padding: 8px 20px;
-  font-size: 0.85rem;
+  padding: 8px 18px;
+  font-size: 0.82rem;
   font-weight: 600;
   cursor: pointer;
   display: flex;
@@ -1759,6 +1761,7 @@ body::-webkit-scrollbar {
   gap: 8px;
   transition: all 0.3s;
   white-space: nowrap;
+  font-family: var(--f);
 }
 .outer-connect-btn:hover {
   background: rgba(197, 165, 90, 0.1);
@@ -1790,14 +1793,14 @@ body::-webkit-scrollbar {
 
 .fillet-tl-bottom {
   left: -2px;
-  top: 78px;
+  top: 70px;
   width: 42px;
   height: 42px;
   background: radial-gradient(circle at 41px 41px, transparent 39.5px, #0A0A0B 40.5px);
 }
 
 .fillet-tl-right {
-  left: 238px;
+  left: 218px;
   top: -2px;
   width: 42px;
   height: 42px;
@@ -1805,7 +1808,7 @@ body::-webkit-scrollbar {
 }
 
 .fillet-tr-left {
-  right: 278px;
+  right: 268px;
   top: -2px;
   width: 42px;
   height: 42px;
@@ -1814,7 +1817,7 @@ body::-webkit-scrollbar {
 
 .fillet-tr-bottom {
   right: -2px;
-  top: 78px;
+  top: 70px;
   width: 42px;
   height: 42px;
   background: radial-gradient(circle at 1px 41px, transparent 39.5px, #0A0A0B 40.5px);
@@ -1840,7 +1843,7 @@ body::-webkit-scrollbar {
 /* Inner Canvas Content Container */
 .canvas-content {
   flex: 1;
-  padding: 90px 60px 0;
+  padding: 82px 60px 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -1851,9 +1854,9 @@ body::-webkit-scrollbar {
 .canvas-header {
   position: absolute;
   top: 0;
-  left: 240px;
-  right: 280px;
-  height: 80px;
+  left: 220px;
+  right: 270px;
+  height: 72px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1862,10 +1865,10 @@ body::-webkit-scrollbar {
 .nav-pill {
   display: flex;
   align-items: center;
-  background: rgba(26, 26, 28, 0.03);
-  border: 1.2px solid rgba(26, 26, 28, 0.18);
+  background: rgba(26, 26, 28, 0.04);
+  border: 1.2px solid rgba(26, 26, 28, 0.15);
   border-radius: 30px;
-  padding: 4px 6px;
+  padding: 5px 8px;
   gap: 2px;
   backdrop-filter: blur(8px);
 }
@@ -1875,7 +1878,7 @@ body::-webkit-scrollbar {
   font-family: var(--f);
   font-size: 0.82rem;
   font-weight: 500;
-  padding: 8px 18px;
+  padding: 7px 16px;
   border-radius: 20px;
   transition: all 0.25s ease;
   text-decoration: none;
@@ -2348,10 +2351,10 @@ body::-webkit-scrollbar {
 /* Responsive Screen Collapse */
 @media (max-width: 1200px) {
   .cutout-top-right {
-    width: 280px;
+    width: 270px;
   }
   .fillet-tr-left {
-    right: 278px;
+    right: 268px;
     top: -2px;
     width: 42px;
     height: 42px;
@@ -2372,7 +2375,8 @@ body::-webkit-scrollbar {
     font-size: 0.8rem;
   }
   .canvas-header {
-    left: 250px;
+    left: 230px;
+    right: 270px;
   }
   .nav-pill-item {
     padding: 6px 12px;
@@ -2474,7 +2478,257 @@ body::-webkit-scrollbar {
   }
 }
 
+/* ==========================================
+   Redesigned Auth Pages Styles (Floating Cream Modals & Dark Glass Cards)
+   ========================================== */
 
+#page-login, #page-register {
+  background: transparent !important;
+  animation: none !important;
+}
 
+#page-landing.auth-blur {
+  pointer-events: none;
+}
+/* Auth pages — regular scrollable pages, NOT fixed overlays */
+.modal-page {
+  position: relative;
+  z-index: 900;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  background: #0A0A0B;
+  animation: none !important;
+}
 
+/* Dark blurred-look background for auth pages */
+.modal-page .modal-bg {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 10, 11, 0.85);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.modal-page .modal-box.auth-modal-box {
+  position: relative;
+  background: #F6F0E6 !important;
+  border: 1px solid rgba(26, 26, 28, 0.1) !important;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(197, 165, 90, 0.15) !important;
+  border-radius: 20px;
+  padding: 40px 32px 28px;
+  max-width: 500px;
+  width: 100%;
+  z-index: 2;
+  box-sizing: border-box;
+  color: #1A1A1C;
+}
+
+/* Close button inside auth modal — top-right corner */
+.modal-page .modal-x {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(26, 26, 28, 0.06);
+  border: 1px solid rgba(26, 26, 28, 0.08);
+  border-radius: 50%;
+  color: rgba(26, 26, 28, 0.45);
+  font-size: 1.1rem;
+  cursor: pointer;
+  z-index: 100;
+  transition: all 0.2s ease;
+  padding: 0;
+  line-height: 1;
+  pointer-events: auto;
+}
+
+.modal-page .modal-x:hover {
+  background: rgba(26, 26, 28, 0.12);
+  color: #1A1A1C;
+  border-color: rgba(26, 26, 28, 0.15);
+  transform: scale(1.05);
+}
+
+/* Headings inside auth modals */
+.modal-page .modal-head h3 {
+  color: #1A1A1C;
+  font-family: var(--fh);
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.modal-page .modal-head p {
+  color: #666 !important;
+}
+
+/* Section tag in auth modals */
+.modal-page .section-tag {
+  color: #8a7540;
+}
+
+/* Form inputs - light cream style like Contact Us */
+.modal-page .fg input,
+.modal-page .fg textarea {
+  background: #FFFFFF !important;
+  border: 1px solid #d5cfc5 !important;
+  color: #1A1A1C !important;
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 0.95rem;
+  font-family: var(--f);
+  width: 100%;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+}
+
+.modal-page .fg input::placeholder,
+.modal-page .fg textarea::placeholder {
+  color: #aaa;
+}
+
+.modal-page .fg input:hover,
+.modal-page .fg textarea:hover {
+  border-color: #b8b0a2 !important;
+}
+
+.modal-page .fg input:focus,
+.modal-page .fg textarea:focus {
+  border-color: #1A1A1C !important;
+  box-shadow: 0 0 0 3px rgba(26, 26, 28, 0.08) !important;
+  outline: none;
+}
+
+/* Labels */
+.modal-page .fg label {
+  color: #1A1A1C;
+  font-weight: 600;
+  font-size: 0.85rem;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.modal-page .optional {
+  color: #999;
+  font-weight: 400;
+}
+
+/* Password toggle */
+.modal-page .pass-wrap {
+  position: relative;
+}
+
+.modal-page .pass-wrap input {
+  padding-right: 60px !important;
+}
+
+.modal-page .pass-wrap .pass-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  font-size: 0.82rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  background: none !important;
+  border: none !important;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.modal-page .pass-wrap .pass-toggle:hover {
+  color: #1A1A1C;
+}
+
+/* Row layout */
+.modal-page .fg-row {
+  display: flex;
+  gap: 12px;
+}
+
+.modal-page .fg-small {
+  flex: 0 0 80px !important;
+  min-width: 80px;
+  max-width: 80px;
+}
+
+/* Password strength bar */
+.modal-page .pass-strength {
+  background: #e5dfd5;
+  height: 4px;
+  border-radius: 2px;
+  margin-top: 8px;
+  overflow: hidden;
+}
+
+.modal-page .pass-label {
+  color: #888;
+  font-size: 0.78rem;
+  margin-top: 4px;
+  display: block;
+}
+
+/* Auth form spacing */
+.modal-page .auth-form {
+  margin-top: 20px;
+  width: 100%;
+}
+
+/* Remember me checkbox */
+.modal-page .remember-me input[type="checkbox"] {
+  accent-color: #1A1A1C;
+}
+
+/* Submit buttons */
+.modal-page .auth-form button[type="submit"] {
+  transition: all 0.3s ease;
+  font-family: var(--f);
+  font-weight: 600;
+}
+.modal-page .auth-form button[type="submit"]:hover {
+  background: #33312c !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Auth switch links */
+.modal-page .auth-sw a {
+  color: #8a7540 !important;
+  transition: color 0.2s ease;
+}
+.modal-page .auth-sw a:hover {
+  color: #6b5a30 !important;
+}
+
+/* Error messages in modal */
+.modal-page .form-err {
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  color: #dc2626;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.82rem;
+}
+
+@media (max-width: 600px) {
+  .modal-page {
+    padding: 10px;
+  }
+  .modal-page .modal-box.auth-modal-box {
+    padding: 32px 18px 20px;
+    border-radius: 16px;
+  }
+}
 
