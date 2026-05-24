@@ -9,6 +9,7 @@ const { encrypt } = require('./crypto');
 const emailMonitor = require('./monitors/email');
 const emailSender = require('./senders/email');
 const { helmetConfig, apiLimiter, authLimiter } = require('./middleware/security');
+const nodemailer = require('nodemailer');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -107,6 +108,45 @@ app.post('/api/feedback', async (req, res) => {
       return res.status(400).json({ error: 'Email and message are required.' });
     }
     const result = await db.insertFeedback(name, email, message);
+
+    // Send email notification if SMTP is configured
+    if (process.env.SYSTEM_EMAIL_USER && process.env.SYSTEM_EMAIL_PASS) {
+      const transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: process.env.SYSTEM_EMAIL_USER,
+          pass: process.env.SYSTEM_EMAIL_PASS
+        }
+      });
+
+      const mailOptions = {
+        from: `"${name || 'Anonymous client'}" <${process.env.SYSTEM_EMAIL_USER}>`,
+        to: process.env.NOTIFICATION_EMAIL || process.env.SYSTEM_EMAIL_USER,
+        replyTo: email,
+        subject: `📩 New Client Review/Feedback from ${name || 'Anonymous'}`,
+        text: `You have received a new review/feedback on AutoInbox:\n\n` +
+              `Name: ${name || 'Anonymous'}\n` +
+              `Email: ${email}\n` +
+              `Message:\n${message}\n\n` +
+              `You can review and manage this feedback inside the AutoInbox Admin Dashboard.`,
+        html: `
+          <div style="font-family: sans-serif; max-width: 600px; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; background-color: #fafafa; color: #1a1a1c;">
+            <h2 style="color: #1a1a1c; border-bottom: 1px solid #e2e8f0; padding-bottom: 12px; margin-top: 0;">📩 New Feedback/Review</h2>
+            <p><strong>Name:</strong> ${name || 'Anonymous'}</p>
+            <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+            <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin: 20px 0; font-style: italic; color: #333; white-space: pre-wrap;">${message}</div>
+            <p style="font-size: 12px; color: #666; margin-top: 30px; border-top: 1px solid #e2e8f0; padding-top: 12px;">
+              This notification was sent automatically by AutoInbox. Manage feedback in your Admin Dashboard.
+            </p>
+          </div>
+        `
+      };
+
+      transporter.sendMail(mailOptions).catch(err => {
+        console.error('Failed to send feedback notification email:', err);
+      });
+    }
+
     res.json({ success: true, id: result.id });
   } catch (e) {
     res.status(500).json({ error: e.message });
