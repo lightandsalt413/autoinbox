@@ -116,14 +116,22 @@ let currentPage = null;
 function showPage(id, addHistory = true) {
   closeLandingModals();
   closeGuideModal();
-  document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
-  const el = document.getElementById(`page-${id}`);
-  if (el) {
-    el.classList.remove('hidden');
-  }
+  document.querySelectorAll('.page').forEach(p => {
+    if (p.id === 'page-landing' && (id === 'login' || id === 'register')) {
+      p.classList.remove('hidden');
+    } else if (p.id === `page-${id}`) {
+      p.classList.remove('hidden');
+    } else {
+      p.classList.add('hidden');
+    }
+  });
   const landing = document.getElementById('page-landing');
   if (landing) {
-    landing.classList.remove('auth-blur');
+    if (id === 'login' || id === 'register') {
+      landing.classList.add('auth-blur');
+    } else {
+      landing.classList.remove('auth-blur');
+    }
   }
   if (addHistory && id !== 'landing') {
     if (currentPage === id) {

@@ -2483,7 +2483,7 @@ body::-webkit-scrollbar {
    ========================================== */
 
 #page-login, #page-register {
-  background: #0A0A0B !important;
+  background: transparent !important;
   animation: none !important;
   opacity: 1 !important;
   transform: none !important;
@@ -2492,22 +2492,29 @@ body::-webkit-scrollbar {
 #page-landing.auth-blur {
   pointer-events: none;
 }
-/* Auth pages — regular scrollable pages, NOT fixed overlays */
+
 .modal-page {
-  position: relative;
-  z-index: 900;
-  min-height: 100vh;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 40px 20px;
-  background: #0A0A0B;
+  background: transparent !important;
+  overflow-y: auto;
   animation: none !important;
 }
 
-/* Dark background for auth pages — no overlay needed */
 .modal-page .modal-bg {
-  display: none;
+  display: block;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1;
 }
 
 .modal-page .modal-box.auth-modal-box {
@@ -2522,6 +2529,7 @@ body::-webkit-scrollbar {
   z-index: 2;
   box-sizing: border-box;
   color: #1A1A1C;
+  margin: auto;
 }
 
 /* Close button inside auth modal — top-right corner */
