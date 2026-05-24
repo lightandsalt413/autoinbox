@@ -1705,10 +1705,10 @@ body::-webkit-scrollbar {
   font-size: 1.25rem;
   letter-spacing: 0.5px;
 }
-.outer-logo .logo-circle-wrap {
+.outer-logo .logo-icon-wrap {
   width: 36px;
   height: 36px;
-  border-radius: 50%;
+  border-radius: 8px;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -1716,13 +1716,15 @@ body::-webkit-scrollbar {
   margin-right: 10px;
   transition: transform 0.2s ease;
 }
-.outer-logo a:hover .logo-circle-wrap {
+.outer-logo a:hover .logo-icon-wrap {
   transform: scale(1.05);
 }
-.outer-logo .logo-img-circle {
+.outer-logo .logo-img-icon {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: 50% 28%;
+  transform: scale(1.48);
 }
 
 /* Actions inside dark top-right cutout */
@@ -2798,19 +2800,21 @@ body::-webkit-scrollbar {
   align-items: center;
   gap: 10px;
 }
-#page-dashboard .sidebar .logo-sm .logo-circle-wrap {
+#page-dashboard .sidebar .logo-sm .logo-icon-wrap {
   width: 28px;
   height: 28px;
-  border-radius: 50%;
+  border-radius: 6px;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-#page-dashboard .sidebar .logo-sm .logo-img-circle {
+#page-dashboard .sidebar .logo-sm .logo-img-icon {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  object-position: 50% 28%;
+  transform: scale(1.48);
 }
 
 #page-dashboard .sidebar .nav-item {
