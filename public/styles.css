@@ -1705,16 +1705,6 @@ body::-webkit-scrollbar {
   font-size: 1.25rem;
   letter-spacing: 0.5px;
 }
-.outer-logo .logo-img {
-  height: 38px;
-  width: auto;
-  object-fit: contain;
-  display: block;
-  transition: transform 0.2s ease;
-}
-.outer-logo a:hover .logo-img {
-  transform: scale(1.02);
-}
 
 /* Actions inside dark top-right cutout */
 .outer-actions {
@@ -2785,12 +2775,6 @@ body::-webkit-scrollbar {
   color: #FAFAFA;
   font-size: 1.25rem;
   letter-spacing: 0.5px;
-}
-#page-dashboard .sidebar .logo-sm .logo-img-sm {
-  height: 28px;
-  width: auto;
-  object-fit: contain;
-  display: block;
 }
 
 #page-dashboard .sidebar .nav-item {
