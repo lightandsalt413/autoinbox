@@ -140,11 +140,10 @@ function showPage(id, addHistory = true) {
       history.pushState({ page: id }, '', `#${id}`);
     }
   } else if (addHistory && id === 'landing') {
-    // If there was a modal hash, keep it clean
+    // If there was a modal or auth hash, keep it clean
     const currentHash = window.location.hash.replace('#', '');
-    if (HASH_TO_MODAL[currentHash]) {
-      history.replaceState(null, '', window.location.pathname);
-    } else if (!currentHash) {
+    const authPages = ['login', 'register'];
+    if (HASH_TO_MODAL[currentHash] || authPages.includes(currentHash) || !currentHash) {
       history.replaceState(null, '', window.location.pathname);
     }
   }
