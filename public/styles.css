@@ -1706,12 +1706,10 @@ body::-webkit-scrollbar {
   letter-spacing: 0.5px;
 }
 .outer-logo .logo-as-is {
-  height: 50px;
-  width: 50px;
-  border-radius: 10px;
-  object-fit: cover;
+  height: 54px;
+  width: 54px;
+  object-fit: contain;
   display: block;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transition: transform 0.2s ease;
 }
 .outer-logo a:hover .logo-as-is {
@@ -2787,10 +2785,9 @@ body::-webkit-scrollbar {
   justify-content: flex-start;
 }
 #page-dashboard .sidebar .logo-sm .logo-as-is-sm {
-  height: 40px;
-  width: 40px;
-  border-radius: 8px;
-  object-fit: cover;
+  height: 44px;
+  width: 44px;
+  object-fit: contain;
   display: block;
 }
 
