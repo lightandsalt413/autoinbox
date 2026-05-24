@@ -203,8 +203,10 @@ document.getElementById('link-login')?.addEventListener('click', (e) => { e.prev
 document.getElementById('login-goto-register')?.addEventListener('click', () => showPage('register'));
 document.getElementById('register-goto-login')?.addEventListener('click', () => showPage('login'));
 document.getElementById('login-modal-close')?.addEventListener('click', () => showPage('landing'));
+document.getElementById('login-modal-bg')?.addEventListener('click', () => showPage('landing'));
 document.getElementById('page-login')?.addEventListener('click', (e) => { if (e.target === e.currentTarget) showPage('landing'); });
 document.getElementById('register-modal-close')?.addEventListener('click', () => showPage('landing'));
+document.getElementById('register-modal-bg')?.addEventListener('click', () => showPage('landing'));
 document.getElementById('page-register')?.addEventListener('click', (e) => { if (e.target === e.currentTarget) showPage('landing'); });
 document.getElementById('logo-home')?.addEventListener('click', (e) => { e.preventDefault(); showPage('landing'); window.scrollTo({top:0,behavior:'smooth'}); });
 document.getElementById('login-back-home')?.addEventListener('click', (e) => { e.preventDefault(); showPage('landing'); window.scrollTo({top:0,behavior:'smooth'}); });
@@ -948,7 +950,7 @@ async function openMessage(id) {
 document.getElementById('modal-close')?.addEventListener('click', () => {
   document.getElementById('message-modal').classList.add('hidden');
 });
-document.querySelector('.modal-bg')?.addEventListener('click', () => {
+document.getElementById('message-modal')?.querySelector('.modal-bg')?.addEventListener('click', () => {
   document.getElementById('message-modal').classList.add('hidden');
 });
 
