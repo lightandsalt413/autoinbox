@@ -2738,3 +2738,432 @@ body::-webkit-scrollbar {
   }
 }
 
+/* ==========================================================================
+   Aligned Dashboard (Warm Cream Canvas & Premium Dark Sidebar Aesthetic)
+   ========================================================================== */
+
+#page-dashboard {
+  background: #0A0A0B !important;
+  min-height: 100vh;
+  padding: 14px;
+  display: grid !important;
+  grid-template-columns: 240px 1fr;
+  gap: 14px;
+  box-sizing: border-box;
+}
+
+#page-dashboard.hidden {
+  display: none !important;
+}
+
+#page-dashboard .sidebar {
+  background: #1A1A1C !important;
+  border-radius: 28px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  padding: 24px 0 !important;
+  height: calc(100vh - 28px) !important;
+  position: sticky !important;
+  top: 14px !important;
+  border: 1px solid rgba(255, 255, 255, 0.04) !important;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.3) !important;
+}
+
+#page-dashboard .sidebar .logo-sm {
+  font-family: var(--fh);
+  font-weight: 700;
+  color: #FAFAFA;
+  font-size: 1.25rem;
+  letter-spacing: 0.5px;
+}
+
+#page-dashboard .sidebar .nav-item {
+  color: #b8b0a2;
+}
+
+#page-dashboard .sidebar .nav-item:hover {
+  color: #FAFAFA;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+#page-dashboard .sidebar .nav-item.active {
+  color: #C5A55A;
+  background: rgba(197, 165, 90, 0.08);
+  border-left: 3px solid #C5A55A;
+  font-weight: 600;
+}
+
+#page-dashboard .dash-main {
+  background: #F6F0E6 !important;
+  color: #1A1A1C !important;
+  border-radius: 28px !important;
+  padding: 36px 40px !important;
+  height: calc(100vh - 28px) !important;
+  overflow-y: auto !important;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.4) !important;
+  box-sizing: border-box !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+#page-dashboard .dash-main::-webkit-scrollbar {
+  display: none !important;
+}
+
+/* Headings inside Dashboard */
+.dash-main h1, .dash-main h2, .dash-main h3, .dash-main h4, .dash-main h5 {
+  color: #1A1A1C !important;
+  font-family: var(--fh);
+  font-weight: 700;
+}
+
+.dash-main .dash-head h1 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+/* Stat Cards */
+.dash-main .stat-card {
+  background: #FAF6F0 !important;
+  border: 1px solid rgba(26, 26, 28, 0.08) !important;
+  color: #1A1A1C !important;
+  border-radius: 16px !important;
+  padding: 16px 24px !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02) !important;
+  min-width: 100px;
+}
+
+.dash-main .stat-card .stat-num {
+  color: #1A1A1C !important;
+}
+
+.dash-main .stat-card .stat-lbl {
+  color: rgba(26, 26, 28, 0.5) !important;
+}
+
+.dash-main .stat-card.warn {
+  border-color: rgba(197, 165, 90, 0.25) !important;
+  background: rgba(197, 165, 90, 0.05) !important;
+}
+
+.dash-main .stat-card.warn .stat-num {
+  color: #8A7540 !important;
+}
+
+.dash-main .stat-card.good {
+  border-color: rgba(22, 163, 74, 0.2) !important;
+  background: rgba(22, 163, 74, 0.03) !important;
+}
+
+.dash-main .stat-card.good .stat-num {
+  color: #16a34a !important;
+}
+
+/* Filter Tabs */
+.dash-main .filter-tabs {
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.dash-main .tab {
+  border: 1px solid rgba(26, 26, 28, 0.1) !important;
+  background: transparent !important;
+  color: rgba(26, 26, 28, 0.7) !important;
+  padding: 8px 20px !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
+}
+
+.dash-main .tab:hover {
+  background: rgba(26, 26, 28, 0.04) !important;
+  border-color: rgba(26, 26, 28, 0.2) !important;
+}
+
+.dash-main .tab.active {
+  background: #1A1A1C !important;
+  color: #F6F0E6 !important;
+  border-color: #1A1A1C !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  font-weight: 600 !important;
+}
+
+/* Message Cards */
+.dash-main .message-card {
+  background: #FAF6F0 !important;
+  border: 1px solid rgba(26, 26, 28, 0.08) !important;
+  color: #1A1A1C !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02) !important;
+  border-radius: 16px !important;
+  padding: 18px 24px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+.dash-main .message-card:hover {
+  border-color: #1A1A1C !important;
+  background: #FFFFFF !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06) !important;
+}
+
+.dash-main .message-avatar {
+  background: linear-gradient(135deg, #1A1A1C, #2C2C2E) !important;
+  color: #FAF6F0 !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15) !important;
+  font-family: var(--fh);
+}
+
+.dash-main .message-sender {
+  color: #1A1A1C !important;
+  font-weight: 700;
+}
+
+.dash-main .message-subject {
+  color: rgba(26, 26, 28, 0.85) !important;
+}
+
+.dash-main .message-preview {
+  color: rgba(26, 26, 28, 0.5) !important;
+}
+
+.dash-main .message-time {
+  color: rgba(26, 26, 28, 0.4) !important;
+}
+
+/* Empty State */
+.dash-main .empty-state p {
+  color: rgba(26, 26, 28, 0.8) !important;
+}
+
+.dash-main .empty-state p strong {
+  color: #1A1A1C !important;
+}
+
+/* Status Tags */
+.dash-main .status-tag {
+  font-weight: 700;
+}
+.dash-main .status-tag.drafted { background: rgba(59, 130, 246, 0.08) !important; color: #2563eb !important; }
+.dash-main .status-tag.pending { background: rgba(217, 119, 6, 0.08) !important; color: #d97706 !important; }
+.dash-main .status-tag.sent { background: rgba(22, 163, 74, 0.08) !important; color: #16a34a !important; }
+.dash-main .status-tag.rejected { background: rgba(26, 26, 28, 0.05) !important; color: rgba(26, 26, 28, 0.5) !important; }
+.dash-main .status-tag.drafting { background: rgba(197, 165, 90, 0.12) !important; color: #8A7540 !important; }
+.dash-main .status-tag.failed { background: rgba(220, 38, 38, 0.08) !important; color: #dc2626 !important; }
+
+/* Dashboard Cards (General) */
+.dash-main .card, .dash-main .card.glass {
+  background: #FAF6F0 !important;
+  border: 1px solid rgba(26, 26, 28, 0.08) !important;
+  color: #1A1A1C !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02) !important;
+  border-radius: 20px !important;
+}
+
+.dash-main .card h3 {
+  color: #1A1A1C !important;
+  font-weight: 700;
+}
+
+.dash-main .card p {
+  color: rgba(26, 26, 28, 0.7) !important;
+}
+
+/* Voice Profile details */
+.dash-main .profile-box {
+  background: rgba(26, 26, 28, 0.02) !important;
+  border: 1px solid rgba(26, 26, 28, 0.06) !important;
+  color: #1A1A1C !important;
+}
+
+.dash-main .profile-box p {
+  color: rgba(26, 26, 28, 0.7) !important;
+}
+
+.dash-main .profile-box strong {
+  color: #8A7540 !important;
+}
+
+/* Form fields inside main dashboard */
+.dash-main .fg label, .dash-main .sample-group label {
+  color: rgba(26, 26, 28, 0.8) !important;
+  font-weight: 600 !important;
+}
+
+.dash-main .fg input, .dash-main .fg textarea, .dash-main .fg select,
+.dash-main .sample-group textarea, .dash-main .dash-voice-sample,
+.dash-main .card textarea, .dash-main .card input, .dash-main .card select {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(26, 26, 28, 0.12) !important;
+  color: #1A1A1C !important;
+  border-radius: 12px !important;
+  padding: 12px 14px !important;
+  font-family: var(--f) !important;
+  transition: border-color 0.2s, box-shadow 0.2s !important;
+}
+
+.dash-main .fg input:focus, .dash-main .fg textarea:focus, .dash-main .fg select:focus,
+.dash-main .sample-group textarea:focus, .dash-main .dash-voice-sample:focus,
+.dash-main .card textarea:focus, .dash-main .card input:focus, .dash-main .card select:focus {
+  border-color: #1A1A1C !important;
+  box-shadow: 0 0 0 3px rgba(26, 26, 28, 0.06) !important;
+  outline: none !important;
+}
+
+.dash-main .input-hint, .dash-main .field-desc {
+  color: rgba(26, 26, 28, 0.5) !important;
+}
+
+/* Plan & Billing inside Dashboard */
+.dash-main .cpd-name {
+  color: #8A7540 !important;
+}
+
+.dash-main .cpd-price {
+  color: rgba(26, 26, 28, 0.7) !important;
+}
+
+.dash-main .plan-option {
+  background: #FAF6F0 !important;
+  border: 1px solid rgba(26, 26, 28, 0.08) !important;
+  border-radius: 20px !important;
+  color: #1A1A1C !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02) !important;
+}
+
+.dash-main .plan-option:hover {
+  border-color: rgba(26, 26, 28, 0.2) !important;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.06) !important;
+  transform: translateY(-4px) !important;
+}
+
+.dash-main .plan-option.featured {
+  border-color: #C5A55A !important;
+  background: linear-gradient(135deg, rgba(197, 165, 90, 0.08), rgba(197, 165, 90, 0.02)) !important;
+}
+
+.dash-main .plan-option.current {
+  border-color: #16a34a !important;
+  background: rgba(22, 163, 74, 0.03) !important;
+}
+
+.dash-main .plan-option li {
+  color: rgba(26, 26, 28, 0.8) !important;
+  border-bottom-color: rgba(26, 26, 28, 0.05) !important;
+}
+
+.dash-main .po-price {
+  color: #1A1A1C !important;
+}
+
+.dash-main .po-price span {
+  color: rgba(26, 26, 28, 0.5) !important;
+}
+
+.dash-main .pay-pill {
+  background: #FFFFFF !important;
+  border: 1px solid rgba(26, 26, 28, 0.1) !important;
+  color: rgba(26, 26, 28, 0.8) !important;
+}
+
+/* Settings Sidebar inside Settings page */
+.dash-main .settings-sidebar {
+  background: #FAF6F0 !important;
+  border: 1px solid rgba(26, 26, 28, 0.08) !important;
+  border-radius: 16px !important;
+  padding: 12px !important;
+}
+
+.dash-main .snav-item {
+  color: rgba(26, 26, 28, 0.7) !important;
+}
+
+.dash-main .snav-item:hover {
+  background: rgba(26, 26, 28, 0.03) !important;
+  color: #1A1A1C !important;
+}
+
+.dash-main .snav-item.active {
+  background: rgba(197, 165, 90, 0.1) !important;
+  color: #8A7540 !important;
+  border-left-color: #C5A55A !important;
+}
+
+/* Save / connect buttons */
+.dash-main .btn-accent {
+  background: #1A1A1C !important;
+  color: #F6F0E6 !important;
+  border: 1px solid #1A1A1C !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.2s ease !important;
+}
+
+.dash-main .btn-accent:hover {
+  background: #2C2C2E !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-1px) !important;
+}
+
+.dash-main .btn-ghost {
+  border: 1.5px solid rgba(26, 26, 28, 0.15) !important;
+  color: #1A1A1C !important;
+  background: transparent !important;
+  transition: all 0.2s ease !important;
+}
+
+.dash-main .btn-ghost:hover {
+  border-color: rgba(26, 26, 28, 0.35) !important;
+  background: rgba(26, 26, 28, 0.03) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Admin Dashboard Table */
+.dash-main .admin-table th {
+  color: rgba(26, 26, 28, 0.4) !important;
+  border-bottom: 1px solid rgba(26, 26, 28, 0.1) !important;
+}
+
+.dash-main .admin-table td {
+  color: rgba(26, 26, 28, 0.8) !important;
+  border-bottom: 1px solid rgba(26, 26, 28, 0.05) !important;
+}
+
+.dash-main .admin-table tr:hover td {
+  background: rgba(26, 26, 28, 0.02) !important;
+}
+
+/* Responsive Overrides */
+@media (max-width: 768px) {
+  #page-dashboard {
+    grid-template-columns: 1fr !important;
+    padding: 0 !important;
+    gap: 0 !important;
+  }
+  
+  #page-dashboard .dash-main {
+    border-radius: 0 !important;
+    height: 100vh !important;
+    padding: 16px 16px 80px !important;
+    box-shadow: none !important;
+  }
+  
+  .dash-main .settings-sidebar {
+    background: #FAF6F0 !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    padding: 8px !important;
+    border-radius: 12px !important;
+    position: static !important;
+  }
+  
+  .dash-main .snav-item {
+    border-left: none !important;
+    border-bottom: 3px solid transparent !important;
+    border-radius: 6px !important;
+  }
+  
+  .dash-main .snav-item.active {
+    border-bottom-color: #C5A55A !important;
+    border-radius: 6px 6px 0 0 !important;
+  }
+}
+
