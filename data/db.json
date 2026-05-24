@@ -72,6 +72,13 @@
       "email": "test@antigravity.ai",
       "message": "Hello, testing the public feedback form submission.",
       "created_at": "2026-05-22T06:53:21.274Z"
+    },
+    {
+      "id": 3,
+      "name": "Test User",
+      "email": "test@autoinbox.com",
+      "message": "Hello Gemini, this is a test feedback!",
+      "created_at": "2026-05-24T05:07:10.858Z"
     }
   ]
 }

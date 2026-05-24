@@ -1710,13 +1710,10 @@ body::-webkit-scrollbar {
   height: 36px;
   border-radius: 50%;
   overflow: hidden;
-  background-color: #F6F0E6;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: transform 0.2s ease;
 }
 .outer-logo a:hover .logo-circle-wrap {
@@ -1725,9 +1722,7 @@ body::-webkit-scrollbar {
 .outer-logo .logo-img-circle {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: 50% 5%;
-  transform: scale(2.4);
+  object-fit: contain;
 }
 
 /* Actions inside dark top-right cutout */
@@ -2808,19 +2803,14 @@ body::-webkit-scrollbar {
   height: 28px;
   border-radius: 50%;
   overflow: hidden;
-  background-color: #F6F0E6;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 #page-dashboard .sidebar .logo-sm .logo-img-circle {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: 50% 5%;
-  transform: scale(2.4);
+  object-fit: contain;
 }
 
 #page-dashboard .sidebar .nav-item {

@@ -1,0 +1,547 @@
+commit 969313d425f7b9a36a381f08b1b9143a2437569d
+Author: AutoInbox Dev <autoinbox@app.com>
+Date:   Fri May 22 17:41:24 2026 +0800
+
+    fix: remove crazy mode toggle, align simple footer, and clean up bottom-right corner fillet artifacts
+
+diff --git a/public/styles.css b/public/styles.css
+index 661c24a..8e2c899 100644
+--- a/public/styles.css
++++ b/public/styles.css
+@@ -1,7 +1,7 @@
+ *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+ :root{--bg:#111111;--bg2:#1a1a1a;--s:#1e1e1e;--s2:#2a2a2a;--t:#FAFAFA;--t2:#d9d0c3;--t3:#a09888;--p:#C5A55A;--p2:#d4b76a;--acc:#C5A55A;--g:#10b981;--r:#ef4444;--rad:16px;--f:'Onest',system-ui,sans-serif;--fh:'Onest',system-ui,sans-serif;--fm:'Onest',monospace}
+ body{font-family:var(--f);background:#0A0A0B;color:var(--t);line-height:1.7;overflow-x:hidden;min-height:100vh;position:relative}
+-#page-landing{background:#0A0A0B url('/logo-bg.png') center center/cover no-repeat fixed;position:relative;overflow:hidden}
++#page-landing{background:#0A0A0B;position:relative;overflow:hidden}
+ #page-landing::before{content:'';position:absolute;inset:0;background:rgba(10,10,11,.85);pointer-events:none;z-index:0}
+ #page-login,#page-register{background:#0A0A0B}
+ #page-dashboard{background:#111111}
+@@ -1099,6 +1099,527 @@ a{color:var(--p2);text-decoration:none}
+   scrollbar-color: rgba(255, 255, 255, 0.12) #1a1a1a;
+ }
+ 
++/* === Landing Page FynSec-Style Canvas Layout === */
++#particles {
++  display: block !important;
++  position: absolute;
++  inset: 0;
++  pointer-events: none;
++  z-index: 1;
++}
++
++.landing-frame {
++  position: relative;
++  z-index: 2;
++  width: 100%;
++  min-height: 100vh;
++  padding: 24px 24px 44px;
++  display: flex;
++  align-items: stretch;
++  box-sizing: border-box;
++}
++
++.landing-canvas {
++  position: relative;
++  width: 100%;
++  background-color: #F8F6F2;
++  color: #1A1A1C;
++  border-radius: 40px;
++  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
++  display: flex;
++  flex-direction: column;
++  box-sizing: border-box;
++  overflow: visible;
++}
++
++/* Cutout styles */
++.cutout-top-left {
++  position: absolute;
++  top: -1px;
++  left: -1px;
++  width: 240px;
++  height: 80px;
++  background-color: #0A0A0B;
++  border-bottom-right-radius: 40px;
++  z-index: 3;
++  display: flex;
++  align-items: center;
++  padding-left: 24px;
++}
++
++.cutout-top-right {
++  position: absolute;
++  top: -1px;
++  right: -1px;
++  width: 280px;
++  height: 80px;
++  background-color: #0A0A0B;
++  border-bottom-left-radius: 40px;
++  z-index: 3;
++  display: flex;
++  align-items: center;
++  justify-content: flex-end;
++  padding-right: 24px;
++}
++
++
++/* Logo inside dark top-left cutout */
++.outer-logo a {
++  display: flex;
++  align-items: center;
++  gap: 10px;
++  text-decoration: none;
++}
++.outer-logo .logo-box {
++  width: 32px;
++  height: 32px;
++  border: 2px solid #C5A55A;
++  border-radius: 8px;
++  display: flex;
++  align-items: center;
++  justify-content: center;
++  background: rgba(197, 165, 90, 0.08);
++}
++.outer-logo .logo-dot {
++  width: 10px;
++  height: 10px;
++  background-color: #C5A55A;
++  border-radius: 50%;
++}
++.outer-logo .logo-text {
++  font-family: var(--fh);
++  font-weight: 700;
++  color: #FAFAFA;
++  font-size: 1.25rem;
++  letter-spacing: 0.5px;
++}
++
++/* Actions inside dark top-right cutout */
++.outer-actions {
++  display: flex;
++  align-items: center;
++  gap: 12px;
++}
++.outer-login-btn {
++  background: transparent;
++  color: #d9d0c3;
++  border: none;
++  font-size: 0.85rem;
++  font-weight: 600;
++  cursor: pointer;
++  padding: 8px 16px;
++  transition: color 0.2s;
++  white-space: nowrap;
++}
++.outer-login-btn:hover {
++  color: #FAFAFA;
++}
++.outer-lang-btn {
++  background: transparent;
++  color: #d9d0c3;
++  border: 1px solid rgba(255, 255, 255, 0.15);
++  border-radius: 20px;
++  padding: 8px 16px;
++  font-size: 0.85rem;
++  font-weight: 500;
++  cursor: pointer;
++  display: flex;
++  align-items: center;
++  gap: 6px;
++  transition: all 0.2s;
++  white-space: nowrap;
++}
++.outer-lang-btn:hover {
++  border-color: rgba(255, 255, 255, 0.35);
++  background: rgba(255, 255, 255, 0.05);
++  color: #FAFAFA;
++}
++.outer-connect-btn {
++  background: transparent;
++  color: #FAFAFA;
++  border: 1.5px solid #C5A55A;
++  border-radius: 24px;
++  padding: 8px 20px;
++  font-size: 0.85rem;
++  font-weight: 600;
++  cursor: pointer;
++  display: flex;
++  align-items: center;
++  gap: 8px;
++  transition: all 0.3s;
++  white-space: nowrap;
++}
++.outer-connect-btn:hover {
++  background: rgba(197, 165, 90, 0.1);
++  box-shadow: 0 0 16px rgba(197, 165, 90, 0.2);
++}
++.connect-arrow {
++  display: inline-flex;
++  align-items: center;
++  justify-content: center;
++  width: 22px;
++  height: 22px;
++  background-color: #FAFAFA;
++  color: #0A0A0B;
++  border-radius: 50%;
++  transition: transform 0.3s;
++}
++.outer-connect-btn:hover .connect-arrow {
++  transform: translateX(3px);
++}
++
++/* Fillet transitions */
++.fillet {
++  position: absolute;
++  width: 40px;
++  height: 40px;
++  pointer-events: none;
++  z-index: 4;
++}
++
++.fillet-tl-bottom {
++  left: -2px;
++  top: 78px;
++  width: 42px;
++  height: 42px;
++  background: radial-gradient(circle at 41px 41px, transparent 39.5px, #0A0A0B 40.5px);
++}
++
++.fillet-tl-right {
++  left: 238px;
++  top: -2px;
++  width: 42px;
++  height: 42px;
++  background: radial-gradient(circle at 41px 41px, transparent 39.5px, #0A0A0B 40.5px);
++}
++
++.fillet-tr-left {
++  right: 278px;
++  top: -2px;
++  width: 42px;
++  height: 42px;
++  background: radial-gradient(circle at 1px 41px, transparent 39.5px, #0A0A0B 40.5px);
++}
++
++.fillet-tr-bottom {
++  right: -2px;
++  top: 78px;
++  width: 42px;
++  height: 42px;
++  background: radial-gradient(circle at 1px 41px, transparent 39.5px, #0A0A0B 40.5px);
++}
++
++
++/* Inner Canvas Content Container */
++.canvas-content {
++  flex: 1;
++  padding: 110px 60px 60px;
++  display: flex;
++  flex-direction: column;
++  justify-content: flex-start;
++  box-sizing: border-box;
++}
++
++/* Header & Nav Pill */
++.canvas-header {
++  position: absolute;
++  top: 0;
++  left: 260px;
++  height: 80px;
++  display: flex;
++  align-items: center;
++}
++
++.nav-pill {
++  display: flex;
++  background: transparent;
++  border: 1.2px solid #1A1A1C;
++  border-radius: 30px;
++  padding: 4px;
++}
++
++.nav-pill-item {
++  color: #1A1A1C !important;
++  font-family: var(--f);
++  font-size: 0.82rem;
++  font-weight: 500;
++  padding: 8px 20px;
++  border-radius: 20px;
++  transition: all 0.2s;
++  text-decoration: none;
++  display: flex;
++  align-items: center;
++  justify-content: center;
++  gap: 0 !important;
++}
++
++.nav-pill-item::before {
++  display: none !important;
++}
++
++.nav-pill-item:hover {
++  color: #1A1A1C !important;
++  background: rgba(26, 26, 28, 0.06);
++}
++
++/* 2-Column Hero Grid */
++.canvas-hero-grid {
++  display: grid;
++  grid-template-columns: 1.2fr 1fr;
++  gap: 40px;
++  align-items: center;
++  flex: 1;
++}
++
++.hero-left-col {
++  display: flex;
++  flex-direction: column;
++  align-items: flex-start;
++  text-align: left;
++}
++
++/* SVG Envelope decoration */
++.stacked-envelope-decoration {
++  margin-bottom: 24px;
++  animation: floatEnvelope 4s ease-in-out infinite;
++}
++
++@keyframes floatEnvelope {
++  0%, 100% {
++    transform: translateY(0);
++  }
++  50% {
++    transform: translateY(-6px);
++  }
++}
++
++.canvas-title {
++  font-family: var(--fh);
++  font-size: 4rem;
++  font-weight: 800;
++  line-height: 1.15;
++  color: #1A1A1C;
++  letter-spacing: -1.5px;
++  margin-bottom: 30px;
++}
++
++.canvas-cta-area {
++  margin-bottom: 30px;
++}
++
++.canvas-contact-btn {
++  background: #1A1A1C;
++  color: #F8F6F2;
++  border: none;
++  border-radius: 30px;
++  padding: 10px 24px;
++  font-size: 0.9rem;
++  font-weight: 600;
++  cursor: pointer;
++  display: flex;
++  align-items: center;
++  gap: 12px;
++  transition: all 0.3s;
++}
++
++.canvas-contact-btn:hover {
++  background: #33312c;
++  transform: translateY(-2px);
++}
++
++.cta-arrow-circle {
++  display: inline-flex;
++  align-items: center;
++  justify-content: center;
++  width: 26px;
++  height: 26px;
++  background-color: #F8F6F2;
++  color: #1A1A1C;
++  border-radius: 50%;
++}
++
++.canvas-divider {
++  width: 180px;
++  border: 0;
++  border-top: 1px solid rgba(26, 26, 28, 0.2);
++  margin: 0 0 24px;
++}
++
++.canvas-desc {
++  color: #55524c;
++  font-size: 1.05rem;
++  line-height: 1.6;
++  max-width: 440px;
++}
++
++/* Right col - Hero Image */
++.hero-right-col {
++  display: flex;
++  justify-content: center;
++  align-items: center;
++}
++
++.canvas-hero-image-wrap {
++  width: 100%;
++  max-width: 460px;
++  display: flex;
++  justify-content: center;
++  align-items: center;
++}
++
++.canvas-hero-img {
++  width: 100%;
++  height: auto;
++  object-fit: contain;
++  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
++}
++
++/* Elegant simple footer for landing layout */
++.footer-simple {
++  position: absolute;
++  bottom: 15px;
++  left: 50%;
++  transform: translateX(-50%);
++  z-index: 10;
++  font-size: 0.8rem;
++  color: var(--t3);
++  text-align: center;
++  white-space: nowrap;
++}
++.footer-simple a {
++  color: var(--t3);
++  text-decoration: none;
++  transition: color 0.2s ease;
++}
++.footer-simple a:hover {
++  color: var(--p2);
++}
++
++/* Responsive Screen Collapse */
++@media (max-width: 1200px) {
++  .cutout-top-right {
++    width: 280px;
++  }
++  .fillet-tr-left {
++    right: 278px;
++    top: -2px;
++    width: 42px;
++    height: 42px;
++  }
++  .outer-actions {
++    gap: 8px;
++  }
++  .outer-login-btn {
++    padding: 6px 12px;
++    font-size: 0.8rem;
++  }
++  .outer-connect-btn {
++    padding: 6px 14px;
++    font-size: 0.8rem;
++  }
++  .outer-lang-btn {
++    padding: 6px 12px;
++    font-size: 0.8rem;
++  }
++  .canvas-header {
++    left: 250px;
++  }
++  .nav-pill-item {
++    padding: 6px 12px;
++    font-size: 0.78rem;
++  }
++}
++
++@media (max-width: 992px) {
++  .landing-frame {
++    padding: 12px 12px 36px;
++  }
++  .landing-canvas {
++    border-radius: 24px;
++    overflow: hidden;
++  }
++  /* Hide the absolute fillets */
++  .fillet {
++    display: none !important;
++  }
++  /* Convert absolute cutouts to flex flow at top & bottom */
++  .cutout-top-left,
++  .cutout-top-right {
++    position: static;
++    width: 100%;
++    height: auto;
++    border-radius: 0;
++    padding: 16px 20px;
++    background-color: #0A0A0B;
++  }
++  
++  .cutout-top-left {
++    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
++  }
++  
++  .cutout-top-right {
++    justify-content: center;
++    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
++  }
++  
++  .footer-simple {
++    bottom: 10px;
++    font-size: 0.75rem;
++  }
++  
++  .canvas-content {
++    padding: 30px 20px;
++  }
++  
++  .canvas-header {
++    position: static;
++    width: 100%;
++    height: auto;
++    margin-bottom: 30px;
++    justify-content: center;
++  }
++  
++  .nav-pill {
++    flex-wrap: wrap;
++    justify-content: center;
++    gap: 4px;
++    border-radius: 16px;
++  }
++  
++  .nav-pill-item {
++    padding: 6px 14px;
++    font-size: 0.8rem;
++  }
++  
++  .canvas-hero-grid {
++    grid-template-columns: 1fr;
++    gap: 30px;
++  }
++  
++  .hero-left-col {
++    align-items: center;
++    text-align: center;
++  }
++  
++  .canvas-title {
++    font-size: 2.5rem;
++    letter-spacing: -0.8px;
++  }
++  
++  .canvas-desc {
++    margin: 0 auto;
++  }
++  
++  .canvas-divider {
++    margin: 0 auto 24px;
++  }
++  
++  .canvas-hero-image-wrap {
++    max-width: 320px;
++  }
++}
++
++
+ 
+ 
+ 
