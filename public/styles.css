@@ -1690,14 +1690,12 @@ body::-webkit-scrollbar {
   align-items: center;
   justify-content: center;
 }
-
 .bottom-logo-container {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 .bottom-logo-container:hover {
-  transform: scale(1.1) !important;
-  border-color: rgba(197, 165, 90, 0.95) !important;
-  box-shadow: 0 0 20px rgba(197, 165, 90, 0.6) !important;
+  transform: translateY(-2px) !important;
+  background-color: rgba(255, 255, 255, 0.08) !important;
 }
 
 /* Logo inside dark top-left cutout */
