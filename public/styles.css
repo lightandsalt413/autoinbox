@@ -1691,6 +1691,14 @@ body::-webkit-scrollbar {
   justify-content: center;
 }
 
+.bottom-logo-container {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+.bottom-logo-container:hover {
+  transform: scale(1.1) !important;
+  border-color: rgba(197, 165, 90, 0.95) !important;
+  box-shadow: 0 0 20px rgba(197, 165, 90, 0.6) !important;
+}
 
 /* Logo inside dark top-left cutout */
 .outer-logo a {
