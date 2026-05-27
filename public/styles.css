@@ -2087,23 +2087,77 @@ body::-webkit-scrollbar {
   aspect-ratio: 4 / 3.5;
 }
 
-/* Floating envelope decorations */
-.mockup-float-env {
+/* Floating premium glassmorphic badges overlapping the mockup */
+.mockup-badge-float {
   position: absolute;
-  font-size: 1.4rem;
-  opacity: 0;
-  pointer-events: none;
-  z-index: 0;
-  animation: floatEnv 6s ease-in-out infinite;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  white-space: nowrap;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.08),
+    0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: auto;
+  cursor: default;
 }
-.mockup-env-1 { top: -8px; right: 20px; animation-delay: 0s; }
-.mockup-env-2 { top: 30%; left: -18px; animation-delay: 2s; font-size: 1rem; }
-.mockup-env-3 { bottom: 15%; right: -12px; animation-delay: 4s; font-size: 1.1rem; }
 
-@keyframes floatEnv {
-  0%, 100% { opacity: 0; transform: translateY(10px) rotate(-5deg); }
-  20%, 80% { opacity: 0.5; }
-  50% { opacity: 0.7; transform: translateY(-12px) rotate(5deg); }
+.badge-top-left {
+  top: 15%;
+  left: -40px;
+  background: rgba(26, 26, 28, 0.95) !important;
+  color: #C5A55A !important;
+  border: 1px solid rgba(197, 165, 90, 0.4) !important;
+  animation: floatBadge1 5s ease-in-out infinite;
+}
+
+.badge-bottom-right {
+  bottom: 25%;
+  right: -30px;
+  background: rgba(246, 240, 230, 0.95) !important;
+  color: #1A1A1C !important;
+  border: 1px solid rgba(26, 26, 28, 0.1) !important;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.06),
+    0 0 0 1px rgba(197, 165, 90, 0.05);
+  animation: floatBadge2 5s ease-in-out infinite;
+  animation-delay: 2.5s;
+}
+
+.mockup-badge-float:hover {
+  transform: scale(1.05) translateY(-3px) !important;
+  box-shadow: 0 12px 36px rgba(197, 165, 90, 0.25) !important;
+}
+
+.badge-top-left .pulse-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #22c55e;
+  border-radius: 50%;
+  display: inline-block;
+  box-shadow: 0 0 8px #22c55e;
+  animation: pulseGreen 1.5s infinite;
+}
+
+@keyframes pulseGreen {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+@keyframes floatBadge1 {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+}
+
+@keyframes floatBadge2 {
+  0%, 100% { transform: translateY(0) rotate(1deg); }
+  50% { transform: translateY(-8px) rotate(-1deg); }
 }
 
 /* Inbox window */
