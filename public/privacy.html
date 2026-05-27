@@ -8,7 +8,7 @@
   <link rel="icon" href="/icons/icon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css?v=132">
   <style>
     body {
@@ -36,264 +36,219 @@
       scrollbar-color: rgba(197, 165, 90, 0.4) #F6F0E6 !important;
       scroll-behavior: smooth !important;
     }
-    .landing-canvas::-webkit-scrollbar {
-      display: block !important;
-      width: 8px !important;
-    }
-    .landing-canvas::-webkit-scrollbar-track {
-      background: #F6F0E6 !important;
-      border-radius: 0 40px 40px 0 !important;
-    }
-    .landing-canvas::-webkit-scrollbar-thumb {
-      background: rgba(197, 165, 90, 0.4) !important;
-      border-radius: 4px !important;
-    }
-    .landing-canvas::-webkit-scrollbar-thumb:hover {
-      background: rgba(197, 165, 90, 0.6) !important;
-    }
+    .landing-canvas::-webkit-scrollbar { display: block !important; width: 8px !important; }
+    .landing-canvas::-webkit-scrollbar-track { background: #F6F0E6 !important; border-radius: 0 40px 40px 0 !important; }
+    .landing-canvas::-webkit-scrollbar-thumb { background: rgba(197, 165, 90, 0.4) !important; border-radius: 4px !important; }
+    .landing-canvas::-webkit-scrollbar-thumb:hover { background: rgba(197, 165, 90, 0.6) !important; }
     @media (max-width: 768px) {
       .landing-frame { padding: 8px !important; }
       .landing-canvas::-webkit-scrollbar-track { border-radius: 0 24px 24px 0 !important; }
     }
 
     /* ========================================
-       CARD-LIST LEGAL PAGE DESIGN
+       PROFESSIONAL LEGAL PAGE
        ======================================== */
-    .legal-container {
-      max-width: 620px;
+
+    .legal-layout {
+      display: flex;
+      max-width: 980px;
       margin: 0 auto;
-      padding: 40px 24px 80px;
+      padding: 48px 24px 80px;
+      gap: 48px;
       width: 100%;
       box-sizing: border-box;
     }
 
+    /* --- Table of Contents (sidebar) --- */
+    .legal-toc {
+      position: sticky;
+      top: 32px;
+      align-self: flex-start;
+      width: 200px;
+      flex-shrink: 0;
+      padding-top: 120px;
+    }
+    .toc-label {
+      font-size: .65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #999;
+      margin-bottom: 16px;
+      padding-left: 14px;
+    }
+    .toc-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .toc-list li a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      font-size: .78rem;
+      color: #777;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+    .toc-list li a:hover {
+      color: #1A1A1C;
+      background: rgba(26,26,28,0.04);
+    }
+    .toc-num {
+      font-size: .65rem;
+      font-weight: 700;
+      color: #C5A55A;
+      min-width: 18px;
+    }
+
+    /* --- Main Content --- */
+    .legal-main {
+      flex: 1;
+      min-width: 0;
+      max-width: 680px;
+    }
+
     /* Page Header */
-    .legal-page-title {
-      font-size: 2.2rem;
+    .legal-header {
+      margin-bottom: 36px;
+      padding-top: 8px;
+    }
+    .legal-header h1 {
+      font-size: 2rem;
       font-weight: 800;
       font-family: var(--fh);
       color: #1A1A1C;
       letter-spacing: -0.5px;
-      margin-bottom: 6px;
+      margin: 0 0 6px;
+      line-height: 1.2;
     }
-    .legal-page-date {
-      font-size: .8rem;
+    .legal-date {
+      font-size: .78rem;
       color: #999;
-      margin-bottom: 28px;
+      font-weight: 400;
     }
 
-    /* Summary "In Short" — featured dark card (like the active JP card) */
-    .legal-summary-pill {
-      background: #1A1A1C;
-      border-radius: 20px;
-      padding: 22px 28px;
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      margin-bottom: 12px;
-      position: relative;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
-    }
-    .legal-summary-badge {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #C5A55A, #8a7540);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: .7rem;
-      font-weight: 800;
-      color: #fff;
-      letter-spacing: 0.5px;
-      box-shadow: 0 2px 8px rgba(197,165,90,0.3);
-    }
-    .legal-summary-text {
-      flex: 1;
-    }
-    .legal-summary-text .pill-title {
-      font-size: .95rem;
-      font-weight: 700;
-      color: #F6F0E6;
-      margin-bottom: 2px;
-    }
-    .legal-summary-text .pill-sub {
-      font-size: .82rem;
-      color: rgba(246,240,230,0.65);
-      line-height: 1.5;
-    }
-    .legal-summary-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #C5A55A;
-      flex-shrink: 0;
-      box-shadow: 0 0 8px rgba(197,165,90,0.4);
-    }
-
-    /* Section pills — light cards */
-    .legal-pill {
+    /* Summary highlight */
+    .legal-summary {
       background: #FFFFFF;
-      border: 1px solid rgba(26,26,28,0.06);
-      border-radius: 20px;
+      border: 1px solid rgba(26,26,28,0.08);
+      border-left: 3px solid #C5A55A;
+      border-radius: 12px;
       padding: 20px 24px;
-      margin-bottom: 8px;
-      display: flex;
-      align-items: flex-start;
-      gap: 18px;
-      transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
-      cursor: pointer;
-      position: relative;
-    }
-    .legal-pill:hover {
-      background: #1A1A1C;
-      border-color: rgba(197,165,90,0.25);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.15), 0 0 0 1px rgba(197,165,90,0.1);
-      transform: translateY(-3px) scale(1.01);
-    }
-    .legal-pill:hover .pill-title {
-      color: #F6F0E6;
-    }
-    .legal-pill:hover .pill-body,
-    .legal-pill:hover .pill-body p,
-    .legal-pill:hover .pill-body ul li {
-      color: rgba(246,240,230,0.6);
-    }
-    .legal-pill:hover .pill-body strong {
-      color: #F6F0E6;
-    }
-    .legal-pill:hover .pill-body a {
-      color: #C5A55A;
-    }
-    .legal-pill:hover .pill-body ul li::before {
-      background: #C5A55A;
-      box-shadow: 0 0 6px rgba(197,165,90,0.5);
-    }
-    /* Gold dot indicator — appears on hover */
-    .legal-pill::after {
-      content: '';
-      position: absolute;
-      right: 24px;
-      top: 50%;
-      transform: translateY(-50%) scale(0);
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: #C5A55A;
-      box-shadow: 0 0 8px rgba(197,165,90,0.4);
-      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
-    }
-    .legal-pill:hover::after {
-      transform: translateY(-50%) scale(1);
-    }
-
-    /* Circle badge in each pill */
-    .pill-badge {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: #EFEAD9;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-      font-size: .7rem;
-      font-weight: 800;
-      color: #8a7540;
-      letter-spacing: 0.5px;
-      border: 2px solid rgba(197,165,90,0.15);
-      margin-top: 2px;
-      transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
-    }
-    .legal-pill:hover .pill-badge {
-      background: linear-gradient(135deg, #C5A55A, #8a7540);
-      color: #fff;
-      border-color: transparent;
-      box-shadow: 0 4px 16px rgba(197,165,90,0.35);
-    }
-
-    /* Pill content */
-    .pill-content {
-      flex: 1;
-      min-width: 0;
-    }
-    .pill-title {
-      font-size: .95rem;
-      font-weight: 700;
-      color: #1A1A1C;
-      margin-bottom: 8px;
-      font-family: var(--fh);
-    }
-    .pill-body {
-      font-size: .85rem;
+      margin-bottom: 32px;
+      font-size: .88rem;
       color: #555;
       line-height: 1.7;
     }
-    .pill-body p {
-      margin: 0 0 8px;
+    .legal-summary strong {
+      color: #1A1A1C;
+      font-weight: 700;
     }
-    .pill-body ul {
-      margin: 6px 0 0 0;
+
+    /* Sections */
+    .legal-section {
+      margin-bottom: 0;
+      border-bottom: 1px solid rgba(26,26,28,0.06);
+      padding: 28px 0;
+    }
+    .legal-section:first-of-type {
+      border-top: 1px solid rgba(26,26,28,0.06);
+    }
+    .legal-section:last-of-type {
+      border-bottom: none;
+    }
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .section-num {
+      font-size: .7rem;
+      font-weight: 800;
+      color: #C5A55A;
+      min-width: 20px;
+      font-family: var(--fh);
+    }
+    .section-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #1A1A1C;
+      font-family: var(--fh);
+      letter-spacing: -0.2px;
+    }
+    .section-body {
+      padding-left: 32px;
+      font-size: .87rem;
+      color: #555;
+      line-height: 1.8;
+    }
+    .section-body p {
+      margin: 0 0 10px;
+    }
+    .section-body ul {
+      margin: 8px 0 0;
       padding: 0;
       list-style: none;
     }
-    .pill-body ul li {
+    .section-body ul li {
       position: relative;
-      padding-left: 18px;
-      margin-bottom: 6px;
-      font-size: .83rem;
-      color: #555;
-      line-height: 1.6;
+      padding-left: 20px;
+      margin-bottom: 8px;
+      line-height: 1.7;
     }
-    .pill-body ul li::before {
+    .section-body ul li::before {
       content: '';
       position: absolute;
       left: 0;
-      top: 8px;
-      width: 6px;
-      height: 6px;
+      top: 10px;
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
       background: #C5A55A;
     }
-    .pill-body strong {
+    .section-body strong {
       color: #1A1A1C;
       font-weight: 600;
     }
-    .pill-body a {
+    .section-body a {
       color: #8a7540;
       text-decoration: underline;
+      text-underline-offset: 2px;
       transition: color 0.2s;
     }
-    .pill-body a:hover {
+    .section-body a:hover {
       color: #C5A55A;
     }
 
-    /* Footer pill */
-    .legal-footer-pill {
-      background: #FFFFFF;
-      border: 1px solid rgba(26,26,28,0.06);
-      border-radius: 20px;
-      padding: 24px;
-      margin-top: 20px;
+    /* Footer */
+    .legal-footer {
+      margin-top: 40px;
+      padding-top: 24px;
+      border-top: 1px solid rgba(26,26,28,0.08);
       text-align: center;
     }
-    .legal-footer-pill p {
+    .legal-footer p {
+      font-size: .78rem;
       color: #999;
-      font-size: .8rem;
       margin: 0;
       line-height: 1.6;
     }
 
     /* Responsive */
+    @media (max-width: 860px) {
+      .legal-toc { display: none; }
+      .legal-layout { padding: 32px 20px 60px; }
+    }
     @media (max-width: 480px) {
-      .legal-container { padding: 24px 16px 60px; }
-      .legal-page-title { font-size: 1.6rem; }
-      .legal-summary-pill { padding: 18px 20px; gap: 14px; }
-      .legal-pill { padding: 16px 18px; gap: 14px; }
-      .pill-badge, .legal-summary-badge { width: 38px; height: 38px; font-size: .6rem; }
-      .pill-title { font-size: .88rem; }
-      .pill-body, .pill-body ul li { font-size: .8rem; }
+      .legal-header h1 { font-size: 1.5rem; }
+      .section-body { padding-left: 0; }
+      .legal-layout { padding: 24px 16px 48px; }
     }
   </style>
 </head>
@@ -301,7 +256,6 @@
   <div class="landing-frame">
     <div class="landing-canvas">
 
-      <!-- Top Left Dark Cutout (Logo Area) -->
       <div class="cutout-top-left">
         <div class="outer-logo">
           <a href="/" style="text-decoration:none; display:flex; align-items:center;">
@@ -310,41 +264,51 @@
         </div>
       </div>
 
-      <!-- Top Right Dark Cutout (Actions Area) -->
       <div class="cutout-top-right">
         <div class="outer-actions">
           <a href="/" class="outer-login-btn" style="text-decoration:none; display:inline-flex; align-items:center; justify-content:center;">Back to Home</a>
         </div>
       </div>
 
-      <!-- Fillets for organic transitions (concave corners) -->
       <div class="fillet fillet-tl-bottom"></div>
       <div class="fillet fillet-tl-right"></div>
       <div class="fillet fillet-tr-bottom"></div>
       <div class="fillet fillet-tr-left"></div>
 
-      <!-- Inner Canvas Content -->
-      <div class="canvas-content" style="padding: 120px 48px 60px; box-sizing: border-box; flex: 1;">
-        <div class="legal-container">
-          <h1 class="legal-page-title">Privacy Policy</h1>
-          <p class="legal-page-date">Last updated: May 20, 2026</p>
+      <div class="canvas-content" style="padding: 100px 48px 40px; box-sizing: border-box; flex: 1;">
+        <div class="legal-layout">
 
-          <!-- Summary — Dark featured card -->
-          <div class="legal-summary-pill">
-            <div class="legal-summary-badge">AI</div>
-            <div class="legal-summary-text">
-              <div class="pill-title">In Short</div>
-              <div class="pill-sub">We only collect what's necessary to provide the service. We never sell your data. Your emails are encrypted with AES-256 military-grade encryption.</div>
+          <!-- Table of Contents -->
+          <nav class="legal-toc">
+            <div class="toc-label">Contents</div>
+            <ul class="toc-list">
+              <li><a href="#pp-1"><span class="toc-num">01</span> Information We Collect</a></li>
+              <li><a href="#pp-2"><span class="toc-num">02</span> How We Use It</a></li>
+              <li><a href="#pp-3"><span class="toc-num">03</span> Data Security</a></li>
+              <li><a href="#pp-4"><span class="toc-num">04</span> Third-Party Services</a></li>
+              <li><a href="#pp-5"><span class="toc-num">05</span> Data Retention</a></li>
+              <li><a href="#pp-6"><span class="toc-num">06</span> Your Rights</a></li>
+              <li><a href="#pp-7"><span class="toc-num">07</span> Contact</a></li>
+            </ul>
+          </nav>
+
+          <!-- Main Content -->
+          <div class="legal-main">
+            <div class="legal-header">
+              <h1>Privacy Policy</h1>
+              <p class="legal-date">Last updated: May 20, 2026</p>
             </div>
-            <div class="legal-summary-dot"></div>
-          </div>
 
-          <!-- Section 1 -->
-          <div class="legal-pill">
-            <div class="pill-badge">01</div>
-            <div class="pill-content">
-              <div class="pill-title">Information We Collect</div>
-              <div class="pill-body">
+            <div class="legal-summary">
+              <strong>In short:</strong> We only collect what's necessary to provide the service. We never sell your data. Your emails are encrypted with AES-256 military-grade encryption.
+            </div>
+
+            <div class="legal-section" id="pp-1">
+              <div class="section-head">
+                <span class="section-num">01</span>
+                <span class="section-title">Information We Collect</span>
+              </div>
+              <div class="section-body">
                 <p>When you create an account and use AutoInbox, we collect:</p>
                 <ul>
                   <li><strong>Account Information:</strong> Your name, email address, and password (hashed using bcrypt with 12 salt rounds).</li>
@@ -355,14 +319,13 @@
                 </ul>
               </div>
             </div>
-          </div>
 
-          <!-- Section 2 -->
-          <div class="legal-pill">
-            <div class="pill-badge">02</div>
-            <div class="pill-content">
-              <div class="pill-title">How We Use Your Information</div>
-              <div class="pill-body">
+            <div class="legal-section" id="pp-2">
+              <div class="section-head">
+                <span class="section-num">02</span>
+                <span class="section-title">How We Use Your Information</span>
+              </div>
+              <div class="section-body">
                 <p>Your information is used exclusively to:</p>
                 <ul>
                   <li>Provide AI-powered auto-reply drafts that match your writing style.</li>
@@ -372,14 +335,13 @@
                 </ul>
               </div>
             </div>
-          </div>
 
-          <!-- Section 3 -->
-          <div class="legal-pill">
-            <div class="pill-badge">03</div>
-            <div class="pill-content">
-              <div class="pill-title">Data Security</div>
-              <div class="pill-body">
+            <div class="legal-section" id="pp-3">
+              <div class="section-head">
+                <span class="section-num">03</span>
+                <span class="section-title">Data Security</span>
+              </div>
+              <div class="section-body">
                 <p>We take security seriously:</p>
                 <ul>
                   <li><strong>Encryption:</strong> All email credentials are encrypted with AES-256-GCM, the same standard used by banks and military systems.</li>
@@ -390,14 +352,13 @@
                 </ul>
               </div>
             </div>
-          </div>
 
-          <!-- Section 4 -->
-          <div class="legal-pill">
-            <div class="pill-badge">04</div>
-            <div class="pill-content">
-              <div class="pill-title">Third-Party Services</div>
-              <div class="pill-body">
+            <div class="legal-section" id="pp-4">
+              <div class="section-head">
+                <span class="section-num">04</span>
+                <span class="section-title">Third-Party Services</span>
+              </div>
+              <div class="section-body">
                 <p>We use the following third-party services:</p>
                 <ul>
                   <li><strong>Google Gemini AI:</strong> To generate email reply drafts. Email content is sent to Google's API for processing. See <a href="https://ai.google.dev/terms" target="_blank">Google AI Terms</a>.</li>
@@ -406,25 +367,23 @@
                 </ul>
               </div>
             </div>
-          </div>
 
-          <!-- Section 5 -->
-          <div class="legal-pill">
-            <div class="pill-badge">05</div>
-            <div class="pill-content">
-              <div class="pill-title">Data Retention</div>
-              <div class="pill-body">
+            <div class="legal-section" id="pp-5">
+              <div class="section-head">
+                <span class="section-num">05</span>
+                <span class="section-title">Data Retention</span>
+              </div>
+              <div class="section-body">
                 <p>We retain your data for as long as your account is active. You can delete your account at any time by disconnecting your email and contacting us. Upon deletion, all your data (messages, drafts, voice samples, and credentials) will be permanently removed.</p>
               </div>
             </div>
-          </div>
 
-          <!-- Section 6 -->
-          <div class="legal-pill">
-            <div class="pill-badge">06</div>
-            <div class="pill-content">
-              <div class="pill-title">Your Rights</div>
-              <div class="pill-body">
+            <div class="legal-section" id="pp-6">
+              <div class="section-head">
+                <span class="section-num">06</span>
+                <span class="section-title">Your Rights</span>
+              </div>
+              <div class="section-body">
                 <p>You have the right to:</p>
                 <ul>
                   <li>Access your personal data stored in our system.</li>
@@ -434,23 +393,21 @@
                 </ul>
               </div>
             </div>
-          </div>
 
-          <!-- Section 7 -->
-          <div class="legal-pill">
-            <div class="pill-badge">07</div>
-            <div class="pill-content">
-              <div class="pill-title">Contact</div>
-              <div class="pill-body">
+            <div class="legal-section" id="pp-7">
+              <div class="section-head">
+                <span class="section-num">07</span>
+                <span class="section-title">Contact</span>
+              </div>
+              <div class="section-body">
                 <p>If you have questions about this privacy policy, contact us at:</p>
                 <p><strong>Email:</strong> <a href="mailto:autoinbox.app@gmail.com">autoinbox.app@gmail.com</a></p>
               </div>
             </div>
-          </div>
 
-          <!-- Footer -->
-          <div class="legal-footer-pill">
-            <p>AutoInbox Software Publishing Services<br>DTI Registered · Philippines</p>
+            <div class="legal-footer">
+              <p>AutoInbox Software Publishing Services<br>DTI Registered · Philippines</p>
+            </div>
           </div>
         </div>
       </div>
