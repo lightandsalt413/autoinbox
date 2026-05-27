@@ -1988,6 +1988,13 @@ body::-webkit-scrollbar {
   margin-bottom: 22px;
 }
 
+.hero-gradient-text {
+  background: linear-gradient(135deg, #8A7540 0%, #C5A55A 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
 .canvas-cta-area {
   margin-bottom: 22px;
 }
@@ -2004,11 +2011,14 @@ body::-webkit-scrollbar {
   display: flex;
   align-items: center;
   gap: 12px;
-  transition: all 0.3s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 14px rgba(26, 26, 28, 0.15);
 }
 
 .canvas-contact-btn:hover {
-  background: #33312c;
+  background: #C5A55A !important;
+  color: #0A0A0B !important;
+  box-shadow: 0 6px 20px rgba(197, 165, 90, 0.45) !important;
   transform: translateY(-2px);
 }
 
@@ -2021,19 +2031,27 @@ body::-webkit-scrollbar {
   background-color: #F6F0E6;
   color: #1A1A1C;
   border-radius: 50%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.canvas-contact-btn:hover .cta-arrow-circle {
+  background-color: #0A0A0B !important;
+  color: #C5A55A !important;
+  transform: translateX(4px) scale(1.05);
 }
 
 .canvas-divider {
-  width: 180px;
+  width: 220px;
+  height: 1px;
   border: 0;
-  border-top: 1px solid rgba(26, 26, 28, 0.2);
+  background: linear-gradient(90deg, rgba(26, 26, 28, 0.2) 0%, rgba(26, 26, 28, 0.03) 100%);
   margin: 0 0 18px;
 }
 
 .canvas-desc {
-  color: #55524c;
-  font-size: 0.95rem;
-  line-height: 1.55;
+  color: #4A4742;
+  font-size: 0.98rem;
+  line-height: 1.6;
   max-width: 440px;
 }
 
