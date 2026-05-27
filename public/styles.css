@@ -1527,17 +1527,30 @@ body::-webkit-scrollbar {
 #pricing-modal .pop-tag {
   top: -14px !important;
   background: linear-gradient(135deg, #FFE8A3 0%, #C5A55A 50%, #8A7540 100%) !important;
-  color: #1A1A1C !important;
-  font-weight: 800 !important;
+  color: #121214 !important;
+  font-weight: 900 !important;
   font-size: 0.72rem !important;
-  padding: 5px 18px !important;
+  padding: 6px 20px !important;
   border-radius: 50px !important;
   box-shadow: 
     0 6px 15px rgba(197, 165, 90, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+    inset 0 1px 0 rgba(255, 255, 255, 0.5) !important;
   letter-spacing: 1.5px !important;
   text-transform: uppercase !important;
   border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  z-index: 10 !important;
+}
+
+/* Ensure no clipping inside scrollable modal box */
+#pricing-modal .modal-box {
+  padding-top: 48px !important;
+  overflow-y: auto !important;
+}
+
+#pricing-modal .price-row {
+  margin-top: 40px !important;
+  padding-top: 20px !important;
+  overflow: visible !important;
 }
 
 /* Free Trial Badge Capsule */
