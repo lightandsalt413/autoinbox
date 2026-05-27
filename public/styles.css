@@ -1249,14 +1249,33 @@ body::-webkit-scrollbar {
   color: #1A1A1C;
 }
 
-/* Close button */
+/* Close button - premium circular black button with gold X */
 #features-modal .modal-x,
 #pricing-modal .modal-x,
 #how-modal .modal-x,
 #faq-modal .modal-x,
 #feedback-modal .modal-x,
 #languages-modal .modal-x {
-  color: rgba(26, 26, 28, 0.4);
+  position: absolute !important;
+  top: 24px !important;
+  right: 24px !important;
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  background: #1A1A1C !important;
+  border: 1px solid rgba(197, 165, 90, 0.3) !important;
+  color: #C5A55A !important;
+  font-size: 1.2rem !important;
+  font-weight: 700 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  cursor: pointer !important;
+  z-index: 100 !important;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  padding: 0 !important;
+  line-height: 1 !important;
 }
 #features-modal .modal-x:hover,
 #pricing-modal .modal-x:hover,
@@ -1264,7 +1283,11 @@ body::-webkit-scrollbar {
 #faq-modal .modal-x:hover,
 #feedback-modal .modal-x:hover,
 #languages-modal .modal-x:hover {
-  color: #1A1A1C;
+  background: #C5A55A !important;
+  color: #1A1A1C !important;
+  border-color: #C5A55A !important;
+  transform: scale(1.1) rotate(90deg) !important;
+  box-shadow: 0 6px 20px rgba(197, 165, 90, 0.4) !important;
 }
 
 /* Section tags */
