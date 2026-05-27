@@ -1769,11 +1769,11 @@ document.getElementById('form-feedback')?.addEventListener('submit', async (e) =
    ========================================== */
 (function initInboxMockup() {
   const emails = [
-    { name: 'Alice Johnson', initials: 'AJ', subject: 'Collaboration Request — Q4 Project', time: '5:00 AM' },
-    { name: 'Benjamin Lee', initials: 'BL', subject: 'Welcome to Nova SaaS', time: '3:20 PM' },
-    { name: 'Sophie Dupont', initials: 'SD', subject: 'Invoice: $1,450.00', time: '2:08 PM' },
-    { name: 'Yuki Tanaka', initials: 'YT', subject: 'ウェブサイトの料金を教えてください', time: '1:45 PM' },
-    { name: 'Carlos Rivera', initials: 'CR', subject: 'Partnership Opportunity', time: '11:30 AM' },
+    { name: 'Liam Henderson', initials: 'LH', subject: 'Urgent: Project Proposal & Design Rates', time: '4:30 PM' },
+    { name: 'Kristine Lim', initials: 'KL', subject: 'GCash payment receipt for Order #5982', time: '3:15 PM' },
+    { name: 'Yuki Tanaka', initials: 'YT', subject: 'ウェブサイトの料金を教えてください', time: '2:08 PM' },
+    { name: 'Dr. Sophia Reynolds', initials: 'SR', subject: 'Consultation Booking & AI Strategy Package', time: '1:45 PM' },
+    { name: 'Carlos Rivera', initials: 'CR', subject: 'Brand Collaboration & Affiliate Proposal', time: '11:30 AM' },
   ];
 
   const container = document.getElementById('mockup-emails');
