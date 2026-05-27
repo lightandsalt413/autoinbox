@@ -1995,26 +1995,24 @@ body::-webkit-scrollbar {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  background: #1A1A1C !important;
-  color: #C5A55A !important;
-  border: 1px solid rgba(197, 165, 90, 0.45) !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  color: #d9d0c3 !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
   border-radius: 20px !important;
   font-size: 0.82rem !important;
-  font-weight: 700 !important;
+  font-weight: 600 !important;
   cursor: pointer !important;
   padding: 0 20px !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   white-space: nowrap !important;
   font-family: var(--f) !important;
   box-sizing: border-box !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
 }
 .outer-login-btn:hover {
-  color: #1A1A1C !important;
-  background: #C5A55A !important;
-  border-color: #C5A55A !important;
+  color: #FAFAFA !important;
+  background: rgba(255, 255, 255, 0.09) !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
   transform: translateY(-1px) !important;
-  box-shadow: 0 6px 20px rgba(197, 165, 90, 0.4) !important;
 }
 .outer-lang-btn {
   background: transparent;
@@ -2041,26 +2039,26 @@ body::-webkit-scrollbar {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  background: #1A1A1C !important;
-  color: #C5A55A !important;
-  border: 1.5px solid #C5A55A !important;
+  background: rgba(197, 165, 90, 0.03) !important;
+  color: #FAFAFA !important;
+  border: 1.5px solid rgba(197, 165, 90, 0.6) !important;
   border-radius: 20px !important;
   padding: 0 10px 0 20px !important;
   font-size: 0.82rem !important;
-  font-weight: 700 !important;
+  font-weight: 600 !important;
   cursor: pointer !important;
   gap: 8px !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   white-space: nowrap !important;
   font-family: var(--f) !important;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  box-shadow: 0 0 10px rgba(197, 165, 90, 0.05) !important;
   box-sizing: border-box !important;
 }
 .outer-connect-btn:hover {
   background: #C5A55A !important;
-  color: #1A1A1C !important;
+  color: #0A0A0B !important;
   border-color: #C5A55A !important;
-  box-shadow: 0 6px 20px rgba(197, 165, 90, 0.4) !important;
+  box-shadow: 0 4px 20px rgba(197, 165, 90, 0.45) !important;
   transform: translateY(-1px) !important;
 }
 .connect-arrow {
@@ -2069,13 +2067,13 @@ body::-webkit-scrollbar {
   justify-content: center !important;
   width: 22px !important;
   height: 22px !important;
-  background-color: #C5A55A !important;
-  color: #1A1A1C !important;
+  background-color: #FAFAFA !important;
+  color: #0A0A0B !important;
   border-radius: 50% !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 .outer-connect-btn:hover .connect-arrow {
-  background-color: #1A1A1C !important;
+  background-color: #0A0A0B !important;
   color: #C5A55A !important;
   transform: translateX(4px) scale(1.05) !important;
 }
@@ -2906,34 +2904,36 @@ body::-webkit-scrollbar {
   margin: auto;
 }
 
-/* Close button inside auth modal — top-right corner */
 .modal-page .modal-x {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(26, 26, 28, 0.06);
-  border: 1px solid rgba(26, 26, 28, 0.08);
-  border-radius: 50%;
-  color: rgba(26, 26, 28, 0.45);
-  font-size: 1.1rem;
-  cursor: pointer;
-  z-index: 100;
-  transition: all 0.2s ease;
-  padding: 0;
-  line-height: 1;
-  pointer-events: auto;
+  position: absolute !important;
+  top: 20px !important;
+  right: 20px !important;
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  background: #1A1A1C !important;
+  border: 1px solid rgba(197, 165, 90, 0.3) !important;
+  color: #C5A55A !important;
+  font-size: 1.2rem !important;
+  font-weight: 700 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  cursor: pointer !important;
+  z-index: 100 !important;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+  pointer-events: auto !important;
 }
 
 .modal-page .modal-x:hover {
-  background: rgba(26, 26, 28, 0.12);
-  color: #1A1A1C;
-  border-color: rgba(26, 26, 28, 0.15);
-  transform: scale(1.05);
+  background: #C5A55A !important;
+  color: #1A1A1C !important;
+  border-color: #C5A55A !important;
+  transform: scale(1.1) rotate(90deg) !important;
+  box-shadow: 0 6px 20px rgba(197, 165, 90, 0.4) !important;
 }
 
 /* Headings inside auth modals */
