@@ -1,12 +1,13 @@
 /**
  * Profanity Filter — AutoInbox Security Module
  * Blocks foul language in all user-submitted text inputs.
- * Covers English, Filipino/Tagalog, and common leetspeak variations.
+ * Covers 12 languages: English, Filipino, Spanish, French, German,
+ * Portuguese, Italian, Indonesian, Hindi, Japanese, Korean, Arabic.
  */
 
-// Comprehensive bad words list (English + Filipino/Tagalog + common variants)
+// Comprehensive multilingual bad words list
 const BAD_WORDS = [
-  // English profanity
+  // ── English ──
   'fuck','fucker','fucking','fucked','fucks','fck','fcking','fcked','fuk','fukin',
   'shit','shitty','shitting','bullshit','shite','sht',
   'ass','asshole','assholes','arse','arsehole',
@@ -28,7 +29,7 @@ const BAD_WORDS = [
   'retard','retarded',
   'faggot','fag','fags',
 
-  // Filipino/Tagalog profanity
+  // ── Filipino / Tagalog ──
   'putangina','putang ina','puta','tangina','tanginamo','tanginang',
   'gago','gaga','gagong',
   'bobo','tanga','ulol','inutil',
@@ -41,16 +42,171 @@ const BAD_WORDS = [
   'kupal',
   'hindot','hindutan','kantot','kantutan','jakol',
   'tite','titi','pepe','pekpek',
-  'betlog',
-  'burat',
-  'ogag',
-  'peste','pesteng',
-  'siraulo',
-  'gunggong',
-  'hampas lupa',
-  'ungas','unggas',
+  'betlog','burat','ogag',
+  'peste','pesteng','siraulo','gunggong',
+  'hampas lupa','ungas','unggas',
 
-  // Leetspeak / evasion variants
+  // ── Spanish ──
+  'mierda','puta','puto','hijo de puta','hijueputa',
+  'cabron','cabrón','pendejo','pendeja',
+  'chingar','chingada','chingado','pinche',
+  'coño','cono','carajo',
+  'culero','culera','culo',
+  'verga','vergon','joder','jodido','jodida',
+  'marica','maricon','maricón',
+  'estupido','estúpido','idiota','imbecil','imbécil',
+  'zorra','perra','malparido','malparida',
+  'cojones','huevon','huevón','mamón',
+  'chinga tu madre','la concha de tu madre',
+
+  // ── French ──
+  'merde','putain','pute','salaud','salope',
+  'connard','connasse','con','conne',
+  'enculer','enculé','nique','niquer',
+  'nique ta mere','nique ta mère',
+  'fils de pute','fdp',
+  'bordel','foutre','baise','baiser',
+  'couille','couilles',
+  'branleur','branleuse',
+  'ta gueule','ferme ta gueule',
+  'batard','bâtard',
+  'encule','pd','pédé','pede',
+  'trouduc','trou du cul',
+  'abruti','abrutie',
+
+  // ── German ──
+  'scheiße','scheisse','scheiss','scheiß',
+  'fick','ficken','ficker','gefickt',
+  'arschloch','arsch',
+  'hurensohn','hure','hurentochter',
+  'wichser','wichsen',
+  'fotze','muschi',
+  'schwanz','schwanzlutscher',
+  'drecksau','dreckig',
+  'miststück','mistkerl',
+  'vollidiot','idiot','depp','trottel','dummkopf',
+  'schlampe','nutte',
+  'verdammt','verfickt',
+  'spast','spasti','behindert',
+  'leck mich','halt die fresse',
+
+  // ── Portuguese ──
+  'merda','porra','caralho','cacete',
+  'puta','filho da puta','filha da puta','fdp',
+  'foder','foda','foda-se','fodido','fodida',
+  'buceta','boceta',
+  'cu','cuzão','cuzao',
+  'viado','veado','bicha',
+  'arrombado','arrombada',
+  'desgraçado','desgraçada','desgracado',
+  'otário','otaria','otario',
+  'babaca','idiota','imbecil',
+  'piranha','vaca','vadia','vagabunda',
+  'corno','chifrudo',
+  'pau no cu','vai se foder','vai tomar no cu',
+
+  // ── Italian ──
+  'cazzo','minchia',
+  'vaffanculo','fanculo','affanculo',
+  'stronzo','stronza',
+  'merda','merdoso','merdosa',
+  'puttana','troia','zoccola','baldracca',
+  'coglione','coglioni',
+  'cornuto','cornuta',
+  'porco dio','dio cane','madonna',
+  'figlio di puttana',
+  'bastardo','bastarda',
+  'idiota','cretino','cretina','deficiente',
+  'culo','fica',
+  'cazzata','stronzata',
+  'testa di cazzo','pezzo di merda',
+
+  // ── Indonesian / Malay ──
+  'bangsat','bajingan','brengsek',
+  'anjing','anjir','anjay',
+  'babi','babik',
+  'kontol','memek','pepek',
+  'ngentot','entot','ngewe',
+  'jancok','jancuk','cok',
+  'asu','asuw',
+  'goblok','goblokk','tolol',
+  'bego','bodoh','dungu',
+  'kampret','kampang',
+  'tai','taik','tahi',
+  'setan','iblis',
+  'keparat','sialan',
+  'monyet','monyong',
+  'pantek','pukimak','kimak',
+  'sundal','lacur','lonte',
+
+  // ── Hindi (romanized) ──
+  'chutiya','chutiye','chutia',
+  'madarchod','madarchode','mc',
+  'behenchod','behenchode','bc',
+  'bhenchod','bhenchode',
+  'bhosdike','bhosdiwale',
+  'gaand','gaandu','gandu',
+  'lund','lauda','laude',
+  'randi','raand','rand',
+  'harami','haramzada','haramzadi',
+  'kutta','kutti','kuttiya',
+  'saala','saali','sala','sali',
+  'choot','chut',
+  'tatti','haggu',
+  'ullu ka pattha','gadha',
+  'jhaat','jhaatu',
+  'bakchod','bakchodi',
+
+  // ── Japanese (romanized) ──
+  'kuso','kusottare',
+  'baka','bakayaro',
+  'aho','ahou',
+  'shine','kutabare',
+  'kisama','temee','teme',
+  'kichiku','chikusho',
+  'yariman','bita','bichi',
+  'chinko','chinpo','manko',
+  'unko','kichigai',
+  'fuzakeru','fuzakeruna',
+  'ketsu','ketsunoana',
+  'busu','debu','kusobaba',
+  'shね','koroshite',
+
+  // ── Korean (romanized) ──
+  'shibal','sibal','ssibal','ssbal',
+  'gaesaekki','gaesekki','geseki',
+  'jot','jonna','jotna','좆',
+  'byeongsin','byungshin','병신',
+  'michin','michinom','미친',
+  'ssibal nom','ssibal nyeon',
+  'nom','nyeon',
+  'jiral','jiral','지랄',
+  'gaejasik','개자식',
+  'ttakchyeo','닥쳐',
+  'kkojyeo','꺼져',
+  'meongcheongi','멍청이',
+  'babo','바보',
+  'saekki','새끼',
+
+  // ── Arabic (romanized) ──
+  'kalb','ya kalb',
+  'himar','ya himar','hamaar',
+  'kuss','koss','kos omak','kos ommak',
+  'sharmouta','sharmout','sharmuta','sharmoot',
+  'ibn el sharmouta',
+  'ayreh','ayree','ayre feek',
+  'telhas teezi','tizi',
+  'ahbal','ya ahbal',
+  'manyak','manyake',
+  'ibn el metnaka',
+  'ya khara','khara',
+  'wiskha','wisikh',
+  'khawal','zamel',
+  'ya zebbi','zebi','zeb',
+  'nikomak','nik','ya nik',
+  'yilaan abuk','yilaan diinak',
+
+  // ── Leetspeak / Evasion variants ──
   'f*ck','f**k','s**t','sh*t','a**','b*tch','d*ck','c*nt',
   'f u c k','s h i t','b i t c h',
   'phuck','phuk','fux','biatch','beyotch','biotch',

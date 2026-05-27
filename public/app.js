@@ -3,8 +3,9 @@ if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
 }
 
-// ===== Profanity Filter (Client-Side) =====
+// ===== Profanity Filter (Client-Side — 12 Languages) =====
 const _profanityWords = [
+  // English
   'fuck','fucker','fucking','fucked','fck','fcking','fuk','fukin',
   'shit','shitty','bullshit','sht',
   'asshole','assholes','arsehole',
@@ -14,6 +15,7 @@ const _profanityWords = [
   'whore','whores','slut','sluts',
   'motherfucker','motherfucking','mofo',
   'nigger','nigga','retard','retarded','faggot','fag',
+  // Filipino/Tagalog
   'putangina','putang ina','puta','tangina','tanginamo',
   'gago','gaga','gagong','bobo','tanga','ulol','inutil',
   'tarantado','tarantada','leche','lintik','punyeta',
@@ -21,6 +23,77 @@ const _profanityWords = [
   'kupal','hindot','kantot','jakol',
   'tite','titi','pekpek','betlog','burat','ogag',
   'siraulo','gunggong','ungas',
+  // Spanish
+  'mierda','puto','hijo de puta','hijueputa',
+  'cabron','cabrón','pendejo','pendeja',
+  'chingar','chingada','chingado','pinche',
+  'coño','cono','carajo','culero','culo',
+  'verga','joder','jodido','jodida',
+  'marica','maricon','maricón',
+  'zorra','perra','malparido','cojones',
+  'chinga tu madre',
+  // French
+  'merde','putain','pute','salaud','salope',
+  'connard','connasse','enculer','enculé',
+  'nique','niquer','nique ta mere',
+  'fils de pute','fdp','bordel','foutre',
+  'baise','baiser','branleur','branleuse',
+  'ta gueule','batard','bâtard','trou du cul',
+  // German
+  'scheiße','scheisse','scheiss',
+  'fick','ficken','ficker','gefickt',
+  'arschloch','arsch','hurensohn','hure',
+  'wichser','wichsen','fotze','muschi',
+  'schwanz','drecksau','schlampe','nutte',
+  'verdammt','verfickt','spasti','halt die fresse',
+  // Portuguese
+  'merda','porra','caralho','cacete',
+  'filho da puta','filha da puta',
+  'foder','foda','fodido','fodida',
+  'buceta','boceta','cuzão','cuzao',
+  'arrombado','arrombada','desgraçado',
+  'otário','otario','babaca','vadia','vagabunda',
+  'vai se foder','vai tomar no cu',
+  // Italian
+  'cazzo','minchia','vaffanculo','fanculo',
+  'stronzo','stronza','merdoso','merdosa',
+  'puttana','troia','zoccola',
+  'coglione','coglioni','cornuto','cornuta',
+  'porco dio','dio cane','figlio di puttana',
+  'testa di cazzo','pezzo di merda',
+  // Indonesian/Malay
+  'bangsat','bajingan','brengsek',
+  'anjing','anjir','anjay','babi',
+  'kontol','memek','pepek','ngentot','ngewe',
+  'jancok','jancuk','goblok','tolol',
+  'bego','bodoh','dungu','kampret',
+  'keparat','sialan','pukimak','kimak','sundal','lonte',
+  // Hindi (romanized)
+  'chutiya','chutiye','madarchod','madarchode',
+  'behenchod','behenchode','bhenchod',
+  'bhosdike','gaand','gaandu','gandu',
+  'lund','lauda','laude','randi','raand',
+  'harami','haramzada','haramzadi',
+  'kutta','kutti','saala','saali',
+  'choot','chut','bakchod','bakchodi',
+  // Japanese (romanized)
+  'kuso','kusottare','baka','bakayaro',
+  'kisama','temee','teme','chikusho',
+  'chinko','chinpo','manko','kichigai',
+  'ketsunoana','kusobaba',
+  // Korean (romanized)
+  'shibal','sibal','ssibal','ssbal',
+  'gaesaekki','gaesekki','geseki',
+  'byeongsin','byungshin','michin','michinom',
+  'ssibal nom','ssibal nyeon','saekki',
+  // Arabic (romanized)
+  'kalb','ya kalb','himar','ya himar',
+  'kuss','koss','kos omak','kos ommak',
+  'sharmouta','sharmout','sharmuta','sharmoot',
+  'ibn el sharmouta','ayreh','ayree',
+  'ya khara','khara','khawal','zamel',
+  'nikomak','yilaan abuk',
+  // Leetspeak
   'phuck','phuk','biatch','beyotch','biotch'
 ];
 const _profanityRegex = new RegExp(
