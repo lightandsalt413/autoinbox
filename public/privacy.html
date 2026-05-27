@@ -52,485 +52,212 @@
       background: rgba(197, 165, 90, 0.6) !important;
     }
     @media (max-width: 768px) {
-      .landing-frame {
-        padding: 8px !important;
-      }
-      .landing-canvas::-webkit-scrollbar-track {
-        border-radius: 0 24px 24px 0 !important;
-      }
+      .landing-frame { padding: 8px !important; }
+      .landing-canvas::-webkit-scrollbar-track { border-radius: 0 24px 24px 0 !important; }
     }
 
     /* ========================================
-       PREMIUM PRIVACY PAGE STYLES
+       CARD-LIST LEGAL PAGE DESIGN
        ======================================== */
-
-    /* --- Layout --- */
-    .privacy-layout {
-      display: flex;
-      gap: 0;
-      max-width: 1120px;
+    .legal-container {
+      max-width: 620px;
       margin: 0 auto;
-      padding: 40px 0 80px;
-      position: relative;
-      z-index: 1;
+      padding: 40px 24px 80px;
       width: 100%;
+      box-sizing: border-box;
     }
 
-    /* --- Sticky Table of Contents Sidebar --- */
-    .toc-sidebar {
-      position: sticky;
-      top: 40px;
-      align-self: flex-start;
-      width: 220px;
-      flex-shrink: 0;
-      padding: 0 0 0 24px;
-      margin-top: 160px;
-    }
-    .toc-card {
-      background: linear-gradient(135deg, rgba(255,255,255,0.85), rgba(246,240,230,0.7));
-      backdrop-filter: blur(16px);
-      border: 1px solid rgba(197,165,90,0.18);
-      border-radius: 16px;
-      padding: 24px 20px;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.04), 0 0 0 1px rgba(255,255,255,0.5) inset;
-    }
-    .toc-label {
-      font-size: .65rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      color: #C5A55A;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .toc-label::before {
-      content: '';
-      width: 16px;
-      height: 2px;
-      background: linear-gradient(90deg, #C5A55A, transparent);
-      border-radius: 2px;
-    }
-    .toc-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-    .toc-list li a {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: .78rem;
-      color: #666;
-      text-decoration: none;
-      padding: 7px 10px;
-      border-radius: 8px;
-      transition: all 0.25s ease;
-      line-height: 1.3;
-      font-weight: 500;
-    }
-    .toc-list li a:hover {
-      color: #8a7540;
-      background: rgba(197,165,90,0.08);
-      transform: translateX(3px);
-    }
-    .toc-num {
-      font-size: .65rem;
-      font-weight: 700;
-      color: #C5A55A;
-      min-width: 18px;
-      font-family: var(--fh);
-    }
-
-    /* --- Main Content Area --- */
-    .privacy-main {
-      flex: 1;
-      min-width: 0;
-      padding: 0 48px;
-    }
-
-    /* --- Page Title --- */
-    .privacy-main .page-title {
-      font-size: 2.8rem;
+    /* Page Header */
+    .legal-page-title {
+      font-size: 2.2rem;
       font-weight: 800;
       font-family: var(--fh);
+      color: #1A1A1C;
       letter-spacing: -0.5px;
-      margin-bottom: 8px;
-      background: linear-gradient(135deg, #1A1A1C 0%, #8a7540 50%, #C5A55A 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      line-height: 1.15;
+      margin-bottom: 6px;
     }
-    .privacy-main .page-date {
-      font-size: .82rem;
+    .legal-page-date {
+      font-size: .8rem;
       color: #999;
-      margin-bottom: 36px;
-      font-weight: 400;
-      letter-spacing: 0.3px;
+      margin-bottom: 28px;
     }
 
-    /* --- Glassmorphic "In Short" Hero Card --- */
-    .hero-highlight {
-      position: relative;
-      background: linear-gradient(135deg, rgba(197,165,90,0.10) 0%, rgba(197,165,90,0.03) 100%);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(197,165,90,0.25);
+    /* Summary "In Short" — featured dark card (like the active JP card) */
+    .legal-summary-pill {
+      background: #1A1A1C;
       border-radius: 20px;
-      padding: 28px 32px 28px 32px;
-      margin-bottom: 40px;
-      box-shadow:
-        0 12px 40px rgba(197,165,90,0.08),
-        0 0 0 1px rgba(255,255,255,0.4) inset,
-        0 2px 0 rgba(197,165,90,0.1) inset;
-      overflow: hidden;
-      animation: fadeSlideUp 0.6s ease both;
+      padding: 22px 28px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 12px;
+      position: relative;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.12);
     }
-    .hero-highlight::before {
-      content: '';
-      position: absolute;
-      top: -40px;
-      right: -40px;
-      width: 120px;
-      height: 120px;
-      background: radial-gradient(circle, rgba(197,165,90,0.12) 0%, transparent 70%);
-      pointer-events: none;
+    .legal-summary-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #C5A55A, #8a7540);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: .7rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: 0.5px;
+      box-shadow: 0 2px 8px rgba(197,165,90,0.3);
     }
-    .hero-highlight::after {
-      content: '';
-      position: absolute;
-      bottom: -30px;
-      left: -30px;
-      width: 80px;
-      height: 80px;
-      background: radial-gradient(circle, rgba(197,165,90,0.08) 0%, transparent 70%);
-      pointer-events: none;
+    .legal-summary-text {
+      flex: 1;
     }
-    .hero-highlight-inner {
+    .legal-summary-text .pill-title {
+      font-size: .95rem;
+      font-weight: 700;
+      color: #F6F0E6;
+      margin-bottom: 2px;
+    }
+    .legal-summary-text .pill-sub {
+      font-size: .82rem;
+      color: rgba(246,240,230,0.65);
+      line-height: 1.5;
+    }
+    .legal-summary-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #C5A55A;
+      flex-shrink: 0;
+      box-shadow: 0 0 8px rgba(197,165,90,0.4);
+    }
+
+    /* Section pills — light cards */
+    .legal-pill {
+      background: #FFFFFF;
+      border: 1px solid rgba(26,26,28,0.06);
+      border-radius: 20px;
+      padding: 20px 24px;
+      margin-bottom: 8px;
       display: flex;
       align-items: flex-start;
-      gap: 16px;
-      position: relative;
-      z-index: 1;
+      gap: 18px;
+      transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+      cursor: default;
     }
-    .hero-shield {
-      font-size: 1.6rem;
-      flex-shrink: 0;
+    .legal-pill:hover {
+      background: #FDFBF7;
+      border-color: rgba(197,165,90,0.18);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      transform: translateY(-1px);
+    }
+
+    /* Circle badge in each pill */
+    .pill-badge {
       width: 44px;
       height: 44px;
-      background: linear-gradient(135deg, #C5A55A, #8a7540);
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 16px rgba(197,165,90,0.25);
-    }
-    .hero-highlight-text {
-      font-size: .92rem;
-      color: #444;
-      line-height: 1.8;
-    }
-    .hero-highlight-text strong {
-      color: #1A1A1C;
-      font-weight: 700;
-      font-size: .88rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      display: block;
-      margin-bottom: 4px;
-      color: #8a7540;
-    }
-
-    /* --- Section Cards --- */
-    .section-card {
-      background: linear-gradient(165deg, #FFFFFF 0%, #FDFBF7 100%);
-      border: 1px solid rgba(26,26,28,0.06);
-      border-radius: 16px;
-      padding: 36px 36px 32px;
-      margin-bottom: 8px;
-      box-shadow:
-        0 4px 24px rgba(0,0,0,0.025),
-        0 1px 3px rgba(0,0,0,0.02);
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-    }
-    .section-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, rgba(197,165,90,0.3), transparent);
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-    .section-card:hover {
-      transform: translateY(-4px);
-      box-shadow:
-        0 16px 48px rgba(0,0,0,0.06),
-        0 4px 12px rgba(197,165,90,0.06);
-      border-color: rgba(197,165,90,0.15);
-    }
-    .section-card:hover::before {
-      opacity: 1;
-    }
-
-    /* --- Section Header with Number Badge & Emoji --- */
-    .section-header {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 18px;
-    }
-    .section-badge {
-      width: 42px;
-      height: 42px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #C5A55A 0%, #8a7540 100%);
-      color: #fff;
-      font-size: .82rem;
-      font-weight: 800;
+      background: #EFEAD9;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      box-shadow: 0 4px 16px rgba(197,165,90,0.3);
-      font-family: var(--fh);
-      letter-spacing: -0.3px;
-    }
-    .section-emoji {
-      font-size: 1.15rem;
-      flex-shrink: 0;
-    }
-    .section-card h2 {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #1A1A1C;
-      letter-spacing: -0.3px;
-      margin: 0;
-      font-family: var(--fh);
-      line-height: 1.3;
-    }
-
-    /* --- Section Body Text --- */
-    .section-card p {
-      font-size: .92rem;
-      color: #555;
-      line-height: 1.85;
-      margin: 0 0 4px;
-    }
-    .section-card strong {
-      color: #1A1A1C;
-    }
-
-    /* --- Premium List Styling (Gold Checkmarks) --- */
-    .section-card ul {
-      list-style: none;
-      margin: 12px 0 4px 0;
-      padding: 0;
-    }
-    .section-card li {
-      position: relative;
-      padding: 8px 0 8px 32px;
-      font-size: .9rem;
-      color: #555;
-      line-height: 1.75;
-      border-bottom: 1px solid rgba(26,26,28,0.04);
-      transition: background 0.2s;
-    }
-    .section-card li:last-child {
-      border-bottom: none;
-    }
-    .section-card li:hover {
-      background: rgba(197,165,90,0.02);
-      border-radius: 8px;
-    }
-    .section-card li::before {
-      content: '✓';
-      position: absolute;
-      left: 4px;
-      top: 9px;
-      width: 20px;
-      height: 20px;
-      background: linear-gradient(135deg, rgba(197,165,90,0.12), rgba(197,165,90,0.04));
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: .65rem;
+      font-size: .7rem;
       font-weight: 800;
-      color: #C5A55A;
-      border: 1px solid rgba(197,165,90,0.2);
-    }
-    .section-card li strong {
-      color: #1A1A1C;
-      font-weight: 700;
-    }
-
-    /* --- Links --- */
-    .section-card a, .footer-card a {
       color: #8a7540;
-      text-decoration: none;
-      font-weight: 600;
-      border-bottom: 1px solid rgba(138,117,64,0.2);
-      transition: all 0.25s ease;
-    }
-    .section-card a:hover, .footer-card a:hover {
-      color: #C5A55A;
-      border-bottom-color: #C5A55A;
+      letter-spacing: 0.5px;
+      border: 2px solid rgba(197,165,90,0.15);
+      margin-top: 2px;
     }
 
-    /* --- Gold Divider Between Sections --- */
-    .gold-divider {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      padding: 8px 0;
-      margin: 0 40px;
-    }
-    .gold-divider::before,
-    .gold-divider::after {
-      content: '';
+    /* Pill content */
+    .pill-content {
       flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(197,165,90,0.2), transparent);
+      min-width: 0;
     }
-    .gold-divider-dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: rgba(197,165,90,0.35);
-      flex-shrink: 0;
+    .pill-title {
+      font-size: .95rem;
+      font-weight: 700;
+      color: #1A1A1C;
+      margin-bottom: 8px;
+      font-family: var(--fh);
     }
-
-    /* --- Premium Footer Card --- */
-    .footer-card {
+    .pill-body {
+      font-size: .85rem;
+      color: #555;
+      line-height: 1.7;
+    }
+    .pill-body p {
+      margin: 0 0 8px;
+    }
+    .pill-body ul {
+      margin: 6px 0 0 0;
+      padding: 0;
+      list-style: none;
+    }
+    .pill-body ul li {
       position: relative;
-      background: linear-gradient(165deg, #FFFFFF 0%, #FDFBF7 100%);
-      border-radius: 16px;
-      padding: 32px;
-      margin-top: 32px;
-      text-align: center;
-      overflow: hidden;
-      border: 2px solid transparent;
-      background-clip: padding-box;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.025);
+      padding-left: 18px;
+      margin-bottom: 6px;
+      font-size: .83rem;
+      color: #555;
+      line-height: 1.6;
     }
-    .footer-card::before {
+    .pill-body ul li::before {
       content: '';
       position: absolute;
-      inset: -2px;
-      border-radius: 18px;
-      padding: 2px;
-      background: linear-gradient(135deg, #C5A55A, rgba(197,165,90,0.2), #C5A55A, rgba(197,165,90,0.1));
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
+      left: 0;
+      top: 8px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #C5A55A;
     }
-    .footer-card p {
-      color: #888;
-      font-size: .85rem;
-      position: relative;
-      z-index: 1;
+    .pill-body strong {
+      color: #1A1A1C;
+      font-weight: 600;
+    }
+    .pill-body a {
+      color: #8a7540;
+      text-decoration: underline;
+      transition: color 0.2s;
+    }
+    .pill-body a:hover {
+      color: #C5A55A;
+    }
+
+    /* Footer pill */
+    .legal-footer-pill {
+      background: #FFFFFF;
+      border: 1px solid rgba(26,26,28,0.06);
+      border-radius: 20px;
+      padding: 24px;
+      margin-top: 20px;
+      text-align: center;
+    }
+    .legal-footer-pill p {
+      color: #999;
+      font-size: .8rem;
+      margin: 0;
       line-height: 1.6;
     }
 
-    /* --- Fade-in Animation --- */
-    @keyframes fadeSlideUp {
-      from {
-        opacity: 0;
-        transform: translateY(24px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    .section-card:nth-child(1)  { animation: fadeSlideUp 0.5s ease 0.1s both; }
-    .section-card:nth-child(2)  { animation: fadeSlideUp 0.5s ease 0.15s both; }
-    .section-card:nth-child(3)  { animation: fadeSlideUp 0.5s ease 0.2s both; }
-    .section-card:nth-child(4)  { animation: fadeSlideUp 0.5s ease 0.25s both; }
-    .section-card:nth-child(5)  { animation: fadeSlideUp 0.5s ease 0.3s both; }
-    .section-card:nth-child(6)  { animation: fadeSlideUp 0.5s ease 0.35s both; }
-    .section-card:nth-child(7)  { animation: fadeSlideUp 0.5s ease 0.4s both; }
-    .gold-divider { animation: fadeSlideUp 0.4s ease 0.2s both; }
-    .footer-card { animation: fadeSlideUp 0.5s ease 0.5s both; }
-
-    /* --- Responsive --- */
-    @media (max-width: 960px) {
-      .toc-sidebar {
-        display: none;
-      }
-      .privacy-layout {
-        padding: 24px 0 60px;
-      }
-      .privacy-main {
-        padding: 0 24px;
-      }
-      .privacy-main .page-title {
-        font-size: 2rem;
-      }
-      .section-card {
-        padding: 28px 24px 24px;
-      }
-      .gold-divider {
-        margin: 0 20px;
-      }
-    }
+    /* Responsive */
     @media (max-width: 480px) {
-      .privacy-main {
-        padding: 0 16px;
-      }
-      .privacy-main .page-title {
-        font-size: 1.7rem;
-      }
-      .section-header {
-        gap: 10px;
-      }
-      .section-badge {
-        width: 36px;
-        height: 36px;
-        font-size: .75rem;
-      }
-      .section-card h2 {
-        font-size: 1.1rem;
-      }
-      .hero-highlight {
-        padding: 22px 20px;
-      }
-      .hero-highlight-inner {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-      }
-      .hero-shield {
-        width: 38px;
-        height: 38px;
-        font-size: 1.3rem;
-      }
-      .section-card {
-        padding: 24px 20px 20px;
-        border-radius: 14px;
-      }
-      .footer-card {
-        padding: 24px 20px;
-      }
+      .legal-container { padding: 24px 16px 60px; }
+      .legal-page-title { font-size: 1.6rem; }
+      .legal-summary-pill { padding: 18px 20px; gap: 14px; }
+      .legal-pill { padding: 16px 18px; gap: 14px; }
+      .pill-badge, .legal-summary-badge { width: 38px; height: 38px; font-size: .6rem; }
+      .pill-title { font-size: .88rem; }
+      .pill-body, .pill-body ul li { font-size: .8rem; }
     }
   </style>
 </head>
 <body>
   <div class="landing-frame">
     <div class="landing-canvas">
-      
+
       <!-- Top Left Dark Cutout (Logo Area) -->
       <div class="cutout-top-left">
         <div class="outer-logo">
@@ -555,159 +282,133 @@
 
       <!-- Inner Canvas Content -->
       <div class="canvas-content" style="padding: 120px 48px 60px; box-sizing: border-box; flex: 1;">
-        <div class="privacy-layout">
+        <div class="legal-container">
+          <h1 class="legal-page-title">Privacy Policy</h1>
+          <p class="legal-page-date">Last updated: May 20, 2026</p>
 
-          <!-- Sticky Table of Contents Sidebar -->
-          <aside class="toc-sidebar">
-            <nav class="toc-card">
-              <div class="toc-label">Contents</div>
-              <ul class="toc-list">
-                <li><a href="#sec-1"><span class="toc-num">01</span> Information We Collect</a></li>
-                <li><a href="#sec-2"><span class="toc-num">02</span> How We Use</a></li>
-                <li><a href="#sec-3"><span class="toc-num">03</span> Data Security</a></li>
-                <li><a href="#sec-4"><span class="toc-num">04</span> Third-Party Services</a></li>
-                <li><a href="#sec-5"><span class="toc-num">05</span> Data Retention</a></li>
-                <li><a href="#sec-6"><span class="toc-num">06</span> Your Rights</a></li>
-                <li><a href="#sec-7"><span class="toc-num">07</span> Contact</a></li>
-              </ul>
-            </nav>
-          </aside>
+          <!-- Summary — Dark featured card -->
+          <div class="legal-summary-pill">
+            <div class="legal-summary-badge">AI</div>
+            <div class="legal-summary-text">
+              <div class="pill-title">In Short</div>
+              <div class="pill-sub">We only collect what's necessary to provide the service. We never sell your data. Your emails are encrypted with AES-256 military-grade encryption.</div>
+            </div>
+            <div class="legal-summary-dot"></div>
+          </div>
 
-          <!-- Main Content -->
-          <main class="privacy-main">
-            <h1 class="page-title">Privacy Policy</h1>
-            <p class="page-date">Last updated: May 20, 2026</p>
-
-            <!-- Glassmorphic "In Short" Highlight -->
-            <div class="hero-highlight">
-              <div class="hero-highlight-inner">
-                <div class="hero-shield">🔒</div>
-                <div class="hero-highlight-text">
-                  <strong>In short:</strong> We only collect what's necessary to provide the service. We never sell your data. Your emails are encrypted with AES-256 military-grade encryption.
-                </div>
+          <!-- Section 1 -->
+          <div class="legal-pill">
+            <div class="pill-badge">01</div>
+            <div class="pill-content">
+              <div class="pill-title">Information We Collect</div>
+              <div class="pill-body">
+                <p>When you create an account and use AutoInbox, we collect:</p>
+                <ul>
+                  <li><strong>Account Information:</strong> Your name, email address, and password (hashed using bcrypt with 12 salt rounds).</li>
+                  <li><strong>Email Credentials:</strong> Your Gmail address and App Password, encrypted using AES-256-GCM encryption. We never store your actual Google password.</li>
+                  <li><strong>Email Content:</strong> Incoming email metadata (sender, subject, body) for AI processing. This data is stored locally in our encrypted database.</li>
+                  <li><strong>Voice Samples:</strong> Text samples you voluntarily provide to train your AI clone's writing style.</li>
+                  <li><strong>Usage Data:</strong> Basic analytics like message counts and feature usage.</li>
+                </ul>
               </div>
             </div>
+          </div>
 
-            <!-- Section 1 -->
-            <div class="section-card" id="sec-1">
-              <div class="section-header">
-                <div class="section-badge">01</div>
-                <span class="section-emoji">📋</span>
-                <h2>Information We Collect</h2>
+          <!-- Section 2 -->
+          <div class="legal-pill">
+            <div class="pill-badge">02</div>
+            <div class="pill-content">
+              <div class="pill-title">How We Use Your Information</div>
+              <div class="pill-body">
+                <p>Your information is used exclusively to:</p>
+                <ul>
+                  <li>Provide AI-powered auto-reply drafts that match your writing style.</li>
+                  <li>Monitor your inbox for incoming messages (only when you enable this feature).</li>
+                  <li>Send approved replies on your behalf through your own email account.</li>
+                  <li>Improve the accuracy of your AI clone over time.</li>
+                </ul>
               </div>
-              <p>When you create an account and use AutoInbox, we collect:</p>
-              <ul>
-                <li><strong>Account Information:</strong> Your name, email address, and password (hashed using bcrypt with 12 salt rounds).</li>
-                <li><strong>Email Credentials:</strong> Your Gmail address and App Password, encrypted using AES-256-GCM encryption. We never store your actual Google password.</li>
-                <li><strong>Email Content:</strong> Incoming email metadata (sender, subject, body) for AI processing. This data is stored locally in our encrypted database.</li>
-                <li><strong>Voice Samples:</strong> Text samples you voluntarily provide to train your AI clone's writing style.</li>
-                <li><strong>Usage Data:</strong> Basic analytics like message counts and feature usage.</li>
-              </ul>
             </div>
+          </div>
 
-            <div class="gold-divider"><span class="gold-divider-dot"></span></div>
-
-            <!-- Section 2 -->
-            <div class="section-card" id="sec-2">
-              <div class="section-header">
-                <div class="section-badge">02</div>
-                <span class="section-emoji">🔧</span>
-                <h2>How We Use Your Information</h2>
+          <!-- Section 3 -->
+          <div class="legal-pill">
+            <div class="pill-badge">03</div>
+            <div class="pill-content">
+              <div class="pill-title">Data Security</div>
+              <div class="pill-body">
+                <p>We take security seriously:</p>
+                <ul>
+                  <li><strong>Encryption:</strong> All email credentials are encrypted with AES-256-GCM, the same standard used by banks and military systems.</li>
+                  <li><strong>Password Hashing:</strong> Account passwords are hashed using bcrypt (12 rounds). We cannot read your password.</li>
+                  <li><strong>HTTPS:</strong> All data in transit is encrypted via TLS/SSL.</li>
+                  <li><strong>Security Headers:</strong> We use Helmet.js to set strict HTTP security headers.</li>
+                  <li><strong>Rate Limiting:</strong> API endpoints are rate-limited to prevent abuse.</li>
+                </ul>
               </div>
-              <p>Your information is used exclusively to:</p>
-              <ul>
-                <li>Provide AI-powered auto-reply drafts that match your writing style.</li>
-                <li>Monitor your inbox for incoming messages (only when you enable this feature).</li>
-                <li>Send approved replies on your behalf through your own email account.</li>
-                <li>Improve the accuracy of your AI clone over time.</li>
-              </ul>
             </div>
+          </div>
 
-            <div class="gold-divider"><span class="gold-divider-dot"></span></div>
-
-            <!-- Section 3 -->
-            <div class="section-card" id="sec-3">
-              <div class="section-header">
-                <div class="section-badge">03</div>
-                <span class="section-emoji">🛡️</span>
-                <h2>Data Security</h2>
+          <!-- Section 4 -->
+          <div class="legal-pill">
+            <div class="pill-badge">04</div>
+            <div class="pill-content">
+              <div class="pill-title">Third-Party Services</div>
+              <div class="pill-body">
+                <p>We use the following third-party services:</p>
+                <ul>
+                  <li><strong>Google Gemini AI:</strong> To generate email reply drafts. Email content is sent to Google's API for processing. See <a href="https://ai.google.dev/terms" target="_blank">Google AI Terms</a>.</li>
+                  <li><strong>PayMongo:</strong> For payment processing. We never store your payment card details. See <a href="https://www.paymongo.com/privacy" target="_blank">PayMongo Privacy Policy</a>.</li>
+                  <li><strong>Render:</strong> For hosting. See <a href="https://render.com/privacy" target="_blank">Render Privacy Policy</a>.</li>
+                </ul>
               </div>
-              <p>We take security seriously:</p>
-              <ul>
-                <li><strong>Encryption:</strong> All email credentials are encrypted with AES-256-GCM, the same standard used by banks and military systems.</li>
-                <li><strong>Password Hashing:</strong> Account passwords are hashed using bcrypt (12 rounds). We cannot read your password.</li>
-                <li><strong>HTTPS:</strong> All data in transit is encrypted via TLS/SSL.</li>
-                <li><strong>Security Headers:</strong> We use Helmet.js to set strict HTTP security headers.</li>
-                <li><strong>Rate Limiting:</strong> API endpoints are rate-limited to prevent abuse.</li>
-              </ul>
             </div>
+          </div>
 
-            <div class="gold-divider"><span class="gold-divider-dot"></span></div>
-
-            <!-- Section 4 -->
-            <div class="section-card" id="sec-4">
-              <div class="section-header">
-                <div class="section-badge">04</div>
-                <span class="section-emoji">🌐</span>
-                <h2>Third-Party Services</h2>
+          <!-- Section 5 -->
+          <div class="legal-pill">
+            <div class="pill-badge">05</div>
+            <div class="pill-content">
+              <div class="pill-title">Data Retention</div>
+              <div class="pill-body">
+                <p>We retain your data for as long as your account is active. You can delete your account at any time by disconnecting your email and contacting us. Upon deletion, all your data (messages, drafts, voice samples, and credentials) will be permanently removed.</p>
               </div>
-              <p>We use the following third-party services:</p>
-              <ul>
-                <li><strong>Google Gemini AI:</strong> To generate email reply drafts. Email content is sent to Google's API for processing. See <a href="https://ai.google.dev/terms" target="_blank">Google AI Terms</a>.</li>
-                <li><strong>PayMongo:</strong> For payment processing. We never store your payment card details. See <a href="https://www.paymongo.com/privacy" target="_blank">PayMongo Privacy Policy</a>.</li>
-                <li><strong>Render:</strong> For hosting. See <a href="https://render.com/privacy" target="_blank">Render Privacy Policy</a>.</li>
-              </ul>
             </div>
+          </div>
 
-            <div class="gold-divider"><span class="gold-divider-dot"></span></div>
-
-            <!-- Section 5 -->
-            <div class="section-card" id="sec-5">
-              <div class="section-header">
-                <div class="section-badge">05</div>
-                <span class="section-emoji">⏱️</span>
-                <h2>Data Retention</h2>
+          <!-- Section 6 -->
+          <div class="legal-pill">
+            <div class="pill-badge">06</div>
+            <div class="pill-content">
+              <div class="pill-title">Your Rights</div>
+              <div class="pill-body">
+                <p>You have the right to:</p>
+                <ul>
+                  <li>Access your personal data stored in our system.</li>
+                  <li>Disconnect your email at any time from the Settings page.</li>
+                  <li>Delete your voice samples and AI profile.</li>
+                  <li>Request complete account deletion.</li>
+                </ul>
               </div>
-              <p>We retain your data for as long as your account is active. You can delete your account at any time by disconnecting your email and contacting us. Upon deletion, all your data (messages, drafts, voice samples, and credentials) will be permanently removed.</p>
             </div>
+          </div>
 
-            <div class="gold-divider"><span class="gold-divider-dot"></span></div>
-
-            <!-- Section 6 -->
-            <div class="section-card" id="sec-6">
-              <div class="section-header">
-                <div class="section-badge">06</div>
-                <span class="section-emoji">⚖️</span>
-                <h2>Your Rights</h2>
+          <!-- Section 7 -->
+          <div class="legal-pill">
+            <div class="pill-badge">07</div>
+            <div class="pill-content">
+              <div class="pill-title">Contact</div>
+              <div class="pill-body">
+                <p>If you have questions about this privacy policy, contact us at:</p>
+                <p><strong>Email:</strong> <a href="mailto:autoinbox.app@gmail.com">autoinbox.app@gmail.com</a></p>
               </div>
-              <p>You have the right to:</p>
-              <ul>
-                <li>Access your personal data stored in our system.</li>
-                <li>Disconnect your email at any time from the Settings page.</li>
-                <li>Delete your voice samples and AI profile.</li>
-                <li>Request complete account deletion.</li>
-              </ul>
             </div>
+          </div>
 
-            <div class="gold-divider"><span class="gold-divider-dot"></span></div>
-
-            <!-- Section 7 -->
-            <div class="section-card" id="sec-7">
-              <div class="section-header">
-                <div class="section-badge">07</div>
-                <span class="section-emoji">📬</span>
-                <h2>Contact</h2>
-              </div>
-              <p>If you have questions about this privacy policy, contact us at:</p>
-              <p><strong>Email:</strong> <a href="mailto:autoinbox.app@gmail.com">autoinbox.app@gmail.com</a></p>
-            </div>
-
-            <!-- Premium Footer Card -->
-            <div class="footer-card">
-              <p>AutoInbox Software Publishing Services<br>DTI Registered · Philippines</p>
-            </div>
-
-          </main>
+          <!-- Footer -->
+          <div class="legal-footer-pill">
+            <p>AutoInbox Software Publishing Services<br>DTI Registered · Philippines</p>
+          </div>
         </div>
       </div>
     </div>
