@@ -1311,38 +1311,62 @@ body::-webkit-scrollbar {
 
 /* ---- Feature Cards (cream themed) ---- */
 #features-modal .feat-card {
-  background: rgba(26, 26, 28, 0.04);
-  border: 1px solid rgba(26, 26, 28, 0.08);
-  border-radius: 16px;
+  background: #FAF6F0 !important;
+  border: 1px solid rgba(138, 117, 64, 0.15) !important;
+  border-radius: 20px !important;
+  padding: 32px 24px !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.01), inset 0 1px 0 #FFFFFF !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 #features-modal .feat-card:hover {
-  background: rgba(26, 26, 28, 0.07);
-  border-color: rgba(138, 117, 64, 0.3);
-  box-shadow: 0 12px 40px rgba(138, 117, 64, 0.08);
-  transform: translateY(-4px);
+  background: #FFFFFF !important;
+  border-color: #C5A55A !important;
+  box-shadow: 
+    0 20px 48px rgba(138, 117, 64, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+  transform: translateY(-6px) !important;
 }
 #features-modal .feat-card h4 {
-  color: #1A1A1C;
+  color: #1A1A1C !important;
+  font-size: 1.15rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 10px !important;
+  transition: color 0.3s ease !important;
 }
 #features-modal .feat-card:hover h4 {
-  color: #8a7540;
+  color: #8a7540 !important;
 }
 #features-modal .feat-card p {
-  color: #3a3832;
+  color: #5A5750 !important;
+  font-size: 0.88rem !important;
+  line-height: 1.6 !important;
+  transition: color 0.3s ease !important;
 }
 #features-modal .feat-card:hover p {
-  color: #1A1A1C;
+  color: #1A1A1C !important;
 }
 #features-modal .feat-icon {
-  background: rgba(138, 117, 64, 0.1);
-  border: 1px solid rgba(138, 117, 64, 0.2);
-  color: #8a7540;
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 14px !important;
+  background: rgba(138, 117, 64, 0.06) !important;
+  border: 1.5px solid rgba(138, 117, 64, 0.2) !important;
+  color: #8a7540 !important;
+  font-family: var(--fh) !important;
+  font-weight: 800 !important;
+  font-size: 0.95rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin: 0 auto 20px !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 #features-modal .feat-card:hover .feat-icon {
-  background: linear-gradient(135deg, #8a7540, #c5a55a);
-  color: #fff;
-  border-color: #8a7540;
-  box-shadow: 0 0 16px rgba(138, 117, 64, 0.25);
+  background: linear-gradient(135deg, #8a7540, #c5a55a) !important;
+  color: #FAF6F0 !important;
+  border-color: #8a7540 !important;
+  box-shadow: 0 6px 20px rgba(138, 117, 64, 0.4) !important;
+  transform: scale(1.1) rotate(4deg) !important;
 }
 
 /* ---- Pricing Cards (cream themed) ---- */
@@ -1909,22 +1933,25 @@ body::-webkit-scrollbar {
 .nav-pill {
   display: flex;
   align-items: center;
-  background: rgba(26, 26, 28, 0.04);
-  border: 1.2px solid rgba(26, 26, 28, 0.15);
+  background: rgba(250, 246, 240, 0.8) !important;
+  border: 1.5px solid rgba(197, 165, 90, 0.3) !important;
   border-radius: 30px;
   padding: 5px 8px;
-  gap: 2px;
-  backdrop-filter: blur(8px);
+  gap: 3px;
+  backdrop-filter: blur(20px);
+  box-shadow: 
+    0 10px 30px rgba(26, 26, 28, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8) !important;
 }
 
 .nav-pill-item {
   color: #1A1A1C !important;
   font-family: var(--f);
   font-size: 0.82rem;
-  font-weight: 500;
+  font-weight: 600 !important;
   padding: 7px 16px;
   border-radius: 20px;
-  transition: all 0.25s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   text-decoration: none;
   display: flex;
   align-items: center;
@@ -1939,8 +1966,9 @@ body::-webkit-scrollbar {
 }
 
 .nav-pill-item:hover {
-  color: #1A1A1C !important;
-  background: rgba(26, 26, 28, 0.07);
+  color: #8A7540 !important;
+  background: rgba(197, 165, 90, 0.12) !important;
+  transform: translateY(-0.5px);
 }
 
 /* 2-Column Hero Grid */
