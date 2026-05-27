@@ -1747,19 +1747,23 @@ body::-webkit-scrollbar {
   gap: 12px;
 }
 .outer-login-btn {
-  background: transparent;
+  background: rgba(255, 255, 255, 0.03);
   color: #d9d0c3;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
   font-size: 0.82rem;
   font-weight: 600;
   cursor: pointer;
-  padding: 8px 14px;
-  transition: color 0.2s;
+  padding: 8px 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
   font-family: var(--f);
 }
 .outer-login-btn:hover {
   color: #FAFAFA;
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
 }
 .outer-lang-btn {
   background: transparent;
@@ -1782,9 +1786,9 @@ body::-webkit-scrollbar {
   color: #FAFAFA;
 }
 .outer-connect-btn {
-  background: transparent;
+  background: rgba(197, 165, 90, 0.03);
   color: #FAFAFA;
-  border: 1.5px solid #C5A55A;
+  border: 1.5px solid rgba(197, 165, 90, 0.6);
   border-radius: 24px;
   padding: 8px 18px;
   font-size: 0.82rem;
@@ -1793,13 +1797,17 @@ body::-webkit-scrollbar {
   display: flex;
   align-items: center;
   gap: 8px;
-  transition: all 0.3s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
   font-family: var(--f);
+  box-shadow: 0 0 10px rgba(197, 165, 90, 0.05);
 }
 .outer-connect-btn:hover {
-  background: rgba(197, 165, 90, 0.1);
-  box-shadow: 0 0 16px rgba(197, 165, 90, 0.2);
+  background: #C5A55A !important;
+  color: #0A0A0B !important;
+  border-color: #C5A55A !important;
+  box-shadow: 0 4px 20px rgba(197, 165, 90, 0.45) !important;
+  transform: translateY(-1px);
 }
 .connect-arrow {
   display: inline-flex;
@@ -1810,10 +1818,12 @@ body::-webkit-scrollbar {
   background-color: #FAFAFA;
   color: #0A0A0B;
   border-radius: 50%;
-  transition: transform 0.3s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .outer-connect-btn:hover .connect-arrow {
-  transform: translateX(3px);
+  background-color: #0A0A0B !important;
+  color: #C5A55A !important;
+  transform: translateX(4px) scale(1.05);
 }
 
 /* Fillet transitions */
