@@ -12,56 +12,20 @@
   <link rel="stylesheet" href="/styles.css?v=132">
   <style>
     body {
-      background: #F6F0E6 !important;
+      background: #0A0A0B !important;
       color: #1A1A1C !important;
+      overflow: hidden !important;
     }
-    .nav {
-      background: rgba(246, 240, 230, 0.9) !important;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(26, 26, 28, 0.08) !important;
-    }
-    .logo span {
-      font-family: var(--fh) !important;
-      font-size: 1.50rem !important;
-      font-weight: 800 !important;
-      letter-spacing: -0.3px !important;
-      background: linear-gradient(135deg, #1A1A1C 30%, #C5A55A 100%) !important;
-      -webkit-background-clip: text !important;
-      -webkit-text-fill-color: transparent !important;
-      border: none !important;
-      padding: 0 !important;
-      border-radius: 0 !important;
-      box-shadow: none !important;
-      background-clip: text !important;
-    }
-    .logo span:hover {
-      background: linear-gradient(135deg, #1A1A1C 30%, #C5A55A 100%) !important;
-      -webkit-background-clip: text !important;
-      -webkit-text-fill-color: transparent !important;
-      box-shadow: none !important;
+    .landing-canvas {
+      overflow-y: auto !important;
+      display: block !important;
     }
     .legal-wrap {
       max-width: 800px;
       margin: 0 auto;
-      padding: 120px 32px 80px;
+      padding: 40px 0 80px;
       position: relative;
       z-index: 1;
-    }
-    .legal-back {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: #8a7540 !important;
-      font-size: .88rem;
-      text-decoration: none;
-      margin-bottom: 32px;
-      transition: all .2s;
-      font-weight: 600;
-    }
-    .legal-back:hover {
-      color: #C5A55A !important;
-      transform: translateX(-4px);
     }
     .legal-wrap h1 {
       font-size: 2.5rem;
@@ -128,76 +92,101 @@
   </style>
 </head>
 <body>
-  <nav class="nav">
-    <div class="logo"><a href="/" style="text-decoration:none"><span>AutoInbox</span></a></div>
-  </nav>
-
-  <div class="legal-wrap">
-    <a href="/" class="legal-back">← Back to Home</a>
-    <h1>Privacy Policy</h1>
-    <p class="legal-date">Last updated: May 20, 2026</p>
-
-    <div class="legal-card">
-      <div class="legal-highlight">
-        <strong>In short:</strong> We only collect what's necessary to provide the service. We never sell your data. Your emails are encrypted with AES-256 military-grade encryption.
+  <div class="landing-frame">
+    <div class="landing-canvas">
+      
+      <!-- Top Left Dark Cutout (Logo Area) -->
+      <div class="cutout-top-left">
+        <div class="outer-logo">
+          <a href="/" style="text-decoration:none; display:flex; align-items:center;">
+            <span class="logo-text" style="font-size:1.85rem; font-weight:800; background:linear-gradient(135deg, #FFFFFF 30%, #C5A55A 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; display:inline-block; letter-spacing:-0.5px; filter:drop-shadow(0 2px 10px rgba(197, 165, 90, 0.15)); transition:all 0.3s ease;">AutoInbox</span>
+          </a>
+        </div>
       </div>
-    </div>
 
-    <h2>1. Information We Collect</h2>
-    <p>When you create an account and use AutoInbox, we collect:</p>
-    <ul>
-      <li><strong>Account Information:</strong> Your name, email address, and password (hashed using bcrypt with 12 salt rounds).</li>
-      <li><strong>Email Credentials:</strong> Your Gmail address and App Password, encrypted using AES-256-GCM encryption. We never store your actual Google password.</li>
-      <li><strong>Email Content:</strong> Incoming email metadata (sender, subject, body) for AI processing. This data is stored locally in our encrypted database.</li>
-      <li><strong>Voice Samples:</strong> Text samples you voluntarily provide to train your AI clone's writing style.</li>
-      <li><strong>Usage Data:</strong> Basic analytics like message counts and feature usage.</li>
-    </ul>
+      <!-- Top Right Dark Cutout (Actions Area) -->
+      <div class="cutout-top-right">
+        <div class="outer-actions">
+          <a href="/" class="outer-login-btn" style="text-decoration:none; display:inline-flex; align-items:center; justify-content:center;">Back to Home</a>
+        </div>
+      </div>
 
-    <h2>2. How We Use Your Information</h2>
-    <p>Your information is used exclusively to:</p>
-    <ul>
-      <li>Provide AI-powered auto-reply drafts that match your writing style.</li>
-      <li>Monitor your inbox for incoming messages (only when you enable this feature).</li>
-      <li>Send approved replies on your behalf through your own email account.</li>
-      <li>Improve the accuracy of your AI clone over time.</li>
-    </ul>
+      <!-- Fillets for organic transitions (concave corners) -->
+      <div class="fillet fillet-tl-bottom"></div>
+      <div class="fillet fillet-tl-right"></div>
+      <div class="fillet fillet-tr-bottom"></div>
+      <div class="fillet fillet-tr-left"></div>
 
-    <h2>3. Data Security</h2>
-    <p>We take security seriously:</p>
-    <ul>
-      <li><strong>Encryption:</strong> All email credentials are encrypted with AES-256-GCM, the same standard used by banks and military systems.</li>
-      <li><strong>Password Hashing:</strong> Account passwords are hashed using bcrypt (12 rounds). We cannot read your password.</li>
-      <li><strong>HTTPS:</strong> All data in transit is encrypted via TLS/SSL.</li>
-      <li><strong>Security Headers:</strong> We use Helmet.js to set strict HTTP security headers.</li>
-      <li><strong>Rate Limiting:</strong> API endpoints are rate-limited to prevent abuse.</li>
-    </ul>
+      <!-- Inner Canvas Content -->
+      <div class="canvas-content" style="padding: 120px 48px 60px; box-sizing: border-box;">
+        <div class="legal-wrap">
+          <h1>Privacy Policy</h1>
+          <p class="legal-date">Last updated: May 20, 2026</p>
 
-    <h2>4. Third-Party Services</h2>
-    <p>We use the following third-party services:</p>
-    <ul>
-      <li><strong>Google Gemini AI:</strong> To generate email reply drafts. Email content is sent to Google's API for processing. See <a href="https://ai.google.dev/terms" style="color:var(--p)" target="_blank">Google AI Terms</a>.</li>
-      <li><strong>PayMongo:</strong> For payment processing. We never store your payment card details. See <a href="https://www.paymongo.com/privacy" style="color:var(--p)" target="_blank">PayMongo Privacy Policy</a>.</li>
-      <li><strong>Render:</strong> For hosting. See <a href="https://render.com/privacy" style="color:var(--p)" target="_blank">Render Privacy Policy</a>.</li>
-    </ul>
+          <div class="legal-card">
+            <div class="legal-highlight">
+              <strong>In short:</strong> We only collect what's necessary to provide the service. We never sell your data. Your emails are encrypted with AES-256 military-grade encryption.
+            </div>
+          </div>
 
-    <h2>5. Data Retention</h2>
-    <p>We retain your data for as long as your account is active. You can delete your account at any time by disconnecting your email and contacting us. Upon deletion, all your data (messages, drafts, voice samples, and credentials) will be permanently removed.</p>
+          <h2>1. Information We Collect</h2>
+          <p>When you create an account and use AutoInbox, we collect:</p>
+          <ul>
+            <li><strong>Account Information:</strong> Your name, email address, and password (hashed using bcrypt with 12 salt rounds).</li>
+            <li><strong>Email Credentials:</strong> Your Gmail address and App Password, encrypted using AES-256-GCM encryption. We never store your actual Google password.</li>
+            <li><strong>Email Content:</strong> Incoming email metadata (sender, subject, body) for AI processing. This data is stored locally in our encrypted database.</li>
+            <li><strong>Voice Samples:</strong> Text samples you voluntarily provide to train your AI clone's writing style.</li>
+            <li><strong>Usage Data:</strong> Basic analytics like message counts and feature usage.</li>
+          </ul>
 
-    <h2>6. Your Rights</h2>
-    <p>You have the right to:</p>
-    <ul>
-      <li>Access your personal data stored in our system.</li>
-      <li>Disconnect your email at any time from the Settings page.</li>
-      <li>Delete your voice samples and AI profile.</li>
-      <li>Request complete account deletion.</li>
-    </ul>
+          <h2>2. How We Use Your Information</h2>
+          <p>Your information is used exclusively to:</p>
+          <ul>
+            <li>Provide AI-powered auto-reply drafts that match your writing style.</li>
+            <li>Monitor your inbox for incoming messages (only when you enable this feature).</li>
+            <li>Send approved replies on your behalf through your own email account.</li>
+            <li>Improve the accuracy of your AI clone over time.</li>
+          </ul>
 
-    <h2>7. Contact</h2>
-    <p>If you have questions about this privacy policy, contact us at:</p>
-    <p><strong>Email:</strong> <a href="mailto:autoinbox.app@gmail.com" style="color:var(--p)">autoinbox.app@gmail.com</a></p>
+          <h2>3. Data Security</h2>
+          <p>We take security seriously:</p>
+          <ul>
+            <li><strong>Encryption:</strong> All email credentials are encrypted with AES-256-GCM, the same standard used by banks and military systems.</li>
+            <li><strong>Password Hashing:</strong> Account passwords are hashed using bcrypt (12 rounds). We cannot read your password.</li>
+            <li><strong>HTTPS:</strong> All data in transit is encrypted via TLS/SSL.</li>
+            <li><strong>Security Headers:</strong> We use Helmet.js to set strict HTTP security headers.</li>
+            <li><strong>Rate Limiting:</strong> API endpoints are rate-limited to prevent abuse.</li>
+          </ul>
 
-    <div class="legal-card" style="margin-top:40px;text-align:center">
-      <p style="color:var(--t3);font-size:.85rem">AutoInbox Software Publishing Services<br>DTI Registered · Philippines</p>
+          <h2>4. Third-Party Services</h2>
+          <p>We use the following third-party services:</p>
+          <ul>
+            <li><strong>Google Gemini AI:</strong> To generate email reply drafts. Email content is sent to Google's API for processing. See <a href="https://ai.google.dev/terms" target="_blank">Google AI Terms</a>.</li>
+            <li><strong>PayMongo:</strong> For payment processing. We never store your payment card details. See <a href="https://www.paymongo.com/privacy" target="_blank">PayMongo Privacy Policy</a>.</li>
+            <li><strong>Render:</strong> For hosting. See <a href="https://render.com/privacy" target="_blank">Render Privacy Policy</a>.</li>
+          </ul>
+
+          <h2>5. Data Retention</h2>
+          <p>We retain your data for as long as your account is active. You can delete your account at any time by disconnecting your email and contacting us. Upon deletion, all your data (messages, drafts, voice samples, and credentials) will be permanently removed.</p>
+
+          <h2>6. Your Rights</h2>
+          <p>You have the right to:</p>
+          <ul>
+            <li>Access your personal data stored in our system.</li>
+            <li>Disconnect your email at any time from the Settings page.</li>
+            <li>Delete your voice samples and AI profile.</li>
+            <li>Request complete account deletion.</li>
+          </ul>
+
+          <h2>7. Contact</h2>
+          <p>If you have questions about this privacy policy, contact us at:</p>
+          <p><strong>Email:</strong> <a href="mailto:autoinbox.app@gmail.com">autoinbox.app@gmail.com</a></p>
+
+          <div class="legal-card" style="margin-top:40px;text-align:center">
+            <p style="color:#666;font-size:.85rem">AutoInbox Software Publishing Services<br>DTI Registered · Philippines</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </body>

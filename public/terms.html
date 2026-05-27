@@ -12,56 +12,20 @@
   <link rel="stylesheet" href="/styles.css?v=132">
   <style>
     body {
-      background: #F6F0E6 !important;
+      background: #0A0A0B !important;
       color: #1A1A1C !important;
+      overflow: hidden !important;
     }
-    .nav {
-      background: rgba(246, 240, 230, 0.9) !important;
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(26, 26, 28, 0.08) !important;
-    }
-    .logo span {
-      font-family: var(--fh) !important;
-      font-size: 1.50rem !important;
-      font-weight: 800 !important;
-      letter-spacing: -0.3px !important;
-      background: linear-gradient(135deg, #1A1A1C 30%, #C5A55A 100%) !important;
-      -webkit-background-clip: text !important;
-      -webkit-text-fill-color: transparent !important;
-      border: none !important;
-      padding: 0 !important;
-      border-radius: 0 !important;
-      box-shadow: none !important;
-      background-clip: text !important;
-    }
-    .logo span:hover {
-      background: linear-gradient(135deg, #1A1A1C 30%, #C5A55A 100%) !important;
-      -webkit-background-clip: text !important;
-      -webkit-text-fill-color: transparent !important;
-      box-shadow: none !important;
+    .landing-canvas {
+      overflow-y: auto !important;
+      display: block !important;
     }
     .legal-wrap {
       max-width: 800px;
       margin: 0 auto;
-      padding: 120px 32px 80px;
+      padding: 40px 0 80px;
       position: relative;
       z-index: 1;
-    }
-    .legal-back {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: #8a7540 !important;
-      font-size: .88rem;
-      text-decoration: none;
-      margin-bottom: 32px;
-      transition: all .2s;
-      font-weight: 600;
-    }
-    .legal-back:hover {
-      color: #C5A55A !important;
-      transform: translateX(-4px);
     }
     .legal-wrap h1 {
       font-size: 2.5rem;
@@ -128,99 +92,124 @@
   </style>
 </head>
 <body>
-  <nav class="nav">
-    <div class="logo"><a href="/" style="text-decoration:none"><span>AutoInbox</span></a></div>
-  </nav>
-
-  <div class="legal-wrap">
-    <a href="/" class="legal-back">← Back to Home</a>
-    <h1>Terms of Service</h1>
-    <p class="legal-date">Last updated: May 20, 2026</p>
-
-    <div class="legal-card">
-      <div class="legal-highlight">
-        <strong>In short:</strong> Use AutoInbox responsibly. Don't use it for spam or illegal purposes. We provide the service "as-is" and are not liable for AI-generated content.
+  <div class="landing-frame">
+    <div class="landing-canvas">
+      
+      <!-- Top Left Dark Cutout (Logo Area) -->
+      <div class="cutout-top-left">
+        <div class="outer-logo">
+          <a href="/" style="text-decoration:none; display:flex; align-items:center;">
+            <span class="logo-text" style="font-size:1.85rem; font-weight:800; background:linear-gradient(135deg, #FFFFFF 30%, #C5A55A 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; display:inline-block; letter-spacing:-0.5px; filter:drop-shadow(0 2px 10px rgba(197, 165, 90, 0.15)); transition:all 0.3s ease;">AutoInbox</span>
+          </a>
+        </div>
       </div>
-    </div>
 
-    <h2>1. Acceptance of Terms</h2>
-    <p>By creating an account or using AutoInbox, you agree to these Terms of Service. If you do not agree, please do not use the service.</p>
+      <!-- Top Right Dark Cutout (Actions Area) -->
+      <div class="cutout-top-right">
+        <div class="outer-actions">
+          <a href="/" class="outer-login-btn" style="text-decoration:none; display:inline-flex; align-items:center; justify-content:center;">Back to Home</a>
+        </div>
+      </div>
 
-    <h2>2. Description of Service</h2>
-    <p>AutoInbox is an AI-powered email auto-reply service that:</p>
-    <ul>
-      <li>Monitors your email inbox for incoming messages (when enabled).</li>
-      <li>Generates draft replies using artificial intelligence based on your writing style.</li>
-      <li>Sends approved replies on your behalf through your own email account.</li>
-    </ul>
+      <!-- Fillets for organic transitions (concave corners) -->
+      <div class="fillet fillet-tl-bottom"></div>
+      <div class="fillet fillet-tl-right"></div>
+      <div class="fillet fillet-tr-bottom"></div>
+      <div class="fillet fillet-tr-left"></div>
 
-    <h2>3. Account Responsibilities</h2>
-    <p>You are responsible for:</p>
-    <ul>
-      <li>Providing accurate account information.</li>
-      <li>Maintaining the security of your login credentials.</li>
-      <li>All activity that occurs under your account.</li>
-      <li>Reviewing AI-generated drafts before approving them for sending.</li>
-      <li>Ensuring your use complies with applicable laws and regulations.</li>
-    </ul>
+      <!-- Inner Canvas Content -->
+      <div class="canvas-content" style="padding: 120px 48px 60px; box-sizing: border-box;">
+        <div class="legal-wrap">
+          <h1>Terms of Service</h1>
+          <p class="legal-date">Last updated: May 20, 2026</p>
 
-    <h2>4. Acceptable Use</h2>
-    <p>You agree NOT to use AutoInbox for:</p>
-    <ul>
-      <li>Sending spam, unsolicited messages, or bulk emails.</li>
-      <li>Fraudulent, deceptive, or illegal communications.</li>
-      <li>Impersonation with malicious intent.</li>
-      <li>Distributing malware, phishing, or harmful content.</li>
-      <li>Violating any applicable local, national, or international laws.</li>
-    </ul>
+          <div class="legal-card">
+            <div class="legal-highlight">
+              <strong>In short:</strong> Use AutoInbox responsibly. Don't use it for spam or illegal purposes. We provide the service "as-is" and are not liable for AI-generated content.
+            </div>
+          </div>
 
-    <h2>5. AI-Generated Content</h2>
-    <p>AutoInbox uses Google Gemini AI to generate reply drafts. Please note:</p>
-    <ul>
-      <li>AI-generated content may not always be accurate or appropriate.</li>
-      <li><strong>You are responsible for reviewing and approving all drafts before they are sent.</strong></li>
-      <li>AutoInbox is not liable for any consequences arising from AI-generated content that you approve and send.</li>
-      <li>The AI learns from the voice samples you provide — the quality of responses depends on the quality of your training data.</li>
-    </ul>
+          <h2>1. Acceptance of Terms</h2>
+          <p>By creating an account or using AutoInbox, you agree to these Terms of Service. If you do not agree, please do not use the service.</p>
 
-    <h2>6. Subscription and Payments</h2>
-    <ul>
-      <li><strong>Free Plan:</strong> Includes 10 AI replies per month at no cost.</li>
-      <li><strong>Paid Plans:</strong> Basic ($5/mo) and Pro ($10/mo) offer additional features and higher limits.</li>
-      <li>Payments are processed securely through PayMongo.</li>
-      <li>You may cancel your subscription at any time. No refunds for partial billing periods.</li>
-      <li>Pricing is subject to change with 30 days notice.</li>
-    </ul>
+          <h2>2. Description of Service</h2>
+          <p>AutoInbox is an AI-powered email auto-reply service that:</p>
+          <ul>
+            <li>Monitors your email inbox for incoming messages (when enabled).</li>
+            <li>Generates draft replies using artificial intelligence based on your writing style.</li>
+            <li>Sends approved replies on your behalf through your own email account.</li>
+          </ul>
 
-    <h2>7. Service Availability</h2>
-    <p>We strive to maintain 99% uptime but do not guarantee uninterrupted service. AutoInbox may be temporarily unavailable due to:</p>
-    <ul>
-      <li>Scheduled maintenance and updates.</li>
-      <li>Unexpected technical issues.</li>
-      <li>Third-party service outages (Google, PayMongo, hosting provider).</li>
-    </ul>
+          <h2>3. Account Responsibilities</h2>
+          <p>You are responsible for:</p>
+          <ul>
+            <li>Providing accurate account information.</li>
+            <li>Maintaining the security of your login credentials.</li>
+            <li>All activity that occurs under your account.</li>
+            <li>Reviewing AI-generated drafts before approving them for sending.</li>
+            <li>Ensuring your use complies with applicable laws and regulations.</li>
+          </ul>
 
-    <h2>8. Limitation of Liability</h2>
-    <p>AutoInbox is provided "as-is" without warranties of any kind. We are not liable for:</p>
-    <ul>
-      <li>Lost business, revenue, or opportunities due to service interruptions.</li>
-      <li>Inaccurate, inappropriate, or offensive AI-generated content.</li>
-      <li>Unauthorized access to your account due to your failure to secure credentials.</li>
-      <li>Any damages arising from the use or inability to use the service.</li>
-    </ul>
+          <h2>4. Acceptable Use</h2>
+          <p>You agree NOT to use AutoInbox for:</p>
+          <ul>
+            <li>Sending spam, unsolicited messages, or bulk emails.</li>
+            <li>Fraudulent, deceptive, or illegal communications.</li>
+            <li>Impersonation with malicious intent.</li>
+            <li>Distributing malware, phishing, or harmful content.</li>
+            <li>Violating any applicable local, national, or international laws.</li>
+          </ul>
 
-    <h2>9. Termination</h2>
-    <p>We reserve the right to suspend or terminate accounts that violate these terms. You may delete your account at any time by disconnecting your email and contacting support.</p>
+          <h2>5. AI-Generated Content</h2>
+          <p>AutoInbox uses Google Gemini AI to generate reply drafts. Please note:</p>
+          <ul>
+            <li>AI-generated content may not always be accurate or appropriate.</li>
+            <li><strong>You are responsible for reviewing and approving all drafts before they are sent.</strong></li>
+            <li>AutoInbox is not liable for any consequences arising from AI-generated content that you approve and send.</li>
+            <li>The AI learns from the voice samples you provide — the quality of responses depends on the quality of your training data.</li>
+          </ul>
 
-    <h2>10. Changes to Terms</h2>
-    <p>We may update these terms from time to time. Continued use of the service after changes constitutes acceptance of the new terms.</p>
+          <h2>6. Subscription and Payments</h2>
+          <ul>
+            <li><strong>Free Plan:</strong> Includes 10 AI replies per month at no cost.</li>
+            <li><strong>Paid Plans:</strong> Basic (₱499/mo) and Pro (₱999/mo) offer additional features and higher limits.</li>
+            <li>Payments are processed securely through PayMongo.</li>
+            <li>You may cancel your subscription at any time. No refunds for partial billing periods.</li>
+            <li>Pricing is subject to change with 30 days notice.</li>
+          </ul>
 
-    <h2>11. Contact</h2>
-    <p>For questions about these terms, contact us at:</p>
-    <p><strong>Email:</strong> <a href="mailto:autoinbox.app@gmail.com" style="color:var(--p)">autoinbox.app@gmail.com</a></p>
+          <h2>7. Service Availability</h2>
+          <p>We strive to maintain 99% uptime but do not guarantee uninterrupted service. AutoInbox may be temporarily unavailable due to:</p>
+          <ul>
+            <li>Scheduled maintenance and updates.</li>
+            <li>Unexpected technical issues.</li>
+            <li>Third-party service outages (Google, PayMongo, hosting provider).</li>
+          </ul>
 
-    <div class="legal-card" style="margin-top:40px;text-align:center">
-      <p style="color:var(--t3);font-size:.85rem">AutoInbox Software Publishing Services<br>DTI Registered · Philippines</p>
+          <h2>8. Limitation of Liability</h2>
+          <p>AutoInbox is provided "as-is" without warranties of any kind. We are not liable for:</p>
+          <ul>
+            <li>Lost business, revenue, or opportunities due to service interruptions.</li>
+            <li>Inaccurate, inappropriate, or offensive AI-generated content.</li>
+            <li>Unauthorized access to your account due to your failure to secure credentials.</li>
+            <li>Any damages arising from the use or inability to use the service.</li>
+          </ul>
+
+          <h2>9. Termination</h2>
+          <p>We reserve the right to suspend or terminate accounts that violate these terms. You may delete your account at any time by disconnecting your email and contacting support.</p>
+
+          <h2>10. Changes to Terms</h2>
+          <p>We may update these terms from time to time. Continued use of the service after changes constitutes acceptance of the new terms.</p>
+
+          <h2>11. Contact</h2>
+          <p>For questions about these terms, contact us at:</p>
+          <p><strong>Email:</strong> <a href="mailto:autoinbox.app@gmail.com">autoinbox.app@gmail.com</a></p>
+
+          <div class="legal-card" style="margin-top:40px;text-align:center">
+            <p style="color:#666;font-size:.85rem">AutoInbox Software Publishing Services<br>DTI Registered · Philippines</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </body>
