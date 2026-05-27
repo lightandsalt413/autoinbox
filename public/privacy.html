@@ -142,14 +142,50 @@
       display: flex;
       align-items: flex-start;
       gap: 18px;
-      transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
-      cursor: default;
+      transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+      cursor: pointer;
+      position: relative;
     }
     .legal-pill:hover {
-      background: #FDFBF7;
-      border-color: rgba(197,165,90,0.18);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
-      transform: translateY(-1px);
+      background: #1A1A1C;
+      border-color: rgba(197,165,90,0.25);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.15), 0 0 0 1px rgba(197,165,90,0.1);
+      transform: translateY(-3px) scale(1.01);
+    }
+    .legal-pill:hover .pill-title {
+      color: #F6F0E6;
+    }
+    .legal-pill:hover .pill-body,
+    .legal-pill:hover .pill-body p,
+    .legal-pill:hover .pill-body ul li {
+      color: rgba(246,240,230,0.6);
+    }
+    .legal-pill:hover .pill-body strong {
+      color: #F6F0E6;
+    }
+    .legal-pill:hover .pill-body a {
+      color: #C5A55A;
+    }
+    .legal-pill:hover .pill-body ul li::before {
+      background: #C5A55A;
+      box-shadow: 0 0 6px rgba(197,165,90,0.5);
+    }
+    /* Gold dot indicator — appears on hover */
+    .legal-pill::after {
+      content: '';
+      position: absolute;
+      right: 24px;
+      top: 50%;
+      transform: translateY(-50%) scale(0);
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #C5A55A;
+      box-shadow: 0 0 8px rgba(197,165,90,0.4);
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .legal-pill:hover::after {
+      transform: translateY(-50%) scale(1);
     }
 
     /* Circle badge in each pill */
@@ -168,6 +204,13 @@
       letter-spacing: 0.5px;
       border: 2px solid rgba(197,165,90,0.15);
       margin-top: 2px;
+      transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+    .legal-pill:hover .pill-badge {
+      background: linear-gradient(135deg, #C5A55A, #8a7540);
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 4px 16px rgba(197,165,90,0.35);
     }
 
     /* Pill content */
