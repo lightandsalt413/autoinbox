@@ -34,8 +34,8 @@
       background-color: #F6F0E6 !important;
       scrollbar-width: thin !important;
       scrollbar-color: rgba(197, 165, 90, 0.4) #F6F0E6 !important;
+      scroll-behavior: smooth !important;
     }
-    /* Premium custom gold scrollbar inside the canvas card */
     .landing-canvas::-webkit-scrollbar {
       display: block !important;
       width: 8px !important;
@@ -59,74 +59,411 @@
         border-radius: 0 24px 24px 0 !important;
       }
     }
-    .legal-wrap {
-      max-width: 800px;
+
+    /* ===== LAYOUT ===== */
+    .legal-layout {
+      display: flex;
+      gap: 0;
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 40px 0 80px;
+      padding: 0 0 80px;
       position: relative;
       z-index: 1;
     }
-    .legal-wrap h1 {
-      font-size: 2.5rem;
-      font-weight: 800;
-      margin-bottom: 8px;
-      font-family: var(--fh);
-      color: #1A1A1C !important;
-      letter-spacing: -0.5px;
+
+    /* ===== TABLE OF CONTENTS SIDEBAR ===== */
+    .toc-sidebar {
+      position: sticky;
+      top: 24px;
+      align-self: flex-start;
+      width: 220px;
+      flex-shrink: 0;
+      margin-top: 40px;
+      padding: 0 20px 0 0;
+      max-height: calc(100vh - 200px);
+      overflow-y: auto;
+      scrollbar-width: none;
     }
-    .legal-wrap .legal-date {
-      font-size: .82rem;
-      color: #666 !important;
-      margin-bottom: 40px;
-    }
-    .legal-wrap h2 {
-      font-size: 1.3rem;
+    .toc-sidebar::-webkit-scrollbar { display: none; }
+    .toc-label {
+      font-size: .65rem;
       font-weight: 700;
-      margin: 36px 0 12px;
-      color: #8a7540 !important;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #C5A55A;
+      margin-bottom: 16px;
+      padding-left: 14px;
+    }
+    .toc-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .toc-list a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 10px;
+      font-size: .78rem;
+      color: #666;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      line-height: 1.3;
+      border-left: 2px solid transparent;
+    }
+    .toc-list a:hover {
+      color: #1A1A1C;
+      background: rgba(197, 165, 90, 0.08);
+      border-left-color: #C5A55A;
+    }
+    .toc-num {
+      font-size: .65rem;
+      font-weight: 700;
+      color: #C5A55A;
+      min-width: 18px;
+      font-family: var(--fh);
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .legal-main {
+      flex: 1;
+      min-width: 0;
+      padding: 40px 0 0;
+    }
+
+    /* ===== HEADER ===== */
+    .legal-header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 0 24px;
+    }
+    .legal-header h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      font-family: var(--fh);
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #1A1A1C 40%, #C5A55A 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+      line-height: 1.15;
+    }
+    .legal-header .legal-date {
+      font-size: .82rem;
+      color: #999;
+      font-weight: 400;
+    }
+
+    /* ===== PREMIUM HIGHLIGHT CARD (In Short) ===== */
+    .legal-summary-card {
+      background: linear-gradient(135deg, rgba(197, 165, 90, 0.10) 0%, rgba(197, 165, 90, 0.03) 100%);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(197, 165, 90, 0.25);
+      border-radius: 20px;
+      padding: 28px 32px;
+      margin: 0 8px 36px;
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+        0 8px 32px rgba(197, 165, 90, 0.06),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    }
+    .legal-summary-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(197, 165, 90, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .legal-summary-inner {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      position: relative;
+      z-index: 1;
+    }
+    .legal-summary-icon {
+      font-size: 1.6rem;
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, rgba(197, 165, 90, 0.15), rgba(197, 165, 90, 0.05));
+      border: 1px solid rgba(197, 165, 90, 0.2);
+      border-radius: 12px;
+    }
+    .legal-summary-text {
+      font-size: .9rem;
+      color: #444;
+      line-height: 1.75;
+    }
+    .legal-summary-text strong {
+      color: #1A1A1C;
+      font-weight: 700;
+    }
+
+    /* ===== SECTION CARDS ===== */
+    .legal-section {
+      background: linear-gradient(180deg, #FFFFFF 0%, #FDFBF7 100%);
+      border: 1px solid rgba(26, 26, 28, 0.06);
+      border-radius: 16px;
+      padding: 32px 36px 28px;
+      margin: 0 8px 8px;
+      box-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.02),
+        0 8px 32px rgba(0, 0, 0, 0.02);
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      /* Fade-in animation */
+      animation: sectionFadeIn 0.6s ease both;
+    }
+    .legal-section:nth-child(2) { animation-delay: 0.05s; }
+    .legal-section:nth-child(3) { animation-delay: 0.10s; }
+    .legal-section:nth-child(4) { animation-delay: 0.15s; }
+    .legal-section:nth-child(5) { animation-delay: 0.20s; }
+    .legal-section:nth-child(6) { animation-delay: 0.25s; }
+    .legal-section:nth-child(7) { animation-delay: 0.30s; }
+    .legal-section:nth-child(8) { animation-delay: 0.35s; }
+    .legal-section:nth-child(9) { animation-delay: 0.40s; }
+    .legal-section:nth-child(10) { animation-delay: 0.45s; }
+    .legal-section:nth-child(11) { animation-delay: 0.50s; }
+
+    @keyframes sectionFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .legal-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, rgba(197, 165, 90, 0.2), transparent);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+    .legal-section:hover {
+      transform: translateY(-3px);
+      box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.03),
+        0 16px 48px rgba(197, 165, 90, 0.06);
+      border-color: rgba(197, 165, 90, 0.15);
+    }
+    .legal-section:hover::before {
+      opacity: 1;
+    }
+
+    /* Section Header */
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .section-badge {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #C5A55A 0%, #8a7540 100%);
+      color: #fff;
+      font-size: .78rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 14px rgba(197, 165, 90, 0.3);
+      font-family: var(--fh);
       letter-spacing: -0.3px;
     }
-    .legal-wrap p, .legal-wrap li {
-      font-size: .92rem;
-      color: #333 !important;
+    .section-icon {
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+    .section-head h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #1A1A1C;
+      letter-spacing: -0.3px;
+      font-family: var(--fh);
+      margin: 0;
+      line-height: 1.3;
+    }
+
+    /* Section Content */
+    .legal-section p {
+      font-size: .9rem;
+      color: #444;
+      line-height: 1.85;
+      margin-bottom: 8px;
+    }
+    .legal-section strong {
+      color: #1A1A1C;
+    }
+    .legal-section a {
+      color: #8a7540;
+      text-decoration: underline;
+      text-decoration-color: rgba(197, 165, 90, 0.3);
+      text-underline-offset: 3px;
+      transition: all 0.2s;
+    }
+    .legal-section a:hover {
+      color: #C5A55A;
+      text-decoration-color: #C5A55A;
+    }
+
+    /* Custom List Styling with Gold Checkmarks */
+    .legal-section ul {
+      list-style: none;
+      margin: 10px 0 6px 0;
+      padding: 0;
+    }
+    .legal-section li {
+      position: relative;
+      padding: 6px 0 6px 28px;
+      font-size: .9rem;
+      color: #444;
       line-height: 1.8;
     }
-    .legal-wrap ul {
-      margin: 8px 0 16px 20px;
+    .legal-section li::before {
+      content: '';
+      position: absolute;
+      left: 2px;
+      top: 13px;
+      width: 16px;
+      height: 16px;
+      background: linear-gradient(135deg, rgba(197, 165, 90, 0.15), rgba(197, 165, 90, 0.05));
+      border: 1.5px solid rgba(197, 165, 90, 0.35);
+      border-radius: 50%;
     }
-    .legal-wrap li {
-      margin-bottom: 6px;
+    .legal-section li::after {
+      content: '✓';
+      position: absolute;
+      left: 5px;
+      top: 12px;
+      font-size: .6rem;
+      font-weight: 800;
+      color: #C5A55A;
+      line-height: 18px;
     }
-    .legal-wrap strong {
-      color: #1A1A1C !important;
+
+    /* ===== SECTION DIVIDER ===== */
+    .section-divider {
+      height: 1px;
+      margin: 4px 48px;
+      background: linear-gradient(90deg, transparent, rgba(197, 165, 90, 0.18), transparent);
     }
-    .legal-card {
-      background: #FFFFFF !important;
-      border: 1px solid rgba(26, 26, 28, 0.08) !important;
-      border-radius: var(--rad);
-      padding: 32px;
-      margin-bottom: 20px;
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.02) !important;
+
+    /* ===== FOOTER CARD ===== */
+    .legal-footer-card {
+      margin: 32px 8px 0;
+      padding: 28px 32px;
+      text-align: center;
+      border-radius: 16px;
+      background: linear-gradient(180deg, #FFFFFF 0%, #FDFBF7 100%);
+      position: relative;
+      overflow: hidden;
+      border: 2px solid transparent;
+      background-clip: padding-box;
+      animation: sectionFadeIn 0.6s ease both;
+      animation-delay: 0.55s;
     }
-    .legal-highlight {
-      background: rgba(197, 165, 90, 0.08) !important;
-      border-left: 3px solid #C5A55A !important;
-      padding: 16px 20px;
-      border-radius: 0 10px 10px 0;
-      margin: 16px 0;
-      font-size: .9rem;
-      color: #333 !important;
+    .legal-footer-card::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #C5A55A 0%, rgba(197, 165, 90, 0.2) 50%, #C5A55A 100%);
+      z-index: -1;
     }
-    .legal-highlight strong {
-      color: #1A1A1C !important;
+    .legal-footer-card p {
+      color: #777;
+      font-size: .85rem;
+      line-height: 1.6;
+      margin: 0;
     }
-    .legal-wrap a {
-      color: #8a7540 !important;
-      text-decoration: underline;
-      transition: color 0.2s;
+    .legal-footer-card .footer-shield {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .7rem;
+      color: #999;
+      margin-top: 10px;
+      padding: 4px 14px;
+      background: rgba(197, 165, 90, 0.06);
+      border-radius: 50px;
+      letter-spacing: 0.5px;
     }
-    .legal-wrap a:hover {
-      color: #C5A55A !important;
+
+    /* ===== MOBILE RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .toc-sidebar {
+        display: none;
+      }
+      .legal-layout {
+        padding: 0;
+      }
+      .legal-main {
+        padding-top: 20px;
+      }
+    }
+    @media (max-width: 768px) {
+      .legal-header h1 {
+        font-size: 2rem;
+      }
+      .legal-header {
+        padding: 0 16px;
+        margin-bottom: 28px;
+      }
+      .legal-summary-card {
+        margin: 0 4px 24px;
+        padding: 22px 20px;
+        border-radius: 14px;
+      }
+      .legal-section {
+        margin: 0 4px 6px;
+        padding: 24px 22px 20px;
+        border-radius: 14px;
+      }
+      .section-head {
+        gap: 12px;
+        margin-bottom: 14px;
+      }
+      .section-badge {
+        width: 34px;
+        height: 34px;
+        font-size: .7rem;
+      }
+      .section-head h2 {
+        font-size: 1.05rem;
+      }
+      .section-divider {
+        margin: 2px 24px;
+      }
+      .legal-footer-card {
+        margin: 20px 4px 0;
+        padding: 22px 20px;
+        border-radius: 14px;
+      }
     }
   </style>
 </head>
@@ -158,96 +495,227 @@
 
       <!-- Inner Canvas Content -->
       <div class="canvas-content" style="padding: 120px 48px 60px; box-sizing: border-box; flex: 1;">
-        <div class="legal-wrap">
+        
+        <!-- Header -->
+        <div class="legal-header">
           <h1>Terms of Service</h1>
           <p class="legal-date">Last updated: May 20, 2026</p>
-
-          <div class="legal-card">
-            <div class="legal-highlight">
-              <strong>In short:</strong> Use AutoInbox responsibly. Don't use it for spam or illegal purposes. We provide the service "as-is" and are not liable for AI-generated content.
-            </div>
-          </div>
-
-          <h2>1. Acceptance of Terms</h2>
-          <p>By creating an account or using AutoInbox, you agree to these Terms of Service. If you do not agree, please do not use the service.</p>
-
-          <h2>2. Description of Service</h2>
-          <p>AutoInbox is an AI-powered email auto-reply service that:</p>
-          <ul>
-            <li>Monitors your email inbox for incoming messages (when enabled).</li>
-            <li>Generates draft replies using artificial intelligence based on your writing style.</li>
-            <li>Sends approved replies on your behalf through your own email account.</li>
-          </ul>
-
-          <h2>3. Account Responsibilities</h2>
-          <p>You are responsible for:</p>
-          <ul>
-            <li>Providing accurate account information.</li>
-            <li>Maintaining the security of your login credentials.</li>
-            <li>All activity that occurs under your account.</li>
-            <li>Reviewing AI-generated drafts before approving them for sending.</li>
-            <li>Ensuring your use complies with applicable laws and regulations.</li>
-          </ul>
-
-          <h2>4. Acceptable Use</h2>
-          <p>You agree NOT to use AutoInbox for:</p>
-          <ul>
-            <li>Sending spam, unsolicited messages, or bulk emails.</li>
-            <li>Fraudulent, deceptive, or illegal communications.</li>
-            <li>Impersonation with malicious intent.</li>
-            <li>Distributing malware, phishing, or harmful content.</li>
-            <li>Violating any applicable local, national, or international laws.</li>
-          </ul>
-
-          <h2>5. AI-Generated Content</h2>
-          <p>AutoInbox uses Google Gemini AI to generate reply drafts. Please note:</p>
-          <ul>
-            <li>AI-generated content may not always be accurate or appropriate.</li>
-            <li><strong>You are responsible for reviewing and approving all drafts before they are sent.</strong></li>
-            <li>AutoInbox is not liable for any consequences arising from AI-generated content that you approve and send.</li>
-            <li>The AI learns from the voice samples you provide — the quality of responses depends on the quality of your training data.</li>
-          </ul>
-
-          <h2>6. Subscription and Payments</h2>
-          <ul>
-            <li><strong>Free Plan:</strong> Includes 10 AI replies per month at no cost.</li>
-            <li><strong>Paid Plans:</strong> Basic (₱499/mo) and Pro (₱999/mo) offer additional features and higher limits.</li>
-            <li>Payments are processed securely through PayMongo.</li>
-            <li>You may cancel your subscription at any time. No refunds for partial billing periods.</li>
-            <li>Pricing is subject to change with 30 days notice.</li>
-          </ul>
-
-          <h2>7. Service Availability</h2>
-          <p>We strive to maintain 99% uptime but do not guarantee uninterrupted service. AutoInbox may be temporarily unavailable due to:</p>
-          <ul>
-            <li>Scheduled maintenance and updates.</li>
-            <li>Unexpected technical issues.</li>
-            <li>Third-party service outages (Google, PayMongo, hosting provider).</li>
-          </ul>
-
-          <h2>8. Limitation of Liability</h2>
-          <p>AutoInbox is provided "as-is" without warranties of any kind. We are not liable for:</p>
-          <ul>
-            <li>Lost business, revenue, or opportunities due to service interruptions.</li>
-            <li>Inaccurate, inappropriate, or offensive AI-generated content.</li>
-            <li>Unauthorized access to your account due to your failure to secure credentials.</li>
-            <li>Any damages arising from the use or inability to use the service.</li>
-          </ul>
-
-          <h2>9. Termination</h2>
-          <p>We reserve the right to suspend or terminate accounts that violate these terms. You may delete your account at any time by disconnecting your email and contacting support.</p>
-
-          <h2>10. Changes to Terms</h2>
-          <p>We may update these terms from time to time. Continued use of the service after changes constitutes acceptance of the new terms.</p>
-
-          <h2>11. Contact</h2>
-          <p>For questions about these terms, contact us at:</p>
-          <p><strong>Email:</strong> <a href="mailto:autoinbox.app@gmail.com">autoinbox.app@gmail.com</a></p>
-
-          <div class="legal-card" style="margin-top:40px;text-align:center">
-            <p style="color:#666;font-size:.85rem">AutoInbox Software Publishing Services<br>DTI Registered · Philippines</p>
-          </div>
         </div>
+
+        <div class="legal-layout">
+          
+          <!-- Table of Contents Sidebar -->
+          <nav class="toc-sidebar">
+            <div class="toc-label">Contents</div>
+            <ul class="toc-list">
+              <li><a href="#s1"><span class="toc-num">01</span> Acceptance of Terms</a></li>
+              <li><a href="#s2"><span class="toc-num">02</span> Description of Service</a></li>
+              <li><a href="#s3"><span class="toc-num">03</span> Account Responsibilities</a></li>
+              <li><a href="#s4"><span class="toc-num">04</span> Acceptable Use</a></li>
+              <li><a href="#s5"><span class="toc-num">05</span> AI-Generated Content</a></li>
+              <li><a href="#s6"><span class="toc-num">06</span> Subscription & Payments</a></li>
+              <li><a href="#s7"><span class="toc-num">07</span> Service Availability</a></li>
+              <li><a href="#s8"><span class="toc-num">08</span> Limitation of Liability</a></li>
+              <li><a href="#s9"><span class="toc-num">09</span> Termination</a></li>
+              <li><a href="#s10"><span class="toc-num">10</span> Changes to Terms</a></li>
+              <li><a href="#s11"><span class="toc-num">11</span> Contact</a></li>
+            </ul>
+          </nav>
+
+          <!-- Main Content -->
+          <div class="legal-main">
+
+            <!-- Premium Summary Card -->
+            <div class="legal-summary-card">
+              <div class="legal-summary-inner">
+                <div class="legal-summary-icon">📋</div>
+                <div class="legal-summary-text">
+                  <strong>In short:</strong> Use AutoInbox responsibly. Don't use it for spam or illegal purposes. We provide the service "as-is" and are not liable for AI-generated content.
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 1 -->
+            <div class="legal-section" id="s1">
+              <div class="section-head">
+                <div class="section-badge">01</div>
+                <span class="section-icon">✅</span>
+                <h2>Acceptance of Terms</h2>
+              </div>
+              <p>By creating an account or using AutoInbox, you agree to these Terms of Service. If you do not agree, please do not use the service.</p>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Section 2 -->
+            <div class="legal-section" id="s2">
+              <div class="section-head">
+                <div class="section-badge">02</div>
+                <span class="section-icon">📝</span>
+                <h2>Description of Service</h2>
+              </div>
+              <p>AutoInbox is an AI-powered email auto-reply service that:</p>
+              <ul>
+                <li>Monitors your email inbox for incoming messages (when enabled).</li>
+                <li>Generates draft replies using artificial intelligence based on your writing style.</li>
+                <li>Sends approved replies on your behalf through your own email account.</li>
+              </ul>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Section 3 -->
+            <div class="legal-section" id="s3">
+              <div class="section-head">
+                <div class="section-badge">03</div>
+                <span class="section-icon">👤</span>
+                <h2>Account Responsibilities</h2>
+              </div>
+              <p>You are responsible for:</p>
+              <ul>
+                <li>Providing accurate account information.</li>
+                <li>Maintaining the security of your login credentials.</li>
+                <li>All activity that occurs under your account.</li>
+                <li>Reviewing AI-generated drafts before approving them for sending.</li>
+                <li>Ensuring your use complies with applicable laws and regulations.</li>
+              </ul>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Section 4 -->
+            <div class="legal-section" id="s4">
+              <div class="section-head">
+                <div class="section-badge">04</div>
+                <span class="section-icon">🚫</span>
+                <h2>Acceptable Use</h2>
+              </div>
+              <p>You agree NOT to use AutoInbox for:</p>
+              <ul>
+                <li>Sending spam, unsolicited messages, or bulk emails.</li>
+                <li>Fraudulent, deceptive, or illegal communications.</li>
+                <li>Impersonation with malicious intent.</li>
+                <li>Distributing malware, phishing, or harmful content.</li>
+                <li>Violating any applicable local, national, or international laws.</li>
+              </ul>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Section 5 -->
+            <div class="legal-section" id="s5">
+              <div class="section-head">
+                <div class="section-badge">05</div>
+                <span class="section-icon">🤖</span>
+                <h2>AI-Generated Content</h2>
+              </div>
+              <p>AutoInbox uses Google Gemini AI to generate reply drafts. Please note:</p>
+              <ul>
+                <li>AI-generated content may not always be accurate or appropriate.</li>
+                <li><strong>You are responsible for reviewing and approving all drafts before they are sent.</strong></li>
+                <li>AutoInbox is not liable for any consequences arising from AI-generated content that you approve and send.</li>
+                <li>The AI learns from the voice samples you provide — the quality of responses depends on the quality of your training data.</li>
+              </ul>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Section 6 -->
+            <div class="legal-section" id="s6">
+              <div class="section-head">
+                <div class="section-badge">06</div>
+                <span class="section-icon">💳</span>
+                <h2>Subscription and Payments</h2>
+              </div>
+              <ul>
+                <li><strong>Free Plan:</strong> Includes 10 AI replies per month at no cost.</li>
+                <li><strong>Paid Plans:</strong> Basic (₱499/mo) and Pro (₱999/mo) offer additional features and higher limits.</li>
+                <li>Payments are processed securely through PayMongo.</li>
+                <li>You may cancel your subscription at any time. No refunds for partial billing periods.</li>
+                <li>Pricing is subject to change with 30 days notice.</li>
+              </ul>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Section 7 -->
+            <div class="legal-section" id="s7">
+              <div class="section-head">
+                <div class="section-badge">07</div>
+                <span class="section-icon">⚙️</span>
+                <h2>Service Availability</h2>
+              </div>
+              <p>We strive to maintain 99% uptime but do not guarantee uninterrupted service. AutoInbox may be temporarily unavailable due to:</p>
+              <ul>
+                <li>Scheduled maintenance and updates.</li>
+                <li>Unexpected technical issues.</li>
+                <li>Third-party service outages (Google, PayMongo, hosting provider).</li>
+              </ul>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Section 8 -->
+            <div class="legal-section" id="s8">
+              <div class="section-head">
+                <div class="section-badge">08</div>
+                <span class="section-icon">⚠️</span>
+                <h2>Limitation of Liability</h2>
+              </div>
+              <p>AutoInbox is provided "as-is" without warranties of any kind. We are not liable for:</p>
+              <ul>
+                <li>Lost business, revenue, or opportunities due to service interruptions.</li>
+                <li>Inaccurate, inappropriate, or offensive AI-generated content.</li>
+                <li>Unauthorized access to your account due to your failure to secure credentials.</li>
+                <li>Any damages arising from the use or inability to use the service.</li>
+              </ul>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Section 9 -->
+            <div class="legal-section" id="s9">
+              <div class="section-head">
+                <div class="section-badge">09</div>
+                <span class="section-icon">🔚</span>
+                <h2>Termination</h2>
+              </div>
+              <p>We reserve the right to suspend or terminate accounts that violate these terms. You may delete your account at any time by disconnecting your email and contacting support.</p>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Section 10 -->
+            <div class="legal-section" id="s10">
+              <div class="section-head">
+                <div class="section-badge">10</div>
+                <span class="section-icon">📄</span>
+                <h2>Changes to Terms</h2>
+              </div>
+              <p>We may update these terms from time to time. Continued use of the service after changes constitutes acceptance of the new terms.</p>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <!-- Section 11 -->
+            <div class="legal-section" id="s11">
+              <div class="section-head">
+                <div class="section-badge">11</div>
+                <span class="section-icon">📬</span>
+                <h2>Contact</h2>
+              </div>
+              <p>For questions about these terms, contact us at:</p>
+              <p><strong>Email:</strong> <a href="mailto:autoinbox.app@gmail.com">autoinbox.app@gmail.com</a></p>
+            </div>
+
+            <!-- Footer Card with Gold Gradient Border -->
+            <div class="legal-footer-card">
+              <p>AutoInbox Software Publishing Services<br>DTI Registered · Philippines</p>
+              <div class="footer-shield">🛡️ Secured & Compliant</div>
+            </div>
+
+          </div><!-- /legal-main -->
+        </div><!-- /legal-layout -->
       </div>
     </div>
   </div>
