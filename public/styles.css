@@ -1995,24 +1995,26 @@ body::-webkit-scrollbar {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  background: rgba(255, 255, 255, 0.03) !important;
-  color: #d9d0c3 !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: #1A1A1C !important;
+  color: #C5A55A !important;
+  border: 1px solid rgba(197, 165, 90, 0.45) !important;
   border-radius: 20px !important;
   font-size: 0.82rem !important;
-  font-weight: 600 !important;
+  font-weight: 700 !important;
   cursor: pointer !important;
   padding: 0 20px !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   white-space: nowrap !important;
   font-family: var(--f) !important;
   box-sizing: border-box !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
 }
 .outer-login-btn:hover {
-  color: #FAFAFA !important;
-  background: rgba(255, 255, 255, 0.09) !important;
-  border-color: rgba(255, 255, 255, 0.2) !important;
+  color: #1A1A1C !important;
+  background: #C5A55A !important;
+  border-color: #C5A55A !important;
   transform: translateY(-1px) !important;
+  box-shadow: 0 6px 20px rgba(197, 165, 90, 0.4) !important;
 }
 .outer-lang-btn {
   background: transparent;
@@ -2039,26 +2041,26 @@ body::-webkit-scrollbar {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  background: rgba(197, 165, 90, 0.03) !important;
-  color: #FAFAFA !important;
-  border: 1.5px solid rgba(197, 165, 90, 0.6) !important;
+  background: #1A1A1C !important;
+  color: #C5A55A !important;
+  border: 1.5px solid #C5A55A !important;
   border-radius: 20px !important;
   padding: 0 10px 0 20px !important;
   font-size: 0.82rem !important;
-  font-weight: 600 !important;
+  font-weight: 700 !important;
   cursor: pointer !important;
   gap: 8px !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   white-space: nowrap !important;
   font-family: var(--f) !important;
-  box-shadow: 0 0 10px rgba(197, 165, 90, 0.05) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
   box-sizing: border-box !important;
 }
 .outer-connect-btn:hover {
   background: #C5A55A !important;
-  color: #0A0A0B !important;
+  color: #1A1A1C !important;
   border-color: #C5A55A !important;
-  box-shadow: 0 4px 20px rgba(197, 165, 90, 0.45) !important;
+  box-shadow: 0 6px 20px rgba(197, 165, 90, 0.4) !important;
   transform: translateY(-1px) !important;
 }
 .connect-arrow {
@@ -2067,13 +2069,13 @@ body::-webkit-scrollbar {
   justify-content: center !important;
   width: 22px !important;
   height: 22px !important;
-  background-color: #FAFAFA !important;
-  color: #0A0A0B !important;
+  background-color: #C5A55A !important;
+  color: #1A1A1C !important;
   border-radius: 50% !important;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 .outer-connect-btn:hover .connect-arrow {
-  background-color: #0A0A0B !important;
+  background-color: #1A1A1C !important;
   color: #C5A55A !important;
   transform: translateX(4px) scale(1.05) !important;
 }
