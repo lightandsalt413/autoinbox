@@ -1371,59 +1371,243 @@ body::-webkit-scrollbar {
 
 /* ---- Pricing Cards (cream themed) ---- */
 #pricing-modal .price-card {
-  background: rgba(26, 26, 28, 0.04);
-  border: 1px solid rgba(26, 26, 28, 0.08);
-  color: #1A1A1C;
+  background: #FAF6F0 !important;
+  border: 1px solid rgba(138, 117, 64, 0.15) !important;
+  border-radius: 20px !important;
+  padding: 36px 28px !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.01), inset 0 1px 0 #FFFFFF !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  overflow: visible !important;
 }
+
 #pricing-modal .price-card:hover {
-  border-color: rgba(138, 117, 64, 0.3);
-  box-shadow: 0 12px 40px rgba(138, 117, 64, 0.08);
+  background: #FFFFFF !important;
+  border-color: #C5A55A !important;
+  box-shadow: 
+    0 24px 50px rgba(138, 117, 64, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+  transform: translateY(-8px) !important;
 }
+
 #pricing-modal .price-card h4 {
-  color: #1A1A1C;
+  color: #8a7540 !important;
+  font-size: 0.9rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  margin-bottom: 12px !important;
 }
+
 #pricing-modal .price-val {
-  color: #1A1A1C;
+  color: #1A1A1C !important;
+  font-size: 3rem !important;
+  font-weight: 900 !important;
+  margin-bottom: 24px !important;
+  display: flex !important;
+  align-items: baseline !important;
+  gap: 4px !important;
 }
+
 #pricing-modal .price-val span {
-  color: #3a3832;
+  color: #5A5750 !important;
+  font-size: 0.9rem !important;
+  font-weight: 500 !important;
 }
+
+#pricing-modal .price-card ul {
+  list-style: none !important;
+  margin-bottom: 32px !important;
+  padding: 0 !important;
+  flex-grow: 1 !important;
+}
+
 #pricing-modal .price-card ul li {
-  color: #3a3832;
+  color: #1A1A1C !important;
+  font-size: 0.9rem !important;
+  padding: 10px 0 10px 24px !important;
+  border-bottom: 1px solid rgba(138, 117, 64, 0.08) !important;
+  position: relative !important;
+  line-height: 1.5 !important;
+  transition: all 0.3s ease !important;
 }
+
+#pricing-modal .price-card ul li:hover {
+  padding-left: 28px !important;
+  color: #8a7540 !important;
+}
+
 #pricing-modal .price-card ul li::before {
-  color: #8a7540;
+  content: "✓" !important;
+  position: absolute !important;
+  left: 0 !important;
+  color: #C5A55A !important;
+  font-weight: 800 !important;
+  font-size: 1rem !important;
+  transition: transform 0.3s ease !important;
 }
+
+#pricing-modal .price-card ul li:hover::before {
+  transform: scale(1.2) rotate(5deg) !important;
+}
+
 #pricing-modal .price-card ul li.dim {
-  color: rgba(26, 26, 28, 0.25);
+  color: rgba(26, 26, 28, 0.3) !important;
 }
+
+#pricing-modal .price-card ul li.dim::before {
+  content: "–" !important;
+  color: rgba(26, 26, 28, 0.25) !important;
+}
+
+#pricing-modal .price-card ul li.dim:hover {
+  padding-left: 24px !important;
+  color: rgba(26, 26, 28, 0.3) !important;
+}
+
+#pricing-modal .price-card ul li.dim:hover::before {
+  transform: none !important;
+}
+
+/* Featured Card (Basic) */
 #pricing-modal .price-card.pop {
-  background: #1A1A1C;
-  border-color: rgba(197, 165, 90, 0.3);
-  color: #F6F0E6;
+  background: linear-gradient(135deg, #121214 0%, #1c1c1f 100%) !important;
+  border: 1px solid rgba(197, 165, 90, 0.45) !important;
+  color: #F6F0E6 !important;
+  transform: scale(1.04) !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25) !important;
+  z-index: 2 !important;
 }
-#pricing-modal .price-card.pop h4,
+
+#pricing-modal .price-card.pop:hover {
+  border-color: #C5A55A !important;
+  box-shadow: 
+    0 24px 60px rgba(197, 165, 90, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+  transform: scale(1.06) translateY(-8px) !important;
+}
+
+#pricing-modal .price-card.pop h4 {
+  color: #C5A55A !important;
+  text-shadow: 0 0 10px rgba(197, 165, 90, 0.2) !important;
+}
+
 #pricing-modal .price-card.pop .price-val {
-  color: #F6F0E6;
+  color: #FFFFFF !important;
 }
+
+#pricing-modal .price-card.pop .price-val span {
+  color: rgba(246, 240, 230, 0.6) !important;
+}
+
 #pricing-modal .price-card.pop ul li {
-  color: rgba(246, 240, 230, 0.7);
+  color: rgba(246, 240, 230, 0.85) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
 }
+
+#pricing-modal .price-card.pop ul li:hover {
+  color: #FFE8A3 !important;
+}
+
+#pricing-modal .price-card.pop ul li::before {
+  color: #C5A55A !important;
+}
+
 #pricing-modal .price-card.pop ul li.dim {
-  color: rgba(246, 240, 230, 0.25);
+  color: rgba(246, 240, 230, 0.3) !important;
 }
+
+#pricing-modal .price-card.pop ul li.dim::before {
+  color: rgba(246, 240, 230, 0.25) !important;
+}
+
+/* Beautiful Glossy Best Value Badge */
 #pricing-modal .pop-tag {
-  background: linear-gradient(135deg, #c5a55a, #8a7540);
-  color: #fff;
+  top: -14px !important;
+  background: linear-gradient(135deg, #FFE8A3 0%, #C5A55A 50%, #8A7540 100%) !important;
+  color: #1A1A1C !important;
+  font-weight: 800 !important;
+  font-size: 0.72rem !important;
+  padding: 5px 18px !important;
+  border-radius: 50px !important;
+  box-shadow: 
+    0 6px 15px rgba(197, 165, 90, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
+  letter-spacing: 1.5px !important;
+  text-transform: uppercase !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
 }
+
+/* Free Trial Badge Capsule */
+#pricing-modal .price-card.pop .trial-badge {
+  background: rgba(16, 185, 129, 0.12) !important;
+  color: #10B981 !important;
+  border: 1px solid rgba(16, 185, 129, 0.2) !important;
+  padding: 4px 12px !important;
+  border-radius: 50px !important;
+  display: inline-block !important;
+  font-size: 0.72rem !important;
+  margin-top: -6px !important;
+  margin-bottom: 16px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  text-align: center !important;
+}
+
+/* Premium Buttons inside Modals */
 #pricing-modal .btn-ghost {
-  color: #1A1A1C;
-  border-color: rgba(26, 26, 28, 0.2);
+  background: transparent !important;
+  border: 1.5px solid rgba(138, 117, 64, 0.25) !important;
+  color: #8a7540 !important;
+  border-radius: 12px !important;
+  font-weight: 700 !important;
+  font-size: 0.95rem !important;
+  padding: 12px 24px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: none !important;
 }
+
 #pricing-modal .btn-ghost:hover {
-  background: rgba(26, 26, 28, 0.06);
-  border-color: #8a7540;
-  color: #8a7540;
+  background: #1A1A1C !important;
+  border-color: #1A1A1C !important;
+  color: #FAF6F0 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 20px rgba(26, 26, 28, 0.15) !important;
+}
+
+#pricing-modal .btn-accent {
+  background: linear-gradient(135deg, #C5A55A, #8A7540) !important;
+  color: #1A1A1C !important;
+  border: none !important;
+  border-radius: 12px !important;
+  font-weight: 800 !important;
+  font-size: 0.95rem !important;
+  padding: 14px 24px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 4px 15px rgba(197, 165, 90, 0.3) !important;
+}
+
+#pricing-modal .btn-accent:hover {
+  background: #FFFFFF !important;
+  color: #8a7540 !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(197, 165, 90, 0.5) !important;
+}
+
+#pricing-modal .btn-accent.pulse-glow {
+  animation: pulseGlow 2.5s infinite ease-in-out !important;
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(197, 165, 90, 0.35) !important;
+  }
+  50% {
+    box-shadow: 0 4px 25px rgba(197, 165, 90, 0.65) !important;
+  }
 }
 
 /* ---- Timeline / How It Works (cream themed) ---- */
