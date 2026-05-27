@@ -1995,9 +1995,9 @@ body::-webkit-scrollbar {
   display: inline-flex !important;
   align-items: center !important;
   justify-content: center !important;
-  background: rgba(255, 255, 255, 0.03) !important;
-  color: #d9d0c3 !important;
-  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: rgba(197, 165, 90, 0.03) !important;
+  color: #C5A55A !important;
+  border: 1px solid rgba(197, 165, 90, 0.35) !important;
   border-radius: 20px !important;
   font-size: 0.82rem !important;
   font-weight: 600 !important;
@@ -2009,10 +2009,11 @@ body::-webkit-scrollbar {
   box-sizing: border-box !important;
 }
 .outer-login-btn:hover {
-  color: #FAFAFA !important;
-  background: rgba(255, 255, 255, 0.09) !important;
-  border-color: rgba(255, 255, 255, 0.2) !important;
+  color: #1A1A1C !important;
+  background: #C5A55A !important;
+  border-color: #C5A55A !important;
   transform: translateY(-1px) !important;
+  box-shadow: 0 4px 15px rgba(197, 165, 90, 0.3) !important;
 }
 .outer-lang-btn {
   background: transparent;
