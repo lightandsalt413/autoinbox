@@ -1887,7 +1887,7 @@ body::-webkit-scrollbar {
   position: absolute;
   top: -1px;
   right: -1px;
-  width: 270px;
+  width: 300px !important;
   height: 72px;
   background-color: #0A0A0B;
   border-bottom-left-radius: 40px;
@@ -2081,7 +2081,7 @@ body::-webkit-scrollbar {
 }
 
 .fillet-tr-left {
-  right: 268px;
+  right: 298px !important;
   top: -2px;
   width: 42px;
   height: 42px;
@@ -2128,7 +2128,7 @@ body::-webkit-scrollbar {
   position: absolute;
   top: 0;
   left: 220px;
-  right: 270px;
+  right: 300px !important;
   height: 72px;
   display: flex;
   align-items: center;
@@ -2700,10 +2700,10 @@ body::-webkit-scrollbar {
 /* Responsive Screen Collapse */
 @media (max-width: 1200px) {
   .cutout-top-right {
-    width: 270px;
+    width: 300px !important;
   }
   .fillet-tr-left {
-    right: 268px;
+    right: 298px !important;
     top: -2px;
     width: 42px;
     height: 42px;
@@ -2725,7 +2725,7 @@ body::-webkit-scrollbar {
   }
   .canvas-header {
     left: 230px;
-    right: 270px;
+    right: 300px !important;
   }
   .nav-pill-item {
     padding: 6px 12px;
