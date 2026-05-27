@@ -9,20 +9,122 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/styles.css?v=59">
+  <link rel="stylesheet" href="/styles.css?v=132">
   <style>
-    .legal-wrap{max-width:800px;margin:0 auto;padding:120px 32px 80px;position:relative;z-index:1}
-    .legal-back{display:inline-flex;align-items:center;gap:8px;color:var(--p);font-size:.88rem;text-decoration:none;margin-bottom:32px;transition:all .2s}
-    .legal-back:hover{color:var(--p2);transform:translateX(-4px)}
-    .legal-wrap h1{font-size:2.2rem;font-weight:800;margin-bottom:8px;font-family:var(--fh)}
-    .legal-wrap .legal-date{font-size:.82rem;color:var(--t3);margin-bottom:40px}
-    .legal-wrap h2{font-size:1.2rem;font-weight:700;margin:36px 0 12px;color:var(--p2)}
-    .legal-wrap p,.legal-wrap li{font-size:.92rem;color:var(--t2);line-height:1.8}
-    .legal-wrap ul{margin:8px 0 16px 20px}
-    .legal-wrap li{margin-bottom:6px}
-    .legal-wrap strong{color:var(--t)}
-    .legal-card{background:var(--s);border:1px solid var(--s2);border-radius:var(--rad);padding:32px;margin-bottom:20px}
-    .legal-highlight{background:rgba(197,165,90,.06);border-left:3px solid var(--p);padding:16px 20px;border-radius:0 10px 10px 0;margin:16px 0;font-size:.9rem;color:var(--t2)}
+    body {
+      background: #F6F0E6 !important;
+      color: #1A1A1C !important;
+    }
+    .nav {
+      background: rgba(246, 240, 230, 0.9) !important;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(26, 26, 28, 0.08) !important;
+    }
+    .logo span {
+      font-family: var(--fh) !important;
+      font-size: 1.50rem !important;
+      font-weight: 800 !important;
+      letter-spacing: -0.3px !important;
+      background: linear-gradient(135deg, #1A1A1C 30%, #C5A55A 100%) !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      border: none !important;
+      padding: 0 !important;
+      border-radius: 0 !important;
+      box-shadow: none !important;
+      background-clip: text !important;
+    }
+    .logo span:hover {
+      background: linear-gradient(135deg, #1A1A1C 30%, #C5A55A 100%) !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      box-shadow: none !important;
+    }
+    .legal-wrap {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 120px 32px 80px;
+      position: relative;
+      z-index: 1;
+    }
+    .legal-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #8a7540 !important;
+      font-size: .88rem;
+      text-decoration: none;
+      margin-bottom: 32px;
+      transition: all .2s;
+      font-weight: 600;
+    }
+    .legal-back:hover {
+      color: #C5A55A !important;
+      transform: translateX(-4px);
+    }
+    .legal-wrap h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      font-family: var(--fh);
+      color: #1A1A1C !important;
+      letter-spacing: -0.5px;
+    }
+    .legal-wrap .legal-date {
+      font-size: .82rem;
+      color: #666 !important;
+      margin-bottom: 40px;
+    }
+    .legal-wrap h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin: 36px 0 12px;
+      color: #8a7540 !important;
+      letter-spacing: -0.3px;
+    }
+    .legal-wrap p, .legal-wrap li {
+      font-size: .92rem;
+      color: #333 !important;
+      line-height: 1.8;
+    }
+    .legal-wrap ul {
+      margin: 8px 0 16px 20px;
+    }
+    .legal-wrap li {
+      margin-bottom: 6px;
+    }
+    .legal-wrap strong {
+      color: #1A1A1C !important;
+    }
+    .legal-card {
+      background: #FFFFFF !important;
+      border: 1px solid rgba(26, 26, 28, 0.08) !important;
+      border-radius: var(--rad);
+      padding: 32px;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.02) !important;
+    }
+    .legal-highlight {
+      background: rgba(197, 165, 90, 0.08) !important;
+      border-left: 3px solid #C5A55A !important;
+      padding: 16px 20px;
+      border-radius: 0 10px 10px 0;
+      margin: 16px 0;
+      font-size: .9rem;
+      color: #333 !important;
+    }
+    .legal-highlight strong {
+      color: #1A1A1C !important;
+    }
+    .legal-wrap a {
+      color: #8a7540 !important;
+      text-decoration: underline;
+      transition: color 0.2s;
+    }
+    .legal-wrap a:hover {
+      color: #C5A55A !important;
+    }
   </style>
 </head>
 <body>
