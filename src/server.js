@@ -9,6 +9,7 @@ const { encrypt } = require('./crypto');
 const emailMonitor = require('./monitors/email');
 const emailSender = require('./senders/email');
 const { helmetConfig, apiLimiter, authLimiter } = require('./middleware/security');
+const { profanityMiddleware } = require('./middleware/profanity');
 const nodemailer = require('nodemailer');
 
 const app = express();
@@ -52,7 +53,7 @@ app.use(express.static(path.join(__dirname, '..', 'public'), {
 app.get('/health', (req, res) => res.status(200).json({ status: 'alive', uptime: process.uptime() }));
 
 // --- Auth Routes (public) ---
-app.post('/api/auth/register', authLimiter, async (req, res) => {
+app.post('/api/auth/register', authLimiter, profanityMiddleware, async (req, res) => {
   try {
     const { email, password, name } = req.body;
     const result = await register(email, password, name);
@@ -101,7 +102,7 @@ app.post('/api/webhook/paymongo', async (req, res) => {
 });
 
 // --- Public Feedback Route ---
-app.post('/api/feedback', async (req, res) => {
+app.post('/api/feedback', profanityMiddleware, async (req, res) => {
   try {
     const { name, email, message } = req.body;
     if (!email || !message) {
@@ -242,7 +243,7 @@ app.post('/api/messages/:id/approve', async (req, res) => {
   } catch (e) { res.status(500).json({ error: e.message }); }
 });
 
-app.post('/api/messages/:id/edit', async (req, res) => {
+app.post('/api/messages/:id/edit', profanityMiddleware, async (req, res) => {
   try {
     const draft = await db.getDraftByMessageId(parseInt(req.params.id), req.userId);
     if (!draft) return res.status(404).json({ error: 'No draft' });
@@ -273,7 +274,7 @@ app.post('/api/messages/:id/regenerate', async (req, res) => {
 });
 
 // --- Voice Clone ---
-app.post('/api/voice/samples', async (req, res) => {
+app.post('/api/voice/samples', profanityMiddleware, async (req, res) => {
   try {
     const { samples } = req.body;
     if (!samples || !Array.isArray(samples)) return res.status(400).json({ error: 'Samples array required' });
@@ -306,7 +307,7 @@ app.get('/api/settings', async (req, res) => {
   } catch (e) { res.status(500).json({ error: e.message }); }
 });
 
-app.post('/api/settings', async (req, res) => {
+app.post('/api/settings', profanityMiddleware, async (req, res) => {
   try {
     for (const [key, value] of Object.entries(req.body)) {
       await db.upsertSetting(req.userId, key, String(value));

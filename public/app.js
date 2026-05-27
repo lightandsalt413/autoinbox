@@ -2,6 +2,46 @@
 if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
 }
+
+// ===== Profanity Filter (Client-Side) =====
+const _profanityWords = [
+  'fuck','fucker','fucking','fucked','fck','fcking','fuk','fukin',
+  'shit','shitty','bullshit','sht',
+  'asshole','assholes','arsehole',
+  'bitch','bitches','bitchy',
+  'dick','dickhead','cock','cocksucker',
+  'cunt','cunts','bastard','bastards',
+  'whore','whores','slut','sluts',
+  'motherfucker','motherfucking','mofo',
+  'nigger','nigga','retard','retarded','faggot','fag',
+  'putangina','putang ina','puta','tangina','tanginamo',
+  'gago','gaga','gagong','bobo','tanga','ulol','inutil',
+  'tarantado','tarantada','leche','lintik','punyeta',
+  'kingina','kinginamo','pakyu','pakshet',
+  'kupal','hindot','kantot','jakol',
+  'tite','titi','pekpek','betlog','burat','ogag',
+  'siraulo','gunggong','ungas',
+  'phuck','phuk','biatch','beyotch','biotch'
+];
+const _profanityRegex = new RegExp(
+  _profanityWords.map(w => {
+    const esc = w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return w.includes(' ') ? `(${esc})` : `\\b(${esc})\\b`;
+  }).join('|'), 'gi'
+);
+function hasProfanity(text) {
+  if (!text || typeof text !== 'string') return false;
+  const norm = text.toLowerCase()
+    .replace(/0/g,'o').replace(/1/g,'i').replace(/3/g,'e')
+    .replace(/4/g,'a').replace(/5/g,'s').replace(/\$/g,'s').replace(/@/g,'a');
+  return _profanityRegex.test(text) || _profanityRegex.test(norm);
+}
+function checkFormProfanity(...values) {
+  for (const v of values) {
+    if (hasProfanity(v)) return true;
+  }
+  return false;
+}
 let token = localStorage.getItem('kk_token') || sessionStorage.getItem('kk_token') || '';
 let currentFilter = 'all';
 let currentMsgId = null;
@@ -528,6 +568,16 @@ document.getElementById('form-register')?.addEventListener('submit', async (e) =
     errEl.classList.remove('hidden');
     return;
   }
+  // Profanity check on name fields
+  const fname = document.getElementById('reg-fname').value.trim();
+  const mname = document.getElementById('reg-mname').value.trim();
+  const lname = document.getElementById('reg-lname').value.trim();
+  const suffix = document.getElementById('reg-suffix').value.trim();
+  if (checkFormProfanity(fname, mname, lname, suffix)) {
+    errEl.textContent = 'Inappropriate language detected. Please use proper words.';
+    errEl.classList.remove('hidden');
+    return;
+  }
   try {
     const data = await api('/auth/register', {
       method: 'POST',
@@ -664,6 +714,12 @@ document.getElementById('ob-next-2')?.addEventListener('click', async () => {
   errEl.classList.add('hidden');
   const samples = [...document.querySelectorAll('#voice-samples-container .voice-sample')].map(t => t.value).filter(s => s.trim());
   if (samples.length < 3) { errEl.textContent = 'Need at least 3 sample replies'; errEl.classList.remove('hidden'); return; }
+  // Profanity check on voice samples
+  if (checkFormProfanity(...samples)) {
+    errEl.textContent = 'Inappropriate language detected in your samples. Please remove offensive words.';
+    errEl.classList.remove('hidden');
+    return;
+  }
   try {
     await api('/voice/samples', { method: 'POST', body: JSON.stringify({ samples }) });
     showToast('Analyzing your style...');
@@ -1134,13 +1190,21 @@ document.getElementById('set-email-disconnect')?.addEventListener('click', async
 });
 
 document.getElementById('btn-save-settings')?.addEventListener('click', async () => {
+  const nameVal = document.getElementById('set-name').value;
+  const servicesVal = document.getElementById('set-services').value;
+  const customVal = document.getElementById('set-custom').value;
+  // Profanity check
+  if (checkFormProfanity(nameVal, servicesVal, customVal)) {
+    showToast('Inappropriate language detected. Please remove offensive words.', 'error');
+    return;
+  }
   try {
     await api('/settings', { method: 'POST', body: JSON.stringify({
-      agent_name: document.getElementById('set-name').value,
+      agent_name: nameVal,
       agent_tone: document.getElementById('set-tone').value,
       agent_language: document.getElementById('set-lang').value,
-      services: document.getElementById('set-services').value,
-      custom_instructions: document.getElementById('set-custom').value
+      services: servicesVal,
+      custom_instructions: customVal
     }) });
     showToast('Settings saved! ✅');
   } catch (e) { showToast(e.message, 'error'); }
@@ -1657,6 +1721,15 @@ document.getElementById('form-feedback')?.addEventListener('submit', async (e) =
 
   if (errEl) errEl.classList.add('hidden');
   if (succEl) succEl.classList.add('hidden');
+
+  // Profanity check
+  if (checkFormProfanity(name, message)) {
+    if (errEl) {
+      errEl.textContent = 'Inappropriate language detected. Please remove offensive words.';
+      errEl.classList.remove('hidden');
+    }
+    return;
+  }
 
   try {
     const btn = e.target.querySelector('button[type="submit"]');
