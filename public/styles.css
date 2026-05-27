@@ -1997,7 +1997,7 @@ body::-webkit-scrollbar {
   justify-content: center !important;
   background: rgba(197, 165, 90, 0.03) !important;
   color: #FAFAFA !important;
-  border: 1px solid rgba(197, 165, 90, 0.35) !important;
+  border: 1.5px solid rgba(197, 165, 90, 0.6) !important;
   border-radius: 20px !important;
   font-size: 0.82rem !important;
   font-weight: 600 !important;
