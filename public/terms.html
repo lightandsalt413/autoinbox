@@ -11,14 +11,59 @@
   <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css?v=132">
   <style>
+    html, body {
+      scrollbar-width: auto !important;
+      -ms-overflow-style: auto !important;
+    }
     body {
       background: #0A0A0B !important;
       color: #1A1A1C !important;
-      overflow: hidden !important;
+      overflow-y: auto !important;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    /* Custom premium gold scrollbar */
+    body::-webkit-scrollbar {
+      display: block !important;
+      width: 10px !important;
+    }
+    body::-webkit-scrollbar-track {
+      background: #0A0A0B !important;
+    }
+    body::-webkit-scrollbar-thumb {
+      background: rgba(197, 165, 90, 0.3) !important;
+      border: 2px solid #0A0A0B !important;
+      border-radius: 5px !important;
+    }
+    body::-webkit-scrollbar-thumb:hover {
+      background: rgba(197, 165, 90, 0.6) !important;
+    }
+    .landing-frame {
+      min-height: 100vh !important;
+      max-height: none !important;
+      height: auto !important;
+      overflow: visible !important;
+      padding: 14px !important;
+      display: flex !important;
+      box-sizing: border-box !important;
     }
     .landing-canvas {
-      overflow-y: auto !important;
-      display: block !important;
+      min-height: calc(100vh - 28px) !important;
+      max-height: none !important;
+      height: auto !important;
+      overflow: visible !important;
+      display: flex !important;
+      flex-direction: column !important;
+      background-color: #F6F0E6 !important;
+    }
+    @media (max-width: 768px) {
+      .landing-frame {
+        padding: 8px !important;
+      }
+      .landing-canvas {
+        min-height: calc(100vh - 16px) !important;
+      }
     }
     .legal-wrap {
       max-width: 800px;
@@ -118,7 +163,7 @@
       <div class="fillet fillet-tr-left"></div>
 
       <!-- Inner Canvas Content -->
-      <div class="canvas-content" style="padding: 120px 48px 60px; box-sizing: border-box;">
+      <div class="canvas-content" style="padding: 120px 48px 60px; box-sizing: border-box; flex: 1;">
         <div class="legal-wrap">
           <h1>Terms of Service</h1>
           <p class="legal-date">Last updated: May 20, 2026</p>
