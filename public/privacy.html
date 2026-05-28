@@ -191,56 +191,97 @@
       line-height: 1.7;
     }
 
-    /* Section Cards */
-    .legal-section {
-      background: #FFFFFF;
-      border: 1px solid rgba(26,26,28,0.05);
-      border-radius: 16px;
-      padding: 28px 28px 24px;
-      margin-bottom: 10px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.02);
-      transition: all 0.3s ease;
-    }
-    .legal-section:hover {
-      box-shadow: 0 6px 24px rgba(0,0,0,0.05);
-      border-color: rgba(197,165,90,0.12);
-      transform: translateY(-2px);
-    }
-    .section-head {
+    /* Timeline Step Container */
+    .timeline-step {
       display: flex;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 16px;
+      gap: 24px;
+      margin-bottom: 0;
+      position: relative;
+      padding-bottom: 48px;
     }
-    .section-num {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
-      background: rgba(197,165,90,0.08);
+    .timeline-step:last-child {
+      padding-bottom: 0;
+    }
+    .timeline-step:last-child .timeline-line {
+      display: none;
+    }
+
+    /* Left side with number */
+    .timeline-left {
+      flex-shrink: 0;
+      width: 72px;
+      display: flex;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+    }
+    .timeline-num {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(138, 117, 64, 0.1);
+      border: 2px solid rgba(138, 117, 64, 0.25);
+      color: #8a7540;
+      font-size: 1.4rem;
+      font-weight: 800;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: .68rem;
-      font-weight: 800;
-      color: #C5A55A;
-      flex-shrink: 0;
       transition: all 0.3s ease;
     }
-    .legal-section:hover .section-num {
-      background: #1A1A1C;
-      color: #C5A55A;
+
+    /* Connecting line */
+    .timeline-line {
+      position: absolute;
+      left: 36px;
+      top: 72px;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, rgba(197,165,90,.3), rgba(197,165,90,.05));
+      z-index: 1;
     }
-    .section-title {
-      font-size: 1rem;
+
+    /* Content area */
+    .timeline-content {
+      flex: 1;
+      padding-top: 8px;
+    }
+    .timeline-badge {
+      display: inline-block;
+      font-size: .7rem;
       font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #8a7540;
+      background: rgba(138, 117, 64, 0.1);
+      padding: 4px 12px;
+      border-radius: 50px;
+      margin-bottom: 12px;
+    }
+    .timeline-content h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 10px;
       color: #1A1A1C;
       font-family: var(--fh);
       letter-spacing: -0.2px;
+      transition: color 0.3s ease;
     }
+    .timeline-content p {
+      font-size: .9rem;
+      color: #3a3832;
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+    .timeline-content p strong {
+      color: #1A1A1C;
+      font-weight: 700;
+    }
+
+    /* Section body within timeline */
     .section-body {
-      padding-left: 50px;
-      font-size: .86rem;
-      color: #333;
+      font-size: .9rem;
+      color: #3a3832;
       line-height: 1.8;
     }
     .section-body p {
@@ -281,6 +322,30 @@
       color: #C5A55A;
     }
 
+    /* Note box */
+    .timeline-note {
+      font-size: .8rem;
+      color: #666;
+      padding: 12px 16px;
+      background: rgba(138, 117, 64, 0.06);
+      border-left: 2px solid #8a7540;
+      border-radius: 0 8px 8px 0;
+      line-height: 1.5;
+      margin-top: 14px;
+    }
+
+    /* Hover effects */
+    .timeline-step:hover .timeline-num {
+      background: linear-gradient(135deg, #C5A55A, #8a7540);
+      color: #fff;
+      border-color: #C5A55A;
+      box-shadow: 0 0 40px rgba(197,165,90,.3);
+      transform: scale(1.08);
+    }
+    .timeline-step:hover .timeline-content h3 {
+      color: #C5A55A;
+    }
+
     /* Footer */
     .legal-footer {
       background: #FFFFFF;
@@ -306,21 +371,32 @@
     @media (max-width: 768px) {
       .legal-header h1 { font-size: 1.8rem; }
       .legal-header p { font-size: .85rem; }
-      .section-body { padding-left: 24px; }
-      .section-num { width: 34px; height: 34px; font-size: .72rem; border-radius: 8px; }
-      .section-title { font-size: .92rem; }
-      .legal-section { padding: 22px 20px 18px; }
+      .timeline-left { width: 56px; }
+      .timeline-num { width: 56px; height: 56px; font-size: 1.15rem; }
+      .timeline-line { left: 28px; top: 56px; }
+      .timeline-step { gap: 18px; padding-bottom: 36px; }
+      .timeline-content h3 { font-size: 1.1rem; }
+      .section-body { font-size: .85rem; }
       .legal-summary { padding: 20px; }
       .summary-text { font-size: .82rem; }
     }
+    @media (max-width: 600px) {
+      .timeline-left { width: 52px; }
+      .timeline-num { width: 52px; height: 52px; font-size: 1.1rem; }
+      .timeline-line { left: 26px; top: 52px; }
+    }
     @media (max-width: 480px) {
       .legal-header h1 { font-size: 1.5rem; }
-      .section-body { padding-left: 0; margin-top: 4px; font-size: .82rem; }
-      .legal-section { padding: 18px 16px 14px; }
+      .timeline-left { width: 44px; }
+      .timeline-num { width: 44px; height: 44px; font-size: .95rem; }
+      .timeline-line { left: 22px; top: 44px; }
+      .timeline-step { gap: 14px; padding-bottom: 28px; }
+      .timeline-content h3 { font-size: 1rem; }
+      .timeline-badge { font-size: .6rem; padding: 3px 10px; }
+      .section-body { font-size: .82rem; }
       .legal-summary { padding: 16px; flex-direction: column; gap: 12px; }
       .summary-bar { width: 100%; min-height: 3px; align-self: auto; background: linear-gradient(90deg, #C5A55A 0%, rgba(197,165,90,0.2) 100%); }
       .legal-layout { padding: 20px 10px 48px; }
-      .section-head { gap: 10px; }
       .legal-footer { padding: 18px 16px; }
       .legal-footer p { font-size: .72rem; }
     }
@@ -382,105 +458,133 @@
               </div>
             </div>
 
-            <div class="legal-section" id="pp-1">
-              <div class="section-head">
-                <div class="section-num">01</div>
-                <span class="section-title">Information We Collect</span>
+            <div class="timeline-step" id="pp-1">
+              <div class="timeline-left">
+                <div class="timeline-num">01</div>
+                <div class="timeline-line"></div>
               </div>
-              <div class="section-body">
-                <p>When you create an account and use AutoInbox, we collect:</p>
-                <ul>
-                  <li><strong>Account Information:</strong> Your name, email address, and password (hashed using bcrypt with 12 salt rounds).</li>
-                  <li><strong>Email Credentials:</strong> Your Gmail address and App Password, encrypted using AES-256-GCM encryption. We never store your actual Google password.</li>
-                  <li><strong>Email Content:</strong> Incoming email metadata (sender, subject, body) for AI processing. This data is stored locally in our encrypted database.</li>
-                  <li><strong>Voice Samples:</strong> Text samples you voluntarily provide to train your AI clone's writing style.</li>
-                  <li><strong>Usage Data:</strong> Basic analytics like message counts and feature usage.</li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="legal-section" id="pp-2">
-              <div class="section-head">
-                <div class="section-num">02</div>
-                <span class="section-title">How We Use Your Information</span>
-              </div>
-              <div class="section-body">
-                <p>Your information is used exclusively to:</p>
-                <ul>
-                  <li>Provide AI-powered auto-reply drafts that match your writing style.</li>
-                  <li>Monitor your inbox for incoming messages (only when you enable this feature).</li>
-                  <li>Send approved replies on your behalf through your own email account.</li>
-                  <li>Improve the accuracy of your AI clone over time.</li>
-                </ul>
+              <div class="timeline-content">
+                <span class="timeline-badge">Section 1</span>
+                <h3>Information We Collect</h3>
+                <div class="section-body">
+                  <p>When you create an account and use AutoInbox, we collect:</p>
+                  <ul>
+                    <li><strong>Account Information:</strong> Your name, email address, and password (hashed using bcrypt with 12 salt rounds).</li>
+                    <li><strong>Email Credentials:</strong> Your Gmail address and App Password, encrypted using AES-256-GCM encryption. We never store your actual Google password.</li>
+                    <li><strong>Email Content:</strong> Incoming email metadata (sender, subject, body) for AI processing. This data is stored locally in our encrypted database.</li>
+                    <li><strong>Voice Samples:</strong> Text samples you voluntarily provide to train your AI clone's writing style.</li>
+                    <li><strong>Usage Data:</strong> Basic analytics like message counts and feature usage.</li>
+                  </ul>
+                </div>
               </div>
             </div>
 
-            <div class="legal-section" id="pp-3">
-              <div class="section-head">
-                <div class="section-num">03</div>
-                <span class="section-title">Data Security</span>
+            <div class="timeline-step" id="pp-2">
+              <div class="timeline-left">
+                <div class="timeline-num">02</div>
+                <div class="timeline-line"></div>
               </div>
-              <div class="section-body">
-                <p>We take security seriously:</p>
-                <ul>
-                  <li><strong>Encryption:</strong> All email credentials are encrypted with AES-256-GCM, the same standard used by banks and military systems.</li>
-                  <li><strong>Password Hashing:</strong> Account passwords are hashed using bcrypt (12 rounds). We cannot read your password.</li>
-                  <li><strong>HTTPS:</strong> All data in transit is encrypted via TLS/SSL.</li>
-                  <li><strong>Security Headers:</strong> We use Helmet.js to set strict HTTP security headers.</li>
-                  <li><strong>Rate Limiting:</strong> API endpoints are rate-limited to prevent abuse.</li>
-                </ul>
-              </div>
-            </div>
-
-            <div class="legal-section" id="pp-4">
-              <div class="section-head">
-                <div class="section-num">04</div>
-                <span class="section-title">Third-Party Services</span>
-              </div>
-              <div class="section-body">
-                <p>We use the following third-party services:</p>
-                <ul>
-                  <li><strong>Google Gemini AI:</strong> To generate email reply drafts. Email content is sent to Google's API for processing. See <a href="https://ai.google.dev/terms" target="_blank">Google AI Terms</a>.</li>
-                  <li><strong>PayMongo:</strong> For payment processing. We never store your payment card details. See <a href="https://www.paymongo.com/privacy" target="_blank">PayMongo Privacy Policy</a>.</li>
-                  <li><strong>Render:</strong> For hosting. See <a href="https://render.com/privacy" target="_blank">Render Privacy Policy</a>.</li>
-                </ul>
+              <div class="timeline-content">
+                <span class="timeline-badge">Section 2</span>
+                <h3>How We Use Your Information</h3>
+                <div class="section-body">
+                  <p>Your information is used exclusively to:</p>
+                  <ul>
+                    <li>Provide AI-powered auto-reply drafts that match your writing style.</li>
+                    <li>Monitor your inbox for incoming messages (only when you enable this feature).</li>
+                    <li>Send approved replies on your behalf through your own email account.</li>
+                    <li>Improve the accuracy of your AI clone over time.</li>
+                  </ul>
+                </div>
               </div>
             </div>
 
-            <div class="legal-section" id="pp-5">
-              <div class="section-head">
-                <div class="section-num">05</div>
-                <span class="section-title">Data Retention</span>
+            <div class="timeline-step" id="pp-3">
+              <div class="timeline-left">
+                <div class="timeline-num">03</div>
+                <div class="timeline-line"></div>
               </div>
-              <div class="section-body">
-                <p>We retain your data for as long as your account is active. You can delete your account at any time by disconnecting your email and contacting us. Upon deletion, all your data (messages, drafts, voice samples, and credentials) will be permanently removed.</p>
-              </div>
-            </div>
-
-            <div class="legal-section" id="pp-6">
-              <div class="section-head">
-                <div class="section-num">06</div>
-                <span class="section-title">Your Rights</span>
-              </div>
-              <div class="section-body">
-                <p>You have the right to:</p>
-                <ul>
-                  <li>Access your personal data stored in our system.</li>
-                  <li>Disconnect your email at any time from the Settings page.</li>
-                  <li>Delete your voice samples and AI profile.</li>
-                  <li>Request complete account deletion.</li>
-                </ul>
+              <div class="timeline-content">
+                <span class="timeline-badge">Section 3</span>
+                <h3>Data Security</h3>
+                <div class="section-body">
+                  <p>We take security seriously:</p>
+                  <ul>
+                    <li><strong>Encryption:</strong> All email credentials are encrypted with AES-256-GCM, the same standard used by banks and military systems.</li>
+                    <li><strong>Password Hashing:</strong> Account passwords are hashed using bcrypt (12 rounds). We cannot read your password.</li>
+                    <li><strong>HTTPS:</strong> All data in transit is encrypted via TLS/SSL.</li>
+                    <li><strong>Security Headers:</strong> We use Helmet.js to set strict HTTP security headers.</li>
+                    <li><strong>Rate Limiting:</strong> API endpoints are rate-limited to prevent abuse.</li>
+                  </ul>
+                </div>
               </div>
             </div>
 
-            <div class="legal-section" id="pp-7">
-              <div class="section-head">
-                <div class="section-num">07</div>
-                <span class="section-title">Contact</span>
+            <div class="timeline-step" id="pp-4">
+              <div class="timeline-left">
+                <div class="timeline-num">04</div>
+                <div class="timeline-line"></div>
               </div>
-              <div class="section-body">
-                <p>If you have questions about this privacy policy, contact us at:</p>
-                <p><strong>Email:</strong> <a href="https://mail.google.com/mail/?view=cm&to=autoinbox1990@gmail.com" target="_blank">autoinbox1990@gmail.com</a></p>
+              <div class="timeline-content">
+                <span class="timeline-badge">Section 4</span>
+                <h3>Third-Party Services</h3>
+                <div class="section-body">
+                  <p>We use the following third-party services:</p>
+                  <ul>
+                    <li><strong>Google Gemini AI:</strong> To generate email reply drafts. Email content is sent to Google's API for processing. See <a href="https://ai.google.dev/terms" target="_blank">Google AI Terms</a>.</li>
+                    <li><strong>PayMongo:</strong> For payment processing. We never store your payment card details. See <a href="https://www.paymongo.com/privacy" target="_blank">PayMongo Privacy Policy</a>.</li>
+                    <li><strong>Render:</strong> For hosting. See <a href="https://render.com/privacy" target="_blank">Render Privacy Policy</a>.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="timeline-step" id="pp-5">
+              <div class="timeline-left">
+                <div class="timeline-num">05</div>
+                <div class="timeline-line"></div>
+              </div>
+              <div class="timeline-content">
+                <span class="timeline-badge">Section 5</span>
+                <h3>Data Retention</h3>
+                <div class="section-body">
+                  <p>We retain your data for as long as your account is active. You can delete your account at any time by disconnecting your email and contacting us. Upon deletion, all your data (messages, drafts, voice samples, and credentials) will be permanently removed.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="timeline-step" id="pp-6">
+              <div class="timeline-left">
+                <div class="timeline-num">06</div>
+                <div class="timeline-line"></div>
+              </div>
+              <div class="timeline-content">
+                <span class="timeline-badge">Section 6</span>
+                <h3>Your Rights</h3>
+                <div class="section-body">
+                  <p>You have the right to:</p>
+                  <ul>
+                    <li>Access your personal data stored in our system.</li>
+                    <li>Disconnect your email at any time from the Settings page.</li>
+                    <li>Delete your voice samples and AI profile.</li>
+                    <li>Request complete account deletion.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="timeline-step" id="pp-7">
+              <div class="timeline-left">
+                <div class="timeline-num">07</div>
+                <div class="timeline-line"></div>
+              </div>
+              <div class="timeline-content">
+                <span class="timeline-badge">Section 7</span>
+                <h3>Contact</h3>
+                <div class="section-body">
+                  <p>If you have questions about this privacy policy, contact us at:</p>
+                  <p><strong>Email:</strong> <a href="https://mail.google.com/mail/?view=cm&to=autoinbox1990@gmail.com" target="_blank">autoinbox1990@gmail.com</a></p>
+                </div>
               </div>
             </div>
 
