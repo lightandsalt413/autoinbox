@@ -194,53 +194,61 @@
     /* Section Cards */
     .legal-section {
       background: #FFFFFF;
-      border: 1px solid rgba(26,26,28,0.05);
+      border: 1px solid rgba(26,26,28,0.06);
       border-radius: 16px;
       padding: 28px 28px 24px;
-      margin-bottom: 10px;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.02);
-      transition: all 0.3s ease;
+      margin-bottom: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .legal-section:hover {
-      box-shadow: 0 6px 24px rgba(0,0,0,0.05);
-      border-color: rgba(197,165,90,0.12);
+      box-shadow: 0 8px 32px rgba(197,165,90,0.1), 0 2px 8px rgba(0,0,0,0.04);
+      border-color: rgba(197,165,90,0.2);
       transform: translateY(-2px);
     }
     .section-head {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 16px;
       margin-bottom: 16px;
     }
     .section-num {
-      width: 36px;
-      height: 36px;
-      border-radius: 10px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
       background: rgba(197,165,90,0.08);
+      border: 2px solid rgba(197,165,90,0.18);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: .68rem;
+      font-size: .82rem;
       font-weight: 800;
-      color: #C5A55A;
+      color: #8a7540;
       flex-shrink: 0;
-      transition: all 0.3s ease;
+      transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .legal-section:hover .section-num {
-      background: #1A1A1C;
-      color: #C5A55A;
+      background: linear-gradient(135deg, #C5A55A, #8a7540);
+      color: #fff;
+      border-color: #C5A55A;
+      box-shadow: 0 4px 20px rgba(197,165,90,0.25);
+      transform: scale(1.05);
     }
     .section-title {
-      font-size: 1rem;
+      font-size: 1.05rem;
       font-weight: 700;
       color: #1A1A1C;
       font-family: var(--fh);
       letter-spacing: -0.2px;
+      transition: color 0.3s ease;
+    }
+    .legal-section:hover .section-title {
+      color: #8a7540;
     }
     .section-body {
-      padding-left: 50px;
-      font-size: .86rem;
-      color: #333;
+      padding-left: 64px;
+      font-size: .88rem;
+      color: #444;
       line-height: 1.8;
     }
     .section-body p {
@@ -255,17 +263,17 @@
       position: relative;
       padding-left: 20px;
       margin-bottom: 8px;
-      line-height: 1.7;
+      line-height: 1.75;
     }
     .section-body ul li::before {
       content: '';
       position: absolute;
       left: 0;
       top: 10px;
-      width: 5px;
-      height: 5px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
-      background: #C5A55A;
+      background: linear-gradient(135deg, #C5A55A, #8a7540);
     }
     .section-body strong {
       color: #1A1A1C;
@@ -274,26 +282,28 @@
     .section-body a {
       color: #8a7540;
       text-decoration: underline;
-      text-underline-offset: 2px;
-      transition: color 0.2s;
+      text-underline-offset: 3px;
+      text-decoration-color: rgba(138,117,64,0.3);
+      transition: all 0.2s;
     }
     .section-body a:hover {
       color: #C5A55A;
+      text-decoration-color: #C5A55A;
     }
 
     /* Footer */
     .legal-footer {
       background: #FFFFFF;
-      border: 1px solid rgba(26,26,28,0.05);
+      border: 1px solid rgba(26,26,28,0.06);
       border-radius: 16px;
-      margin-top: 16px;
+      margin-top: 20px;
       padding: 24px;
       text-align: center;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
     }
     .legal-footer p {
       font-size: .78rem;
-      color: #888;
+      color: #999;
       margin: 0;
       line-height: 1.6;
     }
@@ -306,21 +316,22 @@
     @media (max-width: 768px) {
       .legal-header h1 { font-size: 1.8rem; }
       .legal-header p { font-size: .85rem; }
-      .section-body { padding-left: 24px; }
-      .section-num { width: 34px; height: 34px; font-size: .72rem; border-radius: 8px; }
-      .section-title { font-size: .92rem; }
+      .section-body { padding-left: 0; margin-top: 12px; }
+      .section-num { width: 40px; height: 40px; font-size: .75rem; }
+      .section-title { font-size: .95rem; }
       .legal-section { padding: 22px 20px 18px; }
       .legal-summary { padding: 20px; }
       .summary-text { font-size: .82rem; }
     }
     @media (max-width: 480px) {
       .legal-header h1 { font-size: 1.5rem; }
-      .section-body { padding-left: 0; margin-top: 4px; font-size: .82rem; }
+      .section-body { font-size: .82rem; }
       .legal-section { padding: 18px 16px 14px; }
+      .section-head { gap: 12px; }
+      .section-num { width: 36px; height: 36px; font-size: .7rem; }
       .legal-summary { padding: 16px; flex-direction: column; gap: 12px; }
       .summary-bar { width: 100%; min-height: 3px; align-self: auto; background: linear-gradient(90deg, #C5A55A 0%, rgba(197,165,90,0.2) 100%); }
       .legal-layout { padding: 20px 10px 48px; }
-      .section-head { gap: 10px; }
       .legal-footer { padding: 18px 16px; }
       .legal-footer p { font-size: .72rem; }
     }
