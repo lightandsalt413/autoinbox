@@ -2777,21 +2777,29 @@ body::-webkit-scrollbar {
     width: 100%;
     height: auto;
     border-radius: 0;
-    padding: 16px 20px;
+    padding: 14px 16px;
     background-color: #0A0A0B;
   }
   
   .cutout-top-left {
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cutout-top-left .logo-text {
+    font-size: 1.5rem !important;
   }
   
   .cutout-top-right {
     justify-content: center;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 12px 16px;
   }
   
   .cutout-bottom-right {
     border-top: 1px solid rgba(255, 255, 255, 0.05);
+    display: none;
   }
   
   .footer-simple {
@@ -2800,14 +2808,14 @@ body::-webkit-scrollbar {
   }
   
   .canvas-content {
-    padding: 30px 20px;
+    padding: 24px 16px;
   }
   
   .canvas-header {
     position: static;
     width: 100%;
     height: auto;
-    margin-bottom: 30px;
+    margin-bottom: 24px;
     justify-content: center;
   }
   
@@ -2820,6 +2828,7 @@ body::-webkit-scrollbar {
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     max-width: 100%;
+    padding-right: 12px;
   }
   .nav-pill::-webkit-scrollbar { display: none; }
   
@@ -2832,7 +2841,7 @@ body::-webkit-scrollbar {
   
   .canvas-hero-grid {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 24px;
   }
   
   .hero-left-col {
@@ -2841,20 +2850,90 @@ body::-webkit-scrollbar {
   }
   
   .canvas-title {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     letter-spacing: -0.8px;
   }
   
   .canvas-desc {
     margin: 0 auto;
+    font-size: 0.9rem;
   }
   
   .canvas-divider {
-    margin: 0 auto 24px;
+    margin: 0 auto 20px;
   }
   
   .canvas-hero-image-wrap {
-    max-width: 320px;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  /* Outer action buttons tighter */
+  .outer-actions {
+    gap: 8px;
+  }
+  .outer-login-btn {
+    padding: 6px 14px !important;
+    font-size: 0.78rem !important;
+    height: 34px !important;
+  }
+  .outer-connect-btn {
+    padding: 6px 14px !important;
+    font-size: 0.78rem !important;
+    height: 34px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .landing-frame {
+    padding: 4px;
+  }
+  .landing-canvas {
+    border-radius: 18px;
+  }
+  .cutout-top-left,
+  .cutout-top-right {
+    padding: 10px 12px;
+  }
+  .cutout-top-left .logo-text {
+    font-size: 1.3rem !important;
+  }
+  .canvas-content {
+    padding: 20px 12px;
+  }
+  .canvas-header {
+    margin-bottom: 20px;
+  }
+  .nav-pill {
+    border-radius: 12px;
+    gap: 1px;
+  }
+  .nav-pill-item {
+    padding: 5px 10px;
+    font-size: 0.72rem;
+  }
+  .canvas-title {
+    font-size: 1.8rem;
+  }
+  .canvas-desc {
+    font-size: 0.84rem;
+  }
+  .canvas-hero-image-wrap {
+    max-width: 260px;
+  }
+  .outer-login-btn {
+    padding: 5px 10px !important;
+    font-size: 0.72rem !important;
+    height: 30px !important;
+  }
+  .outer-connect-btn {
+    padding: 5px 10px !important;
+    font-size: 0.72rem !important;
+    height: 30px !important;
+  }
+  .footer-simple {
+    font-size: 0.68rem;
+    padding: 12px 0 16px;
   }
 }
 
