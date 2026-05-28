@@ -2812,15 +2812,22 @@ body::-webkit-scrollbar {
   }
   
   .nav-pill {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 4px;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    gap: 2px;
     border-radius: 16px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    max-width: 100%;
   }
+  .nav-pill::-webkit-scrollbar { display: none; }
   
   .nav-pill-item {
-    padding: 6px 14px;
-    font-size: 0.8rem;
+    padding: 6px 12px;
+    font-size: 0.78rem;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
   
   .canvas-hero-grid {
