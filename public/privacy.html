@@ -45,6 +45,18 @@
       .landing-canvas::-webkit-scrollbar-track { border-radius: 0 24px 24px 0 !important; }
     }
 
+    .legal-canvas-content {
+      padding: 100px 48px 40px;
+      box-sizing: border-box;
+      flex: 1;
+    }
+    @media (max-width: 992px) {
+      .legal-canvas-content { padding: 20px 16px 40px; }
+    }
+    @media (max-width: 480px) {
+      .legal-canvas-content { padding: 16px 10px 32px; }
+    }
+
     /* ========================================
        PREMIUM PROFESSIONAL LEGAL PAGE
        ======================================== */
@@ -360,7 +372,7 @@
       <div class="fillet fillet-tr-bottom"></div>
       <div class="fillet fillet-tr-left"></div>
 
-      <div class="canvas-content" style="padding: 100px 48px 40px; box-sizing: border-box; flex: 1;">
+      <div class="canvas-content legal-canvas-content">
         <div class="legal-layout">
 
           <nav class="legal-toc">
