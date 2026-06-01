@@ -28,10 +28,10 @@
 
   <!-- Inner Envelope outline (Designed with White and Gold) -->
   <g stroke-linecap="round" stroke-linejoin="round">
-    <!-- Main envelope outer box (White) -->
+    <!-- Main envelope outer box (Gold) -->
     <rect x="116" y="166" width="280" height="180" rx="24" ry="24"
           fill="none" 
-          stroke="url(#whiteGrad)" 
+          stroke="url(#goldGrad)" 
           stroke-width="16" />
           
     <!-- Top flap crease (Gold) -->
@@ -40,17 +40,24 @@
           stroke="url(#goldGrad)" 
           stroke-width="14" />
           
-    <!-- Bottom corner fold creases (White) -->
+    <!-- Bottom corner fold creases (Gold) -->
     <path d="M 122,340 L 216,254" 
           fill="none" 
-          stroke="url(#whiteGrad)" 
+          stroke="url(#goldGrad)" 
           stroke-width="12" 
-          opacity="0.85" />
+          opacity="0.9" />
           
     <path d="M 390,340 L 296,254" 
           fill="none" 
-          stroke="url(#whiteGrad)" 
+          stroke="url(#goldGrad)" 
           stroke-width="12" 
-          opacity="0.85" />
+          opacity="0.9" />
+
+    <!-- Elegant Gold Sparkle on top-right corner (396, 166) -->
+    <path d="M 396,181 Q 396,166 411,166 Q 396,166 396,151 Q 396,166 381,166 Q 396,166 396,181 Z" 
+          fill="url(#goldGrad)" />
+    <!-- Center white glow of sparkle -->
+    <path d="M 396,176 Q 396,166 406,166 Q 396,166 396,156 Q 396,166 386,166 Q 396,166 396,176 Z" 
+          fill="#FFFFFF" />
   </g>
 </svg>
