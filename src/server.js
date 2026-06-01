@@ -117,16 +117,22 @@ app.post('/api/auth/forgot-password', authLimiter, async (req, res) => {
           text: `Your password reset verification code is: ${code}\n\nThis code will expire in 15 minutes.`,
           html: `
             <div style="font-family: sans-serif; max-width: 500px; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; background-color: #fafafa; color: #1a1a1c;">
-              <h2 style="color: #1a1a1c; border-bottom: 1px solid #e2e8f0; padding-bottom: 12px; margin-top: 0;">🔒 Password Reset Code</h2>
-              <p>Hello ${user.name || 'there'},</p>
-              <p>We received a request to reset your AutoInbox account password. Please use the following 6-digit verification code to complete the reset process:</p>
-              <div style="text-align: center; margin: 30px 0;">
-                <span style="font-size: 32px; font-weight: 800; letter-spacing: 6px; color: #C5A55A; background-color: #1a1a1c; padding: 12px 24px; border-radius: 8px; display: inline-block;">${code}</span>
+              <div style="text-align: center; margin-bottom: 20px;">
+                <img src="https://${process.env.RENDER_EXTERNAL_HOSTNAME || 'autoinbox.onrender.com'}/logo.png?v=8" width="50" height="50" style="object-fit: contain; vertical-align: middle; display: inline-block;" alt="AutoInbox Logo">
+                <div style="font-size: 1.6rem; font-weight: 800; color: #1a1a1c; margin-top: 8px; letter-spacing: -0.5px;">AutoInbox</div>
               </div>
-              <p style="color: #666; font-size: 0.9rem;">This code is valid for <strong>15 minutes</strong>. If you did not request a password reset, please ignore this email or contact support.</p>
-              <p style="font-size: 12px; color: #999; margin-top: 30px; border-top: 1px solid #e2e8f0; padding-top: 12px;">
-                AutoInbox Security · Intelligent. Connected. Automated.
-              </p>
+              <div style="border-top: 1px solid #e2e8f0; padding-top: 20px;">
+                <h3 style="color: #1a1a1c; margin-top: 0; font-size: 1.2rem;">🔒 Password Reset Code</h3>
+                <p>Hello ${user.name || 'there'},</p>
+                <p>We received a request to reset your AutoInbox account password. Please use the following 6-digit verification code to complete the reset process:</p>
+                <div style="text-align: center; margin: 30px 0;">
+                  <span style="font-size: 32px; font-weight: 800; letter-spacing: 6px; color: #C5A55A; background-color: #1a1a1c; padding: 12px 24px; border-radius: 8px; display: inline-block;">${code}</span>
+                </div>
+                <p style="color: #666; font-size: 0.9rem;">This code is valid for <strong>15 minutes</strong>. If you did not request a password reset, please ignore this email or contact support.</p>
+                <p style="font-size: 12px; color: #999; margin-top: 30px; border-top: 1px solid #e2e8f0; padding-top: 12px; text-align: center;">
+                  AutoInbox Security · Intelligent. Connected. Automated.
+                </p>
+              </div>
             </div>
           `
         };
