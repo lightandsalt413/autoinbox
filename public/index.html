@@ -36,7 +36,7 @@
       scrollbar-width: none !important;
     }
   </style>
-  <link rel="stylesheet" href="/styles.css?v=134">
+  <link rel="stylesheet" href="/styles.css?v=135">
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SEF5Y7KP9Z"></script>
   <script>
@@ -57,8 +57,31 @@
         <!-- Top Left Dark Cutout (Logo Area) -->
         <div class="cutout-top-left">
           <div class="outer-logo">
-            <a href="/" id="logo-home" style="text-decoration:none; display:flex; align-items:center; gap:10px;">
-              <img src="/logo.png" alt="AutoInbox Logo" style="width:36px; height:36px; border-radius:8px; object-fit:cover;">
+            <a href="/" id="logo-home" style="text-decoration:none; display:flex; align-items:center; gap:8px;">
+              <svg width="32" height="32" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;">
+                <!-- Envelope body -->
+                <rect x="6" y="16" width="44" height="32" rx="4" fill="#F6F0E6" stroke="url(#gold-border)" stroke-width="2.5"/>
+                <!-- Envelope flap -->
+                <path d="M6 18L28 34L50 18" stroke="url(#gold-border)" stroke-width="2.5" stroke-linejoin="round" fill="none"/>
+                <!-- Bottom V -->
+                <path d="M6 48L22 34" stroke="url(#gold-border)" stroke-width="2" stroke-linecap="round"/>
+                <path d="M50 48L34 34" stroke="url(#gold-border)" stroke-width="2" stroke-linecap="round"/>
+                <!-- Sparkle star -->
+                <path d="M54 8L55.5 13L60 14.5L55.5 16L54 21L52.5 16L48 14.5L52.5 13Z" fill="url(#gold-sparkle)"/>
+                <circle cx="54" cy="14.5" r="2" fill="#FFF8E7" opacity="0.6"/>
+                <defs>
+                  <linearGradient id="gold-border" x1="0" y1="0" x2="56" y2="56">
+                    <stop offset="0%" stop-color="#D4AF37"/>
+                    <stop offset="50%" stop-color="#C5A55A"/>
+                    <stop offset="100%" stop-color="#8A7540"/>
+                  </linearGradient>
+                  <linearGradient id="gold-sparkle" x1="48" y1="8" x2="60" y2="21">
+                    <stop offset="0%" stop-color="#F0E68C"/>
+                    <stop offset="50%" stop-color="#C5A55A"/>
+                    <stop offset="100%" stop-color="#8A7540"/>
+                  </linearGradient>
+                </defs>
+              </svg>
               <span class="logo-text" style="font-size:1.85rem; font-weight:800; background:linear-gradient(135deg, #FFFFFF 30%, #C5A55A 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; display:inline-block; letter-spacing:-0.5px; filter:drop-shadow(0 2px 10px rgba(197, 165, 90, 0.15)); transition:all 0.3s ease;">AutoInbox</span>
             </a>
           </div>
@@ -331,7 +354,7 @@
 
   <!-- Dashboard -->
   <div id="page-dashboard" class="page hidden">
-    <aside class="sidebar" role="complementary" aria-label="Dashboard sidebar"><div class="sb-top"><div class="logo-sm"><a href="/" style="display:flex;align-items:center;gap:8px;text-decoration:none;"><img src="/logo.png" alt="AutoInbox" style="width:28px;height:28px;border-radius:6px;"><span class="logo-text" style="font-size:1.35rem; font-weight:800; background:linear-gradient(135deg, #FFFFFF 30%, #C5A55A 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; display:inline-block; letter-spacing:-0.3px; filter:drop-shadow(0 2px 8px rgba(197, 165, 90, 0.15));">AutoInbox</span></a></div></div><nav class="sb-nav" aria-label="Main navigation"><button class="nav-item active" data-page="inbox" id="nav-inbox" aria-label="Inbox"><span></span> Inbox <span class="badge hidden" id="inbox-badge">0</span></button><button class="nav-item" data-page="voice" id="nav-voice" aria-label="Voice Clone"><span></span> Voice Clone</button><button class="nav-item" data-page="plan" id="nav-plan" aria-label="Plan and Billing"><span></span> Plan & Billing</button><button class="nav-item" data-page="settings" id="nav-settings" aria-label="Settings"><span></span> Settings</button><button class="nav-item hidden" data-page="admin" id="nav-admin" aria-label="Admin Dashboard"><span></span> 👑 Admin</button></nav><div class="sb-bot"><div class="plan-badge" id="sidebar-plan"><span class="plan-dot"></span><span>Free Plan</span></div><div class="mon-st"><span class="status-dot" id="monitor-dot"></span><span id="monitor-label">Email</span></div><div class="sb-user"><span class="user-dot"></span><span id="sidebar-user">User</span></div><button class="btn-ghost btn-sm" id="btn-logout" aria-label="Log out">Logout</button></div></aside>
+    <aside class="sidebar" role="complementary" aria-label="Dashboard sidebar"><div class="sb-top"><div class="logo-sm"><a href="/" style="display:flex;align-items:center;gap:8px;text-decoration:none;"><svg width="26" height="26" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0;"><rect x="6" y="16" width="44" height="32" rx="4" fill="#F6F0E6" stroke="url(#gb2)" stroke-width="2.5"/><path d="M6 18L28 34L50 18" stroke="url(#gb2)" stroke-width="2.5" stroke-linejoin="round" fill="none"/><path d="M6 48L22 34" stroke="url(#gb2)" stroke-width="2" stroke-linecap="round"/><path d="M50 48L34 34" stroke="url(#gb2)" stroke-width="2" stroke-linecap="round"/><path d="M54 8L55.5 13L60 14.5L55.5 16L54 21L52.5 16L48 14.5L52.5 13Z" fill="url(#gs2)"/><circle cx="54" cy="14.5" r="2" fill="#FFF8E7" opacity="0.6"/><defs><linearGradient id="gb2" x1="0" y1="0" x2="56" y2="56"><stop offset="0%" stop-color="#D4AF37"/><stop offset="50%" stop-color="#C5A55A"/><stop offset="100%" stop-color="#8A7540"/></linearGradient><linearGradient id="gs2" x1="48" y1="8" x2="60" y2="21"><stop offset="0%" stop-color="#F0E68C"/><stop offset="50%" stop-color="#C5A55A"/><stop offset="100%" stop-color="#8A7540"/></linearGradient></defs></svg><span class="logo-text" style="font-size:1.35rem; font-weight:800; background:linear-gradient(135deg, #FFFFFF 30%, #C5A55A 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; display:inline-block; letter-spacing:-0.3px; filter:drop-shadow(0 2px 8px rgba(197, 165, 90, 0.15));">AutoInbox</span></a></div></div><nav class="sb-nav" aria-label="Main navigation"><button class="nav-item active" data-page="inbox" id="nav-inbox" aria-label="Inbox"><span></span> Inbox <span class="badge hidden" id="inbox-badge">0</span></button><button class="nav-item" data-page="voice" id="nav-voice" aria-label="Voice Clone"><span></span> Voice Clone</button><button class="nav-item" data-page="plan" id="nav-plan" aria-label="Plan and Billing"><span></span> Plan & Billing</button><button class="nav-item" data-page="settings" id="nav-settings" aria-label="Settings"><span></span> Settings</button><button class="nav-item hidden" data-page="admin" id="nav-admin" aria-label="Admin Dashboard"><span></span> 👑 Admin</button></nav><div class="sb-bot"><div class="plan-badge" id="sidebar-plan"><span class="plan-dot"></span><span>Free Plan</span></div><div class="mon-st"><span class="status-dot" id="monitor-dot"></span><span id="monitor-label">Email</span></div><div class="sb-user"><span class="user-dot"></span><span id="sidebar-user">User</span></div><button class="btn-ghost btn-sm" id="btn-logout" aria-label="Log out">Logout</button></div></aside>
     <main class="dash-main" role="main" aria-label="Dashboard content">
       <section id="dash-inbox" class="dash-section"><div class="dash-head"><h1>Inbox</h1><div class="stats-row"><div class="stat-card"><span class="stat-num" id="stat-today">0</span><span class="stat-lbl">Today</span></div><div class="stat-card warn"><span class="stat-num" id="stat-pending">0</span><span class="stat-lbl">Pending</span></div><div class="stat-card good"><span class="stat-num" id="stat-sent">0</span><span class="stat-lbl">Sent</span></div></div></div><div class="filter-tabs"><button class="tab active" data-filter="all">All</button><button class="tab" data-filter="drafted">Drafted</button><button class="tab" data-filter="pending">Pending</button><button class="tab" data-filter="sent">Sent</button><button class="tab" data-filter="rejected">Skipped</button></div><div id="message-list" class="message-list"><div class="empty-state"><p><strong>No messages yet</strong></p><p style="color:var(--t3)">Messages appear here when received.</p></div></div></section>
       <section id="dash-voice" class="dash-section hidden"><div class="dash-head"><h1>Voice Clone</h1></div><div class="card glass"><h3>Voice Profile</h3><div id="dash-voice-profile" class="profile-box"><p style="color:var(--t3)">No profile yet. Add samples below.</p></div></div><div class="card glass"><h3>Samples</h3><p style="color:var(--t2);font-size:.9rem;margin-bottom:16px">Paste real replies. Min 3.</p><div id="dash-voice-samples"></div><button class="btn-ghost btn-sm" id="dash-add-sample">+ Add</button><div style="margin-top:16px"><button class="btn-accent" id="dash-analyze">Analyze Style</button></div></div></section>
