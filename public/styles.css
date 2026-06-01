@@ -2807,7 +2807,7 @@ body::-webkit-scrollbar {
   .cutout-top-right,
   .cutout-bottom-right {
     position: static;
-    width: 100%;
+    width: 100% !important;
     height: auto;
     border-radius: 0;
     padding: 14px 16px;
@@ -2853,25 +2853,25 @@ body::-webkit-scrollbar {
   }
   
   .nav-pill {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    gap: 2px;
-    border-radius: 16px;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    max-width: 100%;
-    padding-right: 12px;
-    mask-image: linear-gradient(90deg, #000 85%, transparent 100%);
-    -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent 100%);
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 8px 10px !important;
+    border-radius: 20px !important;
+    overflow-x: visible !important;
+    max-width: 100% !important;
+    padding: 8px 12px !important;
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+    border: 1.5px solid rgba(197, 165, 90, 0.2) !important;
+    background: rgba(250, 246, 240, 0.95) !important;
+    box-shadow: 0 4px 12px rgba(26, 26, 28, 0.05) !important;
   }
-  .nav-pill::-webkit-scrollbar { display: none; }
   
   .nav-pill-item {
-    padding: 6px 12px;
-    font-size: 0.78rem;
-    white-space: nowrap;
-    flex-shrink: 0;
+    padding: 5px 12px !important;
+    font-size: 0.74rem !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
   }
   
   .canvas-hero-grid {
@@ -2940,15 +2940,19 @@ body::-webkit-scrollbar {
     margin-bottom: 20px;
   }
   .nav-pill {
-    border-radius: 12px;
-    gap: 1px;
-    padding: 4px 6px;
-    mask-image: linear-gradient(90deg, #000 80%, transparent 100%);
-    -webkit-mask-image: linear-gradient(90deg, #000 80%, transparent 100%);
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    gap: 6px 8px !important;
+    border-radius: 16px !important;
+    overflow-x: visible !important;
+    padding: 6px 10px !important;
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+    border: 1px solid rgba(197, 165, 90, 0.25) !important;
   }
   .nav-pill-item {
-    padding: 5px 9px;
-    font-size: 0.7rem;
+    padding: 4px 9px !important;
+    font-size: 0.68rem !important;
   }
   .canvas-title {
     font-size: 1.8rem;
