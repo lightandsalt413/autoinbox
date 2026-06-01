@@ -25,21 +25,7 @@
     </filter>
   </defs>
 
-  <!-- Outer squircle leaf-shaped icon container -->
-  <path d="M 104,32 
-           L 292,32 
-           A 188,188 0 0,1 480,220 
-           L 480,408 
-           A 72,72 0 0,1 408,480 
-           L 104,480 
-           A 72,72 0 0,1 32,408 
-           L 32,104 
-           A 72,72 0 0,1 104,32 Z" 
-        fill="url(#darkBg)" 
-        stroke="url(#goldGrad)" 
-        stroke-width="12"
-        filter="url(#goldGlow)" />
-        
+
   <!-- Inner Envelope outline (Designed with White and Gold) -->
   <g stroke-linecap="round" stroke-linejoin="round">
     <!-- Main envelope outer box (White) -->
