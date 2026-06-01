@@ -230,7 +230,7 @@ function showPage(id, addHistory = true) {
   closeLandingModals();
   closeGuideModal();
   document.querySelectorAll('.page').forEach(p => {
-    if (p.id === 'page-landing' && (id === 'login' || id === 'register')) {
+    if (p.id === 'page-landing' && (id === 'login' || id === 'register' || id === 'forgot-pass')) {
       p.classList.remove('hidden');
     } else if (p.id === `page-${id}`) {
       p.classList.remove('hidden');
@@ -240,7 +240,7 @@ function showPage(id, addHistory = true) {
   });
   const landing = document.getElementById('page-landing');
   if (landing) {
-    if (id === 'login' || id === 'register') {
+    if (id === 'login' || id === 'register' || id === 'forgot-pass') {
       landing.classList.add('auth-blur');
     } else {
       landing.classList.remove('auth-blur');
@@ -255,7 +255,7 @@ function showPage(id, addHistory = true) {
   } else if (addHistory && id === 'landing') {
     // If there was a modal or auth hash, keep it clean
     const currentHash = window.location.hash.replace('#', '');
-    const authPages = ['login', 'register'];
+    const authPages = ['login', 'register', 'forgot-pass'];
     if (HASH_TO_MODAL[currentHash] || authPages.includes(currentHash) || !currentHash) {
       history.replaceState(null, '', window.location.pathname);
     }
@@ -323,6 +323,177 @@ document.getElementById('page-register')?.addEventListener('click', (e) => { if 
 document.getElementById('logo-home')?.addEventListener('click', (e) => { e.preventDefault(); showPage('landing'); window.scrollTo({top:0,behavior:'smooth'}); });
 document.getElementById('login-back-home')?.addEventListener('click', (e) => { e.preventDefault(); showPage('landing'); window.scrollTo({top:0,behavior:'smooth'}); });
 document.getElementById('register-back-home')?.addEventListener('click', (e) => { e.preventDefault(); showPage('landing'); window.scrollTo({top:0,behavior:'smooth'}); });
+
+// ===== Forgot Password Navigation & Logic =====
+document.getElementById('link-forgot-pass')?.addEventListener('click', (e) => {
+  e.preventDefault();
+  resetForgotModal();
+  showPage('forgot-pass');
+});
+
+document.getElementById('forgot-modal-close')?.addEventListener('click', () => showPage('login'));
+document.getElementById('forgot-modal-bg')?.addEventListener('click', () => showPage('login'));
+document.getElementById('link-forgot-back-login')?.addEventListener('click', (e) => {
+  e.preventDefault();
+  showPage('login');
+});
+
+document.getElementById('link-forgot-back-step-1')?.addEventListener('click', (e) => {
+  e.preventDefault();
+  document.getElementById('forgot-step-2').classList.add('hidden');
+  document.getElementById('forgot-step-1').classList.remove('hidden');
+});
+
+// Helper to reset the Forgot Password form states
+function resetForgotModal() {
+  document.getElementById('forgot-step-1')?.classList.remove('hidden');
+  document.getElementById('forgot-step-2')?.classList.add('hidden');
+  
+  const emailInput = document.getElementById('forgot-email');
+  if (emailInput) emailInput.value = '';
+  
+  const codeInput = document.getElementById('forgot-code');
+  if (codeInput) codeInput.value = '';
+  
+  const newPassInput = document.getElementById('forgot-new-pass');
+  if (newPassInput) newPassInput.value = '';
+  
+  const confirmPassInput = document.getElementById('forgot-confirm-pass');
+  if (confirmPassInput) confirmPassInput.value = '';
+  
+  document.getElementById('forgot-error-1')?.classList.add('hidden');
+  document.getElementById('forgot-error-2')?.classList.add('hidden');
+  
+  const sendBtn = document.getElementById('btn-forgot-send');
+  if (sendBtn) {
+    sendBtn.disabled = false;
+    sendBtn.innerText = 'Send Reset Code';
+  }
+  const resetBtn = document.getElementById('btn-forgot-reset');
+  if (resetBtn) {
+    resetBtn.disabled = false;
+    resetBtn.innerText = 'Reset Password';
+  }
+}
+
+// Step 1: Send reset code request
+document.getElementById('form-forgot-request')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  
+  const emailVal = document.getElementById('forgot-email')?.value?.trim();
+  const errorDiv = document.getElementById('forgot-error-1');
+  const sendBtn = document.getElementById('btn-forgot-send');
+  
+  if (!emailVal) return;
+  if (errorDiv) errorDiv.classList.add('hidden');
+  
+  if (sendBtn) {
+    sendBtn.disabled = true;
+    sendBtn.innerText = 'Sending Code...';
+  }
+  
+  try {
+    const res = await fetch('/api/auth/forgot-password', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: emailVal })
+    });
+    
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.error || 'Failed to send reset code');
+    }
+    
+    // If SMTP is not configured, show code directly on the screen for local development fallback
+    if (data.fallbackCode) {
+      alert(`[Dev Mode] Verification code generated: ${data.fallbackCode}\n(This will be sent to the client's email in production!)`);
+    } else {
+      alert('A 6-digit verification code has been sent to your email address!');
+    }
+    
+    // Slide/transition to Step 2
+    document.getElementById('forgot-step-1')?.classList.add('hidden');
+    document.getElementById('forgot-step-2')?.classList.remove('hidden');
+  } catch (err) {
+    if (errorDiv) {
+      errorDiv.innerText = err.message;
+      errorDiv.classList.remove('hidden');
+    }
+    if (sendBtn) {
+      sendBtn.disabled = false;
+      sendBtn.innerText = 'Send Reset Code';
+    }
+  }
+});
+
+// Step 2: Reset password
+document.getElementById('form-forgot-reset')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  
+  const emailVal = document.getElementById('forgot-email')?.value?.trim();
+  const codeVal = document.getElementById('forgot-code')?.value?.trim();
+  const newPassVal = document.getElementById('forgot-new-pass')?.value;
+  const confirmPassVal = document.getElementById('forgot-confirm-pass')?.value;
+  
+  const errorDiv = document.getElementById('forgot-error-2');
+  const resetBtn = document.getElementById('btn-forgot-reset');
+  
+  if (!emailVal || !codeVal || !newPassVal || !confirmPassVal) return;
+  if (errorDiv) errorDiv.classList.add('hidden');
+  
+  if (newPassVal !== confirmPassVal) {
+    if (errorDiv) {
+      errorDiv.innerText = 'Passwords do not match.';
+      errorDiv.classList.remove('hidden');
+    }
+    return;
+  }
+  
+  if (newPassVal.length < 6) {
+    if (errorDiv) {
+      errorDiv.innerText = 'Password must be at least 6 characters.';
+      errorDiv.classList.remove('hidden');
+    }
+    return;
+  }
+  
+  if (resetBtn) {
+    resetBtn.disabled = true;
+    resetBtn.innerText = 'Resetting Password...';
+  }
+  
+  try {
+    const res = await fetch('/api/auth/reset-password', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: emailVal,
+        code: codeVal,
+        newPassword: newPassVal
+      })
+    });
+    
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.error || 'Failed to reset password');
+    }
+    
+    alert('Password updated successfully! You can now log in with your new password.');
+    
+    // Redirect back to login modal
+    resetForgotModal();
+    showPage('login');
+  } catch (err) {
+    if (errorDiv) {
+      errorDiv.innerText = err.message;
+      errorDiv.classList.remove('hidden');
+    }
+    if (resetBtn) {
+      resetBtn.disabled = false;
+      resetBtn.innerText = 'Reset Password';
+    }
+  }
+});
 
 // ===== Menu Dropdown =====
 const menuTrigger = document.getElementById('menu-trigger');

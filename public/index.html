@@ -216,7 +216,10 @@
           <input type="email" id="login-email" placeholder="you@email.com" required>
         </div>
         <div class="fg" style="margin-top:16px">
-          <label for="login-pass">Password</label>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+            <label for="login-pass" style="margin-bottom:0;">Password</label>
+            <a href="#" id="link-forgot-pass" style="color:var(--p); font-size:0.8rem; font-weight:600; text-decoration:none;">Forgot Password?</a>
+          </div>
           <div class="pass-wrap">
             <input type="password" id="login-pass" placeholder="••••••••" required>
             <button type="button" class="pass-toggle" id="toggle-login-pass" tabindex="-1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Show</button>
@@ -230,6 +233,59 @@
         <button type="submit" class="btn-accent btn-sm" style="width:100%;padding:12px;font-size:1rem;margin-top:20px;background:#1A1A1C;color:#F6F0E6;border:none;border-radius:10px;cursor:pointer;">Log In</button>
       </form>
       <p class="auth-sw" style="margin-top:16px;text-align:center;color:#1A1A1C;font-size:.85rem">No account? <a href="#" id="link-register" style="color:var(--p);font-weight:600">Sign Up Free</a></p>
+    </div>
+  </div>
+
+  <!-- Forgot Password Page -->
+  <div id="page-forgot-pass" class="page hidden modal-page">
+    <div class="modal-bg" id="forgot-modal-bg"></div>
+    <div class="modal-box auth-modal-box">
+      <button class="modal-x" id="forgot-modal-close" type="button">×</button>
+      
+      <!-- Step 1: Request Code -->
+      <div id="forgot-step-1">
+        <div class="modal-head">
+          <div class="section-tag" style="margin-bottom:6px">Security</div>
+          <h3>🔒 Forgot Password?</h3>
+          <p style="color:#666;font-size:.9rem;margin-top:4px">Enter your email and we'll send you a 6-digit verification code to reset your password.</p>
+        </div>
+        <form id="form-forgot-request" class="auth-form" style="margin-top:20px">
+          <div class="fg">
+            <label for="forgot-email">Email Address</label>
+            <input type="email" id="forgot-email" placeholder="you@email.com" required>
+          </div>
+          <div id="forgot-error-1" class="form-err hidden" style="margin-top:16px"></div>
+          <button type="submit" class="btn-accent btn-sm" id="btn-forgot-send" style="width:100%;padding:12px;font-size:1rem;margin-top:20px;background:#1A1A1C;color:#F6F0E6;border:none;border-radius:10px;cursor:pointer;">Send Reset Code</button>
+        </form>
+        <p class="auth-sw" style="margin-top:16px;text-align:center;color:#1A1A1C;font-size:.85rem"><a href="#" id="link-forgot-back-login" style="color:var(--p);font-weight:600;text-decoration:none;">Back to Log In</a></p>
+      </div>
+
+      <!-- Step 2: Verification & Reset -->
+      <div id="forgot-step-2" class="hidden">
+        <div class="modal-head">
+          <div class="section-tag" style="margin-bottom:6px">Security</div>
+          <h3>🔒 Reset Password</h3>
+          <p style="color:#666;font-size:.9rem;margin-top:4px">Enter the 6-digit code sent to your email along with your new password.</p>
+        </div>
+        <form id="form-forgot-reset" class="auth-form" style="margin-top:20px">
+          <div class="fg">
+            <label for="forgot-code">Verification Code</label>
+            <input type="text" id="forgot-code" placeholder="e.g. 123456" pattern="\d{6}" maxlength="6" required style="letter-spacing:4px; font-weight:700; text-align:center; font-size:1.1rem;">
+          </div>
+          <div class="fg" style="margin-top:16px">
+            <label for="forgot-new-pass">New Password</label>
+            <input type="password" id="forgot-new-pass" placeholder="At least 6 characters" minlength="6" required>
+          </div>
+          <div class="fg" style="margin-top:16px">
+            <label for="forgot-confirm-pass">Confirm New Password</label>
+            <input type="password" id="forgot-confirm-pass" placeholder="Confirm your new password" minlength="6" required>
+          </div>
+          <div id="forgot-error-2" class="form-err hidden" style="margin-top:16px"></div>
+          <button type="submit" class="btn-accent btn-sm" id="btn-forgot-reset" style="width:100%;padding:12px;font-size:1rem;margin-top:20px;background:#1A1A1C;color:#F6F0E6;border:none;border-radius:10px;cursor:pointer;">Reset Password</button>
+        </form>
+        <p class="auth-sw" style="margin-top:16px;text-align:center;color:#1A1A1C;font-size:.85rem"><a href="#" id="link-forgot-back-step-1" style="color:var(--p);font-weight:600;text-decoration:none;">Back to request code</a></p>
+      </div>
+      
     </div>
   </div>
 

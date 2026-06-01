@@ -15,6 +15,9 @@ const nodemailer = require('nodemailer');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Temporary in-memory store for password reset codes (email -> { code, expires })
+const passwordResetCodes = new Map();
+
 // --- Live Reload for Local Development ---
 if (process.env.NODE_ENV !== 'production' && !process.env.RENDER) {
   const livereload = require('livereload');
@@ -67,6 +70,126 @@ app.post('/api/auth/login', authLimiter, async (req, res) => {
     const result = await login(email, password);
     res.json({ success: true, token: result.token, name: result.name });
   } catch (e) { res.status(401).json({ error: e.message }); }
+});
+
+// --- Forgot Password (public) ---
+app.post('/api/auth/forgot-password', authLimiter, async (req, res) => {
+  try {
+    const { email } = req.body;
+    if (!email) return res.status(400).json({ error: 'Email is required' });
+    
+    const normalizedEmail = email.toLowerCase().trim();
+    const user = await db.getUserByEmail(normalizedEmail);
+    
+    if (!user) {
+      return res.status(404).json({ error: 'This email is not registered with AutoInbox.' });
+    }
+    
+    // Generate a 6-digit verification code
+    const code = Math.floor(100000 + Math.random() * 900000).toString();
+    
+    // Store in-memory with 15 minutes expiration
+    passwordResetCodes.set(normalizedEmail, {
+      code,
+      expires: Date.now() + 15 * 60 * 1000
+    });
+    
+    console.log(`🔑 Password Reset Code generated for ${normalizedEmail}: ${code}`);
+    
+    let emailSent = false;
+    let fallbackCode = null;
+    
+    // Send email using SMTP if configured
+    if (process.env.SYSTEM_EMAIL_USER && process.env.SYSTEM_EMAIL_PASS) {
+      try {
+        const transporter = nodemailer.createTransport({
+          service: 'gmail',
+          auth: {
+            user: process.env.SYSTEM_EMAIL_USER,
+            pass: process.env.SYSTEM_EMAIL_PASS
+          }
+        });
+        
+        const mailOptions = {
+          from: `"AutoInbox Security" <${process.env.SYSTEM_EMAIL_USER}>`,
+          to: normalizedEmail,
+          subject: '🔒 Reset Your AutoInbox Password',
+          text: `Your password reset verification code is: ${code}\n\nThis code will expire in 15 minutes.`,
+          html: `
+            <div style="font-family: sans-serif; max-width: 500px; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; background-color: #fafafa; color: #1a1a1c;">
+              <h2 style="color: #1a1a1c; border-bottom: 1px solid #e2e8f0; padding-bottom: 12px; margin-top: 0;">🔒 Password Reset Code</h2>
+              <p>Hello ${user.name || 'there'},</p>
+              <p>We received a request to reset your AutoInbox account password. Please use the following 6-digit verification code to complete the reset process:</p>
+              <div style="text-align: center; margin: 30px 0;">
+                <span style="font-size: 32px; font-weight: 800; letter-spacing: 6px; color: #C5A55A; background-color: #1a1a1c; padding: 12px 24px; border-radius: 8px; display: inline-block;">${code}</span>
+              </div>
+              <p style="color: #666; font-size: 0.9rem;">This code is valid for <strong>15 minutes</strong>. If you did not request a password reset, please ignore this email or contact support.</p>
+              <p style="font-size: 12px; color: #999; margin-top: 30px; border-top: 1px solid #e2e8f0; padding-top: 12px;">
+                AutoInbox Security · Intelligent. Connected. Automated.
+              </p>
+            </div>
+          `
+        };
+        
+        await transporter.sendMail(mailOptions);
+        emailSent = true;
+      } catch (err) {
+        console.error('Failed to send password reset email:', err);
+      }
+    }
+    
+    // If email failed or SMTP is not configured, we return the code in the response for development mode
+    if (!emailSent) {
+      fallbackCode = code;
+    }
+    
+    res.json({ success: true, emailSent, fallbackCode });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// --- Reset Password (public) ---
+app.post('/api/auth/reset-password', authLimiter, async (req, res) => {
+  try {
+    const { email, code, newPassword } = req.body;
+    if (!email || !code || !newPassword) {
+      return res.status(400).json({ error: 'Email, code, and new password are required' });
+    }
+    if (newPassword.length < 6) {
+      return res.status(400).json({ error: 'New password must be at least 6 characters' });
+    }
+    
+    const normalizedEmail = email.toLowerCase().trim();
+    const session = passwordResetCodes.get(normalizedEmail);
+    
+    if (!session) {
+      return res.status(400).json({ error: 'No active password reset request found for this email.' });
+    }
+    
+    if (session.expires < Date.now()) {
+      passwordResetCodes.delete(normalizedEmail);
+      return res.status(400).json({ error: 'Verification code has expired. Please request a new one.' });
+    }
+    
+    if (session.code !== code.trim()) {
+      return res.status(400).json({ error: 'Invalid verification code. Please check and try again.' });
+    }
+    
+    const user = await db.getUserByEmail(normalizedEmail);
+    if (!user) return res.status(404).json({ error: 'User not found' });
+    
+    const bcrypt = require('bcryptjs');
+    const hash = await bcrypt.hash(newPassword, 12);
+    await db.updateUserPassword(user.id, hash);
+    
+    // Clear reset code session
+    passwordResetCodes.delete(normalizedEmail);
+    
+    res.json({ success: true, message: 'Password has been reset successfully! Please log in.' });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
 });
 
 // --- PayMongo Plans ---
