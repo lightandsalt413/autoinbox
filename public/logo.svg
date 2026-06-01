@@ -1,63 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
-  <defs>
-    <!-- Rich Metallic Gold Gradient -->
-    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FFE8A3" />
-      <stop offset="50%" stop-color="#C5A55A" />
-      <stop offset="100%" stop-color="#8A7540" />
-    </linearGradient>
-    
-    <!-- Pristine Metallic White Gradient -->
-    <linearGradient id="whiteGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FFFFFF" />
-      <stop offset="100%" stop-color="#F6F0E6" />
-    </linearGradient>
-    
-    <!-- Deep Premium Charcoal Background -->
-    <linearGradient id="darkBg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1E1E22" />
-      <stop offset="100%" stop-color="#121214" />
-    </linearGradient>
-    
-    <!-- Subtle Gold Drop Shadow Glow -->
-    <filter id="goldGlow" x="-20%" y="-20%" width="140%" height="140%">
-      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#C5A55A" flood-opacity="0.25"/>
-    </filter>
-  </defs>
-
-
-  <!-- Inner Envelope outline (Designed with White and Gold) -->
-  <g stroke-linecap="round" stroke-linejoin="round">
-    <!-- Main envelope outer box (Gold) -->
-    <rect x="116" y="166" width="280" height="180" rx="24" ry="24"
-          fill="none" 
-          stroke="url(#goldGrad)" 
-          stroke-width="16" />
-          
-    <!-- Top flap crease (Gold) -->
-    <path d="M 122,172 L 256,266 L 390,172" 
-          fill="none" 
-          stroke="url(#goldGrad)" 
-          stroke-width="14" />
-          
-    <!-- Bottom corner fold creases (Gold) -->
-    <path d="M 122,340 L 216,254" 
-          fill="none" 
-          stroke="url(#goldGrad)" 
-          stroke-width="12" 
-          opacity="0.9" />
-          
-    <path d="M 390,340 L 296,254" 
-          fill="none" 
-          stroke="url(#goldGrad)" 
-          stroke-width="12" 
-          opacity="0.9" />
-
-    <!-- Elegant Gold Sparkle on top-right corner (396, 166) -->
-    <path d="M 396,181 Q 396,166 411,166 Q 396,166 396,151 Q 396,166 381,166 Q 396,166 396,181 Z" 
-          fill="url(#goldGrad)" />
-    <!-- Center white glow of sparkle -->
-    <path d="M 396,176 Q 396,166 406,166 Q 396,166 396,156 Q 396,166 386,166 Q 396,166 396,176 Z" 
-          fill="#FFFFFF" />
-  </g>
+<svg width="100%" height="100%" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Left Blue Fold -->
+  <path d="M 64,128 L 256,280 L 64,432 Z" fill="#2563EB" />
+  <!-- Right Orange Fold -->
+  <path d="M 448,128 L 256,280 L 448,432 Z" fill="#EA580C" />
+  <!-- Bottom Dark Blue Fold -->
+  <path d="M 64,432 L 256,280 L 448,432 Z" fill="#1E3A8A" />
+  <!-- Top Cyan Flap Background -->
+  <path d="M 64,128 L 256,280 L 448,128 Z" fill="#0891B2" />
+  <!-- Black Arrow coming out of opening -->
+  <path d="M 215,305 L 295,205" stroke="#000000" stroke-width="32" stroke-linecap="round" />
+  <path d="M 260,195 L 315,180 L 300,235 Z" fill="#000000" stroke="#000000" stroke-width="8" stroke-linejoin="round" />
 </svg>
