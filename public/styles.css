@@ -2862,6 +2862,8 @@ body::-webkit-scrollbar {
     scrollbar-width: none;
     max-width: 100%;
     padding-right: 12px;
+    mask-image: linear-gradient(90deg, #000 85%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent 100%);
   }
   .nav-pill::-webkit-scrollbar { display: none; }
   
@@ -2940,10 +2942,13 @@ body::-webkit-scrollbar {
   .nav-pill {
     border-radius: 12px;
     gap: 1px;
+    padding: 4px 6px;
+    mask-image: linear-gradient(90deg, #000 80%, transparent 100%);
+    -webkit-mask-image: linear-gradient(90deg, #000 80%, transparent 100%);
   }
   .nav-pill-item {
-    padding: 5px 10px;
-    font-size: 0.72rem;
+    padding: 5px 9px;
+    font-size: 0.7rem;
   }
   .canvas-title {
     font-size: 1.8rem;
