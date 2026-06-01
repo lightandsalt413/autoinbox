@@ -2793,10 +2793,14 @@ body::-webkit-scrollbar {
 @media (max-width: 992px) {
   .landing-frame {
     padding: 8px;
+    min-height: 100vh;
+    max-height: none !important;
+    overflow-y: auto !important;
   }
   .landing-canvas {
     border-radius: 24px;
-    overflow: hidden;
+    overflow: visible !important;
+    height: auto !important;
   }
   /* Hide the absolute fillets */
   .fillet {
@@ -2819,6 +2823,8 @@ body::-webkit-scrollbar {
     display: flex;
     align-items: center;
     justify-content: center;
+    border-top-left-radius: 24px !important;
+    border-top-right-radius: 24px !important;
   }
   .cutout-top-left .logo-text {
     font-size: 1.5rem !important;
@@ -2922,13 +2928,22 @@ body::-webkit-scrollbar {
 @media (max-width: 480px) {
   .landing-frame {
     padding: 4px;
+    min-height: 100vh;
+    max-height: none !important;
+    overflow-y: auto !important;
   }
   .landing-canvas {
     border-radius: 18px;
+    overflow: visible !important;
+    height: auto !important;
   }
   .cutout-top-left,
   .cutout-top-right {
     padding: 10px 12px;
+  }
+  .cutout-top-left {
+    border-top-left-radius: 18px !important;
+    border-top-right-radius: 18px !important;
   }
   .cutout-top-left .logo-text {
     font-size: 1.3rem !important;
