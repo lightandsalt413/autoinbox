@@ -247,12 +247,12 @@
         <div class="modal-head">
           <div class="section-tag" style="margin-bottom:6px">Security</div>
           <h3>🔒 Forgot Password?</h3>
-          <p style="color:#666;font-size:.9rem;margin-top:4px">Enter your email or cellphone number and we'll send you a 6-digit verification code to reset your password.</p>
+          <p style="color:#666;font-size:.9rem;margin-top:4px">Enter your email or cellphone number (with country code prefix, e.g. +639171234567) and we'll send you a 6-digit verification code.</p>
         </div>
         <form id="form-forgot-request" class="auth-form" style="margin-top:20px">
           <div class="fg">
             <label for="forgot-email">Email or Cellphone Number</label>
-            <input type="text" id="forgot-email" placeholder="you@email.com or 09xxxxxxxxx" required>
+            <input type="text" id="forgot-email" placeholder="you@email.com or +639171234567" required>
           </div>
           <div id="forgot-error-1" class="form-err hidden" style="margin-top:16px"></div>
           <button type="submit" class="btn-accent btn-sm" id="btn-forgot-send" style="width:100%;padding:12px;font-size:1rem;margin-top:20px;background:#1A1A1C;color:#F6F0E6;border:none;border-radius:10px;cursor:pointer;">Send Reset Code</button>
@@ -320,8 +320,31 @@
           </div>
         </div>
         <div class="fg" style="margin-top:16px">
-          <label for="reg-phone">Cellphone Number <span style="font-size:0.75rem;color:#888;font-weight:normal;display:block;margin-top:2px">(Para sa secure SMS password reset — format: 09xxxxxxxxx o +639xxxxxxxxx)</span></label>
-          <input type="tel" id="reg-phone" placeholder="e.g. 09171234567" required pattern="^(09|\+639)\d{9}$">
+          <label for="reg-phone">Cellphone Number <span style="font-size:0.75rem;color:#888;font-weight:normal;display:block;margin-top:2px">(Para sa secure SMS password reset — piliin ang country code at i-type ang numero)</span></label>
+          <div class="phone-input-group" style="display:flex; gap:8px">
+            <select id="reg-phone-prefix" style="width:120px; flex:0 0 120px; padding:12px 8px;">
+              <option value="+63">🇵🇭 +63</option>
+              <option value="+1">🇺🇸 +1</option>
+              <option value="+65">🇸🇬 +65</option>
+              <option value="+44">🇬🇧 +44</option>
+              <option value="+61">🇦🇺 +61</option>
+              <option value="+971">🇦🇪 +971</option>
+              <option value="+81">🇯🇵 +81</option>
+              <option value="+82">🇰🇷 +82</option>
+              <option value="+86">🇨🇳 +86</option>
+              <option value="+91">🇮🇳 +91</option>
+              <option value="+64">🇳🇿 +64</option>
+              <option value="+60">🇲🇾 +60</option>
+              <option value="+62">🇮🇩 +62</option>
+              <option value="+66">🇹🇭 +66</option>
+              <option value="+84">🇻🇳 +84</option>
+              <option value="+852">🇭🇰 +852</option>
+              <option value="+886">🇹🇼 +886</option>
+              <option value="+33">🇫🇷 +33</option>
+              <option value="+49">🇩🇪 +49</option>
+            </select>
+            <input type="tel" id="reg-phone" placeholder="e.g. 9171234567" required pattern="^\d{4,14}$" style="flex:1">
+          </div>
         </div>
         <div class="fg" style="margin-top:16px">
           <label for="reg-email">Email Address <span style="font-size:0.75rem;color:#888;font-weight:normal;display:block;margin-top:2px">(Para sa iyong AutoInbox account login — hindi pa ito ang Gmail/Yahoo Mail connection)</span></label>
@@ -562,7 +585,30 @@
                 <form id="form-update-phone">
                   <div class="fg">
                     <label for="set-phone-num">Cellphone Number</label>
-                    <input type="tel" id="set-phone-num" placeholder="e.g. 09171234567" required pattern="^(09|\+639)\d{9}$">
+                    <div class="phone-input-group" style="display:flex; gap:8px">
+                      <select id="set-phone-prefix" style="width:120px; flex:0 0 120px; padding:12px 8px;">
+                        <option value="+63">🇵🇭 +63</option>
+                        <option value="+1">🇺🇸 +1</option>
+                        <option value="+65">🇸🇬 +65</option>
+                        <option value="+44">🇬🇧 +44</option>
+                        <option value="+61">🇦🇺 +61</option>
+                        <option value="+971">🇦🇪 +971</option>
+                        <option value="+81">🇯🇵 +81</option>
+                        <option value="+82">🇰🇷 +82</option>
+                        <option value="+86">🇨🇳 +86</option>
+                        <option value="+91">🇮🇳 +91</option>
+                        <option value="+64">🇳🇿 +64</option>
+                        <option value="+60">🇲🇾 +60</option>
+                        <option value="+62">🇮🇩 +62</option>
+                        <option value="+66">🇹🇭 +66</option>
+                        <option value="+84">🇻🇳 +84</option>
+                        <option value="+852">🇭🇰 +852</option>
+                        <option value="+886">🇹🇼 +886</option>
+                        <option value="+33">🇫🇷 +33</option>
+                        <option value="+49">🇩🇪 +49</option>
+                      </select>
+                      <input type="tel" id="set-phone-num" placeholder="e.g. 9171234567" required pattern="^\d{4,14}$" style="flex:1">
+                    </div>
                   </div>
                   <div id="update-phone-error" class="form-err hidden" style="margin-top:10px"></div>
                   <div id="update-phone-success" class="form-err hidden" style="margin-top:10px; color:var(--g); background:rgba(16,185,129,0.1); border-color:var(--g)"></div>

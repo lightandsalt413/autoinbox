@@ -822,7 +822,9 @@ document.getElementById('form-register')?.addEventListener('submit', async (e) =
     errEl.classList.remove('hidden');
     return;
   }
-  const phone = document.getElementById('reg-phone')?.value?.trim();
+  const prefix = document.getElementById('reg-phone-prefix')?.value || '';
+  const rawPhone = document.getElementById('reg-phone')?.value?.trim() || '';
+  const phone = rawPhone ? (prefix + rawPhone) : '';
   try {
     const data = await api('/auth/register', {
       method: 'POST',
@@ -1398,7 +1400,25 @@ async function loadSettings() {
     try {
       const profile = await api('/auth/profile');
       const phoneInput = document.getElementById('set-phone-num');
-      if (phoneInput) phoneInput.value = profile.phone || '';
+      if (profile && profile.phone) {
+        const prefixes = ['+852', '+886', '+971', '+63', '+65', '+44', '+61', '+81', '+82', '+86', '+91', '+64', '+60', '+62', '+66', '+84', '+33', '+49', '+1'];
+        let matchedPrefix = '+63';
+        let matchedNumber = profile.phone;
+        for (const pref of prefixes) {
+          if (profile.phone.startsWith(pref)) {
+            matchedPrefix = pref;
+            matchedNumber = profile.phone.substring(pref.length);
+            break;
+          }
+        }
+        const prefixSelect = document.getElementById('set-phone-prefix');
+        if (prefixSelect) prefixSelect.value = matchedPrefix;
+        if (phoneInput) phoneInput.value = matchedNumber;
+      } else {
+        const prefixSelect = document.getElementById('set-phone-prefix');
+        if (prefixSelect) prefixSelect.value = '+63';
+        if (phoneInput) phoneInput.value = '';
+      }
     } catch (err) {}
 
     const es = await api('/email/status');
@@ -1624,7 +1644,9 @@ document.getElementById('form-update-phone')?.addEventListener('submit', async (
   e.preventDefault();
   const errEl = document.getElementById('update-phone-error');
   const succEl = document.getElementById('update-phone-success');
-  const phoneVal = document.getElementById('set-phone-num').value.trim();
+  const prefix = document.getElementById('set-phone-prefix')?.value || '';
+  const num = document.getElementById('set-phone-num')?.value?.trim() || '';
+  const phoneVal = num ? (prefix + num) : '';
 
   errEl.classList.add('hidden');
   succEl.classList.add('hidden');

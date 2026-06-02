@@ -14,17 +14,19 @@ const nodemailer = require('nodemailer');
 
 function normalizePhone(phone) {
   if (!phone) return null;
-  const digits = phone.trim().replace(/\D/g, '');
-  if (digits.startsWith('639') && digits.length === 12) {
-    return '0' + digits.substring(2);
+  let cleaned = phone.trim().replace(/[^\d+]/g, '');
+  if (!cleaned.startsWith('+')) {
+    if (cleaned.startsWith('09') && cleaned.length === 11) {
+      cleaned = '+63' + cleaned.substring(1);
+    } else if (cleaned.startsWith('9') && cleaned.length === 10) {
+      cleaned = '+63' + cleaned;
+    } else if (cleaned.startsWith('639') && cleaned.length === 12) {
+      cleaned = '+' + cleaned;
+    } else {
+      cleaned = '+' + cleaned;
+    }
   }
-  if (digits.startsWith('09') && digits.length === 11) {
-    return digits;
-  }
-  if (digits.startsWith('9') && digits.length === 10) {
-    return '0' + digits;
-  }
-  return digits;
+  return cleaned;
 }
 
 const app = express();
@@ -94,7 +96,7 @@ app.post('/api/auth/forgot-password', authLimiter, async (req, res) => {
     if (!input) return res.status(400).json({ error: 'Email or cellphone number is required' });
     
     const cleanPhone = normalizePhone(input);
-    const isPhone = /^09\d{9}$/.test(cleanPhone);
+    const isPhone = /^\+\d{7,15}$/.test(cleanPhone);
     let user = null;
     let normalizedEmail = '';
 
@@ -208,7 +210,7 @@ app.post('/api/auth/reset-password', authLimiter, async (req, res) => {
     }
     
     const cleanPhone = normalizePhone(email);
-    const isPhone = /^09\d{9}$/.test(cleanPhone);
+    const isPhone = /^\+\d{7,15}$/.test(cleanPhone);
     let normalizedEmail = '';
     if (isPhone) {
       const user = await db.getUserByPhone(cleanPhone);
@@ -546,8 +548,8 @@ app.post('/api/auth/update-phone', async (req, res) => {
     if (!phone) return res.status(400).json({ error: 'Cellphone number is required' });
 
     const cleanPhone = normalizePhone(phone);
-    if (!/^09\d{9}$/.test(cleanPhone)) {
-      return res.status(400).json({ error: 'Invalid cellphone number format. Use 09xxxxxxxxx or +639xxxxxxxxx.' });
+    if (!/^\+\d{7,15}$/.test(cleanPhone)) {
+      return res.status(400).json({ error: 'Invalid cellphone number format. Please include + and country code (e.g. +639xxxxxxxxx).' });
     }
 
     const existing = await db.getUserByPhone(cleanPhone);

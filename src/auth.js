@@ -10,17 +10,19 @@ function getSecret() {
 
 function normalizePhone(phone) {
   if (!phone) return null;
-  const digits = phone.trim().replace(/\D/g, '');
-  if (digits.startsWith('639') && digits.length === 12) {
-    return '0' + digits.substring(2);
+  let cleaned = phone.trim().replace(/[^\d+]/g, '');
+  if (!cleaned.startsWith('+')) {
+    if (cleaned.startsWith('09') && cleaned.length === 11) {
+      cleaned = '+63' + cleaned.substring(1);
+    } else if (cleaned.startsWith('9') && cleaned.length === 10) {
+      cleaned = '+63' + cleaned;
+    } else if (cleaned.startsWith('639') && cleaned.length === 12) {
+      cleaned = '+' + cleaned;
+    } else {
+      cleaned = '+' + cleaned;
+    }
   }
-  if (digits.startsWith('09') && digits.length === 11) {
-    return digits;
-  }
-  if (digits.startsWith('9') && digits.length === 10) {
-    return '0' + digits;
-  }
-  return digits;
+  return cleaned;
 }
 
 async function register(email, password, name, phone) {
@@ -33,8 +35,8 @@ async function register(email, password, name, phone) {
   let cleanPhone = null;
   if (phone && phone.trim()) {
     cleanPhone = normalizePhone(phone);
-    if (!/^09\d{9}$/.test(cleanPhone)) {
-      throw new Error('Invalid cellphone number format. Use 09xxxxxxxxx or +639xxxxxxxxx.');
+    if (!/^\+\d{7,15}$/.test(cleanPhone)) {
+      throw new Error('Invalid cellphone number format. Please include + and country code (e.g. +639xxxxxxxxx).');
     }
     const existingPhone = await getUserByPhone(cleanPhone);
     if (existingPhone) throw new Error('Cellphone number already registered');
