@@ -257,6 +257,18 @@ async function updateUserPassword(id, passwordHash) {
   await pool.query("UPDATE users SET password_hash = $1 WHERE id = $2", [passwordHash, id]);
 }
 
+async function updateUserPhone(id, phone) {
+  if (isMock) {
+    const user = mockData.users.find(u => u.id === id);
+    if (user) {
+      user.phone = phone;
+      saveMockData();
+    }
+    return;
+  }
+  await pool.query("UPDATE users SET phone = $1 WHERE id = $2", [phone, id]);
+}
+
 
 // --- Email Config ---
 async function setEmailConfig(userId, config) {
@@ -676,7 +688,7 @@ async function closeDB() {
 
 module.exports = {
   initDB, closeDB,
-  createUser, getUserByEmail, getUserByPhone, getUserById, updateUserPassword,
+  createUser, getUserByEmail, getUserByPhone, getUserById, updateUserPassword, updateUserPhone,
   setEmailConfig, getEmailConfig, getActiveEmailConfigs,
   insertMessage, getMessageById, getMessageByExternalId, getMessagesByUser, getMessageCount, updateMessageStatus,
   insertDraft, getDraftByMessageId, updateDraftContent, insertSentReply,

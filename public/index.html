@@ -555,6 +555,20 @@
                   <button type="submit" class="btn-accent btn-sm" style="margin-top:12px">Update Password</button>
                 </form>
               </div>
+
+              <div class="card glass" style="margin-top: 20px;" id="card-cellphone-security">
+                <h3>Cellphone Settings</h3>
+                <p class="field-desc">I-set o i-update ang inyong cellphone number dito upang makatanggap ng password reset code sa inyong cellphone via SMS.</p>
+                <form id="form-update-phone">
+                  <div class="fg">
+                    <label for="set-phone-num">Cellphone Number</label>
+                    <input type="tel" id="set-phone-num" placeholder="e.g. 09171234567" required pattern="^(09|\+639)\d{9}$">
+                  </div>
+                  <div id="update-phone-error" class="form-err hidden" style="margin-top:10px"></div>
+                  <div id="update-phone-success" class="form-err hidden" style="margin-top:10px; color:var(--g); background:rgba(16,185,129,0.1); border-color:var(--g)"></div>
+                  <button type="submit" class="btn-accent btn-sm" style="margin-top:15px">Update Phone Number</button>
+                </form>
+              </div>
             </div>
 
           </div>

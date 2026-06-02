@@ -513,6 +513,41 @@ app.post('/api/auth/change-password', async (req, res) => {
   }
 });
 
+// --- Get Profile ---
+app.get('/api/auth/profile', async (req, res) => {
+  try {
+    const user = await db.getUserById(req.userId);
+    if (!user) return res.status(404).json({ error: 'User not found' });
+    res.json({ name: user.name, email: user.email, phone: user.phone });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
+// --- Update Phone Number ---
+app.post('/api/auth/update-phone', async (req, res) => {
+  try {
+    const { phone } = req.body;
+    if (!phone) return res.status(400).json({ error: 'Cellphone number is required' });
+
+    const cleanPhone = phone.trim();
+    if (!/^09\d{9}$/.test(cleanPhone) && !/^\+639\d{9}$/.test(cleanPhone)) {
+      return res.status(400).json({ error: 'Invalid cellphone number format. Use 09xxxxxxxxx or +639xxxxxxxxx.' });
+    }
+
+    const existing = await db.getUserByPhone(cleanPhone);
+    if (existing && existing.id !== req.userId) {
+      return res.status(400).json({ error: 'Cellphone number already registered by another user' });
+    }
+
+    await db.updateUserPhone(req.userId, cleanPhone);
+
+    res.json({ success: true, message: 'Cellphone number updated successfully' });
+  } catch (e) {
+    res.status(500).json({ error: e.message });
+  }
+});
+
 // --- Email Connection Test ---
 app.post('/api/email/test', async (req, res) => {
   try {

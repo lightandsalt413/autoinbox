@@ -1395,6 +1395,12 @@ async function loadSettings() {
     document.getElementById('set-services').value = s.services || '';
     document.getElementById('set-custom').value = s.custom_instructions || '';
 
+    try {
+      const profile = await api('/auth/profile');
+      const phoneInput = document.getElementById('set-phone-num');
+      if (phoneInput) phoneInput.value = profile.phone || '';
+    } catch (err) {}
+
     const es = await api('/email/status');
     document.getElementById('email-status-text').textContent = es.configured
       ? `Connected: ${es.email}${es.connected ? ' (monitoring)' : ' (inactive)'}`
@@ -1609,6 +1615,30 @@ document.getElementById('change-pass-confirm')?.addEventListener('click', async 
 
   } catch (err) {
     errEl.textContent = err.message || 'Failed to update password.';
+    errEl.classList.remove('hidden');
+  }
+});
+
+// Update Cellphone Number form submit
+document.getElementById('form-update-phone')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const errEl = document.getElementById('update-phone-error');
+  const succEl = document.getElementById('update-phone-success');
+  const phoneVal = document.getElementById('set-phone-num').value.trim();
+
+  errEl.classList.add('hidden');
+  succEl.classList.add('hidden');
+
+  try {
+    const res = await api('/auth/update-phone', {
+      method: 'POST',
+      body: JSON.stringify({ phone: phoneVal })
+    });
+    
+    succEl.textContent = res.message || 'Cellphone number updated successfully!';
+    succEl.classList.remove('hidden');
+  } catch (err) {
+    errEl.textContent = err.message || 'Failed to update cellphone number.';
     errEl.classList.remove('hidden');
   }
 });
