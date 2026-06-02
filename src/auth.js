@@ -8,6 +8,21 @@ function getSecret() {
   return process.env.JWT_SECRET || 'fallback_secret_change_me';
 }
 
+function normalizePhone(phone) {
+  if (!phone) return null;
+  const digits = phone.trim().replace(/\D/g, '');
+  if (digits.startsWith('639') && digits.length === 12) {
+    return '0' + digits.substring(2);
+  }
+  if (digits.startsWith('09') && digits.length === 11) {
+    return digits;
+  }
+  if (digits.startsWith('9') && digits.length === 10) {
+    return '0' + digits;
+  }
+  return digits;
+}
+
 async function register(email, password, name, phone) {
   if (!email || !password || !name) throw new Error('Email, password, and name are required');
   if (password.length < 6) throw new Error('Password must be at least 6 characters');
@@ -15,9 +30,10 @@ async function register(email, password, name, phone) {
   const existing = await getUserByEmail(email.toLowerCase());
   if (existing) throw new Error('Email already registered');
 
+  let cleanPhone = null;
   if (phone && phone.trim()) {
-    const cleanPhone = phone.trim();
-    if (!/^09\d{9}$/.test(cleanPhone) && !/^\+639\d{9}$/.test(cleanPhone)) {
+    cleanPhone = normalizePhone(phone);
+    if (!/^09\d{9}$/.test(cleanPhone)) {
       throw new Error('Invalid cellphone number format. Use 09xxxxxxxxx or +639xxxxxxxxx.');
     }
     const existingPhone = await getUserByPhone(cleanPhone);
@@ -25,7 +41,7 @@ async function register(email, password, name, phone) {
   }
 
   const hash = await bcrypt.hash(password, SALT_ROUNDS);
-  const userId = await createUser(email.toLowerCase(), hash, name, phone ? phone.trim() : null);
+  const userId = await createUser(email.toLowerCase(), hash, name, cleanPhone);
 
   const token = jwt.sign({ userId, email: email.toLowerCase(), passHash: hash.substring(0, 10) }, getSecret(), { expiresIn: '7d' });
   return { userId, token };

@@ -12,6 +12,21 @@ const { helmetConfig, apiLimiter, authLimiter } = require('./middleware/security
 const { profanityMiddleware } = require('./middleware/profanity');
 const nodemailer = require('nodemailer');
 
+function normalizePhone(phone) {
+  if (!phone) return null;
+  const digits = phone.trim().replace(/\D/g, '');
+  if (digits.startsWith('639') && digits.length === 12) {
+    return '0' + digits.substring(2);
+  }
+  if (digits.startsWith('09') && digits.length === 11) {
+    return digits;
+  }
+  if (digits.startsWith('9') && digits.length === 10) {
+    return '0' + digits;
+  }
+  return digits;
+}
+
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -78,13 +93,12 @@ app.post('/api/auth/forgot-password', authLimiter, async (req, res) => {
     const input = (req.body.identifier || req.body.email || '').trim();
     if (!input) return res.status(400).json({ error: 'Email or cellphone number is required' });
     
-    const isPhone = /^09\d{9}$/.test(input) || /^\+639\d{9}$/.test(input);
+    const cleanPhone = normalizePhone(input);
+    const isPhone = /^09\d{9}$/.test(cleanPhone);
     let user = null;
     let normalizedEmail = '';
-    let cleanPhone = '';
 
     if (isPhone) {
-      cleanPhone = input;
       user = await db.getUserByPhone(cleanPhone);
       if (!user) {
         return res.status(404).json({ error: 'This cellphone number is not registered with AutoInbox.' });
@@ -193,14 +207,15 @@ app.post('/api/auth/reset-password', authLimiter, async (req, res) => {
       return res.status(400).json({ error: 'New password must be at least 6 characters' });
     }
     
-    const input = email.toLowerCase().trim();
+    const cleanPhone = normalizePhone(email);
+    const isPhone = /^09\d{9}$/.test(cleanPhone);
     let normalizedEmail = '';
-    if (/^09\d{9}$/.test(input) || /^\+639\d{9}$/.test(input)) {
-      const user = await db.getUserByPhone(input);
+    if (isPhone) {
+      const user = await db.getUserByPhone(cleanPhone);
       if (!user) return res.status(404).json({ error: 'User not found' });
       normalizedEmail = user.email;
     } else {
-      normalizedEmail = input;
+      normalizedEmail = email.toLowerCase().trim();
     }
     
     const session = passwordResetCodes.get(normalizedEmail);
@@ -530,8 +545,8 @@ app.post('/api/auth/update-phone', async (req, res) => {
     const { phone } = req.body;
     if (!phone) return res.status(400).json({ error: 'Cellphone number is required' });
 
-    const cleanPhone = phone.trim();
-    if (!/^09\d{9}$/.test(cleanPhone) && !/^\+639\d{9}$/.test(cleanPhone)) {
+    const cleanPhone = normalizePhone(phone);
+    if (!/^09\d{9}$/.test(cleanPhone)) {
       return res.status(400).json({ error: 'Invalid cellphone number format. Use 09xxxxxxxxx or +639xxxxxxxxx.' });
     }
 
