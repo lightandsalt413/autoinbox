@@ -80,8 +80,12 @@ async function initDB() {
         email TEXT UNIQUE NOT NULL,
         password_hash TEXT NOT NULL,
         name TEXT NOT NULL,
+        phone TEXT,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       )`);
+      
+      // Dynamic migration to ensure phone column exists on existing user databases
+      await client.query(`ALTER TABLE users ADD COLUMN IF NOT EXISTS phone TEXT`);
 
       await client.query(`CREATE TABLE IF NOT EXISTS user_email_config (
         id SERIAL PRIMARY KEY,
@@ -175,7 +179,7 @@ async function initDB() {
 }
 
 // --- Users ---
-async function createUser(email, passwordHash, name) {
+async function createUser(email, passwordHash, name, phone) {
   if (isMock) {
     const userId = mockData.users.length + 1;
     mockData.users.push({
@@ -183,6 +187,7 @@ async function createUser(email, passwordHash, name) {
       email,
       password_hash: passwordHash,
       name,
+      phone: phone || null,
       created_at: new Date()
     });
     
@@ -207,7 +212,7 @@ async function createUser(email, passwordHash, name) {
     return userId;
   }
 
-  const res = await pool.query("INSERT INTO users (email, password_hash, name) VALUES ($1,$2,$3) RETURNING id", [email, passwordHash, name]);
+  const res = await pool.query("INSERT INTO users (email, password_hash, name, phone) VALUES ($1,$2,$3,$4) RETURNING id", [email, passwordHash, name, phone || null]);
   const userId = res.rows[0].id;
   const defaults = { agent_name: name, agent_tone: 'professional-friendly', agent_language: 'en', auto_draft: 'true', services: '', custom_instructions: '', voice_profile: '' };
   for (const [k, v] of Object.entries(defaults)) {
@@ -221,6 +226,14 @@ async function getUserByEmail(email) {
     return mockData.users.find(u => u.email === email) || null;
   }
   const r = await pool.query("SELECT * FROM users WHERE email = $1", [email]);
+  return r.rows[0] || null;
+}
+
+async function getUserByPhone(phone) {
+  if (isMock) {
+    return mockData.users.find(u => u.phone === phone) || null;
+  }
+  const r = await pool.query("SELECT * FROM users WHERE phone = $1", [phone]);
   return r.rows[0] || null;
 }
 
@@ -663,7 +676,7 @@ async function closeDB() {
 
 module.exports = {
   initDB, closeDB,
-  createUser, getUserByEmail, getUserById, updateUserPassword,
+  createUser, getUserByEmail, getUserByPhone, getUserById, updateUserPassword,
   setEmailConfig, getEmailConfig, getActiveEmailConfigs,
   insertMessage, getMessageById, getMessageByExternalId, getMessagesByUser, getMessageCount, updateMessageStatus,
   insertDraft, getDraftByMessageId, updateDraftContent, insertSentReply,

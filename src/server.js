@@ -58,8 +58,8 @@ app.get('/health', (req, res) => res.status(200).json({ status: 'alive', uptime:
 // --- Auth Routes (public) ---
 app.post('/api/auth/register', authLimiter, profanityMiddleware, async (req, res) => {
   try {
-    const { email, password, name } = req.body;
-    const result = await register(email, password, name);
+    const { email, password, name, phone } = req.body;
+    const result = await register(email, password, name, phone);
     res.json({ success: true, token: result.token, userId: result.userId });
   } catch (e) { res.status(400).json({ error: e.message }); }
 });
@@ -75,14 +75,27 @@ app.post('/api/auth/login', authLimiter, async (req, res) => {
 // --- Forgot Password (public) ---
 app.post('/api/auth/forgot-password', authLimiter, async (req, res) => {
   try {
-    const { email } = req.body;
-    if (!email) return res.status(400).json({ error: 'Email is required' });
+    const input = (req.body.identifier || req.body.email || '').trim();
+    if (!input) return res.status(400).json({ error: 'Email or cellphone number is required' });
     
-    const normalizedEmail = email.toLowerCase().trim();
-    const user = await db.getUserByEmail(normalizedEmail);
-    
-    if (!user) {
-      return res.status(404).json({ error: 'This email is not registered with AutoInbox.' });
+    const isPhone = /^09\d{9}$/.test(input) || /^\+639\d{9}$/.test(input);
+    let user = null;
+    let normalizedEmail = '';
+    let cleanPhone = '';
+
+    if (isPhone) {
+      cleanPhone = input;
+      user = await db.getUserByPhone(cleanPhone);
+      if (!user) {
+        return res.status(404).json({ error: 'This cellphone number is not registered with AutoInbox.' });
+      }
+      normalizedEmail = user.email;
+    } else {
+      normalizedEmail = input.toLowerCase();
+      user = await db.getUserByEmail(normalizedEmail);
+      if (!user) {
+        return res.status(404).json({ error: 'This email is not registered with AutoInbox.' });
+      }
     }
     
     // Generate a 6-digit verification code
@@ -94,62 +107,76 @@ app.post('/api/auth/forgot-password', authLimiter, async (req, res) => {
       expires: Date.now() + 15 * 60 * 1000
     });
     
-    console.log(`🔑 Password Reset Code generated for ${normalizedEmail}: ${code}`);
+    console.log(`🔑 Password Reset Code generated for ${user.email}: ${code}`);
     
     let emailSent = false;
+    let smsSent = false;
     let fallbackCode = null;
-    
-    // Send email using SMTP if configured
-    if (process.env.SYSTEM_EMAIL_USER && process.env.SYSTEM_EMAIL_PASS) {
-      try {
-        const transporter = nodemailer.createTransport({
-          service: 'gmail',
-          auth: {
-            user: process.env.SYSTEM_EMAIL_USER,
-            pass: process.env.SYSTEM_EMAIL_PASS
-          }
-        });
-        
-        const mailOptions = {
-          from: `"AutoInbox Security" <${process.env.SYSTEM_EMAIL_USER}>`,
-          to: normalizedEmail,
-          subject: '🔒 Reset Your AutoInbox Password',
-          text: `Your password reset verification code is: ${code}\n\nThis code will expire in 15 minutes.`,
-          html: `
-            <div style="font-family: sans-serif; max-width: 500px; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; background-color: #fafafa; color: #1a1a1c;">
-              <div style="text-align: center; margin-bottom: 20px;">
-                <img src="https://${process.env.RENDER_EXTERNAL_HOSTNAME || 'autoinbox.onrender.com'}/logo.png?v=8" width="50" height="50" style="object-fit: contain; vertical-align: middle; display: inline-block;" alt="AutoInbox Logo">
-                <div style="font-size: 1.6rem; font-weight: 800; color: #1a1a1c; margin-top: 8px; letter-spacing: -0.5px;">AutoInbox</div>
-              </div>
-              <div style="border-top: 1px solid #e2e8f0; padding-top: 20px;">
-                <h3 style="color: #1a1a1c; margin-top: 0; font-size: 1.2rem;">🔒 Password Reset Code</h3>
-                <p>Hello ${user.name || 'there'},</p>
-                <p>We received a request to reset your AutoInbox account password. Please use the following 6-digit verification code to complete the reset process:</p>
-                <div style="text-align: center; margin: 30px 0;">
-                  <span style="font-size: 32px; font-weight: 800; letter-spacing: 6px; color: #C5A55A; background-color: #1a1a1c; padding: 12px 24px; border-radius: 8px; display: inline-block;">${code}</span>
+
+    if (isPhone) {
+      // Send SMS
+      const { sendSMSCode } = require('./senders/sms');
+      const smsResult = await sendSMSCode(cleanPhone, code);
+      if (smsResult.smsSent) {
+        smsSent = true;
+      } else if (smsResult.fallbackCode) {
+        fallbackCode = smsResult.fallbackCode;
+      } else {
+        return res.status(500).json({ error: smsResult.error || 'Failed to send SMS code' });
+      }
+    } else {
+      // Send email using SMTP if configured
+      if (process.env.SYSTEM_EMAIL_USER && process.env.SYSTEM_EMAIL_PASS) {
+        try {
+          const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+              user: process.env.SYSTEM_EMAIL_USER,
+              pass: process.env.SYSTEM_EMAIL_PASS
+            }
+          });
+          
+          const mailOptions = {
+            from: `"AutoInbox Security" <${process.env.SYSTEM_EMAIL_USER}>`,
+            to: normalizedEmail,
+            subject: '🔒 Reset Your AutoInbox Password',
+            text: `Your password reset verification code is: ${code}\n\nThis code will expire in 15 minutes.`,
+            html: `
+              <div style="font-family: sans-serif; max-width: 500px; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; background-color: #fafafa; color: #1a1a1c;">
+                <div style="text-align: center; margin-bottom: 20px;">
+                  <img src="https://${process.env.RENDER_EXTERNAL_HOSTNAME || 'autoinbox.onrender.com'}/logo.png?v=8" width="50" height="50" style="object-fit: contain; vertical-align: middle; display: inline-block;" alt="AutoInbox Logo">
+                  <div style="font-size: 1.6rem; font-weight: 800; color: #1a1a1c; margin-top: 8px; letter-spacing: -0.5px;">AutoInbox</div>
                 </div>
-                <p style="color: #666; font-size: 0.9rem;">This code is valid for <strong>15 minutes</strong>. If you did not request a password reset, please ignore this email or contact support.</p>
-                <p style="font-size: 12px; color: #999; margin-top: 30px; border-top: 1px solid #e2e8f0; padding-top: 12px; text-align: center;">
-                  AutoInbox Security · Intelligent. Connected. Automated.
-                </p>
+                <div style="border-top: 1px solid #e2e8f0; padding-top: 20px;">
+                  <h3 style="color: #1a1a1c; margin-top: 0; font-size: 1.2rem;">🔒 Password Reset Code</h3>
+                  <p>Hello ${user.name || 'there'},</p>
+                  <p>We received a request to reset your AutoInbox account password. Please use the following 6-digit verification code to complete the reset process:</p>
+                  <div style="text-align: center; margin: 30px 0;">
+                    <span style="font-size: 32px; font-weight: 800; letter-spacing: 6px; color: #C5A55A; background-color: #1a1a1c; padding: 12px 24px; border-radius: 8px; display: inline-block;">${code}</span>
+                  </div>
+                  <p style="color: #666; font-size: 0.9rem;">This code is valid for <strong>15 minutes</strong>. If you did not request a password reset, please ignore this email or contact support.</p>
+                  <p style="font-size: 12px; color: #999; margin-top: 30px; border-top: 1px solid #e2e8f0; padding-top: 12px; text-align: center;">
+                    AutoInbox Security · Intelligent. Connected. Automated.
+                  </p>
+                </div>
               </div>
-            </div>
-          `
-        };
-        
-        await transporter.sendMail(mailOptions);
-        emailSent = true;
-      } catch (err) {
-        console.error('Failed to send password reset email:', err);
+            `
+          };
+          
+          await transporter.sendMail(mailOptions);
+          emailSent = true;
+        } catch (err) {
+          console.error('Failed to send password reset email:', err);
+        }
+      }
+      
+      // If email failed or SMTP is not configured, we return the code in the response for development mode
+      if (!emailSent) {
+        fallbackCode = code;
       }
     }
     
-    // If email failed or SMTP is not configured, we return the code in the response for development mode
-    if (!emailSent) {
-      fallbackCode = code;
-    }
-    
-    res.json({ success: true, emailSent, fallbackCode });
+    res.json({ success: true, emailSent, smsSent, fallbackCode });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
@@ -166,7 +193,16 @@ app.post('/api/auth/reset-password', authLimiter, async (req, res) => {
       return res.status(400).json({ error: 'New password must be at least 6 characters' });
     }
     
-    const normalizedEmail = email.toLowerCase().trim();
+    const input = email.toLowerCase().trim();
+    let normalizedEmail = '';
+    if (/^09\d{9}$/.test(input) || /^\+639\d{9}$/.test(input)) {
+      const user = await db.getUserByPhone(input);
+      if (!user) return res.status(404).json({ error: 'User not found' });
+      normalizedEmail = user.email;
+    } else {
+      normalizedEmail = input;
+    }
+    
     const session = passwordResetCodes.get(normalizedEmail);
     
     if (!session) {

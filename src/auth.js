@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const { createUser, getUserByEmail, getUserById } = require('./db');
+const { createUser, getUserByEmail, getUserByPhone, getUserById } = require('./db');
 
 const SALT_ROUNDS = 12;
 
@@ -8,15 +8,24 @@ function getSecret() {
   return process.env.JWT_SECRET || 'fallback_secret_change_me';
 }
 
-async function register(email, password, name) {
+async function register(email, password, name, phone) {
   if (!email || !password || !name) throw new Error('Email, password, and name are required');
   if (password.length < 6) throw new Error('Password must be at least 6 characters');
 
   const existing = await getUserByEmail(email.toLowerCase());
   if (existing) throw new Error('Email already registered');
 
+  if (phone && phone.trim()) {
+    const cleanPhone = phone.trim();
+    if (!/^09\d{9}$/.test(cleanPhone) && !/^\+639\d{9}$/.test(cleanPhone)) {
+      throw new Error('Invalid cellphone number format. Use 09xxxxxxxxx or +639xxxxxxxxx.');
+    }
+    const existingPhone = await getUserByPhone(cleanPhone);
+    if (existingPhone) throw new Error('Cellphone number already registered');
+  }
+
   const hash = await bcrypt.hash(password, SALT_ROUNDS);
-  const userId = await createUser(email.toLowerCase(), hash, name);
+  const userId = await createUser(email.toLowerCase(), hash, name, phone ? phone.trim() : null);
 
   const token = jwt.sign({ userId, email: email.toLowerCase(), passHash: hash.substring(0, 10) }, getSecret(), { expiresIn: '7d' });
   return { userId, token };

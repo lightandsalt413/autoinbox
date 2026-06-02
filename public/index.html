@@ -247,12 +247,12 @@
         <div class="modal-head">
           <div class="section-tag" style="margin-bottom:6px">Security</div>
           <h3>🔒 Forgot Password?</h3>
-          <p style="color:#666;font-size:.9rem;margin-top:4px">Enter your email and we'll send you a 6-digit verification code to reset your password.</p>
+          <p style="color:#666;font-size:.9rem;margin-top:4px">Enter your email or cellphone number and we'll send you a 6-digit verification code to reset your password.</p>
         </div>
         <form id="form-forgot-request" class="auth-form" style="margin-top:20px">
           <div class="fg">
-            <label for="forgot-email">Email Address</label>
-            <input type="email" id="forgot-email" placeholder="you@email.com" required>
+            <label for="forgot-email">Email or Cellphone Number</label>
+            <input type="text" id="forgot-email" placeholder="you@email.com or 09xxxxxxxxx" required>
           </div>
           <div id="forgot-error-1" class="form-err hidden" style="margin-top:16px"></div>
           <button type="submit" class="btn-accent btn-sm" id="btn-forgot-send" style="width:100%;padding:12px;font-size:1rem;margin-top:20px;background:#1A1A1C;color:#F6F0E6;border:none;border-radius:10px;cursor:pointer;">Send Reset Code</button>
@@ -265,7 +265,7 @@
         <div class="modal-head">
           <div class="section-tag" style="margin-bottom:6px">Security</div>
           <h3>🔒 Reset Password</h3>
-          <p style="color:#666;font-size:.9rem;margin-top:4px">Enter the 6-digit code sent to your email along with your new password.</p>
+          <p style="color:#666;font-size:.9rem;margin-top:4px">Enter the 6-digit code sent to your email or cellphone along with your new password.</p>
         </div>
         <form id="form-forgot-reset" class="auth-form" style="margin-top:20px">
           <div class="fg">
@@ -318,6 +318,10 @@
             <label for="reg-suffix">Suffix <span class="optional">(Opt)</span></label>
             <input type="text" id="reg-suffix" placeholder="e.g. Jr.">
           </div>
+        </div>
+        <div class="fg" style="margin-top:16px">
+          <label for="reg-phone">Cellphone Number <span style="font-size:0.75rem;color:#888;font-weight:normal;display:block;margin-top:2px">(Para sa secure SMS password reset — format: 09xxxxxxxxx o +639xxxxxxxxx)</span></label>
+          <input type="tel" id="reg-phone" placeholder="e.g. 09171234567" required pattern="^(09|\+639)\d{9}$">
         </div>
         <div class="fg" style="margin-top:16px">
           <label for="reg-email">Email Address <span style="font-size:0.75rem;color:#888;font-weight:normal;display:block;margin-top:2px">(Para sa iyong AutoInbox account login — hindi pa ito ang Gmail/Yahoo Mail connection)</span></label>

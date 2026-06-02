@@ -404,11 +404,11 @@ document.getElementById('form-forgot-request')?.addEventListener('submit', async
       throw new Error(data.error || 'Failed to send reset code');
     }
     
-    // If SMTP is not configured, show code directly on the screen for local development fallback
+    // If SMTP/SMS is not configured, show code directly on the screen for local development fallback
     if (data.fallbackCode) {
-      alert(`[Dev Mode] Verification code generated: ${data.fallbackCode}\n(This will be sent to the client's email in production!)`);
+      alert(`[Dev Mode] Verification code generated: ${data.fallbackCode}\n(This will be sent to the client's email or cellphone in production!)`);
     } else {
-      alert('A 6-digit verification code has been sent to your email address!');
+      alert('A 6-digit verification code has been sent to your email or cellphone number!');
     }
     
     // Slide/transition to Step 2
@@ -822,6 +822,7 @@ document.getElementById('form-register')?.addEventListener('submit', async (e) =
     errEl.classList.remove('hidden');
     return;
   }
+  const phone = document.getElementById('reg-phone')?.value?.trim();
   try {
     const data = await api('/auth/register', {
       method: 'POST',
@@ -833,6 +834,7 @@ document.getElementById('form-register')?.addEventListener('submit', async (e) =
           document.getElementById('reg-suffix').value.trim()
         ].filter(Boolean).join(' '),
         email: document.getElementById('reg-email').value,
+        phone: phone || null,
         password: pass
       })
     });
