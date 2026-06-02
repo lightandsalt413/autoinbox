@@ -302,7 +302,13 @@ function showDashSection(id) {
   document.querySelectorAll('.dash-section').forEach(s => s.classList.add('hidden'));
   document.getElementById(`dash-${id}`).classList.remove('hidden');
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  document.querySelector(`[data-page="${id}"]`)?.classList.add('active');
+  document.querySelectorAll('.mnav-item').forEach(m => m.classList.remove('active'));
+  
+  const sidebarBtn = document.querySelector(`.sidebar [data-page="${id}"]`);
+  if (sidebarBtn) sidebarBtn.classList.add('active');
+  
+  const mobileBtn = document.querySelector(`.mobile-nav [data-page="${id}"]`);
+  if (mobileBtn) mobileBtn.classList.add('active');
 }
 
 // ===== Auth =====
@@ -1014,11 +1020,13 @@ async function checkAdmin() {
     const data = await api('/admin/stats');
     // If we get here, user is admin
     document.getElementById('nav-admin')?.classList.remove('hidden');
+    document.getElementById('mnav-admin')?.classList.remove('hidden');
     window._isAdmin = true;
     window._adminData = data;
   } catch (e) {
     // Not admin — hide button
     document.getElementById('nav-admin')?.classList.add('hidden');
+    document.getElementById('mnav-admin')?.classList.add('hidden');
     window._isAdmin = false;
   }
 }
