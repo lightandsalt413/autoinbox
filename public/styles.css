@@ -328,7 +328,7 @@ a{color:var(--p2);text-decoration:none}
 .card h3{margin-bottom:12px;font-size:1.05rem}
 .set-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-bottom:20px}
 .full-w{grid-column:1/-1}
-/* ===== Plan & Billing Premium Redesign ===== */
+/* ===== Plan & Billing — Editorial Redesign ===== */
 
 /* Current Plan Hero */
 .current-plan-hero {
@@ -354,149 +354,158 @@ a{color:var(--p2);text-decoration:none}
   pointer-events: none;
 }
 .cph-label {
-  font-size: 0.72rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1.2px;
-  color: rgba(197, 165, 90, 0.7);
-  margin-bottom: 6px;
+  font-size: 0.72rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 1.2px; color: rgba(197, 165, 90, 0.7); margin-bottom: 6px;
 }
 .cph-plan-row { display: flex; align-items: baseline; gap: 12px; }
 .cph-name { font-size: 2rem; font-weight: 800; color: #FAFAFA; letter-spacing: -0.5px; }
 .cph-price { font-size: 1rem; color: rgba(250, 250, 250, 0.5); font-weight: 400; }
 .cph-badge {
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  padding: 6px 16px;
-  border-radius: 50px;
-  background: rgba(16, 185, 129, 0.18);
-  color: #34d399;
+  font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+  padding: 6px 16px; border-radius: 50px;
+  background: rgba(16, 185, 129, 0.18); color: #34d399;
   border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
-/* Plan Grid */
-.plan-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:20px}
+/* Plan Grid — extra top padding so the Best Value badge is never clipped */
+.plan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 8px;
+  padding-top: 24px; /* room for the .po-tag badge */
+  overflow: visible;
+}
 
-/* ── Plan Cards: Black + Gold ── */
+/* ── Base Plan Card ── */
 .plan-option {
-  background: linear-gradient(160deg, #18160f 0%, #111009 100%);
-  border: 1px solid rgba(197, 165, 90, 0.18);
-  border-radius: 22px;
-  padding: 30px 24px 24px;
+  background: #FFFFFF;
+  border: 1.5px solid #E8E0D0;
+  border-radius: 20px;
+  padding: 28px 22px 22px;
   position: relative;
-  transition: all 0.35s cubic-bezier(0.16,1,0.3,1);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
 }
-/* subtle inner glow layer */
-.plan-option::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 22px;
-  background: radial-gradient(ellipse at 80% 0%, rgba(197,165,90,0.07) 0%, transparent 65%);
-  pointer-events: none;
-  transition: opacity 0.35s;
-  opacity: 0;
-}
-.plan-option:hover::after { opacity: 1; }
-
 .plan-option:hover {
   border-color: #C5A55A;
-  transform: translateY(-7px);
-  box-shadow: 0 0 0 1px rgba(197,165,90,0.25), 0 20px 50px rgba(197,165,90,0.18), 0 8px 24px rgba(0,0,0,0.5);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.1);
 }
 
-/* Featured (Basic) — brighter gold border */
+/* ── FEATURED card (Basic) — solid gold/amber ── */
 .plan-option.featured {
-  border-color: rgba(197,165,90,0.5);
-  background: linear-gradient(160deg, #1d1a0e 0%, #130f07 100%);
-  box-shadow: 0 0 0 1px rgba(197,165,90,0.12), 0 8px 30px rgba(197,165,90,0.08);
-}
-.plan-option.featured::after {
-  background: radial-gradient(ellipse at 80% 0%, rgba(232,201,122,0.13) 0%, transparent 65%);
-  opacity: 1;
+  background: linear-gradient(155deg, #C5A55A 0%, #A07C30 100%);
+  border-color: transparent;
+  box-shadow: 0 8px 32px rgba(197,165,90,0.45);
+  transform: scale(1.02);
 }
 .plan-option.featured:hover {
-  border-color: #E8C97A;
-  box-shadow: 0 0 0 1px rgba(232,201,122,0.35), 0 24px 56px rgba(197,165,90,0.28), 0 8px 24px rgba(0,0,0,0.5);
+  transform: scale(1.02) translateY(-6px);
+  box-shadow: 0 20px 52px rgba(197,165,90,0.55);
+}
+.plan-option.featured h4 { color: rgba(0,0,0,0.7) !important; }
+.plan-option.featured .po-price { color: #0A0A0B !important; }
+.plan-option.featured .po-price span { color: rgba(0,0,0,0.45) !important; }
+.plan-option.featured li { color: rgba(0,0,0,0.75) !important; border-bottom-color: rgba(0,0,0,0.12) !important; }
+.plan-option.featured li::before { color: #0A0A0B !important; }
+.plan-option.featured .po-trial {
+  background: rgba(0,0,0,0.12) !important;
+  color: #0A0A0B !important;
+  border-color: rgba(0,0,0,0.18) !important;
 }
 
-/* Current active plan — green tint */
-.plan-option.current {
-  border-color: rgba(22, 163, 74, 0.35) !important;
-  background: linear-gradient(160deg, #0f1a12 0%, #0a110c 100%) !important;
-}
-
-/* Pro card — deepest black */
+/* ── PRO card — dark slate ── */
 .po-pro-card {
-  background: linear-gradient(160deg, #0d0b07 0%, #070604 100%) !important;
-  border-color: rgba(197,165,90,0.3) !important;
+  background: #1A1A1C !important;
+  border-color: rgba(255,255,255,0.08) !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2) !important;
 }
+.po-pro-card h4 { color: #F0EAD6 !important; }
+.po-pro-card .po-price { color: #FFFFFF !important; }
+.po-pro-card .po-price span { color: rgba(255,255,255,0.35) !important; }
+.po-pro-card li { color: rgba(240,234,214,0.7) !important; border-bottom-color: rgba(255,255,255,0.06) !important; }
+.po-pro-card li::before { color: #C5A55A !important; }
 .po-pro-card:hover {
-  border-color: #C5A55A !important;
-  box-shadow: 0 0 0 1px rgba(197,165,90,0.3), 0 24px 56px rgba(197,165,90,0.22), 0 8px 24px rgba(0,0,0,0.6) !important;
+  border-color: rgba(197,165,90,0.4) !important;
+  box-shadow: 0 16px 44px rgba(0,0,0,0.35), 0 0 0 1px rgba(197,165,90,0.2) !important;
+  transform: translateY(-5px) !important;
+}
+
+/* Current plan state */
+.plan-option.current {
+  border-color: rgba(22, 163, 74, 0.4) !important;
 }
 
 /* Tier Icon */
-.po-tier-icon { font-size: 1.3rem; margin-bottom: 10px; opacity: 0.25; }
-.po-tier-gold { color: #C5A55A; opacity: 0.75; }
-.po-tier-pro  { color: #C5A55A; opacity: 1; }
+.po-tier-icon { font-size: 1.2rem; margin-bottom: 10px; color: #C5A55A; opacity: 0.4; }
+.po-tier-gold { opacity: 0.9; }
+.po-tier-pro  { opacity: 1; }
 
-/* Best Value Tag */
+/* Best Value Tag — sits above card; plan-grid padding-top gives it room */
 .po-tag {
   position: absolute;
-  top: -12px;
+  top: -14px;
   left: 50%;
   transform: translateX(-50%);
-  background: linear-gradient(135deg, #C5A55A, #E8C97A);
-  color: #0A0A0B;
-  padding: 4px 18px;
+  background: #0A0A0B;
+  color: #E8C97A;
+  padding: 5px 18px;
   border-radius: 50px;
-  font-size: .7rem;
+  font-size: .68rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: .6px;
+  letter-spacing: .8px;
   white-space: nowrap;
-  box-shadow: 0 4px 16px rgba(197,165,90,0.5);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.35);
+  border: 1px solid rgba(232,201,122,0.3);
 }
 
 /* Text inside cards */
-.plan-option h4 { font-size: 1.05rem; font-weight: 700; margin-bottom: 6px; color: #E8E0CC; }
-.po-price { font-size: 2.1rem; font-weight: 800; color: #FAFAFA; margin-bottom: 4px; letter-spacing: -0.5px; }
-.po-price span { font-size: .85rem; color: rgba(250,250,250,0.35); font-weight: 400; }
+.plan-option h4 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; color: #1A1A1C; }
+.po-price { font-size: 2.1rem; font-weight: 800; color: #1A1A1C; margin-bottom: 4px; letter-spacing: -0.5px; }
+.po-price span { font-size: .82rem; color: #888; font-weight: 400; }
 .po-trial {
-  font-size: .74rem; font-weight: 600; margin-bottom: 16px;
-  display: inline-block; padding: 3px 12px; border-radius: 50px;
-  background: rgba(197,165,90,0.12); color: #C5A55A;
-  border: 1px solid rgba(197,165,90,0.2);
+  font-size: .73rem; font-weight: 600; margin-bottom: 14px;
+  display: inline-block; padding: 3px 10px; border-radius: 50px;
+  background: rgba(22,163,74,0.1); color: #16a34a;
+  border: 1px solid rgba(22,163,74,0.2);
 }
 
 .plan-option ul { list-style: none; padding: 0; margin: 0 0 20px; flex: 1; }
 .plan-option li {
-  padding: 8px 0;
-  font-size: .84rem;
-  color: rgba(230, 218, 190, 0.75);
+  padding: 7px 0;
+  font-size: .83rem;
+  color: rgba(26,26,28,0.7);
   display: flex;
   align-items: center;
   gap: 9px;
-  border-bottom: 1px solid rgba(197,165,90,0.08);
+  border-bottom: 1px solid rgba(0,0,0,0.06);
 }
 .plan-option li:last-child { border: none; }
-.plan-option li::before { content: '✓'; color: #C5A55A; font-weight: 800; font-size: .9rem; flex-shrink: 0; }
+.plan-option li::before { content: '✓'; color: #16a34a; font-weight: 800; font-size: .88rem; flex-shrink: 0; }
 
-/* Buttons inside dark cards */
+/* Buttons inside cards */
 .plan-option .btn-ghost {
-  border-color: rgba(197,165,90,0.2) !important;
-  color: rgba(230,218,190,0.5) !important;
-  background: transparent !important;
+  border-color: rgba(26,26,28,0.15) !important;
+  color: rgba(26,26,28,0.45) !important;
 }
 .plan-option .btn-ghost:not([disabled]):hover {
-  border-color: rgba(197,165,90,0.5) !important;
-  color: #C5A55A !important;
+  border-color: rgba(26,26,28,0.35) !important;
+  color: #1A1A1C !important;
+}
+/* Featured card buttons */
+.plan-option.featured .btn-ghost,
+.plan-option.featured .btn-accent {
+  background: rgba(0,0,0,0.18) !important;
+  border-color: rgba(0,0,0,0.2) !important;
+  color: #0A0A0B !important;
+}
+.plan-option.featured .btn-ghost:hover,
+.plan-option.featured .btn-accent:hover {
+  background: rgba(0,0,0,0.28) !important;
 }
 
 /* Pro CTA gold button */
@@ -505,44 +514,41 @@ a{color:var(--p2);text-decoration:none}
   color: #0A0A0B !important;
   font-weight: 700 !important;
   border: none !important;
-  box-shadow: 0 4px 18px rgba(197,165,90,0.35) !important;
+  box-shadow: 0 4px 18px rgba(197,165,90,0.4) !important;
 }
-.btn-pro:hover { box-shadow: 0 8px 28px rgba(197,165,90,0.55) !important; }
+.btn-pro:hover { box-shadow: 0 8px 28px rgba(197,165,90,0.6) !important; }
 
 /* Payment Methods Card */
 .pay-methods-card {
-  margin-top: 20px;
-  background: linear-gradient(160deg, #18160f 0%, #111009 100%);
-  border: 1px solid rgba(197, 165, 90, 0.18);
-  border-radius: 22px;
+  margin-top: 24px;
+  background: #FFFFFF;
+  border: 1.5px solid #E8E0D0;
+  border-radius: 20px;
   padding: 20px 24px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
 }
 .pay-methods-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
-.pay-methods-title { font-size: 1rem; font-weight: 700; color: #E8E0CC; }
+.pay-methods-title { font-size: 1rem; font-weight: 700; color: #1A1A1C; }
 .pay-secure-badge {
-  font-size: 0.72rem; color: #C5A55A;
-  background: rgba(197,165,90,0.1); padding: 4px 12px;
+  font-size: 0.72rem; color: #16a34a;
+  background: rgba(22,163,74,0.08); padding: 4px 12px;
   border-radius: 50px; font-weight: 600;
-  border: 1px solid rgba(197,165,90,0.2);
+  border: 1px solid rgba(22,163,74,0.2);
 }
 .pay-methods { display: flex; gap: 10px; flex-wrap: wrap; }
 .pay-pill {
-  background: rgba(197,165,90,0.06);
-  border: 1px solid rgba(197,165,90,0.18);
+  background: #F6F2EA;
+  border: 1.5px solid #E8E0D0;
   padding: 9px 18px;
   border-radius: 50px;
   font-size: .82rem;
-  color: rgba(230,218,190,0.7);
+  color: rgba(26,26,28,0.65);
   transition: all .25s;
   cursor: default;
 }
-.pay-pill:hover {
-  border-color: #C5A55A;
-  color: #C5A55A;
-  background: rgba(197,165,90,0.12);
-}
-.pay-powered { font-size: 0.78rem; color: rgba(197,165,90,0.4); margin-top: 12px; margin-bottom: 0; }
-.pay-powered strong { color: rgba(197,165,90,0.65); }
+.pay-pill:hover { border-color: #C5A55A; color: #8A7540; }
+.pay-powered { font-size: 0.78rem; color: #AAA; margin-top: 12px; margin-bottom: 0; }
+.pay-powered strong { color: #888; }
 
 
 /* Modal */
@@ -3839,61 +3845,74 @@ body::-webkit-scrollbar {
   color: rgba(26, 26, 28, 0.5) !important;
 }
 
-/* Plan & Billing inside Dashboard — dark cards persist, no light overrides */
+/* Plan & Billing inside Dashboard */
 .dash-main .cph-name { color: #FAFAFA !important; }
 .dash-main .cph-price { color: rgba(250,250,250,0.45) !important; }
 
-/* All plan cards stay dark inside dashboard */
+/* Free + base cards: clean white inside cream dashboard */
 .dash-main .plan-option {
-  background: linear-gradient(160deg, #18160f 0%, #111009 100%) !important;
-  border-color: rgba(197,165,90,0.18) !important;
-  color: #E8E0CC !important;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.18) !important;
+  background: #FFFFFF !important;
+  border-color: rgba(26,26,28,0.1) !important;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.05) !important;
 }
 .dash-main .plan-option:hover {
   border-color: #C5A55A !important;
-  box-shadow: 0 0 0 1px rgba(197,165,90,0.25), 0 20px 50px rgba(197,165,90,0.18), 0 8px 24px rgba(0,0,0,0.5) !important;
-  transform: translateY(-7px) !important;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.1) !important;
+  transform: translateY(-5px) !important;
 }
+.dash-main .plan-option h4 { color: #1A1A1C !important; }
+.dash-main .po-price { color: #1A1A1C !important; }
+.dash-main .po-price span { color: #888 !important; }
+.dash-main .plan-option li { color: rgba(26,26,28,0.7) !important; border-bottom-color: rgba(0,0,0,0.06) !important; }
+.dash-main .plan-option li::before { color: #16a34a !important; }
+
+/* Featured (Basic) card stays gold */
 .dash-main .plan-option.featured {
-  background: linear-gradient(160deg, #1d1a0e 0%, #130f07 100%) !important;
-  border-color: rgba(197,165,90,0.5) !important;
+  background: linear-gradient(155deg, #C5A55A 0%, #A07C30 100%) !important;
+  border-color: transparent !important;
+  box-shadow: 0 8px 32px rgba(197,165,90,0.45) !important;
 }
-.dash-main .plan-option.current {
-  background: linear-gradient(160deg, #0f1a12 0%, #0a110c 100%) !important;
-  border-color: rgba(22,163,74,0.35) !important;
+.dash-main .plan-option.featured:hover {
+  box-shadow: 0 20px 52px rgba(197,165,90,0.55) !important;
 }
+.dash-main .plan-option.featured h4 { color: rgba(0,0,0,0.7) !important; }
+.dash-main .plan-option.featured .po-price { color: #0A0A0B !important; }
+.dash-main .plan-option.featured .po-price span { color: rgba(0,0,0,0.45) !important; }
+.dash-main .plan-option.featured li { color: rgba(0,0,0,0.75) !important; border-bottom-color: rgba(0,0,0,0.12) !important; }
+.dash-main .plan-option.featured li::before { color: #0A0A0B !important; }
+
+/* Pro card stays dark */
 .dash-main .po-pro-card {
-  background: linear-gradient(160deg, #0d0b07 0%, #070604 100%) !important;
-  border-color: rgba(197,165,90,0.3) !important;
+  background: #1A1A1C !important;
+  border-color: rgba(255,255,255,0.08) !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15) !important;
 }
-.dash-main .plan-option h4 { color: #E8E0CC !important; }
-.dash-main .po-price { color: #FAFAFA !important; }
-.dash-main .po-price span { color: rgba(250,250,250,0.35) !important; }
-.dash-main .plan-option li { color: rgba(230,218,190,0.75) !important; border-bottom-color: rgba(197,165,90,0.08) !important; }
-.dash-main .plan-option li::before { color: #C5A55A !important; }
+.dash-main .po-pro-card h4 { color: #F0EAD6 !important; }
+.dash-main .po-pro-card .po-price { color: #FFFFFF !important; }
+.dash-main .po-pro-card .po-price span { color: rgba(255,255,255,0.35) !important; }
+.dash-main .po-pro-card li { color: rgba(240,234,214,0.7) !important; border-bottom-color: rgba(255,255,255,0.06) !important; }
+.dash-main .po-pro-card li::before { color: #C5A55A !important; }
+.dash-main .po-pro-card:hover {
+  border-color: rgba(197,165,90,0.4) !important;
+  box-shadow: 0 16px 44px rgba(0,0,0,0.3), 0 0 0 1px rgba(197,165,90,0.2) !important;
+}
 
 /* Payment Methods */
 .dash-main .pay-methods-card {
-  background: linear-gradient(160deg, #18160f 0%, #111009 100%) !important;
-  border-color: rgba(197,165,90,0.18) !important;
+  background: #FFFFFF !important;
+  border-color: rgba(26,26,28,0.1) !important;
+  box-shadow: 0 2px 14px rgba(0,0,0,0.04) !important;
 }
-.dash-main .pay-methods-title { color: #E8E0CC !important; }
+.dash-main .pay-methods-title { color: #1A1A1C !important; }
 .dash-main .pay-pill {
-  background: rgba(197,165,90,0.06) !important;
-  border-color: rgba(197,165,90,0.18) !important;
-  color: rgba(230,218,190,0.7) !important;
+  background: #F6F2EA !important;
+  border-color: #E8E0D0 !important;
+  color: rgba(26,26,28,0.65) !important;
 }
-.dash-main .pay-pill:hover {
-  border-color: #C5A55A !important;
-  color: #C5A55A !important;
-  background: rgba(197,165,90,0.12) !important;
-}
-.dash-main .pay-secure-badge {
-  color: #C5A55A !important;
-  background: rgba(197,165,90,0.1) !important;
-  border-color: rgba(197,165,90,0.2) !important;
-}
+.dash-main .pay-pill:hover { border-color: #C5A55A !important; color: #8A7540 !important; }
+.dash-main .pay-secure-badge { color: #16a34a !important; background: rgba(22,163,74,0.08) !important; border-color: rgba(22,163,74,0.2) !important; }
+.dash-main .pay-powered { color: #AAA !important; }
+.dash-main .pay-powered strong { color: #888 !important; }
 
 
 /* Settings Sidebar inside Settings page */
