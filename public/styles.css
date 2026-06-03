@@ -395,16 +395,16 @@ a{color:var(--p2);text-decoration:none}
   box-shadow: 0 12px 36px rgba(0,0,0,0.1);
 }
 
-/* ── FEATURED card (Basic) — solid gold/amber ── */
+/* ── FEATURED card (Basic) — bright light gold/amber ── */
 .plan-option.featured {
-  background: linear-gradient(155deg, #C5A55A 0%, #A07C30 100%);
+  background: linear-gradient(155deg, #F2D96B 0%, #D4A843 100%);
   border-color: transparent;
-  box-shadow: 0 8px 32px rgba(197,165,90,0.45);
+  box-shadow: 0 8px 32px rgba(212,168,67,0.45);
   transform: scale(1.02);
 }
 .plan-option.featured:hover {
   transform: scale(1.02) translateY(-6px);
-  box-shadow: 0 20px 52px rgba(197,165,90,0.55);
+  box-shadow: 0 20px 52px rgba(212,168,67,0.55);
 }
 .plan-option.featured h4 { color: rgba(0,0,0,0.7) !important; }
 .plan-option.featured .po-price { color: #0A0A0B !important; }
@@ -3866,14 +3866,14 @@ body::-webkit-scrollbar {
 .dash-main .plan-option li { color: rgba(26,26,28,0.7) !important; border-bottom-color: rgba(0,0,0,0.06) !important; }
 .dash-main .plan-option li::before { color: #16a34a !important; }
 
-/* Featured (Basic) card stays gold */
+/* Featured (Basic) card stays bright gold */
 .dash-main .plan-option.featured {
-  background: linear-gradient(155deg, #C5A55A 0%, #A07C30 100%) !important;
+  background: linear-gradient(155deg, #F2D96B 0%, #D4A843 100%) !important;
   border-color: transparent !important;
-  box-shadow: 0 8px 32px rgba(197,165,90,0.45) !important;
+  box-shadow: 0 8px 32px rgba(212,168,67,0.45) !important;
 }
 .dash-main .plan-option.featured:hover {
-  box-shadow: 0 20px 52px rgba(197,165,90,0.55) !important;
+  box-shadow: 0 20px 52px rgba(212,168,67,0.55) !important;
 }
 .dash-main .plan-option.featured h4 { color: rgba(0,0,0,0.7) !important; }
 .dash-main .plan-option.featured .po-price { color: #0A0A0B !important; }
