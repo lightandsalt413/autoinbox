@@ -418,15 +418,86 @@
     <main class="dash-main" role="main" aria-label="Dashboard content">
       <section id="dash-inbox" class="dash-section"><div class="dash-head"><h1>Inbox</h1><div class="stats-row"><div class="stat-card"><span class="stat-num" id="stat-today">0</span><span class="stat-lbl">Today</span></div><div class="stat-card warn"><span class="stat-num" id="stat-pending">0</span><span class="stat-lbl">Pending</span></div><div class="stat-card good"><span class="stat-num" id="stat-sent">0</span><span class="stat-lbl">Sent</span></div></div></div><div class="filter-tabs"><button class="tab active" data-filter="all">All</button><button class="tab" data-filter="drafted">Drafted</button><button class="tab" data-filter="pending">Pending</button><button class="tab" data-filter="sent">Sent</button><button class="tab" data-filter="rejected">Skipped</button></div><div id="message-list" class="message-list"><div class="empty-state"><p><strong>No messages yet</strong></p><p style="color:var(--t3)">Messages appear here when received.</p></div></div></section>
       <section id="dash-voice" class="dash-section hidden"><div class="dash-head"><h1>Voice Clone</h1></div><div class="card glass"><h3>Voice Profile</h3><div id="dash-voice-profile" class="profile-box"><p style="color:var(--t3)">No profile yet. Add samples below.</p></div></div><div class="card glass"><h3>Samples</h3><p style="color:var(--t2);font-size:.9rem;margin-bottom:16px">Paste real replies. Min 3.</p><div id="dash-voice-samples"></div><button class="btn-ghost btn-sm" id="dash-add-sample">+ Add</button><div style="margin-top:16px"><button class="btn-accent" id="dash-analyze">Analyze Style</button></div></div></section>
-      <section id="dash-plan" class="dash-section hidden"><div class="dash-head"><h1>Plan & Billing</h1></div>
-        <div class="card glass" id="current-plan-card"><h3>Current Plan</h3><div class="current-plan-display"><div class="cpd-name" id="cpd-name">Free</div><div class="cpd-price" id="cpd-price">₱0/mo</div><div class="cpd-status" id="cpd-status">Active</div></div></div>
-        <div class="plan-grid">
-          <div class="plan-option" id="po-free"><h4>Free</h4><div class="po-price">₱0<span>/mo</span></div><ul><li>10 AI replies/mo</li><li>1 Gmail / Yahoo Mail</li><li>Basic voice clone</li></ul><button class="btn-ghost btn-full" disabled>Current Plan</button></div>
-          <div class="plan-option featured" id="po-basic"><div class="po-tag">Best Value</div><h4>Basic</h4><div class="po-price">₱499<span>/mo</span></div><div class="po-trial">7-day free trial</div><ul><li>200 AI replies/mo</li><li>1 Gmail / Yahoo Mail</li><li>Full voice clone</li><li>Priority AI speed</li></ul><button class="btn-accent btn-full" id="btn-upgrade-basic">Start 7-Day Free Trial</button></div>
-          <div class="plan-option" id="po-pro"><h4>Pro</h4><div class="po-price">₱999<span>/mo</span></div><ul><li>Unlimited AI replies</li><li>3 Gmail / Yahoo Mail accounts</li><li>Full voice clone</li><li>Fastest AI priority</li><li>Multi-account dashboard</li></ul><button class="btn-accent btn-full" id="btn-upgrade-pro">Subscribe Now</button></div>
+      <section id="dash-plan" class="dash-section hidden">
+        <div class="dash-head"><h1>Plan &amp; Billing</h1></div>
+
+        <!-- Current Plan Hero Card -->
+        <div id="current-plan-card" class="current-plan-hero">
+          <div class="cph-left">
+            <div class="cph-label">Current Plan</div>
+            <div class="cph-plan-row">
+              <span class="cph-name" id="cpd-name">Free</span>
+              <span class="cph-price" id="cpd-price">&#8369;0/mo</span>
+            </div>
+          </div>
+          <div class="cph-right">
+            <span class="cph-badge" id="cpd-status">Active</span>
+          </div>
         </div>
-        <p style="text-align: center; font-size: 0.8rem; color: var(--t3); margin-top: 16px; margin-bottom: 8px;">* Payments are processed in equivalent PHP (₱499 / ₱999) at checkout.</p>
-        <div class="card glass" style="margin-top:20px"><h3>Payment Methods</h3><div class="pay-methods"><span class="pay-pill">💳 Visa/Mastercard</span><span class="pay-pill">📱 GCash</span><span class="pay-pill">📱 Maya</span></div><p style="color:var(--t3);font-size:.8rem;margin-top:12px">Powered by PayMongo · Secure encrypted payments</p></div>
+
+        <!-- Plan Cards -->
+        <div class="plan-grid">
+          <!-- Free -->
+          <div class="plan-option" id="po-free">
+            <div class="po-tier-icon">✦</div>
+            <h4>Free</h4>
+            <div class="po-price">&#8369;0<span>/mo</span></div>
+            <ul>
+              <li>10 AI replies/mo</li>
+              <li>1 Gmail / Yahoo Mail</li>
+              <li>Basic voice clone</li>
+            </ul>
+            <button class="btn-ghost btn-full" disabled>Current Plan</button>
+          </div>
+
+          <!-- Basic (Featured) -->
+          <div class="plan-option featured" id="po-basic">
+            <div class="po-tag">&#11088; Best Value</div>
+            <div class="po-tier-icon po-tier-gold">&#9670;</div>
+            <h4>Basic</h4>
+            <div class="po-price">&#8369;499<span>/mo</span></div>
+            <div class="po-trial">7-day free trial</div>
+            <ul>
+              <li>200 AI replies/mo</li>
+              <li>1 Gmail / Yahoo Mail</li>
+              <li>Full voice clone</li>
+              <li>Priority AI speed</li>
+            </ul>
+            <button class="btn-accent btn-full" id="btn-upgrade-basic">Start 7-Day Free Trial</button>
+          </div>
+
+          <!-- Pro -->
+          <div class="plan-option po-pro-card" id="po-pro">
+            <div class="po-tier-icon po-tier-pro">&#9829;</div>
+            <h4>Pro</h4>
+            <div class="po-price">&#8369;999<span>/mo</span></div>
+            <ul>
+              <li>Unlimited AI replies</li>
+              <li>3 Gmail / Yahoo Mail accounts</li>
+              <li>Full voice clone</li>
+              <li>Fastest AI priority</li>
+              <li>Multi-account dashboard</li>
+            </ul>
+            <button class="btn-accent btn-full btn-pro" id="btn-upgrade-pro">Subscribe Now</button>
+          </div>
+        </div>
+
+        <p style="text-align:center;font-size:0.78rem;color:var(--t3);margin-top:18px;margin-bottom:4px;">* Payments are processed in PHP (&#8369;499 / &#8369;999) at checkout.</p>
+
+        <!-- Payment Methods -->
+        <div class="pay-methods-card">
+          <div class="pay-methods-head">
+            <span class="pay-methods-title">Payment Methods</span>
+            <span class="pay-secure-badge">&#128274; Secure &amp; Encrypted</span>
+          </div>
+          <div class="pay-methods">
+            <span class="pay-pill">&#128179; Visa / Mastercard</span>
+            <span class="pay-pill">&#128247; GCash</span>
+            <span class="pay-pill">&#128247; Maya</span>
+          </div>
+          <p class="pay-powered">Powered by <strong>PayMongo</strong></p>
+        </div>
+
       </section>
       <section id="dash-settings" class="dash-section hidden">
         <div class="dash-head"><h1>Settings</h1></div>
