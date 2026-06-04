@@ -336,21 +336,21 @@ a{color:var(--p2);text-decoration:none}
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  background: linear-gradient(135deg, #161513 0%, #0d0c0c 100%);
-  border: 1px solid rgba(197, 165, 90, 0.25);
+  background: linear-gradient(135deg, #1A1917 0%, #0C0B0A 100%) !important;
+  border: 1.5px solid rgba(197, 165, 90, 0.38) !important;
   border-radius: 24px;
   padding: 26px 32px;
   margin-bottom: 8px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.08) !important;
   position: relative;
   overflow: hidden;
 }
 .current-plan-hero::before {
   content: '';
   position: absolute;
-  top: -40px; right: -40px;
-  width: 160px; height: 160px;
-  background: radial-gradient(circle, rgba(197, 165, 90, 0.15) 0%, transparent 70%);
+  top: -80px; right: -80px;
+  width: 240px; height: 240px;
+  background: radial-gradient(circle, rgba(197, 165, 90, 0.28) 0%, rgba(197, 165, 90, 0.05) 50%, transparent 70%) !important;
   pointer-events: none;
 }
 .cph-label {
@@ -3932,6 +3932,38 @@ body::-webkit-scrollbar {
   background-image: linear-gradient(#1A1A1C, #111112), linear-gradient(135deg, #C5A55A, #E8C97A) !important;
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.25), 0 0 20px rgba(197, 165, 90, 0.12) !important;
   transform: translateY(-6px) !important;
+}
+
+/* Pro card button overrides to look premium and readable on black background */
+.dash-main .po-pro-card .btn-ghost {
+  border: 1.5px solid rgba(232, 201, 122, 0.3) !important;
+  color: #E8C97A !important;
+  background: rgba(232, 201, 122, 0.08) !important;
+  opacity: 0.9 !important;
+  font-weight: 700 !important;
+}
+.dash-main .po-pro-card .btn-ghost:hover {
+  border-color: rgba(232, 201, 122, 0.5) !important;
+  background: rgba(232, 201, 122, 0.15) !important;
+  color: #FFFFFF !important;
+}
+.dash-main .po-pro-card .btn-accent {
+  background: linear-gradient(135deg, #E8C97A 0%, #C5A55A 100%) !important;
+  color: #1A1A1C !important;
+  border: none !important;
+  box-shadow: 0 4px 15px rgba(232, 201, 122, 0.25) !important;
+  font-weight: 700 !important;
+}
+.dash-main .po-pro-card .btn-accent:hover {
+  background: linear-gradient(135deg, #FFFFFF 0%, #E8C97A 100%) !important;
+  box-shadow: 0 8px 24px rgba(232, 201, 122, 0.4) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Highlight current plan for Pro card specifically */
+.dash-main .po-pro-card.current {
+  border: 1.5px solid rgba(232, 201, 122, 0.8) !important;
+  box-shadow: 0 15px 40px rgba(232, 201, 122, 0.15), 0 0 15px rgba(232, 201, 122, 0.1) !important;
 }
 
 /* Payment Methods */

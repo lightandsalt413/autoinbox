@@ -1109,35 +1109,36 @@ async function loadPlanPage() {
     document.getElementById('cpd-price').textContent = prices[plan] || '₱0/mo';
     document.getElementById('cpd-status').textContent = data?.status || 'Active';
 
-    // Highlight current plan
+    // Reset classes
     document.querySelectorAll('.plan-option').forEach(o => o.classList.remove('current'));
+    
+    const freeEl = document.getElementById('po-free');
+    const basicEl = document.getElementById('po-basic');
+    const proEl = document.getElementById('po-pro');
+    
+    const freeBtn = freeEl?.querySelector('button');
+    const basicBtn = basicEl?.querySelector('button');
+    const proBtn = proEl?.querySelector('button');
+
+    // Highlight current plan
     const currentEl = document.getElementById(`po-${plan}`);
     if (currentEl) {
       currentEl.classList.add('current');
-      const btn = currentEl.querySelector('button');
-      if (btn) { btn.textContent = 'Current Plan'; btn.disabled = true; btn.className = 'btn-ghost btn-full'; }
     }
 
-    // Enable upgrade buttons for non-current plans
-    ['basic', 'pro'].forEach(p => {
-      if (p !== plan) {
-        const el = document.getElementById(`po-${p}`);
-        if (el) {
-          const btn = el.querySelector('button');
-          if (btn) {
-            btn.disabled = false;
-            btn.className = 'btn-accent btn-full';
-            btn.textContent = p === 'basic' ? 'Start 7-Day Free Trial' : 'Subscribe Now';
-          }
-        }
-      }
-    });
-    if (plan !== 'free') {
-      const freeEl = document.getElementById('po-free');
-      if (freeEl) {
-        const btn = freeEl.querySelector('button');
-        if (btn) { btn.textContent = 'Downgrade'; btn.disabled = true; btn.className = 'btn-ghost btn-full'; }
-      }
+    // Configure states based on current plan
+    if (plan === 'pro') {
+      if (freeBtn) { freeBtn.textContent = 'Downgrade'; freeBtn.disabled = true; freeBtn.className = 'btn-ghost btn-full'; }
+      if (basicBtn) { basicBtn.textContent = 'Downgrade'; basicBtn.disabled = true; basicBtn.className = 'btn-ghost btn-full'; }
+      if (proBtn) { proBtn.textContent = 'Current Plan'; proBtn.disabled = true; proBtn.className = 'btn-ghost btn-full'; }
+    } else if (plan === 'basic') {
+      if (freeBtn) { freeBtn.textContent = 'Downgrade'; freeBtn.disabled = true; freeBtn.className = 'btn-ghost btn-full'; }
+      if (basicBtn) { basicBtn.textContent = 'Current Plan'; basicBtn.disabled = true; basicBtn.className = 'btn-ghost btn-full'; }
+      if (proBtn) { proBtn.textContent = 'Subscribe Now'; proBtn.disabled = false; proBtn.className = 'btn-accent btn-full btn-pro'; }
+    } else { // free
+      if (freeBtn) { freeBtn.textContent = 'Current Plan'; freeBtn.disabled = true; freeBtn.className = 'btn-ghost btn-full'; }
+      if (basicBtn) { basicBtn.textContent = 'Start 7-Day Free Trial'; basicBtn.disabled = false; basicBtn.className = 'btn-accent btn-full'; }
+      if (proBtn) { proBtn.textContent = 'Subscribe Now'; proBtn.disabled = false; proBtn.className = 'btn-accent btn-full btn-pro'; }
     }
   } catch (e) { /* silent */ }
 }
