@@ -70,7 +70,18 @@ app.use(express.static(path.join(__dirname, '..', 'public'), {
 }));
 
 // --- Health Check (keep-alive) ---
-app.get('/health', (req, res) => res.status(200).json({ status: 'alive', uptime: process.uptime() }));
+app.get('/health', (req, res) => {
+  res.status(200).json({
+    status: 'alive',
+    uptime: process.uptime(),
+    env: {
+      has_paymongo_secret_key: !!process.env.PAYMONGO_SECRET_KEY,
+      has_paymongo_secret: !!process.env.PAYMONGO_SECRET,
+      has_system_email_user: !!process.env.SYSTEM_EMAIL_USER,
+      has_system_email_pass: !!process.env.SYSTEM_EMAIL_PASS
+    }
+  });
+});
 
 // --- Auth Routes (public) ---
 app.post('/api/auth/register', authLimiter, profanityMiddleware, async (req, res) => {
