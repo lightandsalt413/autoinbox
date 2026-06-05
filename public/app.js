@@ -952,37 +952,231 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
+// ===== REGISTRATION FORM VALIDATION =====
+const regValidation = {
+  // Regex: letters, spaces, hyphens, apostrophes, accented chars — min 2 chars
+  nameRegex: /^[A-Za-zÀ-ÿÑñ\s'\-]{2,50}$/,
+  // Regex: digits only, 7-14 digits (covers most international phone formats)
+  phoneRegex: /^\d{7,14}$/,
+  // Regex: basic email format
+  emailRegex: /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/,
+
+  // Show inline error under a field
+  showFieldErr(inputEl, errId, msg) {
+    const el = document.getElementById(errId);
+    if (!el) return;
+    el.textContent = msg;
+    el.classList.remove('hidden');
+    inputEl.classList.add('input-invalid');
+    inputEl.classList.remove('input-valid');
+  },
+  // Clear inline error and mark valid
+  clearFieldErr(inputEl, errId) {
+    const el = document.getElementById(errId);
+    if (!el) return;
+    el.textContent = '';
+    el.classList.add('hidden');
+    inputEl.classList.remove('input-invalid');
+    inputEl.classList.add('input-valid');
+  },
+  // Reset field to neutral (no valid/invalid border)
+  resetField(inputEl, errId) {
+    const el = document.getElementById(errId);
+    if (!el) return;
+    el.textContent = '';
+    el.classList.add('hidden');
+    inputEl.classList.remove('input-invalid', 'input-valid');
+  },
+
+  // Auto-capitalize: "maria dela cruz" → "Maria Dela Cruz"
+  autoCapitalize(str) {
+    return str.replace(/\b\w/g, c => c.toUpperCase());
+  },
+
+  // Validate a name field (returns error message or null)
+  validateName(val, fieldLabel, required) {
+    if (!val && !required) return null; // optional + empty = ok
+    if (!val && required) return `${fieldLabel} is required.`;
+    if (val.length < 2) return `${fieldLabel} must be at least 2 characters.`;
+    if (/\d/.test(val)) return `${fieldLabel} must not contain numbers.`;
+    if (/[^A-Za-zÀ-ÿÑñ\s'\-]/.test(val)) return `${fieldLabel} must contain only letters, spaces, hyphens, or apostrophes.`;
+    if (!this.nameRegex.test(val)) return `Please enter a valid ${fieldLabel.toLowerCase()}.`;
+    return null;
+  },
+
+  // Validate phone
+  validatePhone(val) {
+    if (!val) return 'Phone number is required.';
+    if (/[^0-9]/.test(val)) return 'Phone number must contain only digits.';
+    if (val.length < 7) return 'Phone number is too short (minimum 7 digits).';
+    if (val.length > 14) return 'Phone number is too long (maximum 14 digits).';
+    return null;
+  },
+
+  // Validate email
+  validateEmail(val) {
+    if (!val) return 'Email address is required.';
+    if (!this.emailRegex.test(val)) return 'Please enter a valid email address (e.g. you@email.com).';
+    return null;
+  }
+};
+
+// --- Real-time validation listeners ---
+// Name fields: filter out invalid chars + auto-capitalize on blur
+['reg-fname', 'reg-mname', 'reg-lname'].forEach(id => {
+  const input = document.getElementById(id);
+  if (!input) return;
+  const errId = 'err-' + id.replace('reg-', '');
+  const isRequired = id !== 'reg-mname';
+  const label = id === 'reg-fname' ? 'First Name' : id === 'reg-mname' ? 'Middle Name' : 'Surname';
+
+  // Block numbers and most special chars while typing
+  input.addEventListener('input', () => {
+    // Strip numbers and disallowed special characters in real-time
+    const cleaned = input.value.replace(/[^A-Za-zÀ-ÿÑñ\s'\-]/g, '');
+    if (cleaned !== input.value) {
+      const pos = input.selectionStart - (input.value.length - cleaned.length);
+      input.value = cleaned;
+      input.setSelectionRange(pos, pos);
+    }
+    // Validate after cleaning
+    const val = input.value.trim();
+    if (!val && !isRequired) { regValidation.resetField(input, errId); return; }
+    const err = regValidation.validateName(val, label, isRequired);
+    if (err) regValidation.showFieldErr(input, errId, err);
+    else regValidation.clearFieldErr(input, errId);
+  });
+
+  // Auto-capitalize on blur
+  input.addEventListener('blur', () => {
+    if (input.value.trim()) {
+      input.value = regValidation.autoCapitalize(input.value.trim());
+    }
+    const val = input.value.trim();
+    if (!val && !isRequired) { regValidation.resetField(input, errId); return; }
+    const err = regValidation.validateName(val, label, isRequired);
+    if (err) regValidation.showFieldErr(input, errId, err);
+    else regValidation.clearFieldErr(input, errId);
+  });
+});
+
+// Phone: digits only enforcement
+(() => {
+  const phoneInput = document.getElementById('reg-phone');
+  if (!phoneInput) return;
+  // Block any non-digit characters
+  phoneInput.addEventListener('input', () => {
+    const cleaned = phoneInput.value.replace(/\D/g, '');
+    if (cleaned !== phoneInput.value) {
+      const pos = phoneInput.selectionStart - (phoneInput.value.length - cleaned.length);
+      phoneInput.value = cleaned;
+      phoneInput.setSelectionRange(pos, pos);
+    }
+    const val = phoneInput.value.trim();
+    if (!val) { regValidation.resetField(phoneInput, 'err-phone'); return; }
+    const err = regValidation.validatePhone(val);
+    if (err) regValidation.showFieldErr(phoneInput, 'err-phone', err);
+    else regValidation.clearFieldErr(phoneInput, 'err-phone');
+  });
+  phoneInput.addEventListener('blur', () => {
+    const val = phoneInput.value.trim();
+    if (!val) { regValidation.resetField(phoneInput, 'err-phone'); return; }
+    const err = regValidation.validatePhone(val);
+    if (err) regValidation.showFieldErr(phoneInput, 'err-phone', err);
+    else regValidation.clearFieldErr(phoneInput, 'err-phone');
+  });
+})();
+
+// Email: format check
+(() => {
+  const emailInput = document.getElementById('reg-email');
+  if (!emailInput) return;
+  emailInput.addEventListener('blur', () => {
+    const val = emailInput.value.trim();
+    if (!val) { regValidation.resetField(emailInput, 'err-email'); return; }
+    const err = regValidation.validateEmail(val);
+    if (err) regValidation.showFieldErr(emailInput, 'err-email', err);
+    else regValidation.clearFieldErr(emailInput, 'err-email');
+  });
+  emailInput.addEventListener('input', () => {
+    const val = emailInput.value.trim();
+    if (!val) { regValidation.resetField(emailInput, 'err-email'); return; }
+    // Only validate on input if they already had an error showing
+    if (emailInput.classList.contains('input-invalid')) {
+      const err = regValidation.validateEmail(val);
+      if (err) regValidation.showFieldErr(emailInput, 'err-email', err);
+      else regValidation.clearFieldErr(emailInput, 'err-email');
+    }
+  });
+})();
+
+// ===== REGISTRATION FORM SUBMIT =====
 document.getElementById('form-register')?.addEventListener('submit', async (e) => {
   e.preventDefault();
   const errEl = document.getElementById('reg-error');
   errEl.classList.add('hidden');
+
+  // Gather values
+  const fname = document.getElementById('reg-fname').value.trim();
+  const mname = document.getElementById('reg-mname').value.trim();
+  const lname = document.getElementById('reg-lname').value.trim();
+  const suffix = document.getElementById('reg-suffix').value.trim();
+  const phoneVal = document.getElementById('reg-phone').value.trim();
+  const emailVal = document.getElementById('reg-email').value.trim();
   const pass = document.getElementById('reg-pass').value;
   const confirmPass = document.getElementById('reg-pass-confirm').value;
   const agree = document.getElementById('reg-agree');
-  // Validate confirm password
+
+  // Run all field validations
+  let hasErrors = false;
+
+  const fnameErr = regValidation.validateName(fname, 'First Name', true);
+  if (fnameErr) { regValidation.showFieldErr(document.getElementById('reg-fname'), 'err-fname', fnameErr); hasErrors = true; }
+  else { regValidation.clearFieldErr(document.getElementById('reg-fname'), 'err-fname'); }
+
+  const mnameErr = regValidation.validateName(mname, 'Middle Name', false);
+  if (mnameErr) { regValidation.showFieldErr(document.getElementById('reg-mname'), 'err-mname', mnameErr); hasErrors = true; }
+  else if (mname) { regValidation.clearFieldErr(document.getElementById('reg-mname'), 'err-mname'); }
+
+  const lnameErr = regValidation.validateName(lname, 'Surname', true);
+  if (lnameErr) { regValidation.showFieldErr(document.getElementById('reg-lname'), 'err-lname', lnameErr); hasErrors = true; }
+  else { regValidation.clearFieldErr(document.getElementById('reg-lname'), 'err-lname'); }
+
+  const phoneErr = regValidation.validatePhone(phoneVal);
+  if (phoneErr) { regValidation.showFieldErr(document.getElementById('reg-phone'), 'err-phone', phoneErr); hasErrors = true; }
+  else { regValidation.clearFieldErr(document.getElementById('reg-phone'), 'err-phone'); }
+
+  const emailErr = regValidation.validateEmail(emailVal);
+  if (emailErr) { regValidation.showFieldErr(document.getElementById('reg-email'), 'err-email', emailErr); hasErrors = true; }
+  else { regValidation.clearFieldErr(document.getElementById('reg-email'), 'err-email'); }
+
+  if (hasErrors) {
+    errEl.textContent = 'Please fix the errors above before continuing.';
+    errEl.classList.remove('hidden');
+    return;
+  }
+
+  // Password match check
   if (pass !== confirmPass) {
     errEl.textContent = 'Passwords do not match.';
     errEl.classList.remove('hidden');
     return;
   }
-  // Validate terms checkbox
+  // Terms checkbox
   if (!agree.checked) {
     errEl.textContent = 'Please agree to the Terms of Service and Privacy Policy.';
     errEl.classList.remove('hidden');
     return;
   }
   // Profanity check on name fields
-  const fname = document.getElementById('reg-fname').value.trim();
-  const mname = document.getElementById('reg-mname').value.trim();
-  const lname = document.getElementById('reg-lname').value.trim();
-  const suffix = document.getElementById('reg-suffix').value.trim();
   if (checkFormProfanity(fname, mname, lname, suffix)) {
     errEl.textContent = 'Inappropriate language detected. Please use proper words.';
     errEl.classList.remove('hidden');
     return;
   }
+
   const prefix = document.getElementById('reg-phone-prefix')?.value || '';
-  const rawPhone = document.getElementById('reg-phone')?.value?.trim() || '';
+  const rawPhone = phoneVal;
   const phone = rawPhone ? (prefix + rawPhone) : '';
   const submitBtn = e.target.querySelector('button[type="submit"]');
   btnLoading(submitBtn, true);
@@ -990,13 +1184,8 @@ document.getElementById('form-register')?.addEventListener('submit', async (e) =
     const data = await api('/auth/register', {
       method: 'POST',
       body: JSON.stringify({
-        name: [
-          document.getElementById('reg-fname').value.trim(),
-          document.getElementById('reg-mname').value.trim(),
-          document.getElementById('reg-lname').value.trim(),
-          document.getElementById('reg-suffix').value.trim()
-        ].filter(Boolean).join(' '),
-        email: document.getElementById('reg-email').value,
+        name: [fname, mname, lname, suffix].filter(Boolean).join(' '),
+        email: emailVal,
         phone: phone || null,
         password: pass
       })

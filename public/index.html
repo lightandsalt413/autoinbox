@@ -475,25 +475,36 @@
         <h3>Create Your Free Account</h3>
         <p style="color:#666;font-size:.9rem;margin-top:4px">No credit card needed. Start replying smarter in 2 minutes.</p>
       </div>
-      <form id="form-register" class="auth-form">
+      <form id="form-register" class="auth-form" novalidate>
         <div class="fg-row">
           <div class="fg">
             <label for="reg-fname">First Name</label>
-            <input type="text" id="reg-fname" placeholder="e.g. Maria" required>
+            <input type="text" id="reg-fname" placeholder="e.g. Maria" required autocomplete="given-name" autocapitalize="words">
+            <span class="field-err hidden" id="err-fname"></span>
           </div>
           <div class="fg">
             <label for="reg-mname">Middle Name <span class="optional">(Optional)</span></label>
-            <input type="text" id="reg-mname" placeholder="e.g. Dela Cruz">
+            <input type="text" id="reg-mname" placeholder="e.g. Dela Cruz" autocomplete="additional-name" autocapitalize="words">
+            <span class="field-err hidden" id="err-mname"></span>
           </div>
         </div>
         <div class="fg-row" style="margin-top:16px">
           <div class="fg">
             <label for="reg-lname">Surname</label>
-            <input type="text" id="reg-lname" placeholder="e.g. Santos" required>
+            <input type="text" id="reg-lname" placeholder="e.g. Santos" required autocomplete="family-name" autocapitalize="words">
+            <span class="field-err hidden" id="err-lname"></span>
           </div>
           <div class="fg fg-small">
             <label for="reg-suffix">Suffix <span class="optional">(Opt)</span></label>
-            <input type="text" id="reg-suffix" placeholder="e.g. Jr.">
+            <select id="reg-suffix">
+              <option value="">— None —</option>
+              <option value="Jr.">Jr.</option>
+              <option value="Sr.">Sr.</option>
+              <option value="II">II</option>
+              <option value="III">III</option>
+              <option value="IV">IV</option>
+              <option value="V">V</option>
+            </select>
           </div>
         </div>
         <div class="fg" style="margin-top:16px">
@@ -520,12 +531,14 @@
               <option value="+33">🇫🇷 +33</option>
               <option value="+49">🇩🇪 +49</option>
             </select>
-            <input type="tel" id="reg-phone" placeholder="e.g. 9171234567" required pattern="^\d{4,14}$" style="flex:1">
+            <input type="tel" id="reg-phone" placeholder="e.g. 9171234567" required inputmode="numeric" style="flex:1">
           </div>
+          <span class="field-err hidden" id="err-phone"></span>
         </div>
         <div class="fg" style="margin-top:16px">
           <label for="reg-email">Email Address <span style="font-size:0.75rem;color:#888;font-weight:normal;display:block;margin-top:2px">(For your AutoInbox account login — this is not yet the Gmail/Yahoo Mail connection)</span></label>
-          <input type="email" id="reg-email" placeholder="you@email.com" required>
+          <input type="email" id="reg-email" placeholder="you@email.com" required autocomplete="email">
+          <span class="field-err hidden" id="err-email"></span>
         </div>
         <div class="fg" style="margin-top:16px">
           <label for="reg-pass">Create Password</label>
