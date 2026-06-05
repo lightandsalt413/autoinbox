@@ -4181,6 +4181,7 @@ body::-webkit-scrollbar {
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   border: 1px solid rgba(26, 26, 28, 0.12) !important;
+  color: #1A1A1C !important;
   border-radius: 10px;
   padding: 12px 14px;
   font-size: 0.95rem;
