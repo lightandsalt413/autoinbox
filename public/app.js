@@ -260,6 +260,10 @@ document.addEventListener('DOMContentLoaded', () => {
 // ===== Navigation =====
 let currentPage = null;
 function showPage(id, addHistory = true) {
+  // Trigger top-loading bar sweep on page change
+  showLoader();
+  setTimeout(hideLoader, 250);
+
   closeLandingModals();
   closeGuideModal();
   if (id === 'login') {
@@ -269,6 +273,17 @@ function showPage(id, addHistory = true) {
       emailInput.value = rememberedEmail;
       const rememberCheckbox = document.getElementById('remember-me');
       if (rememberCheckbox) rememberCheckbox.checked = true;
+    }
+  }
+
+  // Manage scroll progress bar visibility
+  const scrollBar = document.getElementById('scroll-progress-bar');
+  if (scrollBar) {
+    if (id === 'landing') {
+      scrollBar.classList.add('visible');
+    } else {
+      scrollBar.classList.remove('visible');
+      scrollBar.style.width = '0%';
     }
   }
   document.querySelectorAll('.page').forEach(p => {
@@ -2698,5 +2713,18 @@ document.getElementById('form-feedback')?.addEventListener('submit', async (e) =
   document.querySelectorAll('.lp-section').forEach(el => {
     el.classList.add('section-reveal');
     sectionObs.observe(el);
+  });
+
+  // Scroll progress bar calculation
+  window.addEventListener('scroll', () => {
+    if (currentPage === 'landing') {
+      const scrollBar = document.getElementById('scroll-progress-bar');
+      if (scrollBar) {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const percent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        scrollBar.style.width = percent + '%';
+      }
+    }
   });
 })();

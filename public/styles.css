@@ -5201,6 +5201,24 @@ a:not(.nav-item):not(.footer-col a):not(.tab):not(.mnav-item) {
   animation: skeletonPulse 1.5s ease-in-out infinite;
 }
 
+/* ── 2.5 Scroll Progress Bar ── */
+#scroll-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, #dfc893 0%, #C5A55A 50%, #9c7b30 100%);
+  z-index: 100000;
+  box-shadow: 0 1px 8px rgba(197, 165, 90, 0.45);
+  transition: width 0.1s ease-out, opacity 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+#scroll-progress-bar.visible {
+  opacity: 1;
+}
+
 /* ── 3. Top Page Loading Bar ── */
 #page-loader {
   position: fixed;
