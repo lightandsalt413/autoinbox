@@ -412,7 +412,7 @@
       <form id="form-login" class="auth-form">
         <div class="fg">
           <label for="login-email" data-i18n="auth_email">Email</label>
-          <input type="email" id="login-email" placeholder="you@email.com" required>
+          <input type="email" id="login-email" placeholder="you@email.com" required data-i18n-placeholder="ph_login_email">
         </div>
         <div class="fg" style="margin-top:16px">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
@@ -420,8 +420,8 @@
             <a href="#" id="link-forgot-pass" style="color:var(--p); font-size:0.8rem; font-weight:600; text-decoration:none;" data-i18n="auth_forgot">Forgot Password?</a>
           </div>
           <div class="pass-wrap">
-            <input type="password" id="login-pass" placeholder="••••••••" required>
-            <button type="button" class="pass-toggle" id="toggle-login-pass" tabindex="-1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Show</button>
+            <input type="password" id="login-pass" placeholder="••••••••" required data-i18n-placeholder="ph_login_pass">
+            <button type="button" class="pass-toggle" id="toggle-login-pass" tabindex="-1" data-i18n-html="auth_show_btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Show</button>
           </div>
         </div>
         <div id="login-error" class="form-err hidden" style="margin-top:16px"></div>
@@ -451,7 +451,7 @@
         <form id="form-forgot-request" class="auth-form" style="margin-top:20px">
           <div class="fg">
             <label for="forgot-email" data-i18n="auth_forgot_label">Email or Cellphone Number</label>
-            <input type="text" id="forgot-email" placeholder="you@email.com or +639171234567" required>
+            <input type="text" id="forgot-email" placeholder="you@email.com or +639171234567" required data-i18n-placeholder="ph_forgot_email">
           </div>
           <div id="forgot-error-1" class="form-err hidden" style="margin-top:16px"></div>
           <button type="submit" class="btn-accent btn-sm" id="btn-forgot-send" style="width:100%;padding:12px;font-size:1rem;margin-top:20px;background:#1A1A1C;color:#F6F0E6;border:none;border-radius:10px;cursor:pointer;" data-i18n="auth_forgot_btn">Send Reset Code</button>
@@ -469,15 +469,15 @@
         <form id="form-forgot-reset" class="auth-form" style="margin-top:20px">
           <div class="fg">
             <label for="forgot-code" data-i18n="auth_verify_code">Verification Code</label>
-            <input type="text" id="forgot-code" placeholder="e.g. 123456" pattern="\d{6}" maxlength="6" required style="letter-spacing:4px; font-weight:700; text-align:center; font-size:1.1rem;">
+            <input type="text" id="forgot-code" placeholder="e.g. 123456" pattern="\d{6}" maxlength="6" required style="letter-spacing:4px; font-weight:700; text-align:center; font-size:1.1rem;" data-i18n-placeholder="ph_forgot_code">
           </div>
           <div class="fg" style="margin-top:16px">
             <label for="forgot-new-pass" data-i18n="auth_new_pass">New Password</label>
-            <input type="password" id="forgot-new-pass" placeholder="At least 6 characters" minlength="6" required>
+            <input type="password" id="forgot-new-pass" placeholder="At least 6 characters" minlength="6" required data-i18n-placeholder="ph_forgot_new_pass">
           </div>
           <div class="fg" style="margin-top:16px">
             <label for="forgot-confirm-pass" data-i18n="auth_confirm_new">Confirm New Password</label>
-            <input type="password" id="forgot-confirm-pass" placeholder="Confirm your new password" minlength="6" required>
+            <input type="password" id="forgot-confirm-pass" placeholder="Confirm your new password" minlength="6" required data-i18n-placeholder="ph_forgot_confirm_pass">
           </div>
           <div id="forgot-error-2" class="form-err hidden" style="margin-top:16px"></div>
           <button type="submit" class="btn-accent btn-sm" id="btn-forgot-reset" style="width:100%;padding:12px;font-size:1rem;margin-top:20px;background:#1A1A1C;color:#F6F0E6;border:none;border-radius:10px;cursor:pointer;" data-i18n="auth_reset_btn">Reset Password</button>
@@ -501,19 +501,19 @@
         <div class="fg-row">
           <div class="fg">
             <label for="reg-fname" data-i18n="auth_fname">First Name</label>
-            <input type="text" id="reg-fname" placeholder="e.g. Maria" required autocomplete="given-name" autocapitalize="words">
+            <input type="text" id="reg-fname" placeholder="e.g. Maria" required autocomplete="given-name" autocapitalize="words" data-i18n-placeholder="ph_reg_fname">
             <span class="field-err hidden" id="err-fname"></span>
           </div>
           <div class="fg">
             <label for="reg-mname" data-i18n-html="auth_mname_label">Middle Name <span class="optional">(Optional)</span></label>
-            <input type="text" id="reg-mname" placeholder="e.g. Dela Cruz" autocomplete="additional-name" autocapitalize="words">
+            <input type="text" id="reg-mname" placeholder="e.g. Dela Cruz" autocomplete="additional-name" autocapitalize="words" data-i18n-placeholder="ph_reg_mname">
             <span class="field-err hidden" id="err-mname"></span>
           </div>
         </div>
         <div class="fg-row" style="margin-top:16px">
           <div class="fg">
             <label for="reg-lname" data-i18n="auth_lname">Surname</label>
-            <input type="text" id="reg-lname" placeholder="e.g. Santos" required autocomplete="family-name" autocapitalize="words">
+            <input type="text" id="reg-lname" placeholder="e.g. Santos" required autocomplete="family-name" autocapitalize="words" data-i18n-placeholder="ph_reg_lname">
             <span class="field-err hidden" id="err-lname"></span>
           </div>
           <div class="fg fg-small">
@@ -553,20 +553,20 @@
               <option value="+33">🇫🇷 +33</option>
               <option value="+49">🇩🇪 +49</option>
             </select>
-            <input type="tel" id="reg-phone" placeholder="e.g. 9171234567" required inputmode="numeric" style="flex:1">
+            <input type="tel" id="reg-phone" placeholder="e.g. 9171234567" required inputmode="numeric" style="flex:1" data-i18n-placeholder="ph_reg_phone">
           </div>
           <span class="field-err hidden" id="err-phone"></span>
         </div>
         <div class="fg" style="margin-top:16px">
           <label for="reg-email" data-i18n-html="auth_email_label_full">Email Address <span style="font-size:0.75rem;color:#888;font-weight:normal;display:block;margin-top:2px">(This will be your login email. You'll connect your Gmail/Yahoo in the next step.)</span></label>
-          <input type="email" id="reg-email" placeholder="you@email.com" required autocomplete="email">
+          <input type="email" id="reg-email" placeholder="you@email.com" required autocomplete="email" data-i18n-placeholder="ph_reg_email">
           <span class="field-err hidden" id="err-email"></span>
         </div>
         <div class="fg" style="margin-top:16px">
           <label for="reg-pass" data-i18n="auth_create_pass">Create Password</label>
           <div class="pass-wrap">
-            <input type="password" id="reg-pass" placeholder="Min 6 characters" required minlength="6">
-            <button type="button" class="pass-toggle" id="toggle-pass" tabindex="-1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Show</button>
+            <input type="password" id="reg-pass" placeholder="Min 6 characters" required minlength="6" data-i18n-placeholder="ph_reg_pass">
+            <button type="button" class="pass-toggle" id="toggle-pass" tabindex="-1" data-i18n-html="auth_show_btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Show</button>
           </div>
           <div class="pass-strength" id="pass-strength">
             <div class="pass-bar" id="pass-bar"></div>
@@ -576,8 +576,8 @@
         <div class="fg" style="margin-top:16px">
           <label for="reg-pass-confirm" data-i18n="auth_confirm_pass">Confirm Password</label>
           <div class="pass-wrap">
-            <input type="password" id="reg-pass-confirm" placeholder="Re-enter your password" required minlength="6">
-            <button type="button" class="pass-toggle" id="toggle-pass-confirm" tabindex="-1"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Show</button>
+            <input type="password" id="reg-pass-confirm" placeholder="Re-enter your password" required minlength="6" data-i18n-placeholder="ph_reg_pass_confirm">
+            <button type="button" class="pass-toggle" id="toggle-pass-confirm" tabindex="-1" data-i18n-html="auth_show_btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Show</button>
           </div>
           <div class="pass-strength" id="confirm-strength">
             <div class="pass-bar" id="confirm-bar"></div>
@@ -597,31 +597,31 @@
       <p class="auth-sw" style="margin-top:10px;text-align:center;color:#1A1A1C;font-size:.85rem"><span data-i18n="auth_has_account">Already have an account?</span> <a href="#" id="link-login" style="color:var(--p);font-weight:600" data-i18n="auth_login_link">Log In</a></p>
     </div>
   </div>
-  <div id="page-onboard" class="page hidden"><div class="auth-wrap"><div class="auth-box glass onboard-box"><div class="ob-prog"><div class="ob-bar"><div class="ob-fill" id="onboard-progress"></div></div><span id="onboard-step-label">Step 1 of 3</span></div>
+  <div id="page-onboard" class="page hidden"><div class="auth-wrap"><div class="auth-box glass onboard-box"><div class="ob-prog"><div class="ob-bar"><div class="ob-fill" id="onboard-progress"></div></div><span id="onboard-step-label" data-i18n="ob_step_label">Step 1 of 3</span></div>
     <div class="onboard-step" id="onboard-step-1">
-      <h2>Connect Email</h2>
+      <h2 data-i18n="ob_connect_email">Connect Email</h2>
       <div class="provider-tabs" id="ob-provider-tabs">
-        <button type="button" class="tab active" data-provider="gmail" style="flex:1">Gmail</button>
-        <button type="button" class="tab" data-provider="yahoo" style="flex:1">Yahoo Mail</button>
+        <button type="button" class="tab active" data-provider="gmail" style="flex:1" data-i18n="ob_gmail">Gmail</button>
+        <button type="button" class="tab" data-provider="yahoo" style="flex:1" data-i18n="ob_yahoo">Yahoo Mail</button>
       </div>
-      <p id="ob-desc">Link your Gmail so our AI can monitor your inbox.</p>
+      <p id="ob-desc" data-i18n="ob_desc_gmail">Link your Gmail so our AI can monitor your inbox.</p>
       <div class="fg">
-        <label for="ob-email" id="ob-email-lbl">Gmail Address</label>
-        <input type="email" id="ob-email" placeholder="you@gmail.com">
+        <label for="ob-email" id="ob-email-lbl" data-i18n="ob_email_label">Gmail Address</label>
+        <input type="email" id="ob-email" placeholder="you@gmail.com" data-i18n-placeholder="ph_ob_email">
       </div>
       <div class="fg">
-        <label for="ob-pass">App Password <a href="https://myaccount.google.com/apppasswords" target="_blank" class="hl" id="ob-pass-guide">Get here →</a></label>
-        <input type="password" id="ob-pass" placeholder="xxxx xxxx xxxx xxxx">
+        <label for="ob-pass" data-i18n-html="ob_pass_label">App Password <a href="https://myaccount.google.com/apppasswords" target="_blank" class="hl" id="ob-pass-guide">Get here →</a></label>
+        <input type="password" id="ob-pass" placeholder="xxxx xxxx xxxx xxxx" data-i18n-placeholder="ph_ob_pass">
         <div class="ob-help-note">
-          <span>Confused about how to get this? </span>
-          <a href="#" id="ob-open-guide">Read the Setup Guide →</a>
+          <span data-i18n="ob_confused">Confused about how to get this? </span>
+          <a href="#" id="ob-open-guide" data-i18n="ob_read_guide">Read the Setup Guide →</a>
         </div>
       </div>
       <div id="ob-email-error" class="form-err hidden"></div>
-      <div class="ob-btns"><button class="btn-ghost" id="ob-skip-1">Skip</button><button class="btn-accent" id="ob-next-1">Connect</button></div>
+      <div class="ob-btns"><button class="btn-ghost" id="ob-skip-1" data-i18n="ob_skip">Skip</button><button class="btn-accent" id="ob-next-1" data-i18n="ob_connect_btn">Connect</button></div>
     </div>
-    <div class="onboard-step hidden" id="onboard-step-2"><h2>Train AI Clone</h2><p>Paste <strong>3+ of your real replies</strong> below.</p><div id="voice-samples-container"><div class="fg sg"><label>Sample 1</label><textarea class="voice-sample" rows="3" placeholder='e.g. "Hi! Yes, I am available..."'></textarea></div><div class="fg sg"><label>Sample 2</label><textarea class="voice-sample" rows="3" placeholder='e.g. "Thank you for your order!"'></textarea></div><div class="fg sg"><label>Sample 3</label><textarea class="voice-sample" rows="3" placeholder='e.g. "Hello! Sorry for the delay..."'></textarea></div></div><button class="btn-ghost btn-sm" id="ob-add-sample">+ Add More</button><div id="ob-voice-error" class="form-err hidden"></div><div class="ob-btns"><button class="btn-ghost" id="ob-skip-2">Skip</button><button class="btn-accent" id="ob-next-2">Analyze Style</button></div></div>
-    <div class="onboard-step hidden" id="onboard-step-3"><div style="text-align:center;padding:20px 0"><h2>All Set!</h2><p style="color:var(--t2);margin:8px 0 20px">Your AI clone is ready.</p><div id="voice-profile-preview" class="profile-box hidden"><h4>Voice Profile</h4><div id="profile-details"></div></div><button class="btn-accent btn-xl" id="ob-finish">Go to Dashboard</button></div></div>
+    <div class="onboard-step hidden" id="onboard-step-2"><h2 data-i18n="ob_train_title">Train AI Clone</h2><p data-i18n-html="ob_train_desc">Paste <strong>3+ of your real replies</strong> below.</p><div id="voice-samples-container"><div class="fg sg"><label data-i18n="ob_sample_1">Sample 1</label><textarea class="voice-sample" rows="3" placeholder='e.g. "Hi! Yes, I am available..."'></textarea></div><div class="fg sg"><label data-i18n="ob_sample_2">Sample 2</label><textarea class="voice-sample" rows="3" placeholder='e.g. "Thank you for your order!"'></textarea></div><div class="fg sg"><label data-i18n="ob_sample_3">Sample 3</label><textarea class="voice-sample" rows="3" placeholder='e.g. "Hello! Sorry for the delay..."'></textarea></div></div><button class="btn-ghost btn-sm" id="ob-add-sample" data-i18n="ob_add_more">+ Add More</button><div id="ob-voice-error" class="form-err hidden"></div><div class="ob-btns"><button class="btn-ghost" id="ob-skip-2" data-i18n="ob_skip">Skip</button><button class="btn-accent" id="ob-next-2" data-i18n="ob_analyze">Analyze Style</button></div></div>
+    <div class="onboard-step hidden" id="onboard-step-3"><div style="text-align:center;padding:20px 0"><h2 data-i18n="ob_allset">All Set!</h2><p style="color:var(--t2);margin:8px 0 20px" data-i18n="ob_ready">Your AI clone is ready.</p><div id="voice-profile-preview" class="profile-box hidden"><h4 data-i18n="ob_voice_profile">Voice Profile</h4><div id="profile-details"></div></div><button class="btn-accent btn-xl" id="ob-finish" data-i18n="ob_goto_dash">Go to Dashboard</button></div></div>
   </div></div></div>
 
   <!-- Dashboard -->
@@ -937,29 +937,29 @@
     <div class="modal-box glass" style="max-width: 600px; max-height: 85vh; overflow-y: auto; text-align: left;">
       <button class="modal-x" id="guide-modal-close">×</button>
       <div class="modal-head" style="margin-bottom: 20px;">
-        <h3>🔑 Setup Guide</h3>
-        <p style="color:var(--t2);font-size:.9rem;margin-top:4px">How to retrieve your App Password</p>
+        <h3 data-i18n="guide_title">🔑 Setup Guide</h3>
+        <p style="color:var(--t2);font-size:.9rem;margin-top:4px" data-i18n="guide_subtitle">How to retrieve your App Password</p>
       </div>
       <div class="provider-tabs" id="modal-guide-tabs" style="display:flex;gap:10px;margin-bottom:20px">
-        <button type="button" class="tab active" data-provider="gmail" style="flex:1;padding:8px 12px;font-size:.82rem">Gmail Setup</button>
-        <button type="button" class="tab" data-provider="yahoo" style="flex:1;padding:8px 12px;font-size:.82rem">Yahoo Mail Setup</button>
+        <button type="button" class="tab active" data-provider="gmail" style="flex:1;padding:8px 12px;font-size:.82rem" data-i18n="guide_gmail_tab">Gmail Setup</button>
+        <button type="button" class="tab" data-provider="yahoo" style="flex:1;padding:8px 12px;font-size:.82rem" data-i18n="guide_yahoo_tab">Yahoo Mail Setup</button>
       </div>
       <div id="modal-guide-gmail" class="modal-sec">
-        <h4 style="color: #ea4335; margin-bottom: 8px; font-weight:600">Gmail App Password</h4>
+        <h4 style="color: #ea4335; margin-bottom: 8px; font-weight:600" data-i18n="guide_gmail_title">Gmail App Password</h4>
         <ol style="margin-left: 20px; font-size: 0.88rem; line-height: 1.7; color: var(--t2);">
-          <li style="margin-bottom: 8px;">Make sure <strong>2-Step Verification</strong> is turned on in your Google settings.</li>
-          <li style="margin-bottom: 8px;">Go to: <a href="https://myaccount.google.com/apppasswords" target="_blank" style="color:var(--p);text-decoration:underline">Google App Passwords →</a></li>
-          <li style="margin-bottom: 8px;">Type <code>AutoInbox</code> as the app name and click <strong>Create</strong>.</li>
-          <li style="margin-bottom: 8px;">Copy the 16-character code and paste it in the connect input without spaces.</li>
+          <li style="margin-bottom: 8px;" data-i18n-html="guide_gmail_step1">Make sure <strong>2-Step Verification</strong> is turned on in your Google settings.</li>
+          <li style="margin-bottom: 8px;" data-i18n-html="guide_gmail_step2">Go to: <a href="https://myaccount.google.com/apppasswords" target="_blank" style="color:var(--p);text-decoration:underline">Google App Passwords →</a></li>
+          <li style="margin-bottom: 8px;" data-i18n-html="guide_gmail_step3">Type <code>AutoInbox</code> as the app name and click <strong>Create</strong>.</li>
+          <li style="margin-bottom: 8px;" data-i18n="guide_gmail_step4">Copy the 16-character code and paste it in the connect input without spaces.</li>
         </ol>
       </div>
       <div id="modal-guide-yahoo" class="modal-sec hidden">
-        <h4 style="color: #6001d2; margin-bottom: 8px; font-weight:600">Yahoo Mail App Password</h4>
+        <h4 style="color: #6001d2; margin-bottom: 8px; font-weight:600" data-i18n="guide_yahoo_title">Yahoo Mail App Password</h4>
         <ol style="margin-left: 20px; font-size: 0.88rem; line-height: 1.7; color: var(--t2);">
-          <li style="margin-bottom: 8px;">Go to: <a href="https://login.yahoo.com/account/security" target="_blank" style="color:var(--p);text-decoration:underline">Yahoo Account Security →</a></li>
-          <li style="margin-bottom: 8px;">Scroll down and click <strong>Generate app password</strong>.</li>
-          <li style="margin-bottom: 8px;">Type <code>AutoInbox</code> and click <strong>Generate</strong>.</li>
-          <li style="margin-bottom: 8px;">Copy the 16-character code and paste it in the connect input without spaces.</li>
+          <li style="margin-bottom: 8px;" data-i18n-html="guide_yahoo_step1">Go to: <a href="https://login.yahoo.com/account/security" target="_blank" style="color:var(--p);text-decoration:underline">Yahoo Account Security →</a></li>
+          <li style="margin-bottom: 8px;" data-i18n-html="guide_yahoo_step2">Scroll down and click <strong>Generate app password</strong>.</li>
+          <li style="margin-bottom: 8px;" data-i18n-html="guide_yahoo_step3">Type <code>AutoInbox</code> and click <strong>Generate</strong>.</li>
+          <li style="margin-bottom: 8px;" data-i18n="guide_yahoo_step4">Copy the 16-character code and paste it in the connect input without spaces.</li>
         </ol>
       </div>
       <div class="modal-sec" style="border-top:1px solid var(--s2);margin-top:20px;padding-top:15px">
@@ -1274,15 +1274,15 @@
       <form id="form-feedback">
         <div class="fg">
           <label for="feedback-name" data-i18n="feedback_name">Name</label>
-          <input type="text" id="feedback-name" placeholder="Your Name" required>
+          <input type="text" id="feedback-name" placeholder="Your Name" required data-i18n-placeholder="ph_feedback_name">
         </div>
         <div class="fg" style="margin-top: 16px;">
           <label for="feedback-email" data-i18n="feedback_email">Email Address</label>
-          <input type="email" id="feedback-email" placeholder="you@example.com" required>
+          <input type="email" id="feedback-email" placeholder="you@example.com" required data-i18n-placeholder="ph_feedback_email">
         </div>
         <div class="fg" style="margin-top: 16px;">
           <label for="feedback-message" data-i18n="feedback_message">Message</label>
-          <textarea id="feedback-message" rows="5" placeholder="Write your thoughts..." required style="background:var(--bg2); border:1px solid var(--s2); color:var(--t); padding:12px 14px; border-radius:10px; font-size:.95rem; font-family:var(--f); width:100%; box-sizing:border-box; resize:vertical;"></textarea>
+          <textarea id="feedback-message" rows="5" placeholder="Write your thoughts..." required style="background:var(--bg2); border:1px solid var(--s2); color:var(--t); padding:12px 14px; border-radius:10px; font-size:.95rem; font-family:var(--f); width:100%; box-sizing:border-box; resize:vertical;" data-i18n-placeholder="ph_feedback_message"></textarea>
         </div>
         <div id="feedback-error" class="form-err hidden" style="margin-top: 16px;"></div>
         <div id="feedback-success" class="form-err hidden" style="margin-top: 16px; color: var(--g); background: rgba(16, 185, 129, 0.1); border-color: var(--g);"></div>
