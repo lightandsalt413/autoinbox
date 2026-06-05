@@ -178,14 +178,49 @@ const modalCloseConfig = [
   { id: 'feedback-modal', closeBtn: 'feedback-modal-close', bg: 'feedback-modal-bg' }
 ];
 
+// ===== Page Loading Bar =====
+let apiPending = 0;
+function showLoader() {
+  apiPending++;
+  const el = document.getElementById('page-loader');
+  if (el) { el.className = 'active'; }
+}
+function hideLoader() {
+  apiPending = Math.max(0, apiPending - 1);
+  if (apiPending === 0) {
+    const el = document.getElementById('page-loader');
+    if (el) { el.className = 'done'; setTimeout(() => { el.className = ''; }, 500); }
+  }
+}
+
+// ===== Button Loading Spinner =====
+function btnLoading(btn, isDark = false) {
+  if (!btn) return;
+  btn._origText = btn.textContent;
+  btn.classList.add('btn-loading');
+  if (isDark) btn.classList.add('btn-loading-dark');
+  btn.disabled = true;
+}
+function btnDone(btn) {
+  if (!btn) return;
+  btn.classList.remove('btn-loading', 'btn-loading-dark');
+  btn.disabled = false;
+  if (btn._origText) btn.textContent = btn._origText;
+}
+
 // ===== API =====
 async function api(path, opts = {}) {
   const headers = { 'Content-Type': 'application/json' };
   if (token) headers['Authorization'] = `Bearer ${token}`;
-  const res = await fetch(`/api${path}`, { ...opts, headers });
-  const data = await res.json();
-  if (!res.ok) throw new Error(data.error || 'Request failed');
-  return data;
+  showLoader();
+  try {
+    const res = await fetch(`/api${path}`, { ...opts, headers });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Request failed');
+    return data;
+  } finally {
+    hideLoader();
+  }
 }
 
 function showToast(msg, type = 'success') {
@@ -710,6 +745,8 @@ document.getElementById('form-login')?.addEventListener('submit', async (e) => {
   e.preventDefault();
   const errEl = document.getElementById('login-error');
   errEl.classList.add('hidden');
+  const submitBtn = e.target.querySelector('button[type="submit"]');
+  btnLoading(submitBtn, true);
   try {
     const data = await api('/auth/login', {
       method: 'POST',
@@ -728,6 +765,8 @@ document.getElementById('form-login')?.addEventListener('submit', async (e) => {
   } catch (e) {
     errEl.textContent = e.message;
     errEl.classList.remove('hidden');
+  } finally {
+    btnDone(submitBtn);
   }
 });
 
@@ -918,6 +957,8 @@ document.getElementById('form-register')?.addEventListener('submit', async (e) =
   const prefix = document.getElementById('reg-phone-prefix')?.value || '';
   const rawPhone = document.getElementById('reg-phone')?.value?.trim() || '';
   const phone = rawPhone ? (prefix + rawPhone) : '';
+  const submitBtn = e.target.querySelector('button[type="submit"]');
+  btnLoading(submitBtn, true);
   try {
     const data = await api('/auth/register', {
       method: 'POST',
@@ -940,6 +981,8 @@ document.getElementById('form-register')?.addEventListener('submit', async (e) =
   } catch (e) {
     errEl.textContent = e.message;
     errEl.classList.remove('hidden');
+  } finally {
+    btnDone(submitBtn);
   }
 });
 
@@ -2389,4 +2432,67 @@ document.getElementById('form-feedback')?.addEventListener('submit', async (e) =
 
   // Start after a short delay
   setTimeout(runCycle, 1500);
+})();
+
+// ===== Scroll-Triggered Animations =====
+(function initScrollAnimations() {
+  // Timeline steps staggered reveal
+  const timelineObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        timelineObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('.timeline-step').forEach(el => timelineObs.observe(el));
+
+  // Feature cards cascade
+  const cascadeObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        cascadeObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.feat-card, .step-card, .testi-card, .bva-card').forEach(el => {
+    el.classList.add('cascade-item');
+    cascadeObs.observe(el);
+  });
+
+  // Stat number count-up animation
+  const statObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const final = parseInt(el.textContent) || 0;
+        if (final <= 0) return;
+        el.setAttribute('data-animate', 'true');
+        let current = 0;
+        const step = Math.max(1, Math.ceil(final / 30));
+        const timer = setInterval(() => {
+          current += step;
+          if (current >= final) { current = final; clearInterval(timer); }
+          el.textContent = current.toLocaleString();
+        }, 30);
+        statObs.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.stat-num').forEach(el => statObs.observe(el));
+
+  // Section reveal for landing page sections
+  const sectionObs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        sectionObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.lp-section').forEach(el => {
+    el.classList.add('section-reveal');
+    sectionObs.observe(el);
+  });
 })();

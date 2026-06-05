@@ -4631,3 +4631,255 @@ a:not(.nav-item):not(.footer-col a):not(.tab):not(.mnav-item) {
 .price-card:hover::after {
   left: 150%;
 }
+
+/* ═══════════════════════════════════════════════
+   LOADING ANIMATIONS & PROGRESS
+   ═══════════════════════════════════════════════ */
+
+/* ── 1. Button Loading Spinner ── */
+.btn-loading {
+  position: relative;
+  color: transparent !important;
+  pointer-events: none;
+}
+.btn-loading::after {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  top: 50%;
+  left: 50%;
+  margin-top: -9px;
+  margin-left: -9px;
+  border: 2.5px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: btnSpin 0.7s linear infinite;
+}
+@keyframes btnSpin {
+  to { transform: rotate(360deg); }
+}
+/* Dark button variant */
+.btn-loading.btn-loading-dark::after {
+  border-color: rgba(26, 26, 28, 0.2);
+  border-top-color: #1A1A1C;
+}
+
+/* ── 2. Skeleton Loading Pulse ── */
+.skeleton {
+  background: linear-gradient(90deg,
+    rgba(197, 165, 90, 0.04) 25%,
+    rgba(197, 165, 90, 0.1) 50%,
+    rgba(197, 165, 90, 0.04) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeletonPulse 1.5s ease-in-out infinite;
+  border-radius: 8px;
+  min-height: 20px;
+}
+.skeleton-text { height: 14px; margin-bottom: 10px; width: 80%; }
+.skeleton-text.short { width: 50%; }
+.skeleton-text.full { width: 100%; }
+.skeleton-title { height: 22px; margin-bottom: 14px; width: 60%; }
+.skeleton-avatar { width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0; }
+.skeleton-card {
+  background: rgba(197, 165, 90, 0.03);
+  border: 1px solid rgba(197, 165, 90, 0.06);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 12px;
+}
+.skeleton-stat {
+  height: 80px;
+  border-radius: 12px;
+  flex: 1;
+  min-width: 90px;
+}
+@keyframes skeletonPulse {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Dashboard-specific skeletons */
+.dash-main .skeleton {
+  background: linear-gradient(90deg,
+    rgba(26, 26, 28, 0.04) 25%,
+    rgba(26, 26, 28, 0.08) 50%,
+    rgba(26, 26, 28, 0.04) 75%
+  );
+  background-size: 200% 100%;
+  animation: skeletonPulse 1.5s ease-in-out infinite;
+}
+
+/* ── 3. Top Page Loading Bar ── */
+#page-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #C5A55A, #d4b76a, #e8d59a);
+  z-index: 99999;
+  transition: width 0.3s ease;
+  box-shadow: 0 0 12px rgba(197, 165, 90, 0.6);
+}
+#page-loader.active {
+  animation: pageLoaderProgress 2s ease forwards;
+}
+#page-loader.done {
+  width: 100% !important;
+  opacity: 0;
+  transition: width 0.2s, opacity 0.3s 0.2s;
+}
+@keyframes pageLoaderProgress {
+  0% { width: 0; }
+  20% { width: 30%; }
+  50% { width: 60%; }
+  80% { width: 85%; }
+  100% { width: 92%; }
+}
+
+/* ── 4. Onboarding Progress Bar Shimmer ── */
+.ob-fill {
+  position: relative;
+  overflow: hidden;
+}
+.ob-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: obShimmer 2s ease-in-out infinite;
+}
+@keyframes obShimmer {
+  0% { left: -100%; }
+  100% { left: 200%; }
+}
+
+/* ── 5. Timeline Steps — Staggered Scroll Reveal ── */
+.timeline-step {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.timeline-step.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.timeline-step:nth-child(1) { transition-delay: 0.1s; }
+.timeline-step:nth-child(2) { transition-delay: 0.25s; }
+.timeline-step:nth-child(3) { transition-delay: 0.4s; }
+
+/* Timeline line draws in */
+.timeline-step.visible .timeline-line {
+  animation: lineGrow 0.8s ease forwards;
+  transform-origin: top;
+}
+@keyframes lineGrow {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+/* Timeline num pops in */
+.timeline-step.visible .timeline-num {
+  animation: numPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+@keyframes numPop {
+  0% { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ── 6. Content Cascade — staggered card fade ── */
+.cascade-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cascade-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.cascade-item:nth-child(1) { transition-delay: 0.05s; }
+.cascade-item:nth-child(2) { transition-delay: 0.1s; }
+.cascade-item:nth-child(3) { transition-delay: 0.15s; }
+.cascade-item:nth-child(4) { transition-delay: 0.2s; }
+.cascade-item:nth-child(5) { transition-delay: 0.25s; }
+.cascade-item:nth-child(6) { transition-delay: 0.3s; }
+
+/* ── 7. Stat Number Count-Up ── */
+.stat-num[data-animate] {
+  transition: color 0.3s;
+}
+
+/* ── 8. Full-Page Section Reveal ── */
+.section-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.section-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── 9. Toast Slide Animation ── */
+#toast {
+  animation: toastSlide 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+@keyframes toastSlide {
+  from { transform: translateX(120%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* ── 10. Feature Card Number Counter Effect ── */
+.feat-card .feat-icon {
+  position: relative;
+}
+.feat-card:hover .feat-icon::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(197, 165, 90, 0.3);
+  animation: iconRipple 0.6s ease-out;
+  pointer-events: none;
+}
+@keyframes iconRipple {
+  from { transform: scale(0.8); opacity: 1; }
+  to { transform: scale(1.4); opacity: 0; }
+}
+
+/* ── 11. Dot Pulse for Active Monitoring ── */
+@keyframes dotPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+.dot-pulse {
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+}
+.dot-pulse span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--p);
+  animation: dotPulse 1.2s ease-in-out infinite;
+}
+.dot-pulse span:nth-child(2) { animation-delay: 0.2s; }
+.dot-pulse span:nth-child(3) { animation-delay: 0.4s; }
+
+/* ── 12. Inline Loading Text ── */
+.loading-dots::after {
+  content: '';
+  animation: loadDots 1.5s steps(4, end) infinite;
+}
+@keyframes loadDots {
+  0% { content: ''; }
+  25% { content: '.'; }
+  50% { content: '..'; }
+  75% { content: '...'; }
+}
