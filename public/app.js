@@ -1128,17 +1128,20 @@ async function loadPlanPage() {
 
     // Configure states based on current plan
     if (plan === 'pro') {
+      // Pro user: Free & Basic = Switch Plan (active), Pro = Current Plan (disabled)
       if (freeBtn) { freeBtn.textContent = 'Switch Plan'; freeBtn.disabled = false; freeBtn.className = 'btn-ghost btn-full btn-downgrade'; freeBtn.onclick = () => handleDowngrade('free'); }
       if (basicBtn) { basicBtn.textContent = 'Switch Plan'; basicBtn.disabled = false; basicBtn.className = 'btn-ghost btn-full btn-downgrade'; basicBtn.onclick = () => handleDowngrade('basic'); }
       if (proBtn) { proBtn.textContent = 'Current Plan'; proBtn.disabled = true; proBtn.className = 'btn-ghost btn-full'; proBtn.onclick = null; }
     } else if (plan === 'basic') {
+      // Basic user: Free = Switch Plan (active), Basic = Current (disabled), Pro = Upgrade (active)
       if (freeBtn) { freeBtn.textContent = 'Switch Plan'; freeBtn.disabled = false; freeBtn.className = 'btn-ghost btn-full btn-downgrade'; freeBtn.onclick = () => handleDowngrade('free'); }
       if (basicBtn) { basicBtn.textContent = 'Current Plan'; basicBtn.disabled = true; basicBtn.className = 'btn-ghost btn-full'; basicBtn.onclick = null; }
-      if (proBtn) { proBtn.textContent = 'Subscribe Now'; proBtn.disabled = false; proBtn.className = 'btn-accent btn-full btn-pro'; }
+      if (proBtn) { proBtn.textContent = 'Upgrade to Pro'; proBtn.disabled = false; proBtn.className = 'btn-accent btn-full btn-pro'; proBtn.onclick = () => handleUpgrade('pro'); }
     } else { // free
+      // Free user: Free = Current (disabled), Basic & Pro = Upgrade (active)
       if (freeBtn) { freeBtn.textContent = 'Current Plan'; freeBtn.disabled = true; freeBtn.className = 'btn-ghost btn-full'; freeBtn.onclick = null; }
-      if (basicBtn) { basicBtn.textContent = 'Start 7-Day Free Trial'; basicBtn.disabled = false; basicBtn.className = 'btn-accent btn-full'; }
-      if (proBtn) { proBtn.textContent = 'Subscribe Now'; proBtn.disabled = false; proBtn.className = 'btn-accent btn-full btn-pro'; }
+      if (basicBtn) { basicBtn.textContent = 'Start 7-Day Free Trial'; basicBtn.disabled = false; basicBtn.className = 'btn-accent btn-full'; basicBtn.onclick = () => handleUpgrade('basic'); }
+      if (proBtn) { proBtn.textContent = 'Subscribe Now'; proBtn.disabled = false; proBtn.className = 'btn-accent btn-full btn-pro'; proBtn.onclick = () => handleUpgrade('pro'); }
     }
   } catch (e) { /* silent */ }
 }
@@ -1150,20 +1153,20 @@ async function handleDowngrade(targetPlan) {
   if (!confirmed) return;
 
   try {
-    showToast('Processing downgrade...', 'info');
+    showToast('Processing...', 'info');
     const data = await api('/downgrade', { method: 'POST', body: JSON.stringify({ targetPlan }) });
     if (data.success) {
-      showToast(`Successfully downgraded to ${planLabel} plan!`, 'success');
+      showToast(`Successfully switched to ${planLabel} plan!`, 'success');
       loadPlanPage();
     } else {
-      showToast(data.error || 'Downgrade failed', 'error');
+      showToast(data.error || 'Switch failed', 'error');
     }
   } catch (e) {
-    showToast(e.message || 'Downgrade error', 'error');
+    showToast(e.message || 'Error switching plan', 'error');
   }
 }
 
-// Upgrade handlers
+// Upgrade handler — redirects to PayMongo checkout
 async function handleUpgrade(plan) {
   try {
     showToast('Redirecting to payment...');
@@ -1177,9 +1180,6 @@ async function handleUpgrade(plan) {
     showToast(e.message || 'Payment error', 'error');
   }
 }
-
-document.getElementById('btn-upgrade-basic')?.addEventListener('click', () => handleUpgrade('basic'));
-document.getElementById('btn-upgrade-pro')?.addEventListener('click', () => handleUpgrade('pro'));
 
 // ===== Messages =====
 function escHtml(s) { const d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
