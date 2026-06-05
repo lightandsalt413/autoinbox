@@ -797,6 +797,95 @@ document.getElementById('toggle-login-pass')?.addEventListener('click', function
   this.innerHTML = show ? eyeClosed + ' Hide' : eyeOpen + ' Show';
 });
 
+// ===== Legal Modals (Terms & Privacy) =====
+const legalCache = {};
+
+async function loadLegalContent(type) {
+  if (legalCache[type]) return legalCache[type];
+  try {
+    const res = await fetch(`/${type}.html`);
+    const html = await res.text();
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    const sections = doc.querySelectorAll('.legal-section');
+    let content = '';
+
+    // Add summary if exists
+    const summary = doc.querySelector('.legal-summary .summary-text');
+    if (summary) {
+      content += `<div class="lm-summary"><strong>In Short:</strong> ${summary.innerHTML}</div>`;
+    }
+
+    sections.forEach(sec => {
+      const num = sec.querySelector('.section-num')?.textContent || '';
+      const title = sec.querySelector('.section-title')?.textContent || '';
+      const body = sec.querySelector('.section-body')?.innerHTML || '';
+      content += `<h3><span class="lm-num">${num}</span>${title}</h3>${body}`;
+    });
+
+    legalCache[type] = content;
+    return content;
+  } catch (e) {
+    return '<p style="color:#ef4444">Failed to load. Please try again.</p>';
+  }
+}
+
+function openLegalModal(type) {
+  const modal = document.getElementById(`${type}-modal`);
+  const body = document.getElementById(`${type}-modal-body`);
+  if (!modal || !body) return;
+  modal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+
+  loadLegalContent(type).then(html => {
+    body.innerHTML = html;
+  });
+}
+
+function closeLegalModal(type) {
+  const modal = document.getElementById(`${type}-modal`);
+  if (modal) modal.classList.add('hidden');
+  document.body.style.overflow = '';
+}
+
+// Open modals from registration checkbox links
+document.getElementById('link-open-terms')?.addEventListener('click', (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  openLegalModal('terms');
+});
+document.getElementById('link-open-privacy')?.addEventListener('click', (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  openLegalModal('privacy');
+});
+
+// Close buttons
+document.getElementById('terms-modal-close')?.addEventListener('click', () => closeLegalModal('terms'));
+document.getElementById('terms-modal-bg')?.addEventListener('click', () => closeLegalModal('terms'));
+document.getElementById('privacy-modal-close')?.addEventListener('click', () => closeLegalModal('privacy'));
+document.getElementById('privacy-modal-bg')?.addEventListener('click', () => closeLegalModal('privacy'));
+
+// "I've Read & Understood" buttons — close modal and auto-check the agree checkbox
+document.getElementById('terms-modal-accept')?.addEventListener('click', () => {
+  closeLegalModal('terms');
+  const cb = document.getElementById('reg-agree');
+  if (cb) cb.checked = true;
+});
+document.getElementById('privacy-modal-accept')?.addEventListener('click', () => {
+  closeLegalModal('privacy');
+  const cb = document.getElementById('reg-agree');
+  if (cb) cb.checked = true;
+});
+
+// Close on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeLegalModal('terms');
+    closeLegalModal('privacy');
+  }
+});
+
 document.getElementById('form-register')?.addEventListener('submit', async (e) => {
   e.preventDefault();
   const errEl = document.getElementById('reg-error');

@@ -36,7 +36,7 @@
       scrollbar-width: none !important;
     }
   </style>
-  <link rel="stylesheet" href="/styles.css?v=144">
+  <link rel="stylesheet" href="/styles.css?v=145">
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SEF5Y7KP9Z"></script>
   <script>
@@ -375,7 +375,7 @@
         <div class="fg" style="margin-top:16px">
           <label class="checkbox-label" style="color:#1A1A1C;font-size:.82rem;display:flex;align-items:flex-start;gap:10px;line-height:1.5;cursor:pointer">
             <input type="checkbox" id="reg-agree" required style="width:16px;height:16px;min-width:16px;flex-shrink:0;margin-top:3px;accent-color:#1A1A1C;cursor:pointer">
-            <span>I agree to the <a href="/terms.html" target="_blank" style="color:var(--p);text-decoration:underline">Terms of Service</a> and <a href="/privacy.html" target="_blank" style="color:var(--p);text-decoration:underline">Privacy Policy</a></span>
+            <span>I agree to the <a href="#" id="link-open-terms" style="color:var(--p);text-decoration:underline;font-weight:600">Terms of Service</a> and <a href="#" id="link-open-privacy" style="color:var(--p);text-decoration:underline;font-weight:600">Privacy Policy</a></span>
           </label>
         </div>
         <div id="reg-error" class="form-err hidden" style="margin-top:16px"></div>
@@ -1078,6 +1078,49 @@
       </form>
     </div>
   </div>
-  <script src="/app.js?v=55"></script>
+
+  <!-- Terms of Service Modal -->
+  <div id="terms-modal" class="legal-modal hidden">
+    <div class="legal-modal-bg" id="terms-modal-bg"></div>
+    <div class="legal-modal-box">
+      <div class="legal-modal-header">
+        <div>
+          <div class="legal-modal-badge">📋 Legal</div>
+          <h2>Terms of Service</h2>
+          <p class="legal-modal-date">Last updated: May 20, 2026</p>
+        </div>
+        <button class="legal-modal-close" id="terms-modal-close" type="button">✕</button>
+      </div>
+      <div class="legal-modal-body" id="terms-modal-body">
+        <div class="legal-modal-loading">Loading Terms of Service...</div>
+      </div>
+      <div class="legal-modal-footer">
+        <button type="button" class="legal-modal-btn" id="terms-modal-accept">I've Read & Understood</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Privacy Policy Modal -->
+  <div id="privacy-modal" class="legal-modal hidden">
+    <div class="legal-modal-bg" id="privacy-modal-bg"></div>
+    <div class="legal-modal-box">
+      <div class="legal-modal-header">
+        <div>
+          <div class="legal-modal-badge">🔒 Legal</div>
+          <h2>Privacy Policy</h2>
+          <p class="legal-modal-date">Last updated: May 20, 2026</p>
+        </div>
+        <button class="legal-modal-close" id="privacy-modal-close" type="button">✕</button>
+      </div>
+      <div class="legal-modal-body" id="privacy-modal-body">
+        <div class="legal-modal-loading">Loading Privacy Policy...</div>
+      </div>
+      <div class="legal-modal-footer">
+        <button type="button" class="legal-modal-btn" id="privacy-modal-accept">I've Read & Understood</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/app.js?v=56"></script>
 </body>
 </html>
