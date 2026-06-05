@@ -36,7 +36,7 @@
       scrollbar-width: none !important;
     }
   </style>
-  <link rel="stylesheet" href="/styles.css?v=147">
+  <link rel="stylesheet" href="/styles.css?v=148">
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SEF5Y7KP9Z"></script>
   <script>
@@ -152,13 +152,15 @@
               <div class="canvas-hero-image-wrap">
                 <!-- Premium Hero Carousel -->
                 <div class="hero-carousel" id="hero-carousel">
-                  <!-- Floating premium glassmorphic badges overlapping the mockup -->
-                  <div class="mockup-badge-float badge-top-left">
-                    <span class="pulse-dot"></span>
-                    <span>✨ AI Draft Active</span>
-                  </div>
-                  <div class="mockup-badge-float badge-bottom-right">
-                    <span>⚡ 100% Reply Rate</span>
+                  <!-- Mockup Status Row (Replaced floating badges with non-overlapping display) -->
+                  <div class="mockup-status-row">
+                    <div class="status-pill active-pill">
+                      <span class="pulse-dot"></span>
+                      <span>✨ AI Draft Active</span>
+                    </div>
+                    <div class="status-pill rate-pill">
+                      <span>⚡ 100% Reply Rate</span>
+                    </div>
                   </div>
 
                   <!-- Carousel Track -->
@@ -1288,6 +1290,6 @@
     </div>
   </div>
 
-  <script src="/app.js?v=57"></script>
+  <script src="/app.js?v=58"></script>
 </body>
 </html>

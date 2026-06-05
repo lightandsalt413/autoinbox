@@ -2330,27 +2330,6 @@ document.getElementById('form-feedback')?.addEventListener('submit', async (e) =
   let autoPlayTimer = null;
   let isHovered = false;
 
-  // 3D Perspective Tilt Effect on Mouse Move
-  container.addEventListener('mousemove', (e) => {
-    const rect = container.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    
-    // Normalize coordinates from -0.5 to 0.5
-    const px = (x / rect.width) - 0.5;
-    const py = (y / rect.height) - 0.5;
-    
-    // Calculate tilt angles (max tilt ~8deg for organic responsiveness)
-    const rx = -py * 10;
-    const ry = px * 10;
-    
-    track.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) translateZ(10px)`;
-  });
-
-  container.addEventListener('mouseleave', () => {
-    track.style.transform = 'rotateX(0deg) rotateY(0deg) translateZ(0)';
-  });
-
   // Slide transition controller
   function goToSlide(index) {
     // Wrap around boundaries
