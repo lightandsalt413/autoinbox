@@ -4265,9 +4265,9 @@ body::-webkit-scrollbar {
 }
 
 .modal-page .fg-small {
-  flex: 0 0 80px !important;
-  min-width: 80px;
-  max-width: 80px;
+  flex: 0 0 130px !important;
+  min-width: 130px;
+  max-width: 130px;
 }
 
 /* Password strength bar */
