@@ -444,45 +444,45 @@
       <!-- Step 1: Request Code -->
       <div id="forgot-step-1">
         <div class="modal-head">
-          <div class="section-tag" style="margin-bottom:6px">Security</div>
-          <h3>🔒 Forgot Password?</h3>
-          <p style="color:#666;font-size:.9rem;margin-top:4px">Enter your email or cellphone number (with country code prefix, e.g. +639171234567) and we'll send you a 6-digit verification code.</p>
+          <div class="section-tag" style="margin-bottom:6px" data-i18n="auth_security">Security</div>
+          <h3 data-i18n="auth_forgot_title">🔒 Forgot Password?</h3>
+          <p style="color:#666;font-size:.9rem;margin-top:4px" data-i18n="auth_forgot_desc">Enter your email or cellphone number (with country code prefix, e.g. +639171234567) and we'll send you a 6-digit verification code.</p>
         </div>
         <form id="form-forgot-request" class="auth-form" style="margin-top:20px">
           <div class="fg">
-            <label for="forgot-email">Email or Cellphone Number</label>
+            <label for="forgot-email" data-i18n="auth_forgot_label">Email or Cellphone Number</label>
             <input type="text" id="forgot-email" placeholder="you@email.com or +639171234567" required>
           </div>
           <div id="forgot-error-1" class="form-err hidden" style="margin-top:16px"></div>
-          <button type="submit" class="btn-accent btn-sm" id="btn-forgot-send" style="width:100%;padding:12px;font-size:1rem;margin-top:20px;background:#1A1A1C;color:#F6F0E6;border:none;border-radius:10px;cursor:pointer;">Send Reset Code</button>
+          <button type="submit" class="btn-accent btn-sm" id="btn-forgot-send" style="width:100%;padding:12px;font-size:1rem;margin-top:20px;background:#1A1A1C;color:#F6F0E6;border:none;border-radius:10px;cursor:pointer;" data-i18n="auth_forgot_btn">Send Reset Code</button>
         </form>
-        <p class="auth-sw" style="margin-top:16px;text-align:center;color:#1A1A1C;font-size:.85rem"><a href="#" id="link-forgot-back-login" style="color:var(--p);font-weight:600;text-decoration:none;">Back to Log In</a></p>
+        <p class="auth-sw" style="margin-top:16px;text-align:center;color:#1A1A1C;font-size:.85rem"><a href="#" id="link-forgot-back-login" style="color:var(--p);font-weight:600;text-decoration:none;" data-i18n="auth_back_login">Back to Log In</a></p>
       </div>
 
       <!-- Step 2: Verification & Reset -->
       <div id="forgot-step-2" class="hidden">
         <div class="modal-head">
-          <div class="section-tag" style="margin-bottom:6px">Security</div>
-          <h3>🔒 Reset Password</h3>
-          <p style="color:#666;font-size:.9rem;margin-top:4px">Enter the 6-digit code sent to your email or cellphone along with your new password.</p>
+          <div class="section-tag" style="margin-bottom:6px" data-i18n="auth_security">Security</div>
+          <h3 data-i18n="auth_reset_title">🔒 Reset Password</h3>
+          <p style="color:#666;font-size:.9rem;margin-top:4px" data-i18n="auth_reset_desc">Enter the 6-digit code sent to your email or cellphone along with your new password.</p>
         </div>
         <form id="form-forgot-reset" class="auth-form" style="margin-top:20px">
           <div class="fg">
-            <label for="forgot-code">Verification Code</label>
+            <label for="forgot-code" data-i18n="auth_verify_code">Verification Code</label>
             <input type="text" id="forgot-code" placeholder="e.g. 123456" pattern="\d{6}" maxlength="6" required style="letter-spacing:4px; font-weight:700; text-align:center; font-size:1.1rem;">
           </div>
           <div class="fg" style="margin-top:16px">
-            <label for="forgot-new-pass">New Password</label>
+            <label for="forgot-new-pass" data-i18n="auth_new_pass">New Password</label>
             <input type="password" id="forgot-new-pass" placeholder="At least 6 characters" minlength="6" required>
           </div>
           <div class="fg" style="margin-top:16px">
-            <label for="forgot-confirm-pass">Confirm New Password</label>
+            <label for="forgot-confirm-pass" data-i18n="auth_confirm_new">Confirm New Password</label>
             <input type="password" id="forgot-confirm-pass" placeholder="Confirm your new password" minlength="6" required>
           </div>
           <div id="forgot-error-2" class="form-err hidden" style="margin-top:16px"></div>
-          <button type="submit" class="btn-accent btn-sm" id="btn-forgot-reset" style="width:100%;padding:12px;font-size:1rem;margin-top:20px;background:#1A1A1C;color:#F6F0E6;border:none;border-radius:10px;cursor:pointer;">Reset Password</button>
+          <button type="submit" class="btn-accent btn-sm" id="btn-forgot-reset" style="width:100%;padding:12px;font-size:1rem;margin-top:20px;background:#1A1A1C;color:#F6F0E6;border:none;border-radius:10px;cursor:pointer;" data-i18n="auth_reset_btn">Reset Password</button>
         </form>
-        <p class="auth-sw" style="margin-top:16px;text-align:center;color:#1A1A1C;font-size:.85rem"><a href="#" id="link-forgot-back-step-1" style="color:var(--p);font-weight:600;text-decoration:none;">Back to request code</a></p>
+        <p class="auth-sw" style="margin-top:16px;text-align:center;color:#1A1A1C;font-size:.85rem"><a href="#" id="link-forgot-back-step-1" style="color:var(--p);font-weight:600;text-decoration:none;" data-i18n="auth_back_code">Back to request code</a></p>
       </div>
       
     </div>
@@ -505,7 +505,7 @@
             <span class="field-err hidden" id="err-fname"></span>
           </div>
           <div class="fg">
-            <label for="reg-mname">Middle Name <span class="optional">(Optional)</span></label>
+            <label for="reg-mname" data-i18n-html="auth_mname_label">Middle Name <span class="optional">(Optional)</span></label>
             <input type="text" id="reg-mname" placeholder="e.g. Dela Cruz" autocomplete="additional-name" autocapitalize="words">
             <span class="field-err hidden" id="err-mname"></span>
           </div>
@@ -517,9 +517,9 @@
             <span class="field-err hidden" id="err-lname"></span>
           </div>
           <div class="fg fg-small">
-            <label for="reg-suffix">Suffix <span class="optional">(Opt)</span></label>
+            <label for="reg-suffix" data-i18n-html="auth_suffix_label">Suffix <span class="optional">(Opt)</span></label>
             <select id="reg-suffix">
-              <option value="">— None —</option>
+              <option value="" data-i18n="auth_suffix_none">— None —</option>
               <option value="Jr.">Jr.</option>
               <option value="Sr.">Sr.</option>
               <option value="II">II</option>
@@ -530,7 +530,7 @@
           </div>
         </div>
         <div class="fg" style="margin-top:16px">
-          <label for="reg-phone">Cellphone Number <span style="font-size:0.75rem;color:#888;font-weight:normal;display:block;margin-top:2px">(For secure SMS password reset — choose the country code and type the number)</span></label>
+          <label for="reg-phone" data-i18n-html="auth_phone_label">Cellphone Number <span style="font-size:0.75rem;color:#888;font-weight:normal;display:block;margin-top:2px">(For secure SMS password reset — choose the country code and type the number)</span></label>
           <div class="phone-input-group" style="display:flex; gap:8px">
             <select id="reg-phone-prefix" style="width:120px; flex:0 0 120px; padding:12px 8px;">
               <option value="+63">🇵🇭 +63</option>
@@ -558,7 +558,7 @@
           <span class="field-err hidden" id="err-phone"></span>
         </div>
         <div class="fg" style="margin-top:16px">
-          <label for="reg-email">Email Address <span style="font-size:0.75rem;color:#888;font-weight:normal;display:block;margin-top:2px">(This will be your login email. You'll connect your Gmail/Yahoo in the next step.)</span></label>
+          <label for="reg-email" data-i18n-html="auth_email_label_full">Email Address <span style="font-size:0.75rem;color:#888;font-weight:normal;display:block;margin-top:2px">(This will be your login email. You'll connect your Gmail/Yahoo in the next step.)</span></label>
           <input type="email" id="reg-email" placeholder="you@email.com" required autocomplete="email">
           <span class="field-err hidden" id="err-email"></span>
         </div>
@@ -587,14 +587,14 @@
         <div class="fg" style="margin-top:16px">
           <label class="checkbox-label" style="color:#1A1A1C;font-size:.82rem;display:flex;align-items:flex-start;gap:10px;line-height:1.5;cursor:pointer">
             <input type="checkbox" id="reg-agree" required style="width:16px;height:16px;min-width:16px;flex-shrink:0;margin-top:3px;accent-color:#1A1A1C;cursor:pointer">
-            <span>I agree to the <a href="#" id="link-open-terms" style="color:var(--p);text-decoration:underline;font-weight:600">Terms of Service</a> and <a href="#" id="link-open-privacy" style="color:var(--p);text-decoration:underline;font-weight:600">Privacy Policy</a></span>
+            <span data-i18n-html="auth_agree_text">I agree to the <a href="#" id="link-open-terms" style="color:var(--p);text-decoration:underline;font-weight:600">Terms of Service</a> and <a href="#" id="link-open-privacy" style="color:var(--p);text-decoration:underline;font-weight:600">Privacy Policy</a></span>
           </label>
         </div>
         <div id="reg-error" class="form-err hidden" style="margin-top:16px"></div>
         <button type="submit" class="btn-accent btn-sm" style="width:100%;padding:12px;font-size:1rem;margin-top:20px;background:#1A1A1C;color:#F6F0E6;border:none;border-radius:10px;cursor:pointer;" data-i18n="auth_create_btn">Create Account</button>
       </form>
       <p style="margin-top:14px;color:#999;font-size:.75rem;text-align:center" data-i18n="auth_encryption">🔒 Your data is protected with AES-256 encryption</p>
-      <p class="auth-sw" style="margin-top:10px;text-align:center;color:#1A1A1C;font-size:.85rem">Already have an account? <a href="#" id="link-login" style="color:var(--p);font-weight:600">Log In</a></p>
+      <p class="auth-sw" style="margin-top:10px;text-align:center;color:#1A1A1C;font-size:.85rem"><span data-i18n="auth_has_account">Already have an account?</span> <a href="#" id="link-login" style="color:var(--p);font-weight:600" data-i18n="auth_login_link">Log In</a></p>
     </div>
   </div>
   <div id="page-onboard" class="page hidden"><div class="auth-wrap"><div class="auth-box glass onboard-box"><div class="ob-prog"><div class="ob-bar"><div class="ob-fill" id="onboard-progress"></div></div><span id="onboard-step-label">Step 1 of 3</span></div>

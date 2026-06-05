@@ -77,6 +77,11 @@
   "auth_encryption": "🔒 Your data is protected with AES-256 encryption",
   "auth_has_account": "Already have an account?",
   "auth_login_link": "Log In",
+  "auth_mname_label": "Middle Name <span class=\"optional\">(Optional)</span>",
+  "auth_suffix_label": "Suffix <span class=\"optional\">(Opt)</span>",
+  "auth_phone_label": "Cellphone Number <span style=\"font-size:0.75rem;color:#888;font-weight:normal;display:block;margin-top:2px\">(For secure SMS password reset \u2014 choose the country code and type the number)</span>",
+  "auth_email_label_full": "Email Address <span style=\"font-size:0.75rem;color:#888;font-weight:normal;display:block;margin-top:2px\">(This will be your login email. You'll connect your Gmail/Yahoo in the next step.)</span>",
+  "auth_agree_text": "I agree to the <a href=\"#\" id=\"link-open-terms\" style=\"color:var(--p);text-decoration:underline;font-weight:600\">Terms of Service</a> and <a href=\"#\" id=\"link-open-privacy\" style=\"color:var(--p);text-decoration:underline;font-weight:600\">Privacy Policy</a>",
 
   "auth_security": "Security",
   "auth_forgot_title": "🔒 Forgot Password?",

@@ -77,6 +77,11 @@
   "auth_encryption": "🔒 AES-256暗号化でデータを保護しています",
   "auth_has_account": "すでにアカウントをお持ちですか？",
   "auth_login_link": "ログイン",
+  "auth_mname_label": "ミドルネーム <span class=\"optional\">(任意)</span>",
+  "auth_suffix_label": "敬称 <span class=\"optional\">(任意)</span>",
+  "auth_phone_label": "携帯電話番号 <span style=\"font-size:0.75rem;color:#888;font-weight:normal;display:block;margin-top:2px\">(セキュアなSMSパスワードリセット用 — 国コードを選んで番号を入力)</span>",
+  "auth_email_label_full": "メールアドレス <span style=\"font-size:0.75rem;color:#888;font-weight:normal;display:block;margin-top:2px\">(ログイン用メールになります。Gmail/Yahooは次のステップで接続します。)</span>",
+  "auth_agree_text": "<a href=\"#\" id=\"link-open-terms\" style=\"color:var(--p);text-decoration:underline;font-weight:600\">利用規約</a>と<a href=\"#\" id=\"link-open-privacy\" style=\"color:var(--p);text-decoration:underline;font-weight:600\">プライバシーポリシー</a>に同意します",
 
   "auth_security": "セキュリティ",
   "auth_forgot_title": "🔒 パスワードをお忘れですか？",
