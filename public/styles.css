@@ -563,6 +563,39 @@ a{color:var(--p2);text-decoration:none}
   transform: none !important;
 }
 
+/* ── Active Downgrade button styling ── */
+.btn-downgrade {
+  background: rgba(220, 120, 30, 0.08) !important;
+  border: 1.5px solid rgba(220, 120, 30, 0.35) !important;
+  color: #B86A1A !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  opacity: 1 !important;
+  transition: all 0.25s ease !important;
+}
+.btn-downgrade:hover {
+  background: rgba(220, 120, 30, 0.15) !important;
+  border-color: rgba(220, 120, 30, 0.6) !important;
+  color: #944F0A !important;
+  box-shadow: 0 4px 14px rgba(220, 120, 30, 0.15) !important;
+  transform: translateY(-1px) !important;
+}
+.btn-downgrade:active {
+  transform: translateY(0) !important;
+  box-shadow: none !important;
+}
+/* Featured card downgrade override */
+.plan-option.featured .btn-downgrade {
+  background: rgba(220, 120, 30, 0.1) !important;
+  border: 1.5px solid rgba(220, 120, 30, 0.4) !important;
+  color: #B86A1A !important;
+}
+.plan-option.featured .btn-downgrade:hover {
+  background: rgba(220, 120, 30, 0.18) !important;
+  border-color: rgba(220, 120, 30, 0.65) !important;
+  box-shadow: 0 4px 14px rgba(220, 120, 30, 0.2) !important;
+}
+
 /* Payment Methods Card */
 .pay-methods-card {
   margin-top: 28px;
@@ -4012,6 +4045,26 @@ body::-webkit-scrollbar {
   cursor: not-allowed !important;
   opacity: 0.7 !important;
   transform: none !important;
+}
+
+/* ── Active Downgrade button inside dashboard ── */
+.dash-main .btn-downgrade,
+.dash-main .plan-option .btn-downgrade,
+.dash-main .plan-option.featured .btn-downgrade {
+  background: rgba(220, 120, 30, 0.08) !important;
+  border: 1.5px solid rgba(220, 120, 30, 0.35) !important;
+  color: #B86A1A !important;
+  cursor: pointer !important;
+  opacity: 1 !important;
+}
+.dash-main .btn-downgrade:hover,
+.dash-main .plan-option .btn-downgrade:hover,
+.dash-main .plan-option.featured .btn-downgrade:hover {
+  background: rgba(220, 120, 30, 0.15) !important;
+  border-color: rgba(220, 120, 30, 0.6) !important;
+  color: #944F0A !important;
+  box-shadow: 0 4px 14px rgba(220, 120, 30, 0.15) !important;
+  transform: translateY(-1px) !important;
 }
 
 .dash-main .pay-methods-card {

@@ -674,6 +674,29 @@ app.get('/api/plan', async (req, res) => {
   } catch (e) { res.status(500).json({ error: e.message }); }
 });
 
+// --- Downgrade Plan ---
+app.post('/api/downgrade', async (req, res) => {
+  try {
+    const { targetPlan } = req.body;
+    if (!targetPlan || !['free', 'basic'].includes(targetPlan)) {
+      return res.status(400).json({ error: 'Invalid target plan' });
+    }
+    const current = await db.getUserPlan(req.userId);
+    const planRank = { free: 0, basic: 1, pro: 2 };
+    if (planRank[targetPlan] >= planRank[current.plan || 'free']) {
+      return res.status(400).json({ error: 'You can only downgrade to a lower plan' });
+    }
+    // Deactivate current subscription
+    await db.deactivateUserPlan(req.userId);
+    // If downgrading to basic (not free), create a new active basic subscription
+    if (targetPlan === 'basic') {
+      await db.setUserPlan(req.userId, 'basic', 'downgrade', 'downgrade', 0);
+    }
+    console.log(`⬇️ User ${req.userId} downgraded to ${targetPlan}`);
+    res.json({ success: true, plan: targetPlan });
+  } catch (e) { res.status(500).json({ error: e.message }); }
+});
+
 // --- PayMongo Checkout ---
 app.post('/api/checkout', async (req, res) => {
   try {

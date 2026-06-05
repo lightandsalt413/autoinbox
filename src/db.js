@@ -598,6 +598,16 @@ async function setUserPlan(userId, plan, checkoutId, paymentId, amount) {
     [userId, plan, checkoutId || null, paymentId || null, amount || 0]);
 }
 
+async function deactivateUserPlan(userId) {
+  if (isMock) {
+    mockData.subscriptions.forEach(s => {
+      if (s.user_id === userId && s.status === 'active') s.status = 'cancelled';
+    });
+    return;
+  }
+  await pool.query("UPDATE subscriptions SET status='cancelled' WHERE user_id=$1 AND status='active'", [userId]);
+}
+
 async function getSubByCheckoutId(checkoutId) {
   if (isMock) {
     return mockData.subscriptions.find(s => s.checkout_id === checkoutId) || null;
@@ -694,5 +704,5 @@ module.exports = {
   insertDraft, getDraftByMessageId, updateDraftContent, insertSentReply,
   getSetting, upsertSetting, getAllSettings,
   addVoiceSample, getVoiceSamples, clearVoiceSamples, getStats,
-  getUserPlan, setUserPlan, getSubByCheckoutId, getAdminStats, insertFeedback
+  getUserPlan, setUserPlan, deactivateUserPlan, getSubByCheckoutId, getAdminStats, insertFeedback
 };
