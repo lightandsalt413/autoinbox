@@ -182,12 +182,10 @@ const modalCloseConfig = [
 async function api(path, opts = {}) {
   const headers = { 'Content-Type': 'application/json' };
   if (token) headers['Authorization'] = `Bearer ${token}`;
-  try {
-    const res = await fetch(`/api${path}`, { ...opts, headers });
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.error || 'Request failed');
-    return data;
-  } catch (e) { throw e; }
+  const res = await fetch(`/api${path}`, { ...opts, headers });
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || 'Request failed');
+  return data;
 }
 
 function showToast(msg, type = 'success') {
@@ -1038,12 +1036,12 @@ async function loadAdminStats() {
     document.getElementById('admin-paying').textContent = data.payingUsers;
     document.getElementById('admin-free').textContent = data.freeUsers;
     document.getElementById('admin-today').textContent = data.todaySignups;
-    document.getElementById('admin-revenue').textContent = '\u20b1' + data.totalRevenue.toLocaleString();
+    document.getElementById('admin-revenue').textContent = CURRENCY.symbol + data.totalRevenue.toLocaleString();
     
     const tbody = document.getElementById('admin-users-body');
     if (tbody && data.recentUsers.length) {
       tbody.innerHTML = data.recentUsers.map((u, i) => 
-        `<tr><td>${i+1}</td><td>${u.name}</td><td>${u.email}</td><td>${new Date(u.created_at).toLocaleDateString()}</td></tr>`
+        `<tr><td>${i+1}</td><td>${escHtml(u.name)}</td><td>${escHtml(u.email)}</td><td>${new Date(u.created_at).toLocaleDateString()}</td></tr>`
       ).join('');
     } else if (tbody) {
       tbody.innerHTML = '<tr><td colspan="4" style="color:var(--t3)">No users yet</td></tr>';
@@ -1052,7 +1050,7 @@ async function loadAdminStats() {
     const fTbody = document.getElementById('admin-feedback-body');
     if (fTbody && data.recentFeedback && data.recentFeedback.length) {
       fTbody.innerHTML = data.recentFeedback.map((f, i) => 
-        `<tr><td>${i+1}</td><td>${f.name || 'Anonymous'}</td><td>${f.email}</td><td style="white-space:pre-wrap;max-width:300px">${f.message}</td><td>${new Date(f.created_at).toLocaleDateString()}</td></tr>`
+        `<tr><td>${i+1}</td><td>${escHtml(f.name) || 'Anonymous'}</td><td>${escHtml(f.email)}</td><td style="white-space:pre-wrap;max-width:300px">${escHtml(f.message)}</td><td>${new Date(f.created_at).toLocaleDateString()}</td></tr>`
       ).join('');
     } else if (fTbody) {
       fTbody.innerHTML = '<tr><td colspan="5" style="color:var(--t3)">No feedback received yet</td></tr>';
@@ -1215,7 +1213,11 @@ function escHtml(s) { const d = document.createElement('div'); d.textContent = s
 
 function timeAgo(ts) {
   if (!ts) return '';
-  const diff = (Date.now() - new Date(ts + 'Z').getTime()) / 1000;
+  // Handle timestamps with or without timezone info
+  const d = new Date(ts);
+  const parsed = isNaN(d.getTime()) ? new Date(ts + 'Z') : d;
+  const diff = (Date.now() - parsed.getTime()) / 1000;
+  if (isNaN(diff) || diff < 0) return '';
   if (diff < 60) return 'just now';
   if (diff < 3600) return `${Math.floor(diff / 60)}m ago`;
   if (diff < 86400) return `${Math.floor(diff / 3600)}h ago`;
@@ -1256,9 +1258,9 @@ async function loadMessages() {
 }
 
 // Filters
-document.querySelectorAll('.tab').forEach(tab => {
+document.querySelectorAll('.filter-tabs .tab[data-filter]').forEach(tab => {
   tab.addEventListener('click', () => {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.filter-tabs .tab').forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
     currentFilter = tab.dataset.filter;
     loadMessages();
@@ -1738,22 +1740,8 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 document.querySelectorAll('.anim-up').forEach(el => observer.observe(el));
 
-// ===== Mobile Bottom Nav =====
-document.querySelectorAll('.mnav-item').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const page = btn.dataset.page;
-    showDashSection(page);
-    document.querySelectorAll('.mnav-item').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    if (page === 'voice') loadVoicePage();
-    if (page === 'settings') loadSettings();
-  });
-});
-
-// Pricing button handlers are in the Checkout section below
-['btn-final-cta'].forEach(id => {
-  document.getElementById(id)?.addEventListener('click', () => showPage('register'));
-});
+// Duplicate mobile nav listeners removed — already registered above (line ~1088)
+// Duplicate btn-final-cta listener removed — proper one with login check is below (line ~1822)
 
 // ===== Smooth Scroll for Nav & Footer Links =====
 document.querySelectorAll('a[href^="#"]').forEach(a => {

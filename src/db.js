@@ -579,7 +579,7 @@ async function getUserPlan(userId) {
   return r.rows[0] || { plan: 'free', status: 'active' };
 }
 
-async function setUserPlan(userId, plan, checkoutId, paymentId, amount) {
+async function setUserPlan(userId, plan, checkoutId, paymentId, amount, status = 'active') {
   if (isMock) {
     mockData.subscriptions.push({
       id: mockData.subscriptions.length + 1,
@@ -588,14 +588,27 @@ async function setUserPlan(userId, plan, checkoutId, paymentId, amount) {
       checkout_id: checkoutId || null,
       payment_id: paymentId || null,
       amount: amount || 0,
-      status: 'active',
+      status: status,
       started_at: new Date()
     });
     saveMockData();
     return;
   }
-  await pool.query("INSERT INTO subscriptions (user_id, plan, checkout_id, payment_id, amount, status) VALUES ($1,$2,$3,$4,$5,'active')",
-    [userId, plan, checkoutId || null, paymentId || null, amount || 0]);
+  await pool.query("INSERT INTO subscriptions (user_id, plan, checkout_id, payment_id, amount, status) VALUES ($1,$2,$3,$4,$5,$6)",
+    [userId, plan, checkoutId || null, paymentId || null, amount || 0, status]);
+}
+
+async function activateSubscription(checkoutId, paymentId) {
+  if (isMock) {
+    const sub = mockData.subscriptions.find(s => s.checkout_id === checkoutId);
+    if (sub) {
+      sub.status = 'active';
+      sub.payment_id = paymentId;
+    }
+    saveMockData();
+    return;
+  }
+  await pool.query("UPDATE subscriptions SET status='active', payment_id=$2 WHERE checkout_id=$1", [checkoutId, paymentId]);
 }
 
 async function deactivateUserPlan(userId) {
@@ -603,6 +616,7 @@ async function deactivateUserPlan(userId) {
     mockData.subscriptions.forEach(s => {
       if (s.user_id === userId && s.status === 'active') s.status = 'cancelled';
     });
+    saveMockData();
     return;
   }
   await pool.query("UPDATE subscriptions SET status='cancelled' WHERE user_id=$1 AND status='active'", [userId]);
@@ -704,5 +718,5 @@ module.exports = {
   insertDraft, getDraftByMessageId, updateDraftContent, insertSentReply,
   getSetting, upsertSetting, getAllSettings,
   addVoiceSample, getVoiceSamples, clearVoiceSamples, getStats,
-  getUserPlan, setUserPlan, deactivateUserPlan, getSubByCheckoutId, getAdminStats, insertFeedback
+  getUserPlan, setUserPlan, activateSubscription, deactivateUserPlan, getSubByCheckoutId, getAdminStats, insertFeedback
 };

@@ -12,6 +12,9 @@ const { helmetConfig, apiLimiter, authLimiter } = require('./middleware/security
 const { profanityMiddleware } = require('./middleware/profanity');
 const nodemailer = require('nodemailer');
 
+// HTML escape helper — prevents XSS in email templates
+function escHtml(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
 function normalizePhone(phone) {
   if (!phone) return null;
   let cleaned = phone.trim().replace(/[^\d+]/g, '');
@@ -176,7 +179,7 @@ app.post('/api/auth/forgot-password', authLimiter, async (req, res) => {
                 </div>
                 <div style="border-top: 1px solid #e2e8f0; padding-top: 20px;">
                   <h3 style="color: #1a1a1c; margin-top: 0; font-size: 1.2rem;">🔒 Password Reset Code</h3>
-                  <p>Hello ${user.name || 'there'},</p>
+                  <p>Hello ${escHtml(user.name) || 'there'},</p>
                   <p>We received a request to reset your AutoInbox account password. Please use the following 6-digit verification code to complete the reset process:</p>
                   <div style="text-align: center; margin: 30px 0;">
                     <span style="font-size: 32px; font-weight: 800; letter-spacing: 6px; color: #C5A55A; background-color: #1a1a1c; padding: 12px 24px; border-radius: 8px; display: inline-block;">${code}</span>
@@ -203,7 +206,8 @@ app.post('/api/auth/forgot-password', authLimiter, async (req, res) => {
       }
     }
     
-    res.json({ success: true, emailSent, smsSent, fallbackCode });
+    const isDev = process.env.NODE_ENV !== 'production' && !process.env.RENDER;
+    res.json({ success: true, emailSent, smsSent, ...(isDev ? { fallbackCode } : {}) });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
@@ -283,7 +287,13 @@ app.post('/api/webhook/paymongo', async (req, res) => {
         const userId = parseInt(metadata.user_id);
         const plan = metadata.plan;
         const paymentId = session?.attributes?.payments?.[0]?.id || 'paid';
-        await db.setUserPlan(userId, plan, session.id, paymentId, PLANS[plan]?.amount || 0);
+        // Try to update existing pending subscription first, create new one if not found
+        const existing = await db.getSubByCheckoutId(session.id);
+        if (existing) {
+          await db.activateSubscription(session.id, paymentId);
+        } else {
+          await db.setUserPlan(userId, plan, session.id, paymentId, PLANS[plan]?.amount || 0);
+        }
         console.log(`✅ User ${userId} upgraded to ${plan}`);
       }
     }
@@ -326,9 +336,9 @@ app.post('/api/feedback', profanityMiddleware, async (req, res) => {
         html: `
           <div style="font-family: sans-serif; max-width: 600px; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; background-color: #fafafa; color: #1a1a1c;">
             <h2 style="color: #1a1a1c; border-bottom: 1px solid #e2e8f0; padding-bottom: 12px; margin-top: 0;">📩 New Feedback/Review</h2>
-            <p><strong>Name:</strong> ${name || 'Anonymous'}</p>
-            <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
-            <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin: 20px 0; font-style: italic; color: #333; white-space: pre-wrap;">${message}</div>
+            <p><strong>Name:</strong> ${escHtml(name) || 'Anonymous'}</p>
+            <p><strong>Email:</strong> <a href="mailto:${escHtml(email)}">${escHtml(email)}</a></p>
+            <div style="background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 16px; margin: 20px 0; font-style: italic; color: #333; white-space: pre-wrap;">${escHtml(message)}</div>
             <p style="font-size: 12px; color: #666; margin-top: 30px; border-top: 1px solid #e2e8f0; padding-top: 12px;">
               This notification was sent automatically by AutoInbox. Manage feedback in your Admin Dashboard.
             </p>
@@ -402,9 +412,11 @@ app.post('/api/email/disconnect', async (req, res) => {
 });
 
 app.get('/api/email/status', async (req, res) => {
+  try {
   const config = await db.getEmailConfig(req.userId);
   const monitor = emailMonitor.getUserStatus(req.userId);
   res.json({ configured: !!config, email: config?.email_address || null, connected: monitor.connected, active: !!config?.is_active });
+  } catch (e) { res.status(500).json({ error: e.message }); }
 });
 
 // --- Messages ---
@@ -485,9 +497,11 @@ app.post('/api/voice/analyze', async (req, res) => {
 });
 
 app.get('/api/voice/profile', async (req, res) => {
+  try {
   const profile = await getVoiceProfile(req.userId);
   const samples = await db.getVoiceSamples(req.userId);
   res.json({ profile, sampleCount: samples.length });
+  } catch (e) { res.status(500).json({ error: e.message }); }
 });
 
 // --- Settings ---
@@ -502,7 +516,9 @@ app.get('/api/settings', async (req, res) => {
 
 app.post('/api/settings', profanityMiddleware, async (req, res) => {
   try {
+    const ALLOWED_SETTINGS = ['agent_name', 'agent_tone', 'agent_language', 'auto_draft', 'services', 'custom_instructions'];
     for (const [key, value] of Object.entries(req.body)) {
+      if (!ALLOWED_SETTINGS.includes(key)) continue;
       await db.upsertSetting(req.userId, key, String(value));
     }
     res.json({ success: true });
@@ -745,7 +761,7 @@ app.post('/api/checkout', async (req, res) => {
     const checkoutUrl = data.data.attributes.checkout_url;
 
     // Save pending subscription
-    await db.setUserPlan(req.userId, plan, checkoutId, null, p.amount);
+    await db.setUserPlan(req.userId, plan, checkoutId, null, p.amount, 'pending');
 
     res.json({ checkout_url: checkoutUrl, checkout_id: checkoutId });
   } catch (e) {
@@ -830,3 +846,10 @@ async function start() {
 start().catch(e => { console.error('❌ Start failed:', e); process.exit(1); });
 
 process.on('SIGINT', async () => { await db.closeDB(); process.exit(0); });
+
+process.on('SIGTERM', async () => {
+  console.log('\n🛑 SIGTERM — shutting down...');
+  emailMonitor.stopAll();
+  await db.closeDB();
+  process.exit(0);
+});
