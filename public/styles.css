@@ -5489,3 +5489,70 @@ a:not(.nav-item):not(.footer-col a):not(.tab):not(.mnav-item) {
   50% { content: '..'; }
   75% { content: '...'; }
 }
+
+/* ── 13. Premium Morphing Gradient Background ── */
+.morphing-bg-wrapper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+  background: #0A0A0B;
+}
+
+.morph-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(130px);
+  -webkit-filter: blur(130px);
+  opacity: 0.12;
+  mix-blend-mode: screen;
+  animation: morphBlob 25s infinite alternate ease-in-out;
+  will-change: transform;
+}
+
+/* Blob Colors and Positions */
+.morph-blob-1 {
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, var(--p) 0%, rgba(197, 165, 90, 0) 70%);
+  top: -10%;
+  left: -10%;
+  animation-duration: 28s;
+}
+
+.morph-blob-2 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, #8a7540 0%, rgba(138, 117, 64, 0) 70%);
+  bottom: -5%;
+  right: -5%;
+  animation-duration: 35s;
+  animation-delay: -7s;
+}
+
+.morph-blob-3 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, #C5A55A 0%, rgba(197, 165, 90, 0) 70%);
+  top: 35%;
+  left: 25%;
+  animation-duration: 22s;
+  animation-delay: -12s;
+}
+
+@keyframes morphBlob {
+  0% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+  }
+  33% {
+    transform: translate(80px, 60px) scale(1.15) rotate(120deg);
+  }
+  66% {
+    transform: translate(-40px, 90px) scale(0.9) rotate(240deg);
+  }
+  100% {
+    transform: translate(0, 0) scale(1) rotate(360deg);
+  }
+}
+
