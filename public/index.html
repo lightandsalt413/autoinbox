@@ -36,7 +36,7 @@
       scrollbar-width: none !important;
     }
   </style>
-  <link rel="stylesheet" href="/styles.css?v=146">
+  <link rel="stylesheet" href="/styles.css?v=147">
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SEF5Y7KP9Z"></script>
   <script>
@@ -150,8 +150,8 @@
             
             <div class="hero-right-col">
               <div class="canvas-hero-image-wrap">
-                <!-- Animated Inbox Mockup -->
-                <div class="inbox-mockup" id="inbox-mockup">
+                <!-- Premium Hero Carousel -->
+                <div class="hero-carousel" id="hero-carousel">
                   <!-- Floating premium glassmorphic badges overlapping the mockup -->
                   <div class="mockup-badge-float badge-top-left">
                     <span class="pulse-dot"></span>
@@ -161,31 +161,197 @@
                     <span>⚡ 100% Reply Rate</span>
                   </div>
 
-                  <!-- Inbox Window -->
-                  <div class="mockup-window">
-                    <!-- Window Header -->
-                    <div class="mockup-header">
-                      <div class="mockup-dots">
-                        <span></span><span></span><span></span>
+                  <!-- Carousel Track -->
+                  <div class="carousel-track" id="carousel-track">
+                    
+                    <!-- Slide 1: Auto-Reply Loop (Inbox Mockup) -->
+                    <div class="carousel-slide active" id="slide-inbox">
+                      <div class="mockup-window">
+                        <!-- Window Header -->
+                        <div class="mockup-header">
+                          <div class="mockup-dots">
+                            <span></span><span></span><span></span>
+                          </div>
+                          <div class="mockup-title">MY INBOX</div>
+                          <div class="mockup-badge" id="mockup-badge">0 new</div>
+                        </div>
+
+                        <!-- Email List -->
+                        <div class="mockup-emails" id="mockup-emails">
+                          <!-- Emails will be injected by JS -->
+                        </div>
+
+                        <!-- AI Status Bar -->
+                        <div class="mockup-ai-bar" id="mockup-ai-bar">
+                          <div class="mockup-ai-icon">⚡</div>
+                          <span class="mockup-ai-text" id="mockup-ai-text">AutoInbox Active</span>
+                          <div class="mockup-ai-dots" id="mockup-ai-dots">
+                            <span></span><span></span><span></span>
+                          </div>
+                        </div>
                       </div>
-                      <div class="mockup-title">MY INBOX</div>
-                      <div class="mockup-badge" id="mockup-badge">0 new</div>
                     </div>
 
-                    <!-- Email List -->
-                    <div class="mockup-emails" id="mockup-emails">
-                      <!-- Emails will be injected by JS -->
-                    </div>
+                    <!-- Slide 2: Style Cloner (Voice Profile) -->
+                    <div class="carousel-slide" id="slide-voice">
+                      <div class="mockup-window">
+                        <!-- Window Header -->
+                        <div class="mockup-header">
+                          <div class="mockup-dots">
+                            <span></span><span></span><span></span>
+                          </div>
+                          <div class="mockup-title">STYLE CLONER</div>
+                          <div class="mockup-badge">Ready</div>
+                        </div>
 
-                    <!-- AI Status Bar -->
-                    <div class="mockup-ai-bar" id="mockup-ai-bar">
-                      <div class="mockup-ai-icon">⚡</div>
-                      <span class="mockup-ai-text" id="mockup-ai-text">AutoInbox Active</span>
-                      <div class="mockup-ai-dots" id="mockup-ai-dots">
-                        <span></span><span></span><span></span>
+                        <!-- Scan & Analysis -->
+                        <div class="voice-mockup-body">
+                          <div class="voice-sample-box" id="voice-scanner-box">
+                            <strong>Original Sent Email:</strong><br>
+                            Hi Janos, thanks for reaching out. Yes, we can jump on a call tomorrow at 11 AM to discuss the affiliate collaboration rates. Let me know if that works!
+                          </div>
+                          <div class="voice-analysis-panel">
+                            <div class="analysis-metric">
+                              <span>Professional Tone</span>
+                              <div class="metric-bar-wrap">
+                                <div class="metric-bar-fill bar-prof"></div>
+                              </div>
+                            </div>
+                            <div class="analysis-metric">
+                              <span>Friendly Nuance</span>
+                              <div class="metric-bar-wrap">
+                                <div class="metric-bar-fill bar-friend"></div>
+                              </div>
+                            </div>
+                            <div class="analysis-metric">
+                              <span>Conciseness Score</span>
+                              <div class="metric-bar-wrap">
+                                <div class="metric-bar-fill bar-conc"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="voice-match-badge">
+                            <span>✨ 98.7% Style Match Verified</span>
+                          </div>
+                        </div>
                       </div>
                     </div>
+
+                    <!-- Slide 3: Multilingual Support (Auto-Detect) -->
+                    <div class="carousel-slide" id="slide-languages">
+                      <div class="mockup-window">
+                        <!-- Window Header -->
+                        <div class="mockup-header">
+                          <div class="mockup-dots">
+                            <span></span><span></span><span></span>
+                          </div>
+                          <div class="mockup-title">AUTO-TRANSLATOR</div>
+                          <div class="mockup-badge">Auto-Detect</div>
+                        </div>
+
+                        <!-- Translation View -->
+                        <div class="lang-mockup-body">
+                          <div class="lang-card">
+                            <div class="lang-card-header">
+                              <span class="lang-sender">
+                                <span class="lang-avatar">YT</span>
+                                Yuki Tanaka
+                              </span>
+                              <span class="lang-flag">🇯🇵 Japan</span>
+                            </div>
+                            <div class="lang-message">
+                              ウェブサイトの制作料金を教えてもらえますか？ (Can you tell me the rates for website production?)
+                            </div>
+                          </div>
+                          
+                          <div class="lang-divider">
+                            <div class="lang-divider-line"></div>
+                            <span class="lang-translate-badge">🌐 Translation Active</span>
+                            <div class="lang-divider-line"></div>
+                          </div>
+
+                          <div class="lang-card reply">
+                            <div class="lang-card-header">
+                              <span class="lang-sender" style="color:#16a34a">
+                                <span class="lang-avatar" style="background:rgba(22,163,74,0.1);border-color:rgba(22,163,74,0.2);color:#16a34a">⚡</span>
+                                AutoInbox Draft
+                              </span>
+                              <span class="lang-flag" style="color:#16a34a;background:rgba(22,163,74,0.08);border-color:rgba(22,163,74,0.15)">Ready ✓</span>
+                            </div>
+                            <div class="lang-message">
+                              田中様、お問い合わせありがとうございます。制作料金はプランによって異なります... (Dear Tanaka-sama, thank you for your inquiry...)
+                            </div>
+                          </div>
+
+                          <div class="lang-chips-container">
+                            <span class="lang-chip">🇺🇸 English</span>
+                            <span class="lang-chip highlight">🇯🇵 Japanese</span>
+                            <span class="lang-chip">🇪🇸 Spanish</span>
+                            <span class="lang-chip">🇵🇭 Filipino</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Slide 4: Real-time Dashboard Stats -->
+                    <div class="carousel-slide" id="slide-stats">
+                      <div class="mockup-window">
+                        <!-- Window Header -->
+                        <div class="mockup-header">
+                          <div class="mockup-dots">
+                            <span></span><span></span><span></span>
+                          </div>
+                          <div class="mockup-title">AUTOINBOX ACTIVE</div>
+                          <div class="mockup-badge" style="color:#16a34a;background:rgba(22,163,74,0.08);border-color:rgba(22,163,74,0.15)">Live</div>
+                        </div>
+
+                        <!-- Stats & Settings Panel -->
+                        <div class="stats-mockup-body">
+                          <div class="stats-mockup-grid">
+                            <div class="stat-mockup-card">
+                              <div class="stat-mockup-val gold">48</div>
+                              <div class="stat-mockup-lbl">Replies Drafted Today</div>
+                            </div>
+                            <div class="stat-mockup-card">
+                              <div class="stat-mockup-val green">100%</div>
+                              <div class="stat-mockup-lbl">Response Rate</div>
+                            </div>
+                          </div>
+
+                          <div class="stats-toggle-row">
+                            <div class="toggle-info">
+                              <span class="toggle-title">Auto-Send Mode</span>
+                              <span class="toggle-subtitle">Replies sent automatically</span>
+                            </div>
+                            <div class="mockup-switch"></div>
+                          </div>
+
+                          <div class="stats-sync-status">
+                            <span class="sync-dot"></span>
+                            <span>Connected to Gmail (business@email.com)</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div> <!-- End Track -->
+
+                  <!-- Navigation Arrows -->
+                  <button class="carousel-arrow carousel-prev" id="carousel-prev" aria-label="Previous Slide">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                  </button>
+                  <button class="carousel-arrow carousel-next" id="carousel-next" aria-label="Next Slide">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                  </button>
+
+                  <!-- Dot Indicators -->
+                  <div class="carousel-dots" id="carousel-dots">
+                    <button class="carousel-dot active" data-slide="0" aria-label="Slide 1"></button>
+                    <button class="carousel-dot" data-slide="1" aria-label="Slide 2"></button>
+                    <button class="carousel-dot" data-slide="2" aria-label="Slide 3"></button>
+                    <button class="carousel-dot" data-slide="3" aria-label="Slide 4"></button>
                   </div>
+
                 </div>
               </div>
             </div>
@@ -1122,6 +1288,6 @@
     </div>
   </div>
 
-  <script src="/app.js?v=56"></script>
+  <script src="/app.js?v=57"></script>
 </body>
 </html>

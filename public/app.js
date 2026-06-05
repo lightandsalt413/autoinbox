@@ -2313,10 +2313,132 @@ document.getElementById('form-feedback')?.addEventListener('submit', async (e) =
   }
 })();
 
-/* ==========================================
-   Animated Inbox Mockup — Email Slide-In Loop
-   ========================================== */
-(function initInboxMockup() {
+/* ====================================================
+   Premium Hero Carousel & Slide Animation Controller
+   ==================================================== */
+(function initHeroCarousel() {
+  const container = document.getElementById('hero-carousel');
+  const track = document.getElementById('carousel-track');
+  const slides = document.querySelectorAll('.carousel-slide');
+  const dots = document.querySelectorAll('.carousel-dot');
+  const btnPrev = document.getElementById('carousel-prev');
+  const btnNext = document.getElementById('carousel-next');
+
+  if (!container || !track || slides.length === 0) return;
+
+  let currentSlide = 0;
+  let autoPlayTimer = null;
+  let isHovered = false;
+
+  // 3D Perspective Tilt Effect on Mouse Move
+  container.addEventListener('mousemove', (e) => {
+    const rect = container.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    // Normalize coordinates from -0.5 to 0.5
+    const px = (x / rect.width) - 0.5;
+    const py = (y / rect.height) - 0.5;
+    
+    // Calculate tilt angles (max tilt ~8deg for organic responsiveness)
+    const rx = -py * 10;
+    const ry = px * 10;
+    
+    track.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) translateZ(10px)`;
+  });
+
+  container.addEventListener('mouseleave', () => {
+    track.style.transform = 'rotateX(0deg) rotateY(0deg) translateZ(0)';
+  });
+
+  // Slide transition controller
+  function goToSlide(index) {
+    // Wrap around boundaries
+    let nextIndex = index;
+    if (index >= slides.length) nextIndex = 0;
+    if (index < 0) nextIndex = slides.length - 1;
+
+    // Deactivate current slide animations
+    stopSlideAnimations(currentSlide);
+
+    currentSlide = nextIndex;
+
+    // Update active states
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === currentSlide);
+    });
+
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('active', i === currentSlide);
+    });
+
+    // Start current active slide animations
+    startSlideAnimations(currentSlide);
+
+    // Reset auto-play timer
+    resetAutoPlay();
+  }
+
+  // Auto-play methods
+  function startAutoPlay() {
+    stopAutoPlay();
+    autoPlayTimer = setInterval(() => {
+      if (!isHovered) {
+        goToSlide(currentSlide + 1);
+      }
+    }, 7000); // 7 seconds per slide
+  }
+
+  function stopAutoPlay() {
+    if (autoPlayTimer) {
+      clearInterval(autoPlayTimer);
+      autoPlayTimer = null;
+    }
+  }
+
+  function resetAutoPlay() {
+    startAutoPlay();
+  }
+
+  // Hover detection to pause transition
+  container.addEventListener('mouseenter', () => {
+    isHovered = true;
+  });
+
+  container.addEventListener('mouseleave', () => {
+    isHovered = false;
+  });
+
+  // Action listeners for buttons & dots
+  if (btnPrev) {
+    btnPrev.addEventListener('click', (e) => {
+      e.stopPropagation();
+      goToSlide(currentSlide - 1);
+    });
+  }
+  
+  if (btnNext) {
+    btnNext.addEventListener('click', (e) => {
+      e.stopPropagation();
+      goToSlide(currentSlide + 1);
+    });
+  }
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', (e) => {
+      e.stopPropagation();
+      goToSlide(i);
+    });
+  });
+
+  /* ====================================================
+     Slide-Specific Animations (Triggered on Active State)
+     ==================================================== */
+
+  // Slide 1: Animated Inbox Mockup Loop
+  let inboxLoopTimeout = null;
+  let inboxLoopActive = false;
+
   const emails = [
     { name: 'Liam Henderson', initials: 'LH', subject: 'Urgent: Project Proposal & Design Rates', time: '4:30 PM' },
     { name: 'Kristine Lim', initials: 'KL', subject: 'GCash payment receipt for Order #5982', time: '3:15 PM' },
@@ -2325,12 +2447,10 @@ document.getElementById('form-feedback')?.addEventListener('submit', async (e) =
     { name: 'Carlos Rivera', initials: 'CR', subject: 'Brand Collaboration & Affiliate Proposal', time: '11:30 AM' },
   ];
 
-  const container = document.getElementById('mockup-emails');
+  const emailContainer = document.getElementById('mockup-emails');
   const badge = document.getElementById('mockup-badge');
   const aiText = document.getElementById('mockup-ai-text');
   const aiDots = document.getElementById('mockup-ai-dots');
-
-  if (!container) return;
 
   let cycle = 0;
 
@@ -2358,28 +2478,33 @@ document.getElementById('form-feedback')?.addEventListener('submit', async (e) =
   }
 
   async function sleep(ms) {
-    return new Promise(r => setTimeout(r, ms));
+    return new Promise(r => {
+      inboxLoopTimeout = setTimeout(r, ms);
+    });
   }
 
-  async function runCycle() {
+  async function runInboxCycle() {
+    if (!inboxLoopActive || !emailContainer || !badge || !aiText || !aiDots) return;
+
     // Clear previous emails
-    container.innerHTML = '';
+    emailContainer.innerHTML = '';
     badge.textContent = '0 new';
     badge.classList.remove('has-new');
     aiText.textContent = 'AutoInbox Active';
     aiDots.classList.remove('active');
 
-    // Pick 4 emails for this cycle (rotate through pool)
+    // Pick 4 emails for this cycle
     const start = (cycle * 4) % emails.length;
     const batch = [];
     for (let i = 0; i < 4; i++) {
       batch.push(emails[(start + i) % emails.length]);
     }
 
-    // Phase 1: Slide in emails one by one
+    // Slide in emails
     for (let i = 0; i < batch.length; i++) {
+      if (!inboxLoopActive) return;
       const el = createEmailEl(batch[i], 0);
-      container.appendChild(el);
+      emailContainer.appendChild(el);
       badge.textContent = (i + 1) + ' new';
       badge.classList.add('has-new');
       await sleep(700);
@@ -2387,19 +2512,19 @@ document.getElementById('form-feedback')?.addEventListener('submit', async (e) =
 
     await sleep(800);
 
-    // Phase 2: AI starts replying to each email
-    const emailEls = container.querySelectorAll('.mockup-email');
+    // AI drafting & replying
+    const emailEls = emailContainer.querySelectorAll('.mockup-email');
     for (let i = 0; i < emailEls.length; i++) {
+      if (!inboxLoopActive) return;
       const el = emailEls[i];
 
-      // AI starts drafting — show typing indicator
       el.classList.add('replying');
       aiText.textContent = 'Drafting reply to ' + batch[i].name + '...';
       aiDots.classList.add('active');
 
       await sleep(1600);
+      if (!inboxLoopActive) return;
 
-      // Reply sent — hide typing, show replied badge
       el.classList.remove('replying');
       el.classList.add('replied');
       const statusIcon = el.querySelector('.mockup-email-status');
@@ -2410,14 +2535,13 @@ document.getElementById('form-feedback')?.addEventListener('submit', async (e) =
       await sleep(600);
     }
 
-    // Phase 3: All done
     aiText.textContent = 'All replies sent ✓';
     badge.textContent = '0 new';
     badge.classList.remove('has-new');
 
     await sleep(2000);
+    if (!inboxLoopActive) return;
 
-    // Fade out all emails
     emailEls.forEach((el, i) => {
       el.style.transition = 'opacity 0.4s ease ' + (i * 0.1) + 's, transform 0.4s ease ' + (i * 0.1) + 's';
       el.style.opacity = '0';
@@ -2425,13 +2549,102 @@ document.getElementById('form-feedback')?.addEventListener('submit', async (e) =
     });
 
     await sleep(1200);
+    if (!inboxLoopActive) return;
 
     cycle++;
-    runCycle(); // Loop forever
+    runInboxCycle();
   }
 
-  // Start after a short delay
-  setTimeout(runCycle, 1500);
+  function startInboxMockup() {
+    inboxLoopActive = true;
+    runInboxCycle();
+  }
+
+  function stopInboxMockup() {
+    inboxLoopActive = false;
+    if (inboxLoopTimeout) {
+      clearTimeout(inboxLoopTimeout);
+      inboxLoopTimeout = null;
+    }
+  }
+
+  // Slide 3: Language highlight chips loop
+  let langHighlightInterval = null;
+  let langHighlightIndex = 0;
+  
+  function startLangChipsAnimation() {
+    const chips = document.querySelectorAll('#slide-languages .lang-chip');
+    if (chips.length === 0) return;
+    
+    // Clear interval just in case
+    if (langHighlightInterval) clearInterval(langHighlightInterval);
+
+    // Initial state setup
+    chips.forEach((c, idx) => c.classList.toggle('highlight', idx === 1)); // Default Japanese highlighted
+    langHighlightIndex = 1;
+
+    langHighlightInterval = setInterval(() => {
+      langHighlightIndex = (langHighlightIndex + 1) % chips.length;
+      chips.forEach((c, idx) => {
+        c.classList.toggle('highlight', idx === langHighlightIndex);
+      });
+      
+      const origFlag = document.querySelector('#slide-languages .lang-card:not(.reply) .lang-flag');
+      const origMsg = document.querySelector('#slide-languages .lang-card:not(.reply) .lang-message');
+      const replyMsg = document.querySelector('#slide-languages .lang-card.reply .lang-message');
+      const senderName = document.querySelector('#slide-languages .lang-sender');
+
+      if (langHighlightIndex === 0) { // US/English
+        if (senderName) senderName.innerHTML = '<span class="lang-avatar">LH</span> Liam Henderson';
+        if (origFlag) origFlag.textContent = '🇺🇸 USA';
+        if (origMsg) origMsg.textContent = 'Hey! Do you have the pricing brochure for the Premium Plan?';
+        if (replyMsg) replyMsg.textContent = 'Hi Liam, yes! You can find our pricing and details at...';
+      } else if (langHighlightIndex === 1) { // Japanese
+        if (senderName) senderName.innerHTML = '<span class="lang-avatar">YT</span> Yuki Tanaka';
+        if (origFlag) origFlag.textContent = '🇯🇵 Japan';
+        if (origMsg) origMsg.textContent = 'ウェブサイトの制作料金を教えてもらえますか？';
+        if (replyMsg) replyMsg.textContent = '田中様、お問い合わせありがとうございます。制作料金は...';
+      } else if (langHighlightIndex === 2) { // Spanish
+        if (senderName) senderName.innerHTML = '<span class="lang-avatar">CR</span> Carlos Rivera';
+        if (origFlag) origFlag.textContent = '🇪🇸 Spain';
+        if (origMsg) origMsg.textContent = '¿Me puede enviar la información de precios de su servicio?';
+        if (replyMsg) replyMsg.textContent = 'Hola Carlos, gracias por contactarnos. Los precios son...';
+      } else if (langHighlightIndex === 3) { // Filipino
+        if (senderName) senderName.innerHTML = '<span class="lang-avatar">KL</span> Kristine Lim';
+        if (origFlag) origFlag.textContent = '🇵🇭 PH';
+        if (origMsg) origMsg.textContent = 'Magkano po ang inyong monthly at annual plans para sa SaaS?';
+        if (replyMsg) replyMsg.textContent = 'Hi Kristine! Ang aming monthly plan ay nagsisimula sa...';
+      }
+    }, 2500);
+  }
+
+  function stopLangChipsAnimation() {
+    if (langHighlightInterval) {
+      clearInterval(langHighlightInterval);
+      langHighlightInterval = null;
+    }
+  }
+
+  // Animation trigger router
+  function startSlideAnimations(index) {
+    if (index === 0) {
+      startInboxMockup();
+    } else if (index === 2) {
+      startLangChipsAnimation();
+    }
+  }
+
+  function stopSlideAnimations(index) {
+    if (index === 0) {
+      stopInboxMockup();
+    } else if (index === 2) {
+      stopLangChipsAnimation();
+    }
+  }
+
+  // Start initial processes
+  startSlideAnimations(0);
+  startAutoPlay();
 })();
 
 // ===== Scroll-Triggered Animations =====
