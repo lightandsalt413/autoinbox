@@ -161,7 +161,6 @@ const HASH_TO_MODAL = {
 
 const MODAL_MAPPING = {
   'menu-features': 'features-modal',
-  'menu-languages': 'languages-modal',
   'menu-how': 'how-modal',
   'menu-guide': 'guide-modal',
   'menu-pricing': 'pricing-modal',
@@ -231,6 +230,25 @@ function showToast(msg, type = 'success') {
   setTimeout(() => t.classList.add('hidden'), 3000);
 }
 
+// ===== Language Switcher UI Helper =====
+const LANG_META = {
+  en: { flag: '🇺🇸', label: 'English' },
+  tl: { flag: '🇵🇭', label: 'Filipino' },
+  ja: { flag: '🇯🇵', label: '日本語' }
+};
+function updateLangSwitcherUI(langCode) {
+  const meta = LANG_META[langCode] || LANG_META.en;
+  const flagEl = document.getElementById('nav-lang-flag');
+  const labelEl = document.getElementById('nav-lang-label');
+  if (flagEl) flagEl.textContent = meta.flag;
+  if (labelEl) labelEl.textContent = meta.label;
+
+  // Update active state in dropdown
+  document.querySelectorAll('.lang-switcher-option').forEach(opt => {
+    opt.classList.toggle('active', opt.getAttribute('data-lang') === langCode);
+  });
+}
+
 // ===== Auto-update prices based on location =====
 document.addEventListener('DOMContentLoaded', () => {
   // Update all price-val elements on landing page
@@ -249,6 +267,47 @@ document.addEventListener('DOMContentLoaded', () => {
   });
   // Initialize multi-language playground
   initDemoPlayground();
+
+  // ===== i18n Initialization =====
+  if (window.i18n) {
+    window.i18n.init().then(() => {
+      // Update language switcher UI to match current language
+      updateLangSwitcherUI(window.i18n.currentLang);
+    });
+  }
+
+  // ===== Language Switcher =====
+  const langSwitcherBtn = document.getElementById('lang-switcher-btn');
+  const langSwitcherDropdown = document.getElementById('lang-switcher-dropdown');
+
+  if (langSwitcherBtn && langSwitcherDropdown) {
+    // Toggle dropdown
+    langSwitcherBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      langSwitcherDropdown.classList.toggle('open');
+    });
+
+    // Language option clicks
+    langSwitcherDropdown.querySelectorAll('.lang-switcher-option').forEach(opt => {
+      opt.addEventListener('click', (e) => {
+        e.preventDefault();
+        const lang = opt.getAttribute('data-lang');
+        if (window.i18n && lang) {
+          window.i18n.switchTo(lang);
+          updateLangSwitcherUI(lang);
+        }
+        langSwitcherDropdown.classList.remove('open');
+      });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!langSwitcherBtn.contains(e.target) && !langSwitcherDropdown.contains(e.target)) {
+        langSwitcherDropdown.classList.remove('open');
+      }
+    });
+  }
 
 
   // Hero CTA Contact Us button
