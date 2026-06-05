@@ -563,38 +563,73 @@ a{color:var(--p2);text-decoration:none}
   transform: none !important;
 }
 
-/* ── Active Downgrade button styling ── */
-.btn-downgrade {
-  background: rgba(220, 120, 30, 0.08) !important;
-  border: 1.5px solid rgba(220, 120, 30, 0.35) !important;
-  color: #B86A1A !important;
+/* ── Active Plan button (green, shows current plan) ── */
+.btn-active-plan {
+  background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%) !important;
+  border: none !important;
+  color: #fff !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  opacity: 1 !important;
+  box-shadow: 0 4px 14px rgba(22, 163, 74, 0.25) !important;
+  transition: all 0.25s ease !important;
+}
+.btn-active-plan:hover {
+  background: linear-gradient(135deg, #15803d 0%, #16a34a 100%) !important;
+  box-shadow: 0 6px 20px rgba(22, 163, 74, 0.35) !important;
+  transform: translateY(-1px) !important;
+}
+.btn-active-plan:active {
+  transform: translateY(0) !important;
+}
+/* Pro card active plan (gold) */
+.btn-pro-active {
+  background: linear-gradient(135deg, #C5A55A 0%, #E8C97A 100%) !important;
+  color: #0A0A0B !important;
+  box-shadow: 0 4px 14px rgba(197, 165, 90, 0.3) !important;
+}
+.btn-pro-active:hover {
+  background: linear-gradient(135deg, #D8B96C 0%, #F5DB93 100%) !important;
+  box-shadow: 0 6px 20px rgba(197, 165, 90, 0.45) !important;
+}
+/* Featured card active plan override */
+.plan-option.featured .btn-active-plan {
+  background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%) !important;
+  border: none !important;
+  color: #fff !important;
+}
+
+/* ── Switch Plan button ── */
+.btn-switch {
+  background: rgba(26, 26, 28, 0.05) !important;
+  border: 1.5px solid rgba(26, 26, 28, 0.18) !important;
+  color: #1A1A1C !important;
   font-weight: 600 !important;
   cursor: pointer !important;
   opacity: 1 !important;
   transition: all 0.25s ease !important;
 }
-.btn-downgrade:hover {
-  background: rgba(220, 120, 30, 0.15) !important;
-  border-color: rgba(220, 120, 30, 0.6) !important;
-  color: #944F0A !important;
-  box-shadow: 0 4px 14px rgba(220, 120, 30, 0.15) !important;
+.btn-switch:hover {
+  background: rgba(26, 26, 28, 0.1) !important;
+  border-color: rgba(26, 26, 28, 0.35) !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08) !important;
   transform: translateY(-1px) !important;
 }
-.btn-downgrade:active {
+.btn-switch:active {
   transform: translateY(0) !important;
   box-shadow: none !important;
 }
-/* Featured card downgrade override */
-.plan-option.featured .btn-downgrade {
-  background: rgba(220, 120, 30, 0.1) !important;
-  border: 1.5px solid rgba(220, 120, 30, 0.4) !important;
-  color: #B86A1A !important;
+/* Featured card switch override */
+.plan-option.featured .btn-switch {
+  background: rgba(26, 26, 28, 0.06) !important;
+  border: 1.5px solid rgba(26, 26, 28, 0.2) !important;
+  color: #1A1A1C !important;
 }
-.plan-option.featured .btn-downgrade:hover {
-  background: rgba(220, 120, 30, 0.18) !important;
-  border-color: rgba(220, 120, 30, 0.65) !important;
-  box-shadow: 0 4px 14px rgba(220, 120, 30, 0.2) !important;
+.plan-option.featured .btn-switch:hover {
+  background: rgba(26, 26, 28, 0.12) !important;
+  border-color: rgba(26, 26, 28, 0.4) !important;
 }
+
 
 /* Payment Methods Card */
 .pay-methods-card {
@@ -4023,49 +4058,44 @@ body::-webkit-scrollbar {
   box-shadow: 0 15px 40px rgba(232, 201, 122, 0.15), 0 0 15px rgba(232, 201, 122, 0.1) !important;
 }
 
-/* ── Disabled button overrides inside dashboard ── */
-.dash-main .plan-option .btn-ghost[disabled],
-.dash-main .plan-option .btn-accent[disabled],
-.dash-main .plan-option.featured .btn-ghost[disabled],
-.dash-main .plan-option.featured .btn-accent[disabled] {
-  background: rgba(26, 26, 28, 0.04) !important;
-  border: 1.5px solid rgba(26, 26, 28, 0.1) !important;
-  color: rgba(26, 26, 28, 0.35) !important;
-  box-shadow: none !important;
-  cursor: not-allowed !important;
-  opacity: 0.7 !important;
-  transform: none !important;
-}
-.dash-main .po-pro-card .btn-ghost[disabled],
-.dash-main .po-pro-card .btn-accent[disabled] {
-  background: rgba(232, 201, 122, 0.08) !important;
-  border: 1.5px solid rgba(232, 201, 122, 0.2) !important;
-  color: rgba(232, 201, 122, 0.5) !important;
-  box-shadow: none !important;
-  cursor: not-allowed !important;
-  opacity: 0.7 !important;
-  transform: none !important;
-}
-
-/* ── Active Downgrade button inside dashboard ── */
-.dash-main .btn-downgrade,
-.dash-main .plan-option .btn-downgrade,
-.dash-main .plan-option.featured .btn-downgrade {
-  background: rgba(220, 120, 30, 0.08) !important;
-  border: 1.5px solid rgba(220, 120, 30, 0.35) !important;
-  color: #B86A1A !important;
+/* ── Active Plan button inside dashboard ── */
+.dash-main .btn-active-plan,
+.dash-main .plan-option .btn-active-plan,
+.dash-main .plan-option.featured .btn-active-plan {
+  background: linear-gradient(135deg, #16a34a 0%, #22c55e 100%) !important;
+  border: none !important;
+  color: #fff !important;
   cursor: pointer !important;
   opacity: 1 !important;
 }
-.dash-main .btn-downgrade:hover,
-.dash-main .plan-option .btn-downgrade:hover,
-.dash-main .plan-option.featured .btn-downgrade:hover {
-  background: rgba(220, 120, 30, 0.15) !important;
-  border-color: rgba(220, 120, 30, 0.6) !important;
-  color: #944F0A !important;
-  box-shadow: 0 4px 14px rgba(220, 120, 30, 0.15) !important;
+.dash-main .btn-active-plan:hover {
+  background: linear-gradient(135deg, #15803d 0%, #16a34a 100%) !important;
+}
+.dash-main .btn-pro-active {
+  background: linear-gradient(135deg, #C5A55A 0%, #E8C97A 100%) !important;
+  color: #0A0A0B !important;
+}
+.dash-main .btn-pro-active:hover {
+  background: linear-gradient(135deg, #D8B96C 0%, #F5DB93 100%) !important;
+}
+
+/* ── Switch Plan button inside dashboard ── */
+.dash-main .btn-switch,
+.dash-main .plan-option .btn-switch,
+.dash-main .plan-option.featured .btn-switch {
+  background: rgba(26, 26, 28, 0.05) !important;
+  border: 1.5px solid rgba(26, 26, 28, 0.18) !important;
+  color: #1A1A1C !important;
+  cursor: pointer !important;
+  opacity: 1 !important;
+}
+.dash-main .btn-switch:hover,
+.dash-main .plan-option .btn-switch:hover {
+  background: rgba(26, 26, 28, 0.1) !important;
+  border-color: rgba(26, 26, 28, 0.35) !important;
   transform: translateY(-1px) !important;
 }
+
 
 .dash-main .pay-methods-card {
   background: rgba(255, 255, 255, 0.75) !important;

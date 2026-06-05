@@ -1126,22 +1126,51 @@ async function loadPlanPage() {
       currentEl.classList.add('current');
     }
 
-    // Configure states based on current plan
-    if (plan === 'pro') {
-      // Pro user: Free & Basic = Switch Plan (active), Pro = Current Plan (disabled)
-      if (freeBtn) { freeBtn.textContent = 'Switch Plan'; freeBtn.disabled = false; freeBtn.className = 'btn-ghost btn-full btn-downgrade'; freeBtn.onclick = () => handleDowngrade('free'); }
-      if (basicBtn) { basicBtn.textContent = 'Switch Plan'; basicBtn.disabled = false; basicBtn.className = 'btn-ghost btn-full btn-downgrade'; basicBtn.onclick = () => handleDowngrade('basic'); }
-      if (proBtn) { proBtn.textContent = 'Current Plan'; proBtn.disabled = true; proBtn.className = 'btn-ghost btn-full'; proBtn.onclick = null; }
-    } else if (plan === 'basic') {
-      // Basic user: Free = Switch Plan (active), Basic = Current (disabled), Pro = Upgrade (active)
-      if (freeBtn) { freeBtn.textContent = 'Switch Plan'; freeBtn.disabled = false; freeBtn.className = 'btn-ghost btn-full btn-downgrade'; freeBtn.onclick = () => handleDowngrade('free'); }
-      if (basicBtn) { basicBtn.textContent = 'Current Plan'; basicBtn.disabled = true; basicBtn.className = 'btn-ghost btn-full'; basicBtn.onclick = null; }
-      if (proBtn) { proBtn.textContent = 'Upgrade to Pro'; proBtn.disabled = false; proBtn.className = 'btn-accent btn-full btn-pro'; proBtn.onclick = () => handleUpgrade('pro'); }
-    } else { // free
-      // Free user: Free = Current (disabled), Basic & Pro = Upgrade (active)
-      if (freeBtn) { freeBtn.textContent = 'Current Plan'; freeBtn.disabled = true; freeBtn.className = 'btn-ghost btn-full'; freeBtn.onclick = null; }
-      if (basicBtn) { basicBtn.textContent = 'Start 7-Day Free Trial'; basicBtn.disabled = false; basicBtn.className = 'btn-accent btn-full'; basicBtn.onclick = () => handleUpgrade('basic'); }
-      if (proBtn) { proBtn.textContent = 'Subscribe Now'; proBtn.disabled = false; proBtn.className = 'btn-accent btn-full btn-pro'; proBtn.onclick = () => handleUpgrade('pro'); }
+    // ALL buttons are always active — never disabled
+    // Free button
+    if (freeBtn) {
+      freeBtn.disabled = false;
+      if (plan === 'free') {
+        freeBtn.textContent = '✓ Active Plan';
+        freeBtn.className = 'btn-accent btn-full btn-active-plan';
+        freeBtn.onclick = () => showToast('You are already on the Free plan', 'info');
+      } else {
+        freeBtn.textContent = 'Switch to Free';
+        freeBtn.className = 'btn-ghost btn-full btn-switch';
+        freeBtn.onclick = () => handleDowngrade('free');
+      }
+    }
+
+    // Basic button
+    if (basicBtn) {
+      basicBtn.disabled = false;
+      if (plan === 'basic') {
+        basicBtn.textContent = '✓ Active Plan';
+        basicBtn.className = 'btn-accent btn-full btn-active-plan';
+        basicBtn.onclick = () => showToast('You are already on the Basic plan', 'info');
+      } else if (plan === 'pro') {
+        basicBtn.textContent = 'Switch to Basic';
+        basicBtn.className = 'btn-ghost btn-full btn-switch';
+        basicBtn.onclick = () => handleDowngrade('basic');
+      } else {
+        basicBtn.textContent = 'Start 7-Day Free Trial';
+        basicBtn.className = 'btn-accent btn-full';
+        basicBtn.onclick = () => handleUpgrade('basic');
+      }
+    }
+
+    // Pro button
+    if (proBtn) {
+      proBtn.disabled = false;
+      if (plan === 'pro') {
+        proBtn.textContent = '✓ Active Plan';
+        proBtn.className = 'btn-accent btn-full btn-active-plan btn-pro-active';
+        proBtn.onclick = () => showToast('You are already on the Pro plan', 'info');
+      } else {
+        proBtn.textContent = 'Subscribe Now';
+        proBtn.className = 'btn-accent btn-full btn-pro';
+        proBtn.onclick = () => handleUpgrade('pro');
+      }
     }
   } catch (e) { /* silent */ }
 }
