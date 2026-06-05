@@ -2520,7 +2520,8 @@ body::-webkit-scrollbar {
   position: absolute;
   top: -1px;
   right: -1px;
-  width: 300px !important;
+  width: auto !important;
+  min-width: 300px;
   height: 72px;
   background-color: #0A0A0B;
   border-bottom-left-radius: 40px;
@@ -2529,6 +2530,7 @@ body::-webkit-scrollbar {
   align-items: center;
   justify-content: flex-end;
   padding-right: 28px;
+  padding-left: 28px;
 }
 
 .cutout-bottom-right {
@@ -2715,7 +2717,7 @@ body::-webkit-scrollbar {
 }
 
 .fillet-tr-left {
-  right: 298px !important;
+  right: 298px;
   top: -2px;
   width: 42px;
   height: 42px;
@@ -3824,7 +3826,7 @@ body::-webkit-scrollbar {
 /* Responsive Screen Collapse */
 @media (max-width: 1200px) {
   .cutout-top-right {
-    width: 300px !important;
+    min-width: 280px !important;
   }
   .fillet-tr-left {
     right: 298px !important;

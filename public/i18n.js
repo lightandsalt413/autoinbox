@@ -59,6 +59,15 @@
       const key = el.getAttribute('data-i18n-html');
       if (translations[key] !== undefined) el.innerHTML = translations[key];
     });
+
+    // Reposition fillet to match dynamic cutout-top-right width
+    requestAnimationFrame(function () {
+      var cutout = document.querySelector('.cutout-top-right');
+      var fillet = document.querySelector('.fillet-tr-left');
+      if (cutout && fillet && cutout.offsetParent) {
+        fillet.style.right = (cutout.offsetWidth - 2) + 'px';
+      }
+    });
   }
 
   async function switchTo(langCode) {

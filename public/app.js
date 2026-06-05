@@ -276,6 +276,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Reposition fillet on resize
+  window.addEventListener('resize', function () {
+    var cutout = document.querySelector('.cutout-top-right');
+    var fillet = document.querySelector('.fillet-tr-left');
+    if (cutout && fillet && cutout.offsetParent) {
+      fillet.style.right = (cutout.offsetWidth - 2) + 'px';
+    }
+  });
+
   // ===== Language Switcher =====
   const langSwitcherBtn = document.getElementById('lang-switcher-btn');
   const langSwitcherDropdown = document.getElementById('lang-switcher-dropdown');
