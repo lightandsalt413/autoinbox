@@ -3,8 +3,8 @@
   "nav_pricing": "Pricing",
   "nav_how": "Paano Ito Gumagana",
   "nav_faq": "FAQ",
-  "nav_privacy": "Privacy",
-  "nav_terms": "Terms",
+  "nav_privacy": "Patakaran sa Privacy",
+  "nav_terms": "Mga Tuntunin",
   "nav_language": "Wika",
 
   "hero_title": "May mas<br><span class=\"hero-gradient-text\">Magandang Paraan</span><br>mag-Reply.",
@@ -222,8 +222,8 @@
   "feedback_btn": "Ipadala ang Mensahe",
 
   "footer_text": "© 2026 AutoInbox",
-  "footer_privacy": "Privacy Policy",
-  "footer_terms": "Terms of Service",
+  "footer_privacy": "Patakaran sa Privacy",
+  "footer_terms": "Mga Tuntunin ng Serbisyo",
 
   "btn_login": "Mag-Log In",
   "btn_connect": "Kumonekta Tayo",

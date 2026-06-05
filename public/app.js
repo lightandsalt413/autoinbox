@@ -241,7 +241,11 @@ function updateLangSwitcherUI(langCode) {
   const flagEl = document.getElementById('nav-lang-flag');
   const labelEl = document.getElementById('nav-lang-label');
   if (flagEl) flagEl.textContent = meta.flag;
-  if (labelEl) labelEl.textContent = meta.label;
+  if (labelEl) {
+    labelEl.textContent = meta.label;
+    // Update the data-i18n key so applyTranslations() doesn't overwrite
+    labelEl.setAttribute('data-i18n', 'lang_switch_' + langCode);
+  }
 
   // Update active state in dropdown
   document.querySelectorAll('.lang-switcher-option').forEach(opt => {
