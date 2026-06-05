@@ -262,6 +262,15 @@ let currentPage = null;
 function showPage(id, addHistory = true) {
   closeLandingModals();
   closeGuideModal();
+  if (id === 'login') {
+    const rememberedEmail = localStorage.getItem('autoinbox_remembered_email');
+    const emailInput = document.getElementById('login-email');
+    if (rememberedEmail && emailInput) {
+      emailInput.value = rememberedEmail;
+      const rememberCheckbox = document.getElementById('remember-me');
+      if (rememberCheckbox) rememberCheckbox.checked = true;
+    }
+  }
   document.querySelectorAll('.page').forEach(p => {
     if (p.id === 'page-landing' && (id === 'login' || id === 'register' || id === 'forgot-pass')) {
       p.classList.remove('hidden');
@@ -754,11 +763,14 @@ document.getElementById('form-login')?.addEventListener('submit', async (e) => {
     });
     token = data.token;
     const rememberMe = document.getElementById('remember-me')?.checked;
+    const emailVal = document.getElementById('login-email').value;
     if (rememberMe) {
       localStorage.setItem('kk_token', token);
+      localStorage.setItem('autoinbox_remembered_email', emailVal);
       if (data.name) localStorage.setItem('autoinbox_name', data.name);
     } else {
       sessionStorage.setItem('kk_token', token);
+      localStorage.removeItem('autoinbox_remembered_email');
       if (data.name) sessionStorage.setItem('autoinbox_name', data.name);
     }
     enterDashboard();
