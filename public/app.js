@@ -381,6 +381,8 @@ function showPage(id, addHistory = true) {
   if (id === 'landing' && typeof checkRevealFallback === 'function') {
     setTimeout(checkRevealFallback, 100);
   }
+  // Re-apply translations for newly-visible page content
+  if (window.i18n) window.i18n.applyTranslations();
 }
 
 // Back button / Navigation popstate handler
@@ -686,6 +688,9 @@ function openModal(modalId, addHistory = true, extra = null) {
       startDemoCycle();
     }
   }
+
+  // Re-apply translations for newly-visible modal content
+  if (window.i18n) window.i18n.applyTranslations();
 
   if (addHistory) {
     const hash = MODAL_HASHES[modalId];
