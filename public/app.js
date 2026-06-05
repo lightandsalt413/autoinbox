@@ -1128,11 +1128,11 @@ async function loadPlanPage() {
 
     // Configure states based on current plan
     if (plan === 'pro') {
-      if (freeBtn) { freeBtn.textContent = 'Downgrade'; freeBtn.disabled = false; freeBtn.className = 'btn-ghost btn-full btn-downgrade'; freeBtn.onclick = () => handleDowngrade('free'); }
-      if (basicBtn) { basicBtn.textContent = 'Downgrade'; basicBtn.disabled = false; basicBtn.className = 'btn-ghost btn-full btn-downgrade'; basicBtn.onclick = () => handleDowngrade('basic'); }
+      if (freeBtn) { freeBtn.textContent = 'Switch Plan'; freeBtn.disabled = false; freeBtn.className = 'btn-ghost btn-full btn-downgrade'; freeBtn.onclick = () => handleDowngrade('free'); }
+      if (basicBtn) { basicBtn.textContent = 'Switch Plan'; basicBtn.disabled = false; basicBtn.className = 'btn-ghost btn-full btn-downgrade'; basicBtn.onclick = () => handleDowngrade('basic'); }
       if (proBtn) { proBtn.textContent = 'Current Plan'; proBtn.disabled = true; proBtn.className = 'btn-ghost btn-full'; proBtn.onclick = null; }
     } else if (plan === 'basic') {
-      if (freeBtn) { freeBtn.textContent = 'Downgrade'; freeBtn.disabled = false; freeBtn.className = 'btn-ghost btn-full btn-downgrade'; freeBtn.onclick = () => handleDowngrade('free'); }
+      if (freeBtn) { freeBtn.textContent = 'Switch Plan'; freeBtn.disabled = false; freeBtn.className = 'btn-ghost btn-full btn-downgrade'; freeBtn.onclick = () => handleDowngrade('free'); }
       if (basicBtn) { basicBtn.textContent = 'Current Plan'; basicBtn.disabled = true; basicBtn.className = 'btn-ghost btn-full'; basicBtn.onclick = null; }
       if (proBtn) { proBtn.textContent = 'Subscribe Now'; proBtn.disabled = false; proBtn.className = 'btn-accent btn-full btn-pro'; }
     } else { // free
@@ -1146,7 +1146,7 @@ async function loadPlanPage() {
 // Downgrade handler with confirmation
 async function handleDowngrade(targetPlan) {
   const planLabel = targetPlan.charAt(0).toUpperCase() + targetPlan.slice(1);
-  const confirmed = confirm(`Are you sure you want to downgrade to the ${planLabel} plan?\n\nYou will lose access to your current plan's features immediately.`);
+  const confirmed = confirm(`Are you sure you want to switch to the ${planLabel} plan?\n\nYour current plan features will change accordingly.`);
   if (!confirmed) return;
 
   try {
