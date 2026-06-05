@@ -539,6 +539,30 @@ a{color:var(--p2);text-decoration:none}
   transform: translateY(-2px);
 }
 
+/* ── Disabled button overrides (must override featured/pro styles) ── */
+.plan-option .btn-ghost[disabled],
+.plan-option .btn-accent[disabled],
+.plan-option.featured .btn-ghost[disabled],
+.plan-option.featured .btn-accent[disabled] {
+  background: rgba(26, 26, 28, 0.04) !important;
+  border: 1.5px solid rgba(26, 26, 28, 0.1) !important;
+  color: rgba(26, 26, 28, 0.35) !important;
+  box-shadow: none !important;
+  cursor: not-allowed !important;
+  opacity: 0.7 !important;
+  transform: none !important;
+}
+.po-pro-card .btn-ghost[disabled],
+.po-pro-card .btn-accent[disabled] {
+  background: rgba(232, 201, 122, 0.08) !important;
+  border: 1.5px solid rgba(232, 201, 122, 0.2) !important;
+  color: rgba(232, 201, 122, 0.5) !important;
+  box-shadow: none !important;
+  cursor: not-allowed !important;
+  opacity: 0.7 !important;
+  transform: none !important;
+}
+
 /* Payment Methods Card */
 .pay-methods-card {
   margin-top: 28px;
@@ -3966,7 +3990,30 @@ body::-webkit-scrollbar {
   box-shadow: 0 15px 40px rgba(232, 201, 122, 0.15), 0 0 15px rgba(232, 201, 122, 0.1) !important;
 }
 
-/* Payment Methods */
+/* ── Disabled button overrides inside dashboard ── */
+.dash-main .plan-option .btn-ghost[disabled],
+.dash-main .plan-option .btn-accent[disabled],
+.dash-main .plan-option.featured .btn-ghost[disabled],
+.dash-main .plan-option.featured .btn-accent[disabled] {
+  background: rgba(26, 26, 28, 0.04) !important;
+  border: 1.5px solid rgba(26, 26, 28, 0.1) !important;
+  color: rgba(26, 26, 28, 0.35) !important;
+  box-shadow: none !important;
+  cursor: not-allowed !important;
+  opacity: 0.7 !important;
+  transform: none !important;
+}
+.dash-main .po-pro-card .btn-ghost[disabled],
+.dash-main .po-pro-card .btn-accent[disabled] {
+  background: rgba(232, 201, 122, 0.08) !important;
+  border: 1.5px solid rgba(232, 201, 122, 0.2) !important;
+  color: rgba(232, 201, 122, 0.5) !important;
+  box-shadow: none !important;
+  cursor: not-allowed !important;
+  opacity: 0.7 !important;
+  transform: none !important;
+}
+
 .dash-main .pay-methods-card {
   background: rgba(255, 255, 255, 0.75) !important;
   border: 1px solid rgba(26, 26, 28, 0.08) !important;
