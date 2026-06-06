@@ -6723,7 +6723,8 @@ a:not(.nav-item):not(.footer-col a):not(.tab):not(.mnav-item) {
 
 /* 1. Global Page Background & Framework */
 body, #page-landing {
-  background: #daf0f8 !important;
+  background: linear-gradient(135deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
+  background-attachment: fixed !important;
 }
 
 #page-landing::before {
@@ -6732,7 +6733,8 @@ body, #page-landing {
 
 /* Tone down the background blobs in light mode */
 .morphing-bg-wrapper {
-  background: #daf0f8 !important;
+  background: linear-gradient(135deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
+  background-attachment: fixed !important;
 }
 .morph-blob {
   mix-blend-mode: multiply !important;
@@ -6742,41 +6744,45 @@ body, #page-landing {
 
 /* 2. Cutouts & Concave Corner Fillets */
 .cutout-top-left, .cutout-top-right, .cutout-bottom-right {
-  background-color: #daf0f8 !important;
+  background: linear-gradient(135deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
+  background-attachment: fixed !important;
 }
 
 .fillet-tl-bottom {
-  background: radial-gradient(circle at 41px 41px, transparent 39.5px, #daf0f8 40.5px) !important;
+  background: radial-gradient(circle at 41px 41px, transparent 39.5px, #006d9e 40.5px) !important;
 }
 .fillet-tl-right {
-  background: radial-gradient(circle at 41px 41px, transparent 39.5px, #daf0f8 40.5px) !important;
+  background: radial-gradient(circle at 41px 41px, transparent 39.5px, #006d9e 40.5px) !important;
 }
 .fillet-tr-left {
-  background: radial-gradient(circle at 1px 41px, transparent 39.5px, #daf0f8 40.5px) !important;
+  background: radial-gradient(circle at 1px 41px, transparent 39.5px, #00a8d6 40.5px) !important;
 }
 .fillet-tr-bottom {
-  background: radial-gradient(circle at 1px 41px, transparent 39.5px, #daf0f8 40.5px) !important;
+  background: radial-gradient(circle at 1px 41px, transparent 39.5px, #00a8d6 40.5px) !important;
 }
 .fillet-br-left {
-  background: radial-gradient(circle at 1px 1px, transparent 39.5px, #daf0f8 40.5px) !important;
+  background: radial-gradient(circle at 1px 1px, transparent 39.5px, #00b8e8 40.5px) !important;
 }
 .fillet-br-top {
-  background: radial-gradient(circle at 1px 1px, transparent 39.5px, #daf0f8 40.5px) !important;
+  background: radial-gradient(circle at 1px 1px, transparent 39.5px, #00b8e8 40.5px) !important;
 }
 
 /* 3. Outer Cutout Controls & Logo */
 .outer-logo .logo-text {
-  color: #003566 !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
+  background: none !important;
+  filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.2)) !important;
 }
 .outer-login-btn {
-  background: rgba(0, 53, 102, 0.04) !important;
-  color: #003566 !important;
-  border: 1.5px solid rgba(0, 53, 102, 0.3) !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.35) !important;
 }
 .outer-login-btn:hover {
-  background: #003566 !important;
+  background: rgba(255, 255, 255, 0.25) !important;
   color: #ffffff !important;
-  border-color: #003566 !important;
+  border-color: rgba(255, 255, 255, 0.6) !important;
 }
 .outer-connect-btn {
   background: linear-gradient(90deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
@@ -6934,7 +6940,7 @@ body, #page-landing {
 
 /* 9. Auth Screens (Login / Register Modal Pages) */
 #page-login, #page-register {
-  background: #daf0f8 !important;
+  background: linear-gradient(135deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
 }
 
 .modal-page .modal-bg {
@@ -7161,7 +7167,7 @@ body, #page-landing {
    ========================================================================== */
 
 #page-dashboard {
-  background: #daf0f8 !important;
+  background: linear-gradient(135deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
 }
 
 #page-dashboard .sidebar {
@@ -7169,7 +7175,7 @@ body, #page-landing {
 }
 
 #page-dashboard .dash-main {
-  background: #daf0f8 !important;
+  background: linear-gradient(135deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
   color: #0f172a !important;
   box-shadow: 0 24px 64px rgba(0, 53, 102, 0.05) !important;
 }
