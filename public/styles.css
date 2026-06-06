@@ -7382,6 +7382,111 @@ body, #page-landing {
   box-shadow: 0 6px 18px rgba(220, 38, 38, 0.25) !important;
 }
 
+/* Pricing Trial Badge & Buttons Enhancements */
+.trial-badge {
+  background: rgba(16, 185, 129, 0.1) !important;
+  color: #16a34a !important;
+  border: 1px solid rgba(16, 185, 129, 0.2) !important;
+  padding: 4px 12px !important;
+  border-radius: 50px !important;
+  display: inline-block !important;
+  font-size: 0.72rem !important;
+  margin-top: -6px !important;
+  margin-bottom: 16px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+  text-align: center !important;
+}
+
+.price-card .btn-ghost {
+  background: rgba(0, 158, 204, 0.04) !important;
+  border: 1.5px solid rgba(0, 158, 204, 0.15) !important;
+  color: #003566 !important;
+  font-weight: 600 !important;
+  transition: all 0.2s ease !important;
+}
+
+.price-card .btn-ghost:hover {
+  background: rgba(0, 158, 204, 0.1) !important;
+  border-color: #009ecc !important;
+  color: #009ecc !important;
+  transform: translateY(-1.5px) !important;
+  box-shadow: 0 4px 12px rgba(0, 158, 204, 0.08) !important;
+}
+
+/* Before vs After Redesign */
+.bva-card.before:hover {
+  transform: translateY(-4px) !important;
+  border-color: rgba(239, 68, 68, 0.3) !important;
+  box-shadow: 0 10px 24px rgba(239, 68, 68, 0.05) !important;
+}
+
+.bva-card.after:hover {
+  transform: translateY(-4px) !important;
+  border-color: rgba(16, 185, 129, 0.4) !important;
+  box-shadow: 0 10px 24px rgba(16, 185, 129, 0.08) !important;
+}
+
+.bva-vs .vs-circle {
+  background: linear-gradient(135deg, #003566 0%, #009ecc 100%) !important;
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  box-shadow: 0 0 15px rgba(0, 158, 204, 0.3) !important;
+  border: 2px solid #ffffff !important;
+  transition: all 0.3s ease !important;
+}
+
+.bva-vs .vs-circle:hover {
+  transform: scale(1.1) rotate(360deg) !important;
+  box-shadow: 0 0 25px rgba(0, 158, 204, 0.5) !important;
+}
+
+/* In-line Feedback Form Glow */
+#form-feedback-inline {
+  transition: all 0.3s ease !important;
+}
+
+#form-feedback-inline:hover {
+  box-shadow: 0 15px 36px rgba(0, 53, 102, 0.06) !important;
+  border-color: rgba(0, 158, 204, 0.2) !important;
+}
+
+/* FAQ Item visibility fixes and transitions */
+.faq-item {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.faq-item:hover {
+  border-color: rgba(0, 158, 204, 0.3) !important;
+  background: #ffffff !important;
+  box-shadow: 0 8px 20px rgba(0, 158, 204, 0.05) !important;
+}
+
+.faq-item.open {
+  border-color: #009ecc !important;
+  background: #ffffff !important;
+  box-shadow: 0 12px 28px rgba(0, 158, 204, 0.08) !important;
+}
+
+.faq-item .faq-q {
+  color: #0f172a !important;
+  font-weight: 700 !important;
+  transition: color 0.3s ease !important;
+}
+
+.faq-item.open .faq-q {
+  color: #009ecc !important;
+}
+
+.faq-item .faq-a p {
+  color: #475569 !important;
+  font-size: 0.92rem !important;
+  line-height: 1.6 !important;
+  padding: 0 20px 20px 20px !important;
+}
+
+
 
 
 

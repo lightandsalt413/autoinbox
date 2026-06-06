@@ -3093,7 +3093,7 @@ document.getElementById('form-feedback')?.addEventListener('submit', async (e) =
       }
     });
   }, { threshold: 0.15 });
-  document.querySelectorAll('.feat-card, .step-card, .testi-card, .bva-card').forEach(el => {
+  document.querySelectorAll('.feat-card, .step-card, .testi-card, .bva-card, .faq-item').forEach(el => {
     el.classList.add('cascade-item');
     cascadeObs.observe(el);
   });
