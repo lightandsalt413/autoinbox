@@ -454,6 +454,8 @@ document.getElementById('link-register')?.addEventListener('click', (e) => { e.p
 document.getElementById('link-login')?.addEventListener('click', (e) => { e.preventDefault(); showPage('login'); });
 document.getElementById('login-goto-register')?.addEventListener('click', () => showPage('register'));
 document.getElementById('register-goto-login')?.addEventListener('click', () => showPage('login'));
+document.getElementById('mah-goto-register')?.addEventListener('click', () => showPage('register'));
+document.getElementById('maf-goto-login')?.addEventListener('click', () => showPage('login'));
 document.getElementById('login-modal-close')?.addEventListener('click', () => showPage('landing'));
 document.getElementById('login-modal-bg')?.addEventListener('click', () => showPage('landing'));
 document.getElementById('page-login')?.addEventListener('click', (e) => { if (e.target === e.currentTarget) showPage('landing'); });

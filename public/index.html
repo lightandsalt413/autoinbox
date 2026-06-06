@@ -409,6 +409,16 @@
   <div id="page-login" class="page hidden modal-page">
     <div class="modal-bg" id="login-modal-bg"></div>
     <div class="modal-box auth-modal-box">
+      <!-- Mobile Wave Header -->
+      <div class="mobile-auth-header">
+        <div class="mah-logo">
+          <img src="/logo.png?v=8" width="36" height="36" alt="AutoInbox">
+        </div>
+        <h2 class="mah-title" data-i18n="auth_hello_welcome">Hello, Welcome</h2>
+        <p class="mah-subtitle" data-i18n="auth_no_account_label">Don't have an Account?</p>
+        <button type="button" class="mah-btn" id="mah-goto-register" data-i18n="auth_register_btn">Register</button>
+      </div>
+
       <button class="modal-x" id="login-modal-close" type="button">×</button>
       <div class="modal-head">
         <div class="section-tag" style="margin-bottom:6px" data-i18n="auth_account">Account</div>
@@ -436,6 +446,17 @@
           <span data-i18n="auth_remember">Remember me</span>
         </label>
         <button type="submit" class="btn-accent btn-sm" style="width:100%;padding:12px;font-size:1rem;margin-top:20px;background:#1A1A1C;color:#F6F0E6;border:none;border-radius:10px;cursor:pointer;" data-i18n="auth_login_btn">Log In</button>
+
+        <!-- Social Login -->
+        <div class="social-login-wrap">
+          <p class="social-login-text" data-i18n="auth_social_or">or login with social platforms</p>
+          <div class="social-login-icons">
+            <button type="button" class="social-btn" onclick="alert('Social login is not configured in this demo.')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.24 10.285V13.4h6.887C18.2 15.614 15.645 18 12.24 18c-3.86 0-7-3.14-7-7s3.14-7 7-7c1.78 0 3.42.66 4.67 1.83l2.437-2.437C17.76 1.8 15.16 1 12.24 1 6.58 1 2 5.58 2 11.24s4.58 10.24 10.24 10.24c5.9 0 9.82-4.14 9.82-10 0-.67-.06-1.3-.18-1.9H12.24z"/></svg></button>
+            <button type="button" class="social-btn" onclick="alert('Social login is not configured in this demo.')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></button>
+            <button type="button" class="social-btn" onclick="alert('Social login is not configured in this demo.')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></button>
+            <button type="button" class="social-btn" onclick="alert('Social login is not configured in this demo.')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></button>
+          </div>
+        </div>
       </form>
       <p class="auth-sw" style="margin-top:16px;text-align:center;color:#1A1A1C;font-size:.85rem"><span data-i18n="auth_no_account">No account?</span> <a href="#" id="link-register" style="color:var(--p);font-weight:600" data-i18n="auth_signup_link">Sign Up Free</a></p>
     </div>
@@ -598,9 +619,27 @@
         </div>
         <div id="reg-error" class="form-err hidden" style="margin-top:16px"></div>
         <button type="submit" class="btn-accent btn-sm" style="width:100%;padding:12px;font-size:1rem;margin-top:20px;background:#1A1A1C;color:#F6F0E6;border:none;border-radius:10px;cursor:pointer;" data-i18n="auth_create_btn">Create Account</button>
+
+        <!-- Social Register -->
+        <div class="social-login-wrap">
+          <p class="social-login-text" data-i18n="auth_social_or_reg">or register with social platforms</p>
+          <div class="social-login-icons">
+            <button type="button" class="social-btn" onclick="alert('Social registration is not configured in this demo.')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.24 10.285V13.4h6.887C18.2 15.614 15.645 18 12.24 18c-3.86 0-7-3.14-7-7s3.14-7 7-7c1.78 0 3.42.66 4.67 1.83l2.437-2.437C17.76 1.8 15.16 1 12.24 1 6.58 1 2 5.58 2 11.24s4.58 10.24 10.24 10.24c5.9 0 9.82-4.14 9.82-10 0-.67-.06-1.3-.18-1.9H12.24z"/></svg></button>
+            <button type="button" class="social-btn" onclick="alert('Social registration is not configured in this demo.')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></button>
+            <button type="button" class="social-btn" onclick="alert('Social registration is not configured in this demo.')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></button>
+            <button type="button" class="social-btn" onclick="alert('Social registration is not configured in this demo.')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></button>
+          </div>
+        </div>
       </form>
       <p style="margin-top:14px;color:#999;font-size:.75rem;text-align:center" data-i18n="auth_encryption">🔒 Your data is protected with AES-256 encryption</p>
       <p class="auth-sw" style="margin-top:10px;text-align:center;color:#1A1A1C;font-size:.85rem"><span data-i18n="auth_has_account">Already have an account?</span> <a href="#" id="link-login" style="color:var(--p);font-weight:600" data-i18n="auth_login_link">Log In</a></p>
+
+      <!-- Mobile Wave Footer -->
+      <div class="mobile-auth-footer">
+        <h2 class="maf-title" data-i18n="auth_welcome_back">Welcome Back!</h2>
+        <p class="maf-subtitle" data-i18n="auth_already_account">Already have an Account?</p>
+        <button type="button" class="maf-btn" id="maf-goto-login" data-i18n="auth_login_btn_alt">Login</button>
+      </div>
     </div>
   </div>
   <div id="page-onboard" class="page hidden"><div class="auth-wrap"><div class="auth-box glass onboard-box"><div class="ob-prog"><div class="ob-bar"><div class="ob-fill" id="onboard-progress"></div></div><span id="onboard-step-label" data-i18n="ob_step_label">Step 1 of 3</span></div>

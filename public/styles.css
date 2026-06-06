@@ -5948,6 +5948,11 @@ a:not(.nav-item):not(.footer-col a):not(.tab):not(.mnav-item) {
   line-height: 1;
 }
 
+/* Desktop hide styles for mobile auth components */
+.mobile-auth-header, .mobile-auth-footer, .social-login-wrap {
+  display: none;
+}
+
 /* Mobile Phone Mockups Optimization & Footer Safe Area Spacing */
 @media (max-width: 480px) {
   /* Footer Spacing & Layout */
@@ -6126,6 +6131,327 @@ a:not(.nav-item):not(.footer-col a):not(.tab):not(.mnav-item) {
   .stats-sync-status {
     font-size: 0.58rem !important;
     gap: 6px !important;
+  }
+
+  /* Full screen modal overrides for Auth pages on mobile */
+  .modal-page {
+    padding: 0 !important;
+    background: #ffffff !important;
+  }
+  .modal-page .modal-bg {
+    display: none !important;
+  }
+  .modal-page .modal-box.auth-modal-box {
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: none !important;
+    max-height: none !important;
+    border-radius: 0 !important;
+    margin: 0 !important;
+    padding: 0 0 20px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    background: #ffffff !important;
+    overflow-y: auto !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Back close button on mobile auth */
+  .modal-page .modal-x {
+    position: fixed !important;
+    top: 16px !important;
+    right: 16px !important;
+    z-index: 99 !important;
+    background: rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(10px) !important;
+    -webkit-backdrop-filter: blur(10px) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 50% !important;
+    width: 36px !important;
+    height: 36px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 20px !important;
+  }
+  #page-register .modal-x {
+    color: #1A1A1C !important;
+    background: rgba(26, 26, 28, 0.05) !important;
+    border: 1px solid rgba(26, 26, 28, 0.1) !important;
+  }
+
+  /* Hide original headings & switchers */
+  .modal-page .modal-box.auth-modal-box .modal-head,
+  .modal-page .modal-box.auth-modal-box .auth-sw {
+    display: none !important;
+  }
+
+  /* Form Title Injectors */
+  #page-login .auth-form::before {
+    content: 'Login';
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #1A1A1C;
+    text-align: center;
+    margin-bottom: 24px;
+    font-family: var(--fh);
+  }
+  #page-register .auth-form::before {
+    content: 'Registration';
+    display: block;
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #1A1A1C;
+    text-align: center;
+    margin-bottom: 24px;
+    font-family: var(--fh);
+  }
+
+  /* Mobile Elegant Wave Header (Login) */
+  .mobile-auth-header {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: linear-gradient(135deg, #092c3e 0%, #009ecc 100%) !important;
+    border-bottom-left-radius: 48px !important;
+    border-bottom-right-radius: 48px !important;
+    padding: 48px 24px 36px !important;
+    box-sizing: border-box !important;
+    box-shadow: 0 8px 24px rgba(9, 44, 62, 0.15) !important;
+    width: 100% !important;
+    margin-bottom: 28px !important;
+    color: #ffffff !important;
+    text-align: center !important;
+  }
+  .mah-logo {
+    margin-bottom: 12px !important;
+  }
+  .mah-logo img {
+    border-radius: 8px !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+  }
+  .mah-title {
+    font-size: 1.8rem !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    margin: 0 0 6px 0 !important;
+    letter-spacing: -0.5px !important;
+    font-family: var(--fh) !important;
+  }
+  .mah-subtitle {
+    font-size: 0.88rem !important;
+    color: rgba(255, 255, 255, 0.75) !important;
+    margin: 0 0 16px 0 !important;
+  }
+  .mah-btn, .maf-btn {
+    border: 1.5px solid rgba(255, 255, 255, 0.6) !important;
+    background: transparent !important;
+    color: #ffffff !important;
+    padding: 8px 24px !important;
+    border-radius: 20px !important;
+    font-size: 0.82rem !important;
+    font-weight: 700 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    outline: none !important;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
+  }
+  .mah-btn:hover, .maf-btn:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+    border-color: #ffffff !important;
+  }
+
+  /* Mobile Elegant Wave Footer (Registration) */
+  .mobile-auth-footer {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: linear-gradient(135deg, #009ecc 0%, #00c2ff 100%) !important;
+    border-top-left-radius: 48px !important;
+    border-top-right-radius: 48px !important;
+    padding: 36px 24px 48px !important;
+    box-sizing: border-box !important;
+    box-shadow: 0 -8px 24px rgba(0, 194, 255, 0.15) !important;
+    width: 100% !important;
+    margin-top: 36px !important;
+    color: #ffffff !important;
+    text-align: center !important;
+  }
+  .maf-title {
+    font-size: 1.8rem !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    margin: 0 0 6px 0 !important;
+    letter-spacing: -0.5px !important;
+    font-family: var(--fh) !important;
+  }
+  .maf-subtitle {
+    font-size: 0.88rem !important;
+    color: rgba(255, 255, 255, 0.75) !important;
+    margin: 0 0 16px 0 !important;
+  }
+
+  /* Form & inputs layout */
+  .modal-page .auth-form {
+    padding: 0 24px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .modal-page .fg {
+    margin-top: 14px !important;
+  }
+  .modal-page .fg > label {
+    display: none !important;
+  }
+  
+  /* Inputs styles */
+  .modal-page .fg input,
+  .modal-page .fg select {
+    background: #f1f1f3 !important;
+    border: none !important;
+    border-radius: 14px !important;
+    padding: 14px 16px !important;
+    font-size: 0.9rem !important;
+    color: #1A1A1C !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    height: 48px !important;
+    transition: all 0.2s ease !important;
+    box-shadow: none !important;
+  }
+  .modal-page .fg input::placeholder {
+    color: #88888b !important;
+  }
+  .modal-page .fg input:focus,
+  .modal-page .fg select:focus {
+    background: #e9e9ec !important;
+    outline: none !important;
+  }
+
+  /* Input fields icons */
+  .modal-page input[type="email"] {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%2388888b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>') !important;
+    background-repeat: no-repeat !important;
+    background-position: right 16px center !important;
+    padding-right: 42px !important;
+  }
+  .modal-page input[type="text"] {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%2388888b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>') !important;
+    background-repeat: no-repeat !important;
+    background-position: right 16px center !important;
+    padding-right: 42px !important;
+  }
+  .modal-page input[type="tel"] {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%2388888b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>') !important;
+    background-repeat: no-repeat !important;
+    background-position: right 16px center !important;
+    padding-right: 42px !important;
+  }
+  
+  /* Password wraps togglers */
+  .modal-page .pass-wrap {
+    position: relative !important;
+    width: 100% !important;
+  }
+  .modal-page .pass-toggle {
+    position: absolute !important;
+    right: 14px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    background: transparent !important;
+    border: none !important;
+    color: #88888b !important;
+    font-size: 0.72rem !important;
+    font-weight: 700 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    cursor: pointer !important;
+    z-index: 10 !important;
+    padding: 0 !important;
+    height: auto !important;
+  }
+  .modal-page .pass-toggle svg {
+    width: 14px !important;
+    height: 14px !important;
+  }
+
+  /* Centered Forgot password link */
+  .modal-page #link-forgot-pass {
+    display: block !important;
+    text-align: center !important;
+    margin: 14px auto 0 !important;
+    color: #88888b !important;
+    font-size: 0.82rem !important;
+    font-weight: 500 !important;
+  }
+
+  /* Action submit buttons */
+  .modal-page .auth-form button[type="submit"] {
+    background: linear-gradient(90deg, #092c3e 0%, #009ecc 50%, #00c2ff 100%) !important;
+    border: none !important;
+    border-radius: 30px !important;
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    padding: 14px 24px !important;
+    font-size: 0.95rem !important;
+    box-shadow: 0 6px 20px rgba(0, 158, 204, 0.25) !important;
+    margin-top: 24px !important;
+    height: 48px !important;
+    width: 100% !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    display: block !important;
+  }
+  .modal-page .auth-form button[type="submit"]:hover {
+    transform: translateY(-1.5px) !important;
+    box-shadow: 0 8px 24px rgba(0, 158, 204, 0.35) !important;
+  }
+
+  /* Social platforms section */
+  .social-login-wrap {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    margin-top: 24px !important;
+    width: 100% !important;
+  }
+  .social-login-text {
+    font-size: 0.72rem !important;
+    color: #88888b !important;
+    margin-bottom: 12px !important;
+    font-weight: 500 !important;
+  }
+  .social-login-icons {
+    display: flex !important;
+    gap: 12px !important;
+    justify-content: center !important;
+  }
+  .social-btn {
+    width: 44px !important;
+    height: 44px !important;
+    border: 1px solid #e2e2e6 !important;
+    background: #ffffff !important;
+    border-radius: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #4A4742 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    padding: 0 !important;
+  }
+  .social-btn:hover {
+    border-color: #009ecc !important;
+    color: #009ecc !important;
+    background: rgba(0, 158, 204, 0.03) !important;
   }
 }
 
