@@ -2051,20 +2051,7 @@ body::-webkit-scrollbar {
   color: #0f172a !important;
 }
 #features-modal .feat-icon {
-  width: 48px !important;
-  height: 48px !important;
-  border-radius: 14px !important;
-  background: rgba(0, 53, 102, 0.06) !important;
-  border: 1.5px solid rgba(0, 53, 102, 0.15) !important;
-  color: #003566 !important;
-  font-family: var(--fh) !important;
-  font-weight: 800 !important;
-  font-size: 0.95rem !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  margin: 0 auto 20px !important;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  display: none !important;
 }
 #features-modal .feat-card:hover .feat-icon {
   background: linear-gradient(135deg, #003566, #009ecc) !important;
@@ -7575,5 +7562,7 @@ body, #page-landing {
   display: none !important;
 }
 
-
-
+/* Hide all numbered feature icons globally */
+.feat-icon {
+  display: none !important;
+}
