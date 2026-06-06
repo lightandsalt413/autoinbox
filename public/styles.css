@@ -7514,7 +7514,7 @@ body, #page-landing {
   color: #003566 !important;
 }
 
-/* Remove curve from top-right cutout only */
+/* Remove curve from top-right cutout */
 .cutout-top-right {
   border-bottom-left-radius: 0 !important;
 }
@@ -7523,7 +7523,18 @@ body, #page-landing {
   display: none !important;
 }
 
-
+/* Move bottom-right cutout to very bottom of scroll content (after footer) */
+.cutout-bottom-right {
+  position: relative !important;
+  bottom: auto !important;
+  right: auto !important;
+  order: 999 !important;
+  align-self: flex-end !important;
+}
+.fillet-br-left,
+.fillet-br-top {
+  display: none !important;
+}
 
 
 
