@@ -1917,18 +1917,18 @@ body::-webkit-scrollbar {
   -webkit-backdrop-filter: blur(18px);
 }
 
-/* Modal box - cream background instead of dark glass */
+/* Modal box - clean white background with blue accent */
 #features-modal .modal-box,
 #pricing-modal .modal-box,
 #how-modal .modal-box,
 #faq-modal .modal-box,
 #feedback-modal .modal-box,
 #languages-modal .modal-box {
-  background: #F6F0E6 !important;
-  border: 1px solid rgba(26, 26, 28, 0.1) !important;
-  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(0, 158, 204, 0.15) !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 53, 102, 0.08) !important;
+  box-shadow: 0 32px 80px rgba(0, 53, 102, 0.12), 0 0 0 1px rgba(0, 158, 204, 0.1) !important;
   backdrop-filter: none !important;
-  color: #1A1A1C;
+  color: #0f172a;
 }
 
 /* Close button - premium circular black button with gold X */
@@ -1979,7 +1979,7 @@ body::-webkit-scrollbar {
 #faq-modal .section-tag,
 #feedback-modal .section-tag,
 #languages-modal .section-tag {
-  color: #092c3e;
+  color: #003566;
 }
 
 /* Headings */
@@ -1989,7 +1989,7 @@ body::-webkit-scrollbar {
 #faq-modal .modal-head h3,
 #feedback-modal .modal-head h3,
 #languages-modal .modal-head h3 {
-  color: #1A1A1C;
+  color: #0f172a;
   font-family: var(--fh);
 }
 
@@ -2000,63 +2000,63 @@ body::-webkit-scrollbar {
 #faq-modal .modal-head p,
 #feedback-modal .modal-head p,
 #languages-modal .modal-head p {
-  color: #3a3832 !important;
+  color: #475569 !important;
 }
 
-/* Generic strong/bold text inside all cream-themed modals */
+/* Generic strong/bold text inside all modals */
 #features-modal strong,
 #pricing-modal strong,
 #how-modal strong,
 #faq-modal strong,
 #feedback-modal strong,
 #languages-modal strong {
-  color: #1A1A1C;
+  color: #0f172a;
   font-weight: 700;
 }
 
-/* ---- Feature Cards (cream themed) ---- */
+/* ---- Feature Cards (blue-white themed) ---- */
 #features-modal .feat-card {
-  background: #FAF6F0 !important;
-  border: 1px solid rgba(9, 44, 62, 0.15) !important;
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
   border-radius: 20px !important;
   padding: 32px 24px !important;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.01), inset 0 1px 0 #FFFFFF !important;
+  box-shadow: 0 4px 18px rgba(0, 53, 102, 0.03), inset 0 1px 0 #FFFFFF !important;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 #features-modal .feat-card:hover {
-  background: #FFFFFF !important;
-  border-color: #009ecc !important;
+  background: #ffffff !important;
+  border-color: rgba(0, 158, 204, 0.45) !important;
   box-shadow: 
-    0 20px 48px rgba(9, 44, 62, 0.12),
+    0 20px 48px rgba(0, 53, 102, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
   transform: translateY(-6px) !important;
 }
 #features-modal .feat-card h4 {
-  color: #1A1A1C !important;
+  color: #0f172a !important;
   font-size: 1.15rem !important;
   font-weight: 700 !important;
   margin-bottom: 10px !important;
   transition: color 0.3s ease !important;
 }
 #features-modal .feat-card:hover h4 {
-  color: #092c3e !important;
+  color: #003566 !important;
 }
 #features-modal .feat-card p {
-  color: #5A5750 !important;
+  color: #475569 !important;
   font-size: 0.88rem !important;
   line-height: 1.6 !important;
   transition: color 0.3s ease !important;
 }
 #features-modal .feat-card:hover p {
-  color: #1A1A1C !important;
+  color: #0f172a !important;
 }
 #features-modal .feat-icon {
   width: 48px !important;
   height: 48px !important;
   border-radius: 14px !important;
-  background: rgba(9, 44, 62, 0.06) !important;
-  border: 1.5px solid rgba(9, 44, 62, 0.2) !important;
-  color: #092c3e !important;
+  background: rgba(0, 53, 102, 0.06) !important;
+  border: 1.5px solid rgba(0, 53, 102, 0.15) !important;
+  color: #003566 !important;
   font-family: var(--fh) !important;
   font-weight: 800 !important;
   font-size: 0.95rem !important;
@@ -2067,20 +2067,20 @@ body::-webkit-scrollbar {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 #features-modal .feat-card:hover .feat-icon {
-  background: linear-gradient(135deg, #092c3e, #009ecc) !important;
-  color: #FAF6F0 !important;
-  border-color: #092c3e !important;
-  box-shadow: 0 6px 20px rgba(9, 44, 62, 0.4) !important;
+  background: linear-gradient(135deg, #003566, #009ecc) !important;
+  color: #ffffff !important;
+  border-color: #003566 !important;
+  box-shadow: 0 6px 20px rgba(0, 53, 102, 0.4) !important;
   transform: scale(1.1) rotate(4deg) !important;
 }
 
-/* ---- Pricing Cards (cream themed) ---- */
+/* ---- Pricing Cards (blue-white themed) ---- */
 #pricing-modal .price-card {
-  background: #FAF6F0 !important;
-  border: 1px solid rgba(9, 44, 62, 0.15) !important;
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
   border-radius: 20px !important;
   padding: 36px 28px !important;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.01), inset 0 1px 0 #FFFFFF !important;
+  box-shadow: 0 4px 18px rgba(0, 53, 102, 0.03), inset 0 1px 0 #FFFFFF !important;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
   display: flex !important;
   flex-direction: column !important;
@@ -2089,16 +2089,16 @@ body::-webkit-scrollbar {
 }
 
 #pricing-modal .price-card:hover {
-  background: #FFFFFF !important;
-  border-color: #009ecc !important;
+  background: #ffffff !important;
+  border-color: rgba(0, 158, 204, 0.45) !important;
   box-shadow: 
-    0 24px 50px rgba(9, 44, 62, 0.14),
+    0 24px 50px rgba(0, 53, 102, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
   transform: translateY(-8px) !important;
 }
 
 #pricing-modal .price-card h4 {
-  color: #092c3e !important;
+  color: #003566 !important;
   font-size: 0.9rem !important;
   font-weight: 800 !important;
   letter-spacing: 1.5px !important;
@@ -2107,7 +2107,7 @@ body::-webkit-scrollbar {
 }
 
 #pricing-modal .price-val {
-  color: #1A1A1C !important;
+  color: #0f172a !important;
   font-size: 3rem !important;
   font-weight: 900 !important;
   margin-bottom: 24px !important;
@@ -2117,7 +2117,7 @@ body::-webkit-scrollbar {
 }
 
 #pricing-modal .price-val span {
-  color: #5A5750 !important;
+  color: #64748b !important;
   font-size: 0.9rem !important;
   font-weight: 500 !important;
 }
@@ -2130,10 +2130,10 @@ body::-webkit-scrollbar {
 }
 
 #pricing-modal .price-card ul li {
-  color: #1A1A1C !important;
+  color: #0f172a !important;
   font-size: 0.9rem !important;
   padding: 10px 0 10px 24px !important;
-  border-bottom: 1px solid rgba(9, 44, 62, 0.08) !important;
+  border-bottom: 1px solid #e2e8f0 !important;
   position: relative !important;
   line-height: 1.5 !important;
   transition: all 0.3s ease !important;
@@ -2141,7 +2141,7 @@ body::-webkit-scrollbar {
 
 #pricing-modal .price-card ul li:hover {
   padding-left: 28px !important;
-  color: #092c3e !important;
+  color: #003566 !important;
 }
 
 #pricing-modal .price-card ul li::before {
@@ -2159,17 +2159,17 @@ body::-webkit-scrollbar {
 }
 
 #pricing-modal .price-card ul li.dim {
-  color: rgba(26, 26, 28, 0.3) !important;
+  color: rgba(15, 23, 42, 0.3) !important;
 }
 
 #pricing-modal .price-card ul li.dim::before {
   content: "–" !important;
-  color: rgba(26, 26, 28, 0.25) !important;
+  color: rgba(15, 23, 42, 0.25) !important;
 }
 
 #pricing-modal .price-card ul li.dim:hover {
   padding-left: 24px !important;
-  color: rgba(26, 26, 28, 0.3) !important;
+  color: rgba(15, 23, 42, 0.3) !important;
 }
 
 #pricing-modal .price-card ul li.dim:hover::before {
@@ -2178,16 +2178,16 @@ body::-webkit-scrollbar {
 
 /* Featured Card (Basic) */
 #pricing-modal .price-card.pop {
-  background: linear-gradient(135deg, #121214 0%, #1c1c1f 100%) !important;
+  background: linear-gradient(135deg, #003566 0%, #00587a 100%) !important;
   border: 1px solid rgba(0, 158, 204, 0.45) !important;
-  color: #F6F0E6 !important;
+  color: #ffffff !important;
   transform: scale(1.04) !important;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25) !important;
+  box-shadow: 0 12px 40px rgba(0, 53, 102, 0.25) !important;
   z-index: 2 !important;
 }
 
 #pricing-modal .price-card.pop:hover {
-  border-color: #009ecc !important;
+  border-color: #00c2ff !important;
   box-shadow: 
     0 24px 60px rgba(0, 158, 204, 0.28),
     inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
@@ -2195,8 +2195,8 @@ body::-webkit-scrollbar {
 }
 
 #pricing-modal .price-card.pop h4 {
-  color: #009ecc !important;
-  text-shadow: 0 0 10px rgba(0, 158, 204, 0.2) !important;
+  color: #00c2ff !important;
+  text-shadow: 0 0 10px rgba(0, 194, 255, 0.2) !important;
 }
 
 #pricing-modal .price-card.pop .price-val {
@@ -2204,12 +2204,12 @@ body::-webkit-scrollbar {
 }
 
 #pricing-modal .price-card.pop .price-val span {
-  color: rgba(246, 240, 230, 0.6) !important;
+  color: rgba(255, 255, 255, 0.6) !important;
 }
 
 #pricing-modal .price-card.pop ul li {
-  color: rgba(246, 240, 230, 0.85) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+  color: rgba(255, 255, 255, 0.85) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
 
 #pricing-modal .price-card.pop ul li:hover {
@@ -2217,15 +2217,15 @@ body::-webkit-scrollbar {
 }
 
 #pricing-modal .price-card.pop ul li::before {
-  color: #009ecc !important;
+  color: #00c2ff !important;
 }
 
 #pricing-modal .price-card.pop ul li.dim {
-  color: rgba(246, 240, 230, 0.3) !important;
+  color: rgba(255, 255, 255, 0.3) !important;
 }
 
 #pricing-modal .price-card.pop ul li.dim::before {
-  color: rgba(246, 240, 230, 0.25) !important;
+  color: rgba(255, 255, 255, 0.25) !important;
 }
 
 /* Beautiful Glossy Best Value Badge */
@@ -2278,8 +2278,8 @@ body::-webkit-scrollbar {
 /* Premium Buttons inside Modals */
 #pricing-modal .btn-ghost {
   background: transparent !important;
-  border: 1.5px solid rgba(9, 44, 62, 0.25) !important;
-  color: #092c3e !important;
+  border: 1.5px solid rgba(0, 53, 102, 0.25) !important;
+  color: #003566 !important;
   border-radius: 12px !important;
   font-weight: 700 !important;
   font-size: 0.95rem !important;
@@ -2289,16 +2289,16 @@ body::-webkit-scrollbar {
 }
 
 #pricing-modal .btn-ghost:hover {
-  background: #1A1A1C !important;
-  border-color: #1A1A1C !important;
-  color: #FAF6F0 !important;
+  background: #003566 !important;
+  border-color: #003566 !important;
+  color: #ffffff !important;
   transform: translateY(-2px) !important;
-  box-shadow: 0 8px 20px rgba(26, 26, 28, 0.15) !important;
+  box-shadow: 0 8px 20px rgba(0, 53, 102, 0.15) !important;
 }
 
 #pricing-modal .btn-accent {
-  background: linear-gradient(135deg, #009ecc, #092c3e) !important;
-  color: #1A1A1C !important;
+  background: linear-gradient(135deg, #003566, #009ecc) !important;
+  color: #ffffff !important;
   border: none !important;
   border-radius: 12px !important;
   font-weight: 800 !important;
@@ -2309,8 +2309,8 @@ body::-webkit-scrollbar {
 }
 
 #pricing-modal .btn-accent:hover {
-  background: #FFFFFF !important;
-  color: #092c3e !important;
+  background: linear-gradient(135deg, #009ecc, #00c2ff) !important;
+  color: #ffffff !important;
   transform: translateY(-2px) !important;
   box-shadow: 0 8px 24px rgba(0, 158, 204, 0.5) !important;
 }
@@ -2328,181 +2328,181 @@ body::-webkit-scrollbar {
   }
 }
 
-/* ---- Timeline / How It Works (cream themed) ---- */
+/* ---- Timeline / How It Works (blue-white themed) ---- */
 #how-modal .timeline-step {
-  color: #1A1A1C;
+  color: #0f172a;
 }
 #how-modal .timeline-num {
-  background: rgba(9, 44, 62, 0.1);
-  border-color: rgba(9, 44, 62, 0.25);
-  color: #092c3e;
+  background: rgba(0, 53, 102, 0.08);
+  border-color: rgba(0, 53, 102, 0.2);
+  color: #003566;
 }
 #how-modal .timeline-line {
-  background: rgba(26, 26, 28, 0.08);
+  background: #e2e8f0;
 }
 #how-modal .timeline-badge {
-  background: rgba(9, 44, 62, 0.1);
-  color: #092c3e;
-  border-color: rgba(9, 44, 62, 0.2);
+  background: rgba(0, 53, 102, 0.08);
+  color: #003566;
+  border-color: rgba(0, 53, 102, 0.15);
 }
 #how-modal .timeline-content h3 {
-  color: #1A1A1C;
+  color: #0f172a;
 }
 #how-modal .timeline-content p {
-  color: #3a3832;
+  color: #475569;
 }
 #how-modal .timeline-content p strong {
-  color: #1A1A1C;
+  color: #0f172a;
   font-weight: 700;
 }
 #how-modal .timeline-note {
-  background: rgba(9, 44, 62, 0.06);
-  border-left-color: #092c3e;
-  color: #3a3832;
+  background: rgba(0, 53, 102, 0.04);
+  border-left-color: #003566;
+  color: #475569;
 }
 #how-modal hr {
-  border-top-color: rgba(26, 26, 28, 0.1) !important;
+  border-top-color: #e2e8f0 !important;
 }
 
 /* BVA Cards (Before vs After) */
 #how-modal .bva-card {
-  background: rgba(26, 26, 28, 0.04);
-  border: 1px solid rgba(26, 26, 28, 0.08);
-  color: #1A1A1C;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #0f172a;
 }
 #how-modal .bva-card.before {
-  background: rgba(220, 60, 60, 0.05);
-  border-color: rgba(220, 60, 60, 0.2);
+  background: rgba(239, 68, 68, 0.03);
+  border-color: rgba(239, 68, 68, 0.15);
 }
 #how-modal .bva-card.after {
-  background: rgba(22, 163, 74, 0.05);
-  border-color: rgba(22, 163, 74, 0.2);
+  background: rgba(16, 185, 129, 0.03);
+  border-color: rgba(16, 185, 129, 0.15);
 }
 #how-modal .bva-label {
-  color: #3a3832;
+  color: #475569;
 }
 #how-modal .bva-list li {
-  color: #3a3832;
+  color: #475569;
 }
 #how-modal .bva-stat {
-  background: rgba(220, 60, 60, 0.06);
-  border: 1px solid rgba(220, 60, 60, 0.15);
-  color: #c53030;
+  background: rgba(239, 68, 68, 0.04);
+  border: 1px solid rgba(239, 68, 68, 0.12);
+  color: #dc2626;
 }
 #how-modal .bva-stat span {
-  color: #3a3832;
+  color: #475569;
 }
 #how-modal .bva-stat.glow {
-  background: rgba(22, 163, 74, 0.06);
-  border: 1px solid rgba(22, 163, 74, 0.2);
-  color: #16a34a;
-  box-shadow: 0 0 20px rgba(22, 163, 74, 0.08);
+  background: rgba(16, 185, 129, 0.04);
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  color: #059669;
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.06);
 }
 #how-modal .vs-circle {
-  background: #1A1A1C;
-  color: #F6F0E6;
+  background: #003566;
+  color: #ffffff;
 }
 
 /* Testimonials in How modal */
 #how-modal .testi-card {
-  background: rgba(26, 26, 28, 0.04);
-  border-color: rgba(26, 26, 28, 0.08);
-  color: #3a3832;
+  background: #f8fafc;
+  border-color: #e2e8f0;
+  color: #475569;
 }
 #how-modal .testi-card p {
-  color: #3a3832;
+  color: #475569;
 }
 #how-modal .testi-card strong {
-  color: #1A1A1C;
+  color: #0f172a;
 }
 #how-modal .testi-card small {
-  color: #092c3e;
+  color: #003566;
 }
 #how-modal .testi-card::before {
-  color: rgba(9, 44, 62, 0.15) !important;
+  color: rgba(0, 53, 102, 0.12) !important;
 }
 #how-modal .testi-card::after {
   background: linear-gradient(90deg, transparent, #009ecc, transparent) !important;
 }
 #how-modal .testi-av {
-  background: rgba(9, 44, 62, 0.12);
-  color: #092c3e;
+  background: rgba(0, 53, 102, 0.08);
+  color: #003566;
 }
 
-/* ---- FAQ (cream themed) ---- */
+/* ---- FAQ (blue-white themed) ---- */
 #faq-modal .faq-item {
-  background: rgba(26, 26, 28, 0.04);
-  border: 1px solid rgba(26, 26, 28, 0.08);
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
 }
 #faq-modal .faq-item:hover {
-  border-color: rgba(9, 44, 62, 0.2);
-  box-shadow: 0 4px 20px rgba(9, 44, 62, 0.06);
+  border-color: rgba(0, 158, 204, 0.3);
+  box-shadow: 0 4px 20px rgba(0, 53, 102, 0.04);
 }
 #faq-modal .faq-item.open {
-  border-color: rgba(9, 44, 62, 0.3);
-  box-shadow: 0 8px 30px rgba(9, 44, 62, 0.08);
+  border-color: rgba(0, 158, 204, 0.45);
+  box-shadow: 0 8px 30px rgba(0, 53, 102, 0.06);
 }
 #faq-modal .faq-q {
-  color: #1A1A1C;
+  color: #0f172a;
   background: transparent;
 }
 #faq-modal .faq-q:hover {
-  color: #092c3e;
+  color: #003566;
 }
 #faq-modal .faq-q::after {
-  color: #092c3e;
+  color: #003566;
 }
 #faq-modal .faq-a p {
-  color: #3a3832;
+  color: #475569;
 }
 
-/* ---- Feedback Form (cream themed) ---- */
+/* ---- Feedback Form (blue-white themed) ---- */
 #feedback-modal label {
-  color: #55524c !important;
+  color: #64748b !important;
 }
 #feedback-modal input,
 #feedback-modal textarea {
-  background: rgba(26, 26, 28, 0.04) !important;
-  border-color: rgba(26, 26, 28, 0.12) !important;
-  color: #1A1A1C !important;
+  background: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  color: #0f172a !important;
 }
 #feedback-modal input::placeholder,
 #feedback-modal textarea::placeholder {
-  color: rgba(26, 26, 28, 0.3) !important;
+  color: rgba(15, 23, 42, 0.35) !important;
 }
 #feedback-modal input:focus,
 #feedback-modal textarea:focus {
-  border-color: #092c3e !important;
-  box-shadow: 0 0 0 3px rgba(9, 44, 62, 0.1);
+  border-color: #009ecc !important;
+  box-shadow: 0 0 0 3px rgba(0, 158, 204, 0.1);
 }
 #feedback-modal .btn-accent {
-  background: #1A1A1C;
-  color: #F6F0E6;
+  background: linear-gradient(135deg, #003566, #009ecc);
+  color: #ffffff;
   border: none;
 }
 #feedback-modal .btn-accent:hover {
-  background: #33312c;
+  background: linear-gradient(135deg, #009ecc, #00c2ff);
 }
 
-/* ---- Languages Modal (cream themed) ---- */
+/* ---- Languages Modal (blue-white themed) ---- */
 #languages-modal .lang-pill {
-  background: rgba(26, 26, 28, 0.05);
-  border-color: rgba(26, 26, 28, 0.1);
-  color: #1A1A1C;
+  background: #f8fafc;
+  border-color: #e2e8f0;
+  color: #0f172a;
 }
 #languages-modal .flag-badge {
-  background: rgba(9, 44, 62, 0.12);
-  color: #092c3e;
+  background: rgba(0, 53, 102, 0.08);
+  color: #003566;
 }
 #languages-modal .demo-tab {
-  background: rgba(26, 26, 28, 0.04);
-  border-color: rgba(26, 26, 28, 0.08);
-  color: #1A1A1C;
+  background: #f8fafc;
+  border-color: #e2e8f0;
+  color: #0f172a;
 }
 #languages-modal .demo-tab.active {
-  background: #1A1A1C;
-  color: #F6F0E6;
-  border-color: #1A1A1C;
+  background: #003566;
+  color: #ffffff;
+  border-color: #003566;
 }
 #languages-modal .demo-tab .tab-name {
   color: inherit;
@@ -2512,21 +2512,21 @@ body::-webkit-scrollbar {
   opacity: 0.6;
 }
 #languages-modal .phone-frame {
-  background: #1A1A1C;
-  border-color: rgba(26, 26, 28, 0.3);
+  background: #003566;
+  border-color: rgba(0, 53, 102, 0.3);
 }
 #languages-modal .phone-bar {
-  border-bottom-color: rgba(246, 240, 230, 0.1);
+  border-bottom-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Landing modal scrollbar (cream themed) */
+/* Landing modal scrollbar (blue-white themed) */
 #features-modal .modal-box::-webkit-scrollbar-track,
 #pricing-modal .modal-box::-webkit-scrollbar-track,
 #how-modal .modal-box::-webkit-scrollbar-track,
 #faq-modal .modal-box::-webkit-scrollbar-track,
 #feedback-modal .modal-box::-webkit-scrollbar-track,
 #languages-modal .modal-box::-webkit-scrollbar-track {
-  background: rgba(26, 26, 28, 0.03);
+  background: rgba(0, 53, 102, 0.03);
 }
 #features-modal .modal-box::-webkit-scrollbar-thumb,
 #pricing-modal .modal-box::-webkit-scrollbar-thumb,
@@ -2534,7 +2534,7 @@ body::-webkit-scrollbar {
 #faq-modal .modal-box::-webkit-scrollbar-thumb,
 #feedback-modal .modal-box::-webkit-scrollbar-thumb,
 #languages-modal .modal-box::-webkit-scrollbar-thumb {
-  background: rgba(26, 26, 28, 0.12);
+  background: rgba(0, 53, 102, 0.12);
   border-radius: 10px;
 }
 
