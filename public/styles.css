@@ -6,7 +6,7 @@ body{font-family:var(--f);background:#0A0A0B;color:var(--t);line-height:1.7;over
 #page-login,#page-register{background:#0A0A0B}
 #page-dashboard{background:#111111}
 html{scroll-behavior:smooth}.hidden{display:none!important}.page{min-height:100vh;position:relative}.page:not(.hidden){animation:pageFadeIn .4s ease forwards}
-@keyframes pageFadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pageFadeIn{from{opacity:0}to{opacity:1}}
 a{color:var(--p2);text-decoration:none}
 #particles{display:none}
 .btn-accent{background:var(--p);color:#fff;border:none;padding:12px 28px;border-radius:8px;font-weight:600;cursor:pointer;font-size:.85rem;transition:all .3s;font-family:var(--f);box-shadow:0 4px 20px rgba(0, 158, 204,.25)}
@@ -6723,8 +6723,7 @@ a:not(.nav-item):not(.footer-col a):not(.tab):not(.mnav-item) {
 
 /* 1. Global Page Background & Framework */
 body, #page-landing {
-  background: linear-gradient(135deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
-  background-attachment: fixed !important;
+  background: #003566 !important;
 }
 
 #page-landing::before {
@@ -6733,8 +6732,7 @@ body, #page-landing {
 
 /* Tone down the background blobs in light mode */
 .morphing-bg-wrapper {
-  background: linear-gradient(135deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
-  background-attachment: fixed !important;
+  background: #003566 !important;
 }
 .morph-blob {
   mix-blend-mode: multiply !important;
@@ -6744,8 +6742,7 @@ body, #page-landing {
 
 /* 2. Cutouts & Concave Corner Fillets */
 .cutout-top-left, .cutout-top-right, .cutout-bottom-right {
-  background: linear-gradient(135deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
-  background-attachment: fixed !important;
+  background: #003566 !important;
 }
 
 .fillet-tl-bottom {
@@ -6775,7 +6772,7 @@ body, #page-landing {
   top: -1px !important;
   width: 42px !important;
   height: 42px !important;
-  background: radial-gradient(circle at 1px 41px, transparent 39.5px, #009ecc 40.5px) !important;
+  background: radial-gradient(circle at 1px 41px, transparent 39.5px, #003566 40.5px) !important;
   -webkit-mask: none !important;
   mask: none !important;
 }
@@ -6786,7 +6783,7 @@ body, #page-landing {
   margin-top: -1px !important;
   width: 42px !important;
   height: 42px !important;
-  background: radial-gradient(circle at 1px 41px, transparent 39.5px, #009ecc 40.5px) !important;
+  background: radial-gradient(circle at 1px 41px, transparent 39.5px, #003566 40.5px) !important;
   -webkit-mask: none !important;
   mask: none !important;
 }
@@ -6796,7 +6793,7 @@ body, #page-landing {
   bottom: -1px !important;
   width: 42px !important;
   height: 42px !important;
-  background: radial-gradient(circle at 1px 1px, transparent 39.5px, #00c2ff 40.5px) !important;
+  background: radial-gradient(circle at 1px 1px, transparent 39.5px, #003566 40.5px) !important;
   -webkit-mask: none !important;
   mask: none !important;
 }
@@ -6807,7 +6804,7 @@ body, #page-landing {
   margin-bottom: -1px !important;
   width: 42px !important;
   height: 42px !important;
-  background: radial-gradient(circle at 1px 1px, transparent 39.5px, #00c2ff 40.5px) !important;
+  background: radial-gradient(circle at 1px 1px, transparent 39.5px, #003566 40.5px) !important;
   -webkit-mask: none !important;
   mask: none !important;
 }
@@ -6985,7 +6982,7 @@ body, #page-landing {
 
 /* 9. Auth Screens (Login / Register Modal Pages) */
 #page-login, #page-register {
-  background: linear-gradient(135deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
+  background: #003566 !important;
 }
 
 .modal-page .modal-bg {
@@ -7212,7 +7209,7 @@ body, #page-landing {
    ========================================================================== */
 
 #page-dashboard {
-  background: linear-gradient(135deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
+  background: #003566 !important;
 }
 
 #page-dashboard .sidebar {
@@ -7220,7 +7217,7 @@ body, #page-landing {
 }
 
 #page-dashboard .dash-main {
-  background: linear-gradient(135deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
+  background: #003566 !important;
   color: #0f172a !important;
   box-shadow: 0 24px 64px rgba(0, 53, 102, 0.05) !important;
 }
