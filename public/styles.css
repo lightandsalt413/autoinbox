@@ -5293,6 +5293,57 @@ body::-webkit-scrollbar {
   padding-left: 20px !important;
 }
 
+/* ── Settings Logout Card ── */
+.settings-logout-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(26, 26, 28, 0.06);
+  border-radius: 16px;
+  padding: 16px 20px;
+  margin-top: 24px;
+}
+.settings-logout-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #1A1A1C;
+}
+.settings-logout-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #4CAF50;
+  box-shadow: 0 0 6px rgba(76, 175, 80, 0.4);
+}
+.btn-logout-full {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(220, 53, 69, 0.08);
+  color: #dc3545;
+  border: 1px solid rgba(220, 53, 69, 0.2);
+  border-radius: 10px;
+  padding: 8px 18px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  font-family: var(--f);
+}
+.btn-logout-full:hover {
+  background: #dc3545;
+  color: #fff;
+  border-color: #dc3545;
+  box-shadow: 0 4px 16px rgba(220, 53, 69, 0.3);
+  transform: translateY(-1px);
+}
+
 /* ── Mobile Bottom Nav Items ── */
 .mnav-item {
   transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) !important;

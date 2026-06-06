@@ -1308,6 +1308,11 @@ document.getElementById('logout-modal')?.querySelector('.modal-bg')?.addEventLis
   document.getElementById('logout-modal')?.classList.add('hidden');
 });
 
+// Settings page logout button (same as sidebar logout)
+document.getElementById('btn-logout-settings')?.addEventListener('click', () => {
+  document.getElementById('logout-modal')?.classList.remove('hidden');
+});
+
 // ===== Onboarding =====
 let obStep = 1;
 
@@ -1431,11 +1436,13 @@ async function enterDashboard() {
   loadEmailStatus();
   loadSidebarPlan();
   checkAdmin();
-  // Set user name in sidebar
+  // Set user name in sidebar + settings logout card
   const userName = localStorage.getItem('autoinbox_name');
   if (userName) {
     const userEl = document.getElementById('sidebar-user');
     if (userEl) userEl.textContent = userName;
+    const settingsUserEl = document.getElementById('settings-user-display');
+    if (settingsUserEl) settingsUserEl.textContent = userName;
   }
   if (refreshTimer) clearInterval(refreshTimer);
   refreshTimer = setInterval(() => { loadMessages(); loadStats(); loadEmailStatus(); }, 10000);
