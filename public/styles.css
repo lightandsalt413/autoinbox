@@ -6749,22 +6749,40 @@ body, #page-landing {
 }
 
 .fillet-tl-bottom {
-  background: radial-gradient(circle at 41px 41px, transparent 39.5px, #006d9e 40.5px) !important;
+  background: linear-gradient(135deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
+  background-attachment: fixed !important;
+  -webkit-mask: radial-gradient(circle at 41px 41px, transparent 39.5px, black 40.5px);
+  mask: radial-gradient(circle at 41px 41px, transparent 39.5px, black 40.5px);
 }
 .fillet-tl-right {
-  background: radial-gradient(circle at 41px 41px, transparent 39.5px, #006d9e 40.5px) !important;
+  background: linear-gradient(135deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
+  background-attachment: fixed !important;
+  -webkit-mask: radial-gradient(circle at 41px 41px, transparent 39.5px, black 40.5px);
+  mask: radial-gradient(circle at 41px 41px, transparent 39.5px, black 40.5px);
 }
 .fillet-tr-left {
-  background: radial-gradient(circle at 1px 41px, transparent 39.5px, #00a8d6 40.5px) !important;
+  background: linear-gradient(135deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
+  background-attachment: fixed !important;
+  -webkit-mask: radial-gradient(circle at 1px 41px, transparent 39.5px, black 40.5px);
+  mask: radial-gradient(circle at 1px 41px, transparent 39.5px, black 40.5px);
 }
 .fillet-tr-bottom {
-  background: radial-gradient(circle at 1px 41px, transparent 39.5px, #00a8d6 40.5px) !important;
+  background: linear-gradient(135deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
+  background-attachment: fixed !important;
+  -webkit-mask: radial-gradient(circle at 1px 41px, transparent 39.5px, black 40.5px);
+  mask: radial-gradient(circle at 1px 41px, transparent 39.5px, black 40.5px);
 }
 .fillet-br-left {
-  background: radial-gradient(circle at 1px 1px, transparent 39.5px, #00b8e8 40.5px) !important;
+  background: linear-gradient(135deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
+  background-attachment: fixed !important;
+  -webkit-mask: radial-gradient(circle at 1px 1px, transparent 39.5px, black 40.5px);
+  mask: radial-gradient(circle at 1px 1px, transparent 39.5px, black 40.5px);
 }
 .fillet-br-top {
-  background: radial-gradient(circle at 1px 1px, transparent 39.5px, #00b8e8 40.5px) !important;
+  background: linear-gradient(135deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
+  background-attachment: fixed !important;
+  -webkit-mask: radial-gradient(circle at 1px 1px, transparent 39.5px, black 40.5px);
+  mask: radial-gradient(circle at 1px 1px, transparent 39.5px, black 40.5px);
 }
 
 /* 3. Outer Cutout Controls & Logo */
