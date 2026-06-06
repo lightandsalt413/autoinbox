@@ -66,7 +66,9 @@
       var fillet = document.querySelector('.fillet-tr-left');
       var canvas = document.querySelector('.landing-canvas');
       if (cutout && cutout.offsetParent) {
-        var w = cutout.offsetWidth;
+        cutout.style.removeProperty('width');
+        var w = Math.round(cutout.getBoundingClientRect().width);
+        cutout.style.setProperty('width', w + 'px', 'important');
         if (fillet) fillet.style.right = (w - 2) + 'px';
         if (canvas) canvas.style.setProperty('--cutout-right-w', w + 'px');
       }

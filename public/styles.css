@@ -4041,7 +4041,7 @@ body::-webkit-scrollbar {
     min-width: 280px !important;
   }
   .fillet-tr-left {
-    right: 298px !important;
+    right: 298px;
     top: -2px;
     width: 42px;
     height: 42px;
@@ -7512,20 +7512,6 @@ body, #page-landing {
 .lang-switcher-option.active {
   background: rgba(0, 158, 204, 0.1) !important;
   color: #003566 !important;
-}
-
-/* Remove curves from top-right and bottom-right cutouts (user request) */
-.cutout-top-right {
-  border-bottom-left-radius: 0 !important;
-}
-.cutout-bottom-right {
-  border-top-left-radius: 0 !important;
-}
-.fillet-tr-left,
-.fillet-tr-bottom,
-.fillet-br-left,
-.fillet-br-top {
-  display: none !important;
 }
 
 
