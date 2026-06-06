@@ -9,9 +9,22 @@ let recaptchaReady = false;
 const recaptchaWidgets = {};
 
 function renderRecaptchaWidget(containerId) {
-  if (!recaptchaReady || !window.grecaptcha) return;
   const el = document.getElementById(containerId);
   if (!el || el.dataset.rendered === 'true') return;
+  if (!recaptchaReady || !window.grecaptcha || !window.grecaptcha.render) {
+    // Script not ready yet — retry every 500ms up to 10 times
+    let retries = 0;
+    const interval = setInterval(() => {
+      retries++;
+      if (recaptchaReady && window.grecaptcha && window.grecaptcha.render) {
+        clearInterval(interval);
+        renderRecaptchaWidget(containerId); // re-call with script ready
+      } else if (retries >= 10) {
+        clearInterval(interval);
+      }
+    }, 500);
+    return;
+  }
   try {
     const widgetId = grecaptcha.render(containerId, { sitekey: RECAPTCHA_SITE_KEY });
     el.dataset.widgetId = widgetId;
@@ -38,6 +51,19 @@ window.onRecaptchaLoad = function() {
   recaptchaReady = true;
   // Render inline feedback (always visible on landing)
   renderRecaptchaWidget('recaptcha-feedback-inline');
+  // Render any currently visible modal widgets
+  const loginPage = document.getElementById('page-login');
+  if (loginPage && !loginPage.classList.contains('hidden')) {
+    renderRecaptchaWidget('recaptcha-login');
+  }
+  const registerPage = document.getElementById('page-register');
+  if (registerPage && !registerPage.classList.contains('hidden')) {
+    renderRecaptchaWidget('recaptcha-register');
+  }
+  const feedbackModal = document.getElementById('feedback-modal');
+  if (feedbackModal && !feedbackModal.classList.contains('hidden')) {
+    renderRecaptchaWidget('recaptcha-feedback');
+  }
 };
 
 // ===== Profanity Filter (Client-Side — 12 Languages) =====
