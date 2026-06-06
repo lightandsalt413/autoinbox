@@ -5947,3 +5947,185 @@ a:not(.nav-item):not(.footer-col a):not(.tab):not(.mnav-item) {
   font-size: 0.9rem;
   line-height: 1;
 }
+
+/* Mobile Phone Mockups Optimization & Footer Safe Area Spacing */
+@media (max-width: 480px) {
+  /* Footer Spacing & Layout */
+  .footer-simple {
+    font-size: 0.68rem !important;
+    padding: 16px 16px calc(16px + env(safe-area-inset-bottom, 16px)) !important;
+    margin-top: 24px !important;
+    border-top: 1px solid rgba(26, 26, 28, 0.04) !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    justify-content: center !important;
+    gap: 8px 12px !important;
+    flex-wrap: wrap !important;
+    white-space: normal !important;
+    line-height: 1.5 !important;
+  }
+  
+  /* Mockup Window Header adjustments */
+  .mockup-header {
+    padding: 10px 12px !important;
+    gap: 8px !important;
+  }
+  
+  .mockup-dots span {
+    width: 7px !important;
+    height: 7px !important;
+  }
+  
+  .mockup-title {
+    font-size: 0.72rem !important;
+    letter-spacing: 0.5px !important;
+  }
+  
+  .mockup-badge {
+    font-size: 0.58rem !important;
+    padding: 2px 6px !important;
+  }
+  
+  /* Slide 1: Inbox Mockup */
+  .mockup-emails {
+    padding: 6px 8px !important;
+  }
+  .mockup-email {
+    padding: 8px 10px !important;
+    gap: 8px !important;
+  }
+  .mockup-avatar {
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 0.52rem !important;
+  }
+  .mockup-email-name {
+    font-size: 0.65rem !important;
+  }
+  .mockup-email-subject {
+    font-size: 0.58rem !important;
+  }
+  .mockup-ai-bar {
+    padding: 8px 12px !important;
+    gap: 6px !important;
+  }
+  .mockup-ai-icon {
+    font-size: 0.75rem !important;
+  }
+  .mockup-ai-text {
+    font-size: 0.62rem !important;
+  }
+  .mockup-ai-dots span {
+    width: 4px !important;
+    height: 4px !important;
+  }
+  
+  /* Slide 2: Style Cloner Mockup */
+  .voice-mockup-body {
+    padding: 12px 14px !important;
+    gap: 8px !important;
+  }
+  .voice-sample-box {
+    padding: 8px 10px !important;
+    font-size: 0.62rem !important;
+    min-height: 60px !important;
+  }
+  .voice-analysis-panel {
+    padding: 8px !important;
+    gap: 6px !important;
+  }
+  .analysis-metric {
+    font-size: 0.6rem !important;
+  }
+  .metric-bar-wrap {
+    width: 80px !important;
+  }
+  .voice-match-badge {
+    font-size: 0.6rem !important;
+    padding: 2px 8px !important;
+  }
+  
+  /* Slide 3: Auto-Translator Mockup */
+  .lang-mockup-body {
+    padding: 12px 14px !important;
+    gap: 8px !important;
+  }
+  .lang-card {
+    padding: 8px 10px !important;
+  }
+  .lang-sender {
+    font-size: 0.65rem !important;
+  }
+  .lang-sender .lang-avatar {
+    width: 20px !important;
+    height: 20px !important;
+    font-size: 0.5rem !important;
+  }
+  .lang-flag {
+    font-size: 0.58rem !important;
+    padding: 1px 4px !important;
+  }
+  .lang-message {
+    font-size: 0.62rem !important;
+  }
+  .lang-translate-badge {
+    font-size: 0.52rem !important;
+    padding: 3px 8px !important;
+  }
+  .lang-chips-container {
+    gap: 4px !important;
+    margin-top: 2px !important;
+  }
+  .lang-chip {
+    font-size: 0.55rem !important;
+    padding: 2px 6px !important;
+  }
+  .lang-card.reply {
+    transform: translateY(6px);
+  }
+  .carousel-slide.active .lang-card.reply {
+    transform: translateY(0);
+  }
+  
+  /* Slide 4: Real-time Stats Mockup */
+  .stats-mockup-body {
+    padding: 12px 14px !important;
+    gap: 8px !important;
+  }
+  .stats-mockup-grid {
+    gap: 8px !important;
+  }
+  .stat-mockup-card {
+    padding: 8px 10px !important;
+  }
+  .stat-mockup-val {
+    font-size: 1.25rem !important;
+  }
+  .stat-mockup-lbl {
+    font-size: 0.58rem !important;
+    margin-top: 2px !important;
+  }
+  .stats-toggle-row {
+    padding: 8px 12px !important;
+  }
+  .toggle-title {
+    font-size: 0.65rem !important;
+  }
+  .toggle-subtitle {
+    font-size: 0.55rem !important;
+  }
+  .mockup-switch {
+    width: 28px !important;
+    height: 16px !important;
+  }
+  .mockup-switch::after {
+    width: 12px !important;
+    height: 12px !important;
+  }
+  .stats-sync-status {
+    font-size: 0.58rem !important;
+    gap: 6px !important;
+  }
+}
+
