@@ -3,18 +3,6 @@ if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
 }
 
-// ===== reCAPTCHA v3 Helper =====
-const RECAPTCHA_SITE_KEY = '6Lee4Q8tAAAAAGbVxUjhaAZS8FTz_HD9aTsa1QYi';
-async function getRecaptchaToken(action) {
-  try {
-    if (typeof grecaptcha === 'undefined') return null;
-    return await grecaptcha.execute(RECAPTCHA_SITE_KEY, { action });
-  } catch (e) {
-    console.warn('reCAPTCHA failed:', e);
-    return null;
-  }
-}
-
 // ===== Profanity Filter (Client-Side — 12 Languages) =====
 const _profanityWords = [
   // English
@@ -894,10 +882,9 @@ document.getElementById('form-login')?.addEventListener('submit', async (e) => {
   const submitBtn = e.target.querySelector('button[type="submit"]');
   btnLoading(submitBtn, true);
   try {
-    const recaptchaToken = await getRecaptchaToken('login');
     const data = await api('/auth/login', {
       method: 'POST',
-      body: JSON.stringify({ email: document.getElementById('login-email').value, password: document.getElementById('login-pass').value, recaptchaToken })
+      body: JSON.stringify({ email: document.getElementById('login-email').value, password: document.getElementById('login-pass').value })
     });
     token = data.token;
     const rememberMe = document.getElementById('remember-me')?.checked;
@@ -1304,15 +1291,13 @@ document.getElementById('form-register')?.addEventListener('submit', async (e) =
   const submitBtn = e.target.querySelector('button[type="submit"]');
   btnLoading(submitBtn, true);
   try {
-    const recaptchaToken = await getRecaptchaToken('register');
     const data = await api('/auth/register', {
       method: 'POST',
       body: JSON.stringify({
         name: [fname, mname, lname, suffix].filter(Boolean).join(' '),
         email: emailVal,
         phone: phone || null,
-        password: pass,
-        recaptchaToken
+        password: pass
       })
     });
     token = data.token;
@@ -2674,10 +2659,9 @@ document.getElementById('form-feedback')?.addEventListener('submit', async (e) =
       btn.textContent = 'Sending...';
     }
 
-    const recaptchaToken = await getRecaptchaToken('feedback');
     await api('/feedback', {
       method: 'POST',
-      body: JSON.stringify({ name, email, message, recaptchaToken })
+      body: JSON.stringify({ name, email, message })
     });
     
     document.getElementById('feedback-name').value = '';
@@ -3210,10 +3194,9 @@ document.getElementById('form-feedback-inline')?.addEventListener('submit', asyn
       btn.textContent = 'Sending...';
     }
 
-    const recaptchaToken = await getRecaptchaToken('feedback');
     await api('/feedback', {
       method: 'POST',
-      body: JSON.stringify({ name, email, message, recaptchaToken })
+      body: JSON.stringify({ name, email, message })
     });
     
     document.getElementById('feedback-name-inline').value = '';

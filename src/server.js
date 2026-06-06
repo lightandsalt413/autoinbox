@@ -15,25 +15,6 @@ const nodemailer = require('nodemailer');
 // HTML escape helper — prevents XSS in email templates
 function escHtml(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
-// reCAPTCHA v3 verification helper
-const RECAPTCHA_SECRET = process.env.RECAPTCHA_SECRET_KEY || '';
-async function verifyRecaptcha(token, action) {
-  if (!RECAPTCHA_SECRET) return { success: true, score: 1.0 }; // Skip if not configured
-  if (!token) return { success: false, score: 0 };
-  try {
-    const res = await fetch('https://www.google.com/recaptcha/api/siteverify', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: `secret=${RECAPTCHA_SECRET}&response=${token}`
-    });
-    const data = await res.json();
-    return { success: data.success && data.score >= 0.3, score: data.score || 0, action: data.action };
-  } catch (e) {
-    console.error('reCAPTCHA verification error:', e);
-    return { success: true, score: 1.0 }; // Fail open to not block users
-  }
-}
-
 function normalizePhone(phone) {
   if (!phone) return null;
   let cleaned = phone.trim().replace(/[^\d+]/g, '');
@@ -108,9 +89,7 @@ app.get('/health', (req, res) => {
 // --- Auth Routes (public) ---
 app.post('/api/auth/register', authLimiter, profanityMiddleware, async (req, res) => {
   try {
-    const { email, password, name, phone, recaptchaToken } = req.body;
-    const captcha = await verifyRecaptcha(recaptchaToken, 'register');
-    if (!captcha.success) return res.status(403).json({ error: 'Security verification failed. Please try again.' });
+    const { email, password, name, phone } = req.body;
     const result = await register(email, password, name, phone);
     res.json({ success: true, token: result.token, userId: result.userId });
   } catch (e) { res.status(400).json({ error: e.message }); }
@@ -118,9 +97,7 @@ app.post('/api/auth/register', authLimiter, profanityMiddleware, async (req, res
 
 app.post('/api/auth/login', authLimiter, async (req, res) => {
   try {
-    const { email, password, recaptchaToken } = req.body;
-    const captcha = await verifyRecaptcha(recaptchaToken, 'login');
-    if (!captcha.success) return res.status(403).json({ error: 'Security verification failed. Please try again.' });
+    const { email, password } = req.body;
     const result = await login(email, password);
     res.json({ success: true, token: result.token, name: result.name });
   } catch (e) { res.status(401).json({ error: e.message }); }
@@ -330,9 +307,7 @@ app.post('/api/webhook/paymongo', async (req, res) => {
 // --- Public Feedback Route ---
 app.post('/api/feedback', profanityMiddleware, async (req, res) => {
   try {
-    const { name, email, message, recaptchaToken } = req.body;
-    const captcha = await verifyRecaptcha(recaptchaToken, 'feedback');
-    if (!captcha.success) return res.status(403).json({ error: 'Security verification failed. Please try again.' });
+    const { name, email, message } = req.body;
     if (!email || !message) {
       return res.status(400).json({ error: 'Email and message are required.' });
     }

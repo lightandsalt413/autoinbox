@@ -7566,8 +7566,3 @@ body, #page-landing {
 .feat-icon {
   display: none !important;
 }
-
-/* Hide reCAPTCHA v3 badge (attribution in footer/terms) */
-.grecaptcha-badge {
-  visibility: hidden !important;
-}
