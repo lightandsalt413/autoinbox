@@ -6997,3 +6997,162 @@ body, #page-landing {
   border-color: #009ecc !important;
 }
 
+/* 10. Carousel Mockup Simulator Elements (Light Mode) */
+.mockup-window {
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 53, 102, 0.08) !important;
+  box-shadow: 
+    0 24px 60px rgba(0, 53, 102, 0.05),
+    0 0 0 1px rgba(0, 158, 204, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+.mockup-header {
+  border-bottom: 1px solid rgba(0, 53, 102, 0.05) !important;
+}
+.mockup-title {
+  color: #0f172a !important;
+}
+.mockup-badge {
+  color: #003566 !important;
+  background: rgba(0, 53, 102, 0.05) !important;
+  border: 1px solid rgba(0, 53, 102, 0.15) !important;
+}
+.mockup-badge.has-new {
+  color: #c53030 !important;
+  background: rgba(220, 60, 60, 0.08) !important;
+  border-color: rgba(220, 60, 60, 0.2) !important;
+}
+.mockup-email {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+}
+.mockup-email-name {
+  color: #0f172a !important;
+}
+.mockup-email-subject {
+  color: #475569 !important;
+}
+.mockup-email-time {
+  color: #64748b !important;
+}
+.mockup-email.replying {
+  background: rgba(0, 158, 204, 0.05) !important;
+  border-color: rgba(0, 158, 204, 0.2) !important;
+  box-shadow: 0 0 12px rgba(0, 158, 204, 0.08) !important;
+}
+.mockup-email.replied {
+  background: rgba(22, 163, 74, 0.05) !important;
+  border-color: rgba(22, 163, 74, 0.15) !important;
+}
+.mockup-ai-bar {
+  background: linear-gradient(90deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
+  color: #ffffff !important;
+}
+.mockup-ai-dots span {
+  background: #ffffff !important;
+}
+
+/* Status Pills (Light Mode) */
+.status-pill.active-pill {
+  background: #ffffff !important;
+  color: #009ecc !important;
+  border: 1px solid rgba(0, 158, 204, 0.3) !important;
+  box-shadow: 0 4px 12px rgba(0, 53, 102, 0.05) !important;
+}
+.status-pill.rate-pill {
+  background: #ffffff !important;
+  color: #003566 !important;
+  border: 1px solid rgba(0, 53, 102, 0.15) !important;
+  box-shadow: 0 4px 12px rgba(0, 53, 102, 0.05) !important;
+}
+
+/* Slide 2: Style Cloner Voice Elements */
+.voice-sample-box {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #0f172a !important;
+}
+.voice-analysis-panel {
+  background: #f8fafc !important;
+  border: 1px dashed #e2e8f0 !important;
+}
+.analysis-metric {
+  color: #475569 !important;
+}
+.metric-bar-wrap {
+  background: #e2e8f0 !important;
+}
+.voice-match-badge {
+  background: rgba(0, 158, 204, 0.08) !important;
+  border: 1px solid rgba(0, 158, 204, 0.25) !important;
+  color: #003566 !important;
+}
+
+/* Slide 3: Translator Elements */
+.lang-card {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+}
+.lang-sender {
+  color: #0f172a !important;
+}
+.lang-sender .lang-avatar {
+  background: linear-gradient(135deg, rgba(0, 53, 102, 0.1) 0%, rgba(0, 53, 102, 0.05) 100%) !important;
+  border: 1px solid rgba(0, 53, 102, 0.15) !important;
+  color: #003566 !important;
+}
+.lang-message {
+  color: #475569 !important;
+}
+.lang-flag {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+/* Slide 4: Stats Slide Elements */
+.stat-mockup-card {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+}
+.stat-mockup-card:hover {
+  border-color: rgba(0, 158, 204, 0.3) !important;
+  box-shadow: 0 10px 24px rgba(0, 158, 204, 0.08) !important;
+}
+.stat-mockup-lbl {
+  color: #64748b !important;
+}
+.stats-toggle-row {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+}
+.toggle-title {
+  color: #0f172a !important;
+}
+.toggle-subtitle {
+  color: #64748b !important;
+}
+.mockup-switch::after {
+  background: #ffffff !important;
+}
+
+/* Carousel Control Elements */
+.carousel-arrow {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #0f172a !important;
+  box-shadow: 0 4px 15px rgba(0, 53, 102, 0.08) !important;
+}
+.carousel-arrow:hover {
+  background: #003566 !important;
+  color: #ffffff !important;
+  border-color: #003566 !important;
+}
+.carousel-dot {
+  background: rgba(0, 53, 102, 0.15) !important;
+}
+.carousel-dot.active {
+  background: #009ecc !important;
+  box-shadow: 0 0 8px rgba(0, 158, 204, 0.5) !important;
+}
+
+
