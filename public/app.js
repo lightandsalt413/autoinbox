@@ -3347,7 +3347,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     draw() {
-      ctx.fillStyle = 'rgba(0, 158, 204, 0.4)';
+      ctx.fillStyle = 'rgba(0, 158, 204, 0.25)';
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
       ctx.closePath();
@@ -3394,7 +3394,7 @@ document.addEventListener('DOMContentLoaded', () => {
           
           if (distance < 120) {
             let alpha = (120 - distance) / 120 * 0.15;
-            ctx.strokeStyle = `rgba(0, 158, 204, ${alpha})`;
+            ctx.strokeStyle = `rgba(0, 158, 204, ${alpha * 1.5})`;
             ctx.lineWidth = 0.8;
             ctx.beginPath();
             ctx.moveTo(particles[a].x, particles[a].y);

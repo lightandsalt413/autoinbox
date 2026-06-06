@@ -6715,3 +6715,285 @@ a:not(.nav-item):not(.footer-col a):not(.tab):not(.mnav-item) {
 .btn-accent:hover::before, .canvas-contact-btn:hover::before {
   left: 100%;
 }
+
+/* ==========================================================================
+   PREMIUM LIGHT MODE PASTEL BLUE REDESIGN (USER MOCKUP)
+   ========================================================================== */
+
+/* 1. Global Page Background & Framework */
+body, #page-landing {
+  background: #daf0f8 !important;
+}
+
+#page-landing::before {
+  background: transparent !important; /* Remove dark mask overlay */
+}
+
+/* Tone down the background blobs in light mode */
+.morphing-bg-wrapper {
+  background: #daf0f8 !important;
+}
+.morph-blob {
+  mix-blend-mode: multiply !important;
+  opacity: 0.08 !important;
+  background: radial-gradient(circle, #009ecc 0%, rgba(0, 158, 204, 0) 70%) !important;
+}
+
+/* 2. Cutouts & Concave Corner Fillets */
+.cutout-top-left, .cutout-top-right, .cutout-bottom-right {
+  background-color: #daf0f8 !important;
+}
+
+.fillet-tl-bottom {
+  background: radial-gradient(circle at 41px 41px, transparent 39.5px, #daf0f8 40.5px) !important;
+}
+.fillet-tl-right {
+  background: radial-gradient(circle at 41px 41px, transparent 39.5px, #daf0f8 40.5px) !important;
+}
+.fillet-tr-left {
+  background: radial-gradient(circle at 1px 41px, transparent 39.5px, #daf0f8 40.5px) !important;
+}
+.fillet-tr-bottom {
+  background: radial-gradient(circle at 1px 41px, transparent 39.5px, #daf0f8 40.5px) !important;
+}
+.fillet-br-left {
+  background: radial-gradient(circle at 1px 1px, transparent 39.5px, #daf0f8 40.5px) !important;
+}
+.fillet-br-top {
+  background: radial-gradient(circle at 1px 1px, transparent 39.5px, #daf0f8 40.5px) !important;
+}
+
+/* 3. Outer Cutout Controls & Logo */
+.outer-logo .logo-text {
+  color: #003566 !important;
+}
+.outer-login-btn {
+  background: rgba(0, 53, 102, 0.04) !important;
+  color: #003566 !important;
+  border: 1.5px solid rgba(0, 53, 102, 0.3) !important;
+}
+.outer-login-btn:hover {
+  background: #003566 !important;
+  color: #ffffff !important;
+  border-color: #003566 !important;
+}
+.outer-connect-btn {
+  background: linear-gradient(90deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 4px 15px rgba(0, 158, 204, 0.2) !important;
+}
+.outer-connect-btn:hover {
+  box-shadow: 0 6px 20px rgba(0, 158, 204, 0.35) !important;
+  transform: translateY(-1px) !important;
+}
+.outer-connect-btn .connect-arrow {
+  background-color: #ffffff !important;
+  color: #003566 !important;
+}
+.outer-connect-btn:hover .connect-arrow {
+  background-color: #003566 !important;
+  color: #ffffff !important;
+}
+
+/* 4. Canvas Component & Color Schemes */
+.landing-canvas {
+  background-color: #ffffff !important;
+  color: #1e293b !important;
+  box-shadow: 0 24px 64px rgba(0, 53, 102, 0.08) !important;
+}
+
+/* Inherit variable overrides inside the canvas */
+.landing-canvas {
+  --bg: #ffffff;
+  --bg2: #f8fafc;
+  --s: #f1f5f9;
+  --s2: #e2e8f0;
+  --t: #0f172a;
+  --t2: #475569;
+  --t3: #64748b;
+}
+
+/* Override hardcoded dark properties inside canvas */
+.canvas-title {
+  color: #0f172a !important;
+}
+.canvas-desc {
+  color: #475569 !important;
+}
+.landing-section .section-h {
+  color: #0f172a !important;
+}
+.landing-section .section-p {
+  color: #475569 !important;
+}
+.landing-section .timeline-content h3 {
+  color: #0f172a !important;
+}
+
+/* 5. Header Navigation Pill (Light Mode) */
+.nav-pill {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border: 1.5px solid rgba(0, 53, 102, 0.12) !important;
+  box-shadow: 
+    0 10px 30px rgba(0, 53, 102, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+.nav-pill-item {
+  color: #334155 !important;
+}
+.nav-pill-item:hover {
+  color: #009ecc !important;
+  background: rgba(0, 158, 204, 0.08) !important;
+}
+
+/* 6. Cards and Bento Grid Elements */
+.feat-card, .step-card, .price-card, .testi-card, .bva-card, .bva-stat, .faq-item {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 10px 30px rgba(0, 53, 102, 0.03) !important;
+}
+.feat-card:hover, .step-card:hover, .price-card:hover {
+  border-color: rgba(0, 158, 204, 0.45) !important;
+  background: #ffffff !important;
+  box-shadow: 0 16px 40px rgba(0, 158, 204, 0.08) !important;
+}
+.feat-card h4, .step-card h4, .price-card h4, .price-val {
+  color: #0f172a !important;
+}
+.feat-card p, .step-card p, .price-card ul li, .testi-card p {
+  color: #475569 !important;
+}
+.price-card ul li {
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+.price-card.pop {
+  border-color: #009ecc !important;
+  background: #ffffff !important;
+  box-shadow: 0 20px 48px rgba(0, 158, 204, 0.08) !important;
+}
+.bento-large {
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 158, 204, 0.25) !important;
+}
+
+/* 7. CTA Buttons in Canvas */
+.btn-accent, .canvas-contact-btn {
+  background: linear-gradient(90deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 15px rgba(0, 158, 204, 0.2) !important;
+  border: none !important;
+}
+.btn-accent:hover, .canvas-contact-btn:hover {
+  box-shadow: 0 6px 22px rgba(0, 158, 204, 0.35) !important;
+  transform: translateY(-2px) !important;
+}
+.btn-ghost, .canvas-download-btn {
+  background: transparent !important;
+  color: #003566 !important;
+  border: 1.5px solid rgba(0, 53, 102, 0.3) !important;
+}
+.btn-ghost:hover, .canvas-download-btn:hover {
+  background: rgba(0, 53, 102, 0.04) !important;
+  color: #003566 !important;
+  border-color: #003566 !important;
+}
+.cta-download-icon {
+  background: rgba(0, 158, 204, 0.1) !important;
+}
+
+/* 8. Forms & Inputs Inside Landing Canvas */
+.landing-canvas input, .landing-canvas select, .landing-canvas textarea {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #0f172a !important;
+}
+.landing-canvas input:focus, .landing-canvas select:focus, .landing-canvas textarea:focus {
+  background: #ffffff !important;
+  border-color: #009ecc !important;
+}
+
+/* Before / After comparisons */
+.landing-section .bva-card.before {
+  border-color: rgba(239, 68, 68, 0.15) !important;
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.02), rgba(239, 68, 68, 0.01)), #ffffff !important;
+}
+.landing-section .bva-card.after {
+  border-color: rgba(16, 185, 129, 0.2) !important;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.03), rgba(16, 185, 129, 0.01)), #ffffff !important;
+}
+
+/* FAQ accordion styling */
+.landing-section .faq-item {
+  border-bottom: 1px solid #e2e8f0 !important;
+}
+.landing-section .faq-q {
+  color: #0f172a !important;
+}
+
+/* 9. Auth Screens (Login / Register Modal Pages) */
+#page-login, #page-register {
+  background: #daf0f8 !important;
+}
+
+.modal-page .modal-bg {
+  background: rgba(218, 240, 248, 0.7) !important;
+}
+
+.modal-page .modal-box.auth-modal-box {
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 53, 102, 0.08) !important;
+  box-shadow: 
+    0 32px 80px rgba(0, 53, 102, 0.08), 
+    0 0 0 1px rgba(0, 158, 204, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+
+.modal-page .modal-x {
+  background: #f1f5f9 !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #64748b !important;
+}
+.modal-page .modal-x:hover {
+  background: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+.modal-page .auth-form button[type="submit"] {
+  background: linear-gradient(90deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
+  box-shadow: 0 6px 20px rgba(0, 158, 204, 0.18) !important;
+  color: #ffffff !important;
+}
+.modal-page .auth-form button[type="submit"]:hover {
+  box-shadow: 0 8px 24px rgba(0, 158, 204, 0.28) !important;
+  transform: translateY(-1.5px) !important;
+}
+
+.modal-page .auth-sw a {
+  color: #009ecc !important;
+}
+.modal-page .auth-sw a:hover {
+  color: #00c2ff !important;
+}
+
+/* Mobile Wave Headers/Footers */
+.mobile-auth-header {
+  background: linear-gradient(135deg, #003566 0%, #009ecc 100%) !important;
+  box-shadow: 0 8px 24px rgba(0, 53, 102, 0.08) !important;
+}
+.mobile-auth-footer {
+  background: linear-gradient(135deg, #009ecc 0%, #00c2ff 100%) !important;
+  box-shadow: 0 -8px 24px rgba(0, 158, 204, 0.08) !important;
+}
+
+/* Underline border for input fields in login/signup page */
+.modal-page .fg input, .modal-page .fg select {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #0f172a !important;
+}
+.modal-page .fg input:focus, .modal-page .fg select:focus {
+  background: #ffffff !important;
+  border-color: #009ecc !important;
+}
+
