@@ -7514,10 +7514,7 @@ body, #page-landing {
   color: #003566 !important;
 }
 
-/* Remove fillet corner transition curves (user request) */
-.fillet {
-  display: none !important;
-}
+
 
 
 
