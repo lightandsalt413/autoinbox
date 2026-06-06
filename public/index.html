@@ -36,7 +36,7 @@
       scrollbar-width: none !important;
     }
   </style>
-  <link rel="stylesheet" href="/styles.css?v=170">
+  <link rel="stylesheet" href="/styles.css?v=171">
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SEF5Y7KP9Z"></script>
   <script>
@@ -629,238 +629,247 @@
   <div id="page-login" class="page hidden modal-page">
     <div class="modal-bg" id="login-modal-bg"></div>
     <div class="modal-box auth-modal-box">
-      <!-- Mobile Wave Header -->
-      <div class="mobile-auth-header">
-        <div class="mah-logo">
-          <img src="/logo.png?v=8" width="36" height="36" alt="AutoInbox">
+      <div class="modal-header-nav">
+        <!-- Mobile Wave Header -->
+        <div class="mobile-auth-header">
+          <div class="mah-logo">
+            <img src="/logo.png?v=8" width="36" height="36" alt="AutoInbox">
+          </div>
+          <h2 class="mah-title" data-i18n="auth_hello_welcome">Hello, Welcome</h2>
+          <p class="mah-subtitle" data-i18n="auth_no_account_label">Don't have an Account?</p>
+          <button type="button" class="mah-btn" id="mah-goto-register" data-i18n="auth_register_btn">Register</button>
         </div>
-        <h2 class="mah-title" data-i18n="auth_hello_welcome">Hello, Welcome</h2>
-        <p class="mah-subtitle" data-i18n="auth_no_account_label">Don't have an Account?</p>
-        <button type="button" class="mah-btn" id="mah-goto-register" data-i18n="auth_register_btn">Register</button>
-      </div>
 
-      <button class="modal-x" id="login-modal-close" type="button">×</button>
-      <div class="modal-head">
-        <div class="section-tag" style="margin-bottom:6px" data-i18n="auth_account">Account</div>
-        <h3 data-i18n="auth_welcome">👋 Welcome Back</h3>
-        <p style="color:#666;font-size:.9rem;margin-top:4px" data-i18n="auth_login_desc">Log in to your dashboard</p>
+        <button class="modal-x" id="login-modal-close" type="button">×</button>
+        <div class="modal-head">
+          <div class="section-tag" style="margin-bottom:6px" data-i18n="auth_account">Account</div>
+          <h3 data-i18n="auth_welcome">👋 Welcome Back</h3>
+          <p style="color:#666;font-size:.9rem;margin-top:4px" data-i18n="auth_login_desc">Log in to your dashboard</p>
+        </div>
       </div>
-      <form id="form-login" class="auth-form">
-        <div class="fg">
-          <label for="login-email" data-i18n="auth_email">Email</label>
-          <input type="email" id="login-email" placeholder="you@email.com" required data-i18n-placeholder="ph_login_email">
-        </div>
-        <div class="fg" style="margin-top:16px">
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-            <label for="login-pass" style="margin-bottom:0;" data-i18n="auth_password">Password</label>
-            <a href="#" id="link-forgot-pass" style="color:var(--p); font-size:0.8rem; font-weight:600; text-decoration:none;" data-i18n="auth_forgot">Forgot Password?</a>
+      <div class="modal-body-scroll">
+        <form id="form-login" class="auth-form">
+          <div class="fg">
+            <label for="login-email" data-i18n="auth_email">Email</label>
+            <input type="email" id="login-email" placeholder="you@email.com" required data-i18n-placeholder="ph_login_email">
           </div>
-          <div class="pass-wrap">
-            <input type="password" id="login-pass" placeholder="••••••••" required data-i18n-placeholder="ph_login_pass">
-            <button type="button" class="pass-toggle" id="toggle-login-pass" tabindex="-1" data-i18n-html="auth_show_btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Show</button>
+          <div class="fg" style="margin-top:16px">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <label for="login-pass" style="margin-bottom:0;" data-i18n="auth_password">Password</label>
+              <a href="#" id="link-forgot-pass" style="color:var(--p); font-size:0.8rem; font-weight:600; text-decoration:none;" data-i18n="auth_forgot">Forgot Password?</a>
+            </div>
+            <div class="pass-wrap">
+              <input type="password" id="login-pass" placeholder="••••••••" required data-i18n-placeholder="ph_login_pass">
+              <button type="button" class="pass-toggle" id="toggle-login-pass" tabindex="-1" data-i18n-html="auth_show_btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Show</button>
+            </div>
           </div>
-        </div>
-        <div id="login-error" class="form-err hidden" style="margin-top:16px"></div>
-        <label class="remember-me" style="margin-top:16px;display:flex;align-items:center;gap:8px;color:#1A1A1C;font-size:.85rem">
-          <input type="checkbox" id="remember-me" checked>
-          <span data-i18n="auth_remember">Remember me</span>
-        </label>
-        <div class="g-recaptcha" data-sitekey="6LcB6Q8tAAAAADFvYDqdTBG9nN5xD0-HMdDAnGqI" id="recaptcha-login" style="margin-top:16px;transform:scale(0.9);transform-origin:0 0;"></div>
-        <button type="submit" class="btn-accent btn-sm" style="width:100%;padding:12px;font-size:1rem;margin-top:20px;background:#1A1A1C;color:#F6F0E6;border:none;border-radius:10px;cursor:pointer;" data-i18n="auth_login_btn">Log In</button>
+          <div id="login-error" class="form-err hidden" style="margin-top:16px"></div>
+          <label class="remember-me" style="margin-top:16px;display:flex;align-items:center;gap:8px;color:#1A1A1C;font-size:.85rem">
+            <input type="checkbox" id="remember-me" checked>
+            <span data-i18n="auth_remember">Remember me</span>
+          </label>
+          <div class="g-recaptcha" data-sitekey="6LcB6Q8tAAAAADFvYDqdTBG9nN5xD0-HMdDAnGqI" id="recaptcha-login" style="margin-top:16px;transform:scale(0.9);transform-origin:0 0;"></div>
+          <button type="submit" class="btn-accent btn-sm" style="width:100%;padding:12px;font-size:1rem;margin-top:20px;background:#1A1A1C;color:#F6F0E6;border:none;border-radius:10px;cursor:pointer;" data-i18n="auth_login_btn">Log In</button>
 
-        <!-- Social Login -->
-        <div class="social-login-wrap">
-          <p class="social-login-text" data-i18n="auth_social_or">or login with social platforms</p>
-          <div class="social-login-icons">
-            <button type="button" class="social-btn" onclick="alert('Social login is not configured in this demo.')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.24 10.285V13.4h6.887C18.2 15.614 15.645 18 12.24 18c-3.86 0-7-3.14-7-7s3.14-7 7-7c1.78 0 3.42.66 4.67 1.83l2.437-2.437C17.76 1.8 15.16 1 12.24 1 6.58 1 2 5.58 2 11.24s4.58 10.24 10.24 10.24c5.9 0 9.82-4.14 9.82-10 0-.67-.06-1.3-.18-1.9H12.24z"/></svg></button>
-            <button type="button" class="social-btn" onclick="alert('Social login is not configured in this demo.')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></button>
-            <button type="button" class="social-btn" onclick="alert('Social login is not configured in this demo.')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></button>
-            <button type="button" class="social-btn" onclick="alert('Social login is not configured in this demo.')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></button>
+          <!-- Social Login -->
+          <div class="social-login-wrap">
+            <p class="social-login-text" data-i18n="auth_social_or">or login with social platforms</p>
+            <div class="social-login-icons">
+              <button type="button" class="social-btn" onclick="alert('Social login is not configured in this demo.')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.24 10.285V13.4h6.887C18.2 15.614 15.645 18 12.24 18c-3.86 0-7-3.14-7-7s3.14-7 7-7c1.78 0 3.42.66 4.67 1.83l2.437-2.437C17.76 1.8 15.16 1 12.24 1 6.58 1 2 5.58 2 11.24s4.58 10.24 10.24 10.24c5.9 0 9.82-4.14 9.82-10 0-.67-.06-1.3-.18-1.9H12.24z"/></svg></button>
+              <button type="button" class="social-btn" onclick="alert('Social login is not configured in this demo.')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></button>
+              <button type="button" class="social-btn" onclick="alert('Social login is not configured in this demo.')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></button>
+              <button type="button" class="social-btn" onclick="alert('Social login is not configured in this demo.')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></button>
+            </div>
           </div>
-        </div>
-      </form>
-      <p class="auth-sw" style="margin-top:16px;text-align:center;color:#1A1A1C;font-size:.85rem"><span data-i18n="auth_no_account">No account?</span> <a href="#" id="link-register" style="color:var(--p);font-weight:600" data-i18n="auth_signup_link">Sign Up Free</a></p>
-    </div>
+        </form>
+        <p class="auth-sw" style="margin-top:16px;text-align:center;color:#1A1A1C;font-size:.85rem"><span data-i18n="auth_no_account">No account?</span> <a href="#" id="link-register" style="color:var(--p);font-weight:600" data-i18n="auth_signup_link">Sign Up Free</a></p>
+      </div>
   </div>
 
   <!-- Forgot Password Page -->
   <div id="page-forgot-pass" class="page hidden modal-page">
     <div class="modal-bg" id="forgot-modal-bg"></div>
     <div class="modal-box auth-modal-box">
-      <button class="modal-x" id="forgot-modal-close" type="button">×</button>
-      
-      <!-- Step 1: Request Code -->
-      <div id="forgot-step-1">
-        <div class="modal-head">
-          <div class="section-tag" style="margin-bottom:6px" data-i18n="auth_security">Security</div>
-          <h3 data-i18n="auth_forgot_title">🔒 Forgot Password?</h3>
-          <p style="color:#666;font-size:.9rem;margin-top:4px" data-i18n="auth_forgot_desc">Enter your email or cellphone number (with country code prefix, e.g. +639171234567) and we'll send you a 6-digit verification code.</p>
-        </div>
-        <form id="form-forgot-request" class="auth-form" style="margin-top:20px">
-          <div class="fg">
-            <label for="forgot-email" data-i18n="auth_forgot_label">Email or Cellphone Number</label>
-            <input type="text" id="forgot-email" placeholder="you@email.com or +639171234567" required data-i18n-placeholder="ph_forgot_email">
-          </div>
-          <div id="forgot-error-1" class="form-err hidden" style="margin-top:16px"></div>
-          <button type="submit" class="btn-accent btn-sm" id="btn-forgot-send" style="width:100%;padding:12px;font-size:1rem;margin-top:20px;background:#1A1A1C;color:#F6F0E6;border:none;border-radius:10px;cursor:pointer;" data-i18n="auth_forgot_btn">Send Reset Code</button>
-        </form>
-        <p class="auth-sw" style="margin-top:16px;text-align:center;color:#1A1A1C;font-size:.85rem"><a href="#" id="link-forgot-back-login" style="color:var(--p);font-weight:600;text-decoration:none;" data-i18n="auth_back_login">Back to Log In</a></p>
+      <div class="modal-header-nav x-only">
+        <button class="modal-x" id="forgot-modal-close" type="button">×</button>
       </div>
+      <div class="modal-body-scroll">
+        <!-- Step 1: Request Code -->
+        <div id="forgot-step-1">
+          <div class="modal-head">
+            <div class="section-tag" style="margin-bottom:6px" data-i18n="auth_security">Security</div>
+            <h3 data-i18n="auth_forgot_title">🔒 Forgot Password?</h3>
+            <p style="color:#666;font-size:.9rem;margin-top:4px" data-i18n="auth_forgot_desc">Enter your email or cellphone number (with country code prefix, e.g. +639171234567) and we'll send you a 6-digit verification code.</p>
+          </div>
+          <form id="form-forgot-request" class="auth-form" style="margin-top:20px">
+            <div class="fg">
+              <label for="forgot-email" data-i18n="auth_forgot_label">Email or Cellphone Number</label>
+              <input type="text" id="forgot-email" placeholder="you@email.com or +639171234567" required data-i18n-placeholder="ph_forgot_email">
+            </div>
+            <div id="forgot-error-1" class="form-err hidden" style="margin-top:16px"></div>
+            <button type="submit" class="btn-accent btn-sm" id="btn-forgot-send" style="width:100%;padding:12px;font-size:1rem;margin-top:20px;background:#1A1A1C;color:#F6F0E6;border:none;border-radius:10px;cursor:pointer;" data-i18n="auth_forgot_btn">Send Reset Code</button>
+          </form>
+          <p class="auth-sw" style="margin-top:16px;text-align:center;color:#1A1A1C;font-size:.85rem"><a href="#" id="link-forgot-back-login" style="color:var(--p);font-weight:600;text-decoration:none;" data-i18n="auth_back_login">Back to Log In</a></p>
+        </div>
 
-      <!-- Step 2: Verification & Reset -->
-      <div id="forgot-step-2" class="hidden">
-        <div class="modal-head">
-          <div class="section-tag" style="margin-bottom:6px" data-i18n="auth_security">Security</div>
-          <h3 data-i18n="auth_reset_title">🔒 Reset Password</h3>
-          <p style="color:#666;font-size:.9rem;margin-top:4px" data-i18n="auth_reset_desc">Enter the 6-digit code sent to your email or cellphone along with your new password.</p>
+        <!-- Step 2: Verification & Reset -->
+        <div id="forgot-step-2" class="hidden">
+          <div class="modal-head">
+            <div class="section-tag" style="margin-bottom:6px" data-i18n="auth_security">Security</div>
+            <h3 data-i18n="auth_reset_title">🔒 Reset Password</h3>
+            <p style="color:#666;font-size:.9rem;margin-top:4px" data-i18n="auth_reset_desc">Enter the 6-digit code sent to your email or cellphone along with your new password.</p>
+          </div>
+          <form id="form-forgot-reset" class="auth-form" style="margin-top:20px">
+            <div class="fg">
+              <label for="forgot-code" data-i18n="auth_verify_code">Verification Code</label>
+              <input type="text" id="forgot-code" placeholder="e.g. 123456" pattern="\d{6}" maxlength="6" required style="letter-spacing:4px; font-weight:700; text-align:center; font-size:1.1rem;" data-i18n-placeholder="ph_forgot_code">
+            </div>
+            <div class="fg" style="margin-top:16px">
+              <label for="forgot-new-pass" data-i18n="auth_new_pass">New Password</label>
+              <input type="password" id="forgot-new-pass" placeholder="At least 6 characters" minlength="6" required data-i18n-placeholder="ph_forgot_new_pass">
+            </div>
+            <div class="fg" style="margin-top:16px">
+              <label for="forgot-confirm-pass" data-i18n="auth_confirm_new">Confirm New Password</label>
+              <input type="password" id="forgot-confirm-pass" placeholder="Confirm your new password" minlength="6" required data-i18n-placeholder="ph_forgot_confirm_pass">
+            </div>
+            <div id="forgot-error-2" class="form-err hidden" style="margin-top:16px"></div>
+            <button type="submit" class="btn-accent btn-sm" id="btn-forgot-reset" style="width:100%;padding:12px;font-size:1rem;margin-top:20px;background:#1A1A1C;color:#F6F0E6;border:none;border-radius:10px;cursor:pointer;" data-i18n="auth_reset_btn">Reset Password</button>
+          </form>
+          <p class="auth-sw" style="margin-top:16px;text-align:center;color:#1A1A1C;font-size:.85rem"><a href="#" id="link-forgot-back-step-1" style="color:var(--p);font-weight:600;text-decoration:none;" data-i18n="auth_back_code">Back to request code</a></p>
         </div>
-        <form id="form-forgot-reset" class="auth-form" style="margin-top:20px">
-          <div class="fg">
-            <label for="forgot-code" data-i18n="auth_verify_code">Verification Code</label>
-            <input type="text" id="forgot-code" placeholder="e.g. 123456" pattern="\d{6}" maxlength="6" required style="letter-spacing:4px; font-weight:700; text-align:center; font-size:1.1rem;" data-i18n-placeholder="ph_forgot_code">
-          </div>
-          <div class="fg" style="margin-top:16px">
-            <label for="forgot-new-pass" data-i18n="auth_new_pass">New Password</label>
-            <input type="password" id="forgot-new-pass" placeholder="At least 6 characters" minlength="6" required data-i18n-placeholder="ph_forgot_new_pass">
-          </div>
-          <div class="fg" style="margin-top:16px">
-            <label for="forgot-confirm-pass" data-i18n="auth_confirm_new">Confirm New Password</label>
-            <input type="password" id="forgot-confirm-pass" placeholder="Confirm your new password" minlength="6" required data-i18n-placeholder="ph_forgot_confirm_pass">
-          </div>
-          <div id="forgot-error-2" class="form-err hidden" style="margin-top:16px"></div>
-          <button type="submit" class="btn-accent btn-sm" id="btn-forgot-reset" style="width:100%;padding:12px;font-size:1rem;margin-top:20px;background:#1A1A1C;color:#F6F0E6;border:none;border-radius:10px;cursor:pointer;" data-i18n="auth_reset_btn">Reset Password</button>
-        </form>
-        <p class="auth-sw" style="margin-top:16px;text-align:center;color:#1A1A1C;font-size:.85rem"><a href="#" id="link-forgot-back-step-1" style="color:var(--p);font-weight:600;text-decoration:none;" data-i18n="auth_back_code">Back to request code</a></p>
       </div>
-      
     </div>
   </div>
 
   <div id="page-register" class="page hidden modal-page">
     <div class="modal-bg" id="register-modal-bg"></div>
     <div class="modal-box auth-modal-box">
-      <button class="modal-x" id="register-modal-close" type="button">×</button>
-      <div class="modal-head">
-        <div class="section-tag" style="margin-bottom:6px" data-i18n="auth_signup_tag">Sign Up</div>
-        <h3 data-i18n="auth_signup_title">Create Your Free Account</h3>
-        <p style="color:#666;font-size:.9rem;margin-top:4px" data-i18n="auth_signup_desc">No credit card needed. Start replying smarter in 2 minutes.</p>
+      <div class="modal-header-nav">
+        <button class="modal-x" id="register-modal-close" type="button">×</button>
+        <div class="modal-head">
+          <div class="section-tag" style="margin-bottom:6px" data-i18n="auth_signup_tag">Sign Up</div>
+          <h3 data-i18n="auth_signup_title">Create Your Free Account</h3>
+          <p style="color:#666;font-size:.9rem;margin-top:4px" data-i18n="auth_signup_desc">No credit card needed. Start replying smarter in 2 minutes.</p>
+        </div>
       </div>
-      <form id="form-register" class="auth-form" novalidate>
-        <div class="fg-row">
-          <div class="fg">
-            <label for="reg-fname" data-i18n="auth_fname">First Name</label>
-            <input type="text" id="reg-fname" placeholder="e.g. Maria" required autocomplete="given-name" autocapitalize="words" data-i18n-placeholder="ph_reg_fname">
-            <span class="field-err hidden" id="err-fname"></span>
+      <div class="modal-body-scroll">
+        <form id="form-register" class="auth-form" novalidate>
+          <div class="fg-row">
+            <div class="fg">
+              <label for="reg-fname" data-i18n="auth_fname">First Name</label>
+              <input type="text" id="reg-fname" placeholder="e.g. Maria" required autocomplete="given-name" autocapitalize="words" data-i18n-placeholder="ph_reg_fname">
+              <span class="field-err hidden" id="err-fname"></span>
+            </div>
+            <div class="fg">
+              <label for="reg-mname" data-i18n-html="auth_mname_label">Middle Name <span class="optional">(Optional)</span></label>
+              <input type="text" id="reg-mname" placeholder="e.g. Dela Cruz" autocomplete="additional-name" autocapitalize="words" data-i18n-placeholder="ph_reg_mname">
+              <span class="field-err hidden" id="err-mname"></span>
+            </div>
           </div>
-          <div class="fg">
-            <label for="reg-mname" data-i18n-html="auth_mname_label">Middle Name <span class="optional">(Optional)</span></label>
-            <input type="text" id="reg-mname" placeholder="e.g. Dela Cruz" autocomplete="additional-name" autocapitalize="words" data-i18n-placeholder="ph_reg_mname">
-            <span class="field-err hidden" id="err-mname"></span>
+          <div class="fg-row" style="margin-top:16px">
+            <div class="fg">
+              <label for="reg-lname" data-i18n="auth_lname">Surname</label>
+              <input type="text" id="reg-lname" placeholder="e.g. Santos" required autocomplete="family-name" autocapitalize="words" data-i18n-placeholder="ph_reg_lname">
+              <span class="field-err hidden" id="err-lname"></span>
+            </div>
+            <div class="fg fg-small">
+              <label for="reg-suffix" data-i18n-html="auth_suffix_label">Suffix <span class="optional">(Opt)</span></label>
+              <select id="reg-suffix">
+                <option value="" data-i18n="auth_suffix_none">— None —</option>
+                <option value="Jr.">Jr.</option>
+                <option value="Sr.">Sr.</option>
+                <option value="II">II</option>
+                <option value="III">III</option>
+                <option value="IV">IV</option>
+                <option value="V">V</option>
+              </select>
+            </div>
           </div>
-        </div>
-        <div class="fg-row" style="margin-top:16px">
-          <div class="fg">
-            <label for="reg-lname" data-i18n="auth_lname">Surname</label>
-            <input type="text" id="reg-lname" placeholder="e.g. Santos" required autocomplete="family-name" autocapitalize="words" data-i18n-placeholder="ph_reg_lname">
-            <span class="field-err hidden" id="err-lname"></span>
+          <div class="fg" style="margin-top:16px">
+            <label for="reg-phone" data-i18n-html="auth_phone_label">Cellphone Number <span style="font-size:0.75rem;color:#888;font-weight:normal;display:block;margin-top:2px">(For secure SMS password reset — choose the country code and type the number)</span></label>
+            <div class="phone-input-group" style="display:flex; gap:8px">
+              <select id="reg-phone-prefix" style="width:120px; flex:0 0 120px; padding:12px 8px;">
+                <option value="+63">🇵🇭 +63</option>
+                <option value="+1">🇺🇸 +1</option>
+                <option value="+65">🇸🇬 +65</option>
+                <option value="+44">🇬🇧 +44</option>
+                <option value="+61">🇦🇺 +61</option>
+                <option value="+971">🇦🇪 +971</option>
+                <option value="+81">🇯🇵 +81</option>
+                <option value="+82">🇰🇷 +82</option>
+                <option value="+86">🇨🇳 +86</option>
+                <option value="+91">🇮🇳 +91</option>
+                <option value="+64">🇳🇿 +64</option>
+                <option value="+60">🇲🇾 +60</option>
+                <option value="+62">🇮🇩 +62</option>
+                <option value="+66">🇹🇭 +66</option>
+                <option value="+84">🇻🇳 +84</option>
+                <option value="+852">🇭🇰 +852</option>
+                <option value="+886">🇹🇼 +886</option>
+                <option value="+33">🇫🇷 +33</option>
+                <option value="+49">🇩🇪 +49</option>
+              </select>
+              <input type="tel" id="reg-phone" placeholder="e.g. 9171234567" required inputmode="numeric" style="flex:1" data-i18n-placeholder="ph_reg_phone">
+            </div>
+            <span class="field-err hidden" id="err-phone"></span>
           </div>
-          <div class="fg fg-small">
-            <label for="reg-suffix" data-i18n-html="auth_suffix_label">Suffix <span class="optional">(Opt)</span></label>
-            <select id="reg-suffix">
-              <option value="" data-i18n="auth_suffix_none">— None —</option>
-              <option value="Jr.">Jr.</option>
-              <option value="Sr.">Sr.</option>
-              <option value="II">II</option>
-              <option value="III">III</option>
-              <option value="IV">IV</option>
-              <option value="V">V</option>
-            </select>
+          <div class="fg" style="margin-top:16px">
+            <label for="reg-email" data-i18n-html="auth_email_label_full">Email Address <span style="font-size:0.75rem;color:#888;font-weight:normal;display:block;margin-top:2px">(This will be your login email. You'll connect your Gmail/Yahoo in the next step.)</span></label>
+            <input type="email" id="reg-email" placeholder="you@email.com" required autocomplete="email" data-i18n-placeholder="ph_reg_email">
+            <span class="field-err hidden" id="err-email"></span>
           </div>
-        </div>
-        <div class="fg" style="margin-top:16px">
-          <label for="reg-phone" data-i18n-html="auth_phone_label">Cellphone Number <span style="font-size:0.75rem;color:#888;font-weight:normal;display:block;margin-top:2px">(For secure SMS password reset — choose the country code and type the number)</span></label>
-          <div class="phone-input-group" style="display:flex; gap:8px">
-            <select id="reg-phone-prefix" style="width:120px; flex:0 0 120px; padding:12px 8px;">
-              <option value="+63">🇵🇭 +63</option>
-              <option value="+1">🇺🇸 +1</option>
-              <option value="+65">🇸🇬 +65</option>
-              <option value="+44">🇬🇧 +44</option>
-              <option value="+61">🇦🇺 +61</option>
-              <option value="+971">🇦🇪 +971</option>
-              <option value="+81">🇯🇵 +81</option>
-              <option value="+82">🇰🇷 +82</option>
-              <option value="+86">🇨🇳 +86</option>
-              <option value="+91">🇮🇳 +91</option>
-              <option value="+64">🇳🇿 +64</option>
-              <option value="+60">🇲🇾 +60</option>
-              <option value="+62">🇮🇩 +62</option>
-              <option value="+66">🇹🇭 +66</option>
-              <option value="+84">🇻🇳 +84</option>
-              <option value="+852">🇭🇰 +852</option>
-              <option value="+886">🇹🇼 +886</option>
-              <option value="+33">🇫🇷 +33</option>
-              <option value="+49">🇩🇪 +49</option>
-            </select>
-            <input type="tel" id="reg-phone" placeholder="e.g. 9171234567" required inputmode="numeric" style="flex:1" data-i18n-placeholder="ph_reg_phone">
+          <div class="fg" style="margin-top:16px">
+            <label for="reg-pass" data-i18n="auth_create_pass">Create Password</label>
+            <div class="pass-wrap">
+              <input type="password" id="reg-pass" placeholder="Min 6 characters" required minlength="6" data-i18n-placeholder="ph_reg_pass">
+              <button type="button" class="pass-toggle" id="toggle-pass" tabindex="-1" data-i18n-html="auth_show_btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Show</button>
+            </div>
+            <div class="pass-strength" id="pass-strength">
+              <div class="pass-bar" id="pass-bar"></div>
+            </div>
+            <span class="pass-label" id="pass-label"></span>
           </div>
-          <span class="field-err hidden" id="err-phone"></span>
-        </div>
-        <div class="fg" style="margin-top:16px">
-          <label for="reg-email" data-i18n-html="auth_email_label_full">Email Address <span style="font-size:0.75rem;color:#888;font-weight:normal;display:block;margin-top:2px">(This will be your login email. You'll connect your Gmail/Yahoo in the next step.)</span></label>
-          <input type="email" id="reg-email" placeholder="you@email.com" required autocomplete="email" data-i18n-placeholder="ph_reg_email">
-          <span class="field-err hidden" id="err-email"></span>
-        </div>
-        <div class="fg" style="margin-top:16px">
-          <label for="reg-pass" data-i18n="auth_create_pass">Create Password</label>
-          <div class="pass-wrap">
-            <input type="password" id="reg-pass" placeholder="Min 6 characters" required minlength="6" data-i18n-placeholder="ph_reg_pass">
-            <button type="button" class="pass-toggle" id="toggle-pass" tabindex="-1" data-i18n-html="auth_show_btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Show</button>
+          <div class="fg" style="margin-top:16px">
+            <label for="reg-pass-confirm" data-i18n="auth_confirm_pass">Confirm Password</label>
+            <div class="pass-wrap">
+              <input type="password" id="reg-pass-confirm" placeholder="Re-enter your password" required minlength="6" data-i18n-placeholder="ph_reg_pass_confirm">
+              <button type="button" class="pass-toggle" id="toggle-pass-confirm" tabindex="-1" data-i18n-html="auth_show_btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Show</button>
+            </div>
+            <div class="pass-strength" id="confirm-strength">
+              <div class="pass-bar" id="confirm-bar"></div>
+            </div>
+            <span class="pass-label" id="confirm-label"></span>
           </div>
-          <div class="pass-strength" id="pass-strength">
-            <div class="pass-bar" id="pass-bar"></div>
+          <div class="fg" style="margin-top:16px">
+            <label class="checkbox-label" style="color:#1A1A1C;font-size:.82rem;display:flex;align-items:flex-start;gap:10px;line-height:1.5;cursor:pointer">
+              <input type="checkbox" id="reg-agree" required style="width:16px;height:16px;min-width:16px;flex-shrink:0;margin-top:3px;accent-color:#1A1A1C;cursor:pointer">
+              <span data-i18n-html="auth_agree_text">I agree to the <a href="#" id="link-open-terms" style="color:var(--p);text-decoration:underline;font-weight:600">Terms of Service</a> and <a href="#" id="link-open-privacy" style="color:var(--p);text-decoration:underline;font-weight:600">Privacy Policy</a></span>
+            </label>
           </div>
-          <span class="pass-label" id="pass-label"></span>
-        </div>
-        <div class="fg" style="margin-top:16px">
-          <label for="reg-pass-confirm" data-i18n="auth_confirm_pass">Confirm Password</label>
-          <div class="pass-wrap">
-            <input type="password" id="reg-pass-confirm" placeholder="Re-enter your password" required minlength="6" data-i18n-placeholder="ph_reg_pass_confirm">
-            <button type="button" class="pass-toggle" id="toggle-pass-confirm" tabindex="-1" data-i18n-html="auth_show_btn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg> Show</button>
-          </div>
-          <div class="pass-strength" id="confirm-strength">
-            <div class="pass-bar" id="confirm-bar"></div>
-          </div>
-          <span class="pass-label" id="confirm-label"></span>
-        </div>
-        <div class="fg" style="margin-top:16px">
-          <label class="checkbox-label" style="color:#1A1A1C;font-size:.82rem;display:flex;align-items:flex-start;gap:10px;line-height:1.5;cursor:pointer">
-            <input type="checkbox" id="reg-agree" required style="width:16px;height:16px;min-width:16px;flex-shrink:0;margin-top:3px;accent-color:#1A1A1C;cursor:pointer">
-            <span data-i18n-html="auth_agree_text">I agree to the <a href="#" id="link-open-terms" style="color:var(--p);text-decoration:underline;font-weight:600">Terms of Service</a> and <a href="#" id="link-open-privacy" style="color:var(--p);text-decoration:underline;font-weight:600">Privacy Policy</a></span>
-          </label>
-        </div>
-        <div id="reg-error" class="form-err hidden" style="margin-top:16px"></div>
-        <div class="g-recaptcha" data-sitekey="6LcB6Q8tAAAAADFvYDqdTBG9nN5xD0-HMdDAnGqI" id="recaptcha-register" style="margin-top:16px;transform:scale(0.9);transform-origin:0 0;"></div>
-        <button type="submit" class="btn-accent btn-sm" style="width:100%;padding:12px;font-size:1rem;margin-top:20px;background:#1A1A1C;color:#F6F0E6;border:none;border-radius:10px;cursor:pointer;" data-i18n="auth_create_btn">Create Account</button>
+          <div id="reg-error" class="form-err hidden" style="margin-top:16px"></div>
+          <div class="g-recaptcha" data-sitekey="6LcB6Q8tAAAAADFvYDqdTBG9nN5xD0-HMdDAnGqI" id="recaptcha-register" style="margin-top:16px;transform:scale(0.9);transform-origin:0 0;"></div>
+          <button type="submit" class="btn-accent btn-sm" style="width:100%;padding:12px;font-size:1rem;margin-top:20px;background:#1A1A1C;color:#F6F0E6;border:none;border-radius:10px;cursor:pointer;" data-i18n="auth_create_btn">Create Account</button>
 
-        <!-- Social Register -->
-        <div class="social-login-wrap">
-          <p class="social-login-text" data-i18n="auth_social_or_reg">or register with social platforms</p>
-          <div class="social-login-icons">
-            <button type="button" class="social-btn" onclick="alert('Social registration is not configured in this demo.')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.24 10.285V13.4h6.887C18.2 15.614 15.645 18 12.24 18c-3.86 0-7-3.14-7-7s3.14-7 7-7c1.78 0 3.42.66 4.67 1.83l2.437-2.437C17.76 1.8 15.16 1 12.24 1 6.58 1 2 5.58 2 11.24s4.58 10.24 10.24 10.24c5.9 0 9.82-4.14 9.82-10 0-.67-.06-1.3-.18-1.9H12.24z"/></svg></button>
-            <button type="button" class="social-btn" onclick="alert('Social registration is not configured in this demo.')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></button>
-            <button type="button" class="social-btn" onclick="alert('Social registration is not configured in this demo.')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></button>
-            <button type="button" class="social-btn" onclick="alert('Social registration is not configured in this demo.')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></button>
+          <!-- Social Register -->
+          <div class="social-login-wrap">
+            <p class="social-login-text" data-i18n="auth_social_or_reg">or register with social platforms</p>
+            <div class="social-login-icons">
+              <button type="button" class="social-btn" onclick="alert('Social registration is not configured in this demo.')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.24 10.285V13.4h6.887C18.2 15.614 15.645 18 12.24 18c-3.86 0-7-3.14-7-7s3.14-7 7-7c1.78 0 3.42.66 4.67 1.83l2.437-2.437C17.76 1.8 15.16 1 12.24 1 6.58 1 2 5.58 2 11.24s4.58 10.24 10.24 10.24c5.9 0 9.82-4.14 9.82-10 0-.67-.06-1.3-.18-1.9H12.24z"/></svg></button>
+              <button type="button" class="social-btn" onclick="alert('Social registration is not configured in this demo.')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></button>
+              <button type="button" class="social-btn" onclick="alert('Social registration is not configured in this demo.')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></button>
+              <button type="button" class="social-btn" onclick="alert('Social registration is not configured in this demo.')"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></button>
+            </div>
           </div>
-        </div>
-      </form>
-      <p style="margin-top:14px;color:#999;font-size:.75rem;text-align:center" data-i18n="auth_encryption">🔒 Your data is protected with AES-256 encryption</p>
-      <p class="auth-sw" style="margin-top:10px;text-align:center;color:#1A1A1C;font-size:.85rem"><span data-i18n="auth_has_account">Already have an account?</span> <a href="#" id="link-login" style="color:var(--p);font-weight:600" data-i18n="auth_login_link">Log In</a></p>
+        </form>
+        <p style="margin-top:14px;color:#999;font-size:.75rem;text-align:center" data-i18n="auth_encryption">🔒 Your data is protected with AES-256 encryption</p>
+        <p class="auth-sw" style="margin-top:10px;text-align:center;color:#1A1A1C;font-size:.85rem"><span data-i18n="auth_has_account">Already have an account?</span> <a href="#" id="link-login" style="color:var(--p);font-weight:600" data-i18n="auth_login_link">Log In</a></p>
 
-      <!-- Mobile Wave Footer -->
-      <div class="mobile-auth-footer">
-        <h2 class="maf-title" data-i18n="auth_welcome_back">Welcome Back!</h2>
-        <p class="maf-subtitle" data-i18n="auth_already_account">Already have an Account?</p>
-        <button type="button" class="maf-btn" id="maf-goto-login" data-i18n="auth_login_btn_alt">Login</button>
+        <!-- Mobile Wave Footer -->
+        <div class="mobile-auth-footer">
+          <h2 class="maf-title" data-i18n="auth_welcome_back">Welcome Back!</h2>
+          <p class="maf-subtitle" data-i18n="auth_already_account">Already have an Account?</p>
+          <button type="button" class="maf-btn" id="maf-goto-login" data-i18n="auth_login_btn_alt">Login</button>
+        </div>
       </div>
     </div>
   </div>
@@ -1229,45 +1238,95 @@
     <nav class="mobile-nav" aria-label="Mobile navigation"><button class="mnav-item active" data-page="inbox" aria-label="Inbox"><span>Inbox</span></button><button class="mnav-item" data-page="voice" aria-label="Voice Clone"><span>Clone</span></button><button class="mnav-item" data-page="plan" aria-label="Plan and Billing"><span>Plan</span></button><button class="mnav-item" data-page="settings" aria-label="Settings"><span>Settings</span></button><button class="mnav-item hidden" data-page="admin" id="mnav-admin" aria-label="Admin Dashboard"><span>Admin</span></button></nav>
   </div>
 
-  <div id="message-modal" class="modal hidden"><div class="modal-bg"></div><div class="modal-box glass"><button class="modal-x" id="modal-close">×</button><div class="modal-head"><h3 id="modal-sender"></h3><span id="modal-subject" style="color:var(--t2);font-size:.9rem"></span></div><div class="modal-sec"><label>Original Message</label><div class="modal-msg" id="modal-body"></div></div><div class="modal-sec"><label>AI Draft</label><textarea id="modal-draft" rows="6" class="draft-ed"></textarea></div><div class="modal-btns"><button class="btn-ghost" id="modal-reject">Skip</button><button class="btn-ghost" id="modal-regen">Regen</button><button class="btn-accent" id="modal-approve">Approve & Send</button></div></div></div>
-  <div id="logout-modal" class="modal hidden"><div class="modal-bg"></div><div class="modal-box glass" style="max-width:380px;text-align:center"><h3 style="margin-bottom:8px">Log Out?</h3><p style="color:var(--t2);font-size:.9rem;margin-bottom:24px">Are you sure you want to log out of AutoInbox?</p><div style="display:flex;gap:12px;justify-content:center"><button class="btn-ghost" id="logout-cancel">Cancel</button><button class="btn-accent" id="logout-confirm" style="background:var(--r)">Yes, Log Out</button></div></div></div>
-  <div id="change-pass-modal" class="modal hidden"><div class="modal-bg"></div><div class="modal-box glass" style="max-width:380px;text-align:center"><h3 style="margin-bottom:8px">Update Password?</h3><p style="color:var(--t2);font-size:.9rem;margin-bottom:24px">Are you sure you want to update your password? This will log you out of all active sessions.</p><div style="display:flex;gap:12px;justify-content:center"><button class="btn-ghost" id="change-pass-cancel">Cancel</button><button class="btn-accent" id="change-pass-confirm">Yes, Update</button></div></div></div>
+  <div id="message-modal" class="modal hidden">
+    <div class="modal-bg"></div>
+    <div class="modal-box glass" style="max-width: 620px; max-height: 85vh; text-align: left; display: flex; flex-direction: column; overflow: hidden; padding: 0;">
+      <div class="modal-header-nav">
+        <button class="modal-x" id="modal-close" type="button">×</button>
+        <div class="modal-head">
+          <h3 id="modal-sender"></h3>
+          <span id="modal-subject" style="color:var(--t2);font-size:.9rem"></span>
+        </div>
+      </div>
+      <div class="modal-body-scroll">
+        <div class="modal-sec">
+          <label>Original Message</label>
+          <div class="modal-msg" id="modal-body"></div>
+        </div>
+        <div class="modal-sec">
+          <label>AI Draft</label>
+          <textarea id="modal-draft" rows="6" class="draft-ed"></textarea>
+        </div>
+        <div class="modal-btns">
+          <button class="btn-ghost" id="modal-reject">Skip</button>
+          <button class="btn-ghost" id="modal-regen">Regen</button>
+          <button class="btn-accent" id="modal-approve">Approve & Send</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="logout-modal" class="modal hidden">
+    <div class="modal-bg"></div>
+    <div class="modal-box glass" style="max-width:380px;text-align:center">
+      <h3 style="margin-bottom:8px">Log Out?</h3>
+      <p style="color:var(--t2);font-size:.9rem;margin-bottom:24px">Are you sure you want to log out of AutoInbox?</p>
+      <div style="display:flex;gap:12px;justify-content:center">
+        <button class="btn-ghost" id="logout-cancel">Cancel</button>
+        <button class="btn-accent" id="logout-confirm" style="background:var(--r)">Yes, Log Out</button>
+      </div>
+    </div>
+  </div>
+  <div id="change-pass-modal" class="modal hidden">
+    <div class="modal-bg"></div>
+    <div class="modal-box glass" style="max-width:380px;text-align:center">
+      <h3 style="margin-bottom:8px">Update Password?</h3>
+      <p style="color:var(--t2);font-size:.9rem;margin-bottom:24px">Are you sure you want to update your password? This will log you out of all active sessions.</p>
+      <div style="display:flex;gap:12px;justify-content:center">
+        <button class="btn-ghost" id="change-pass-cancel">Cancel</button>
+        <button class="btn-accent" id="change-pass-confirm">Yes, Update</button>
+      </div>
+    </div>
+  </div>
   
   <div id="guide-modal" class="modal hidden">
     <div class="modal-bg" id="guide-modal-bg"></div>
-    <div class="modal-box glass" style="max-width: 600px; max-height: 85vh; overflow-y: auto; text-align: left;">
-      <button class="modal-x" id="guide-modal-close">×</button>
-      <div class="modal-head" style="margin-bottom: 20px;">
-        <h3 data-i18n="guide_title">🔑 Setup Guide</h3>
-        <p style="color:var(--t2);font-size:.9rem;margin-top:4px" data-i18n="guide_subtitle">How to retrieve your App Password</p>
+    <div class="modal-box glass" style="max-width: 600px; max-height: 85vh; text-align: left; display: flex; flex-direction: column; overflow: hidden; padding: 0;">
+      <div class="modal-header-nav">
+        <button class="modal-x" id="guide-modal-close" type="button">×</button>
+        <div class="modal-head">
+          <h3 data-i18n="guide_title">🔑 Setup Guide</h3>
+          <p style="color:var(--t2);font-size:.9rem;margin-top:4px" data-i18n="guide_subtitle">How to retrieve your App Password</p>
+        </div>
       </div>
-      <div class="provider-tabs" id="modal-guide-tabs" style="display:flex;gap:10px;margin-bottom:20px">
-        <button type="button" class="tab active" data-provider="gmail" style="flex:1;padding:8px 12px;font-size:.82rem" data-i18n="guide_gmail_tab">Gmail Setup</button>
-        <button type="button" class="tab" data-provider="yahoo" style="flex:1;padding:8px 12px;font-size:.82rem" data-i18n="guide_yahoo_tab">Yahoo Mail Setup</button>
-      </div>
-      <div id="modal-guide-gmail" class="modal-sec">
-        <h4 style="color: #ea4335; margin-bottom: 8px; font-weight:600" data-i18n="guide_gmail_title">Gmail App Password</h4>
-        <ol style="margin-left: 20px; font-size: 0.88rem; line-height: 1.7; color: var(--t2);">
-          <li style="margin-bottom: 8px;" data-i18n-html="guide_gmail_step1">Make sure <strong>2-Step Verification</strong> is turned on in your Google settings.</li>
-          <li style="margin-bottom: 8px;" data-i18n-html="guide_gmail_step2">Go to: <a href="https://myaccount.google.com/apppasswords" target="_blank" style="color:var(--p);text-decoration:underline">Google App Passwords →</a></li>
-          <li style="margin-bottom: 8px;" data-i18n-html="guide_gmail_step3">Type <code>AutoInbox</code> as the app name and click <strong>Create</strong>.</li>
-          <li style="margin-bottom: 8px;" data-i18n="guide_gmail_step4">Copy the 16-character code and paste it in the connect input without spaces.</li>
-        </ol>
-      </div>
-      <div id="modal-guide-yahoo" class="modal-sec hidden">
-        <h4 style="color: #6001d2; margin-bottom: 8px; font-weight:600" data-i18n="guide_yahoo_title">Yahoo Mail App Password</h4>
-        <ol style="margin-left: 20px; font-size: 0.88rem; line-height: 1.7; color: var(--t2);">
-          <li style="margin-bottom: 8px;" data-i18n-html="guide_yahoo_step1">Go to: <a href="https://login.yahoo.com/account/security" target="_blank" style="color:var(--p);text-decoration:underline">Yahoo Account Security →</a></li>
-          <li style="margin-bottom: 8px;" data-i18n-html="guide_yahoo_step2">Scroll down and click <strong>Generate app password</strong>.</li>
-          <li style="margin-bottom: 8px;" data-i18n-html="guide_yahoo_step3">Type <code>AutoInbox</code> and click <strong>Generate</strong>.</li>
-          <li style="margin-bottom: 8px;" data-i18n="guide_yahoo_step4">Copy the 16-character code and paste it in the connect input without spaces.</li>
-        </ol>
-      </div>
-      <div class="modal-sec" style="border-top:1px solid var(--s2);margin-top:20px;padding-top:15px">
-        <h5 style="margin-bottom: 6px; font-weight:600" data-i18n="trouble_title">💡 Troubleshooting</h5>
-        <p style="font-size:0.8rem;color:var(--t3);line-height:1.5" data-i18n="trouble_desc">
-          If you encounter "Invalid credentials", make sure your email address is correct and the 16-character code has no spaces. Also ensure you are using a generated App Password and not your personal login password.
-        </p>
+      <div class="modal-body-scroll">
+        <div class="provider-tabs" id="modal-guide-tabs" style="display:flex;gap:10px;margin-bottom:20px">
+          <button type="button" class="tab active" data-provider="gmail" style="flex:1;padding:8px 12px;font-size:.82rem" data-i18n="guide_gmail_tab">Gmail Setup</button>
+          <button type="button" class="tab" data-provider="yahoo" style="flex:1;padding:8px 12px;font-size:.82rem" data-i18n="guide_yahoo_tab">Yahoo Mail Setup</button>
+        </div>
+        <div id="modal-guide-gmail" class="modal-sec">
+          <h4 style="color: #ea4335; margin-bottom: 8px; font-weight:600" data-i18n="guide_gmail_title">Gmail App Password</h4>
+          <ol style="margin-left: 20px; font-size: 0.88rem; line-height: 1.7; color: var(--t2);">
+            <li style="margin-bottom: 8px;" data-i18n-html="guide_gmail_step1">Make sure <strong>2-Step Verification</strong> is turned on in your Google settings.</li>
+            <li style="margin-bottom: 8px;" data-i18n-html="guide_gmail_step2">Go to: <a href="https://myaccount.google.com/apppasswords" target="_blank" style="color:var(--p);text-decoration:underline">Google App Passwords →</a></li>
+            <li style="margin-bottom: 8px;" data-i18n-html="guide_gmail_step3">Type <code>AutoInbox</code> as the app name and click <strong>Create</strong>.</li>
+            <li style="margin-bottom: 8px;" data-i18n="guide_gmail_step4">Copy the 16-character code and paste it in the connect input without spaces.</li>
+          </ol>
+        </div>
+        <div id="modal-guide-yahoo" class="modal-sec hidden">
+          <h4 style="color: #6001d2; margin-bottom: 8px; font-weight:600" data-i18n="guide_yahoo_title">Yahoo Mail App Password</h4>
+          <ol style="margin-left: 20px; font-size: 0.88rem; line-height: 1.7; color: var(--t2);">
+            <li style="margin-bottom: 8px;" data-i18n-html="guide_yahoo_step1">Go to: <a href="https://login.yahoo.com/account/security" target="_blank" style="color:var(--p);text-decoration:underline">Yahoo Account Security →</a></li>
+            <li style="margin-bottom: 8px;" data-i18n-html="guide_yahoo_step2">Scroll down and click <strong>Generate app password</strong>.</li>
+            <li style="margin-bottom: 8px;" data-i18n-html="guide_yahoo_step3">Type <code>AutoInbox</code> and click <strong>Generate</strong>.</li>
+            <li style="margin-bottom: 8px;" data-i18n="guide_yahoo_step4">Copy the 16-character code and paste it in the connect input without spaces.</li>
+          </ol>
+        </div>
+        <div class="modal-sec" style="border-top:1px solid var(--s2);margin-top:20px;padding-top:15px">
+          <h5 style="margin-bottom: 6px; font-weight:600" data-i18n="trouble_title">💡 Troubleshooting</h5>
+          <p style="font-size:0.8rem;color:var(--t3);line-height:1.5" data-i18n="trouble_desc">
+            If you encounter "Invalid credentials", make sure your email address is correct and the 16-character code has no spaces. Also ensure you are using a generated App Password and not your personal login password.
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -1277,19 +1336,23 @@
   <!-- Features Modal -->
   <div id="features-modal" class="modal hidden">
     <div class="modal-bg" id="features-modal-bg"></div>
-    <div class="modal-box glass" style="max-width: 900px; max-height: 85vh; overflow-y: auto; text-align: left;">
-      <button class="modal-x" id="features-modal-close">×</button>
-      <div class="modal-head">
-        <div class="section-tag" style="margin-bottom:6px" data-i18n="feat_tag">Features</div>
-        <h3 data-i18n="feat_title">Powerful Features for Smarter Replies</h3>
+    <div class="modal-box glass" style="max-width: 900px; max-height: 85vh; text-align: left; display: flex; flex-direction: column; overflow: hidden; padding: 0;">
+      <div class="modal-header-nav">
+        <button class="modal-x" id="features-modal-close" type="button">×</button>
+        <div class="modal-head">
+          <div class="section-tag" style="margin-bottom:6px" data-i18n="feat_tag">Features</div>
+          <h3 data-i18n="feat_title">Powerful Features for Smarter Replies</h3>
+        </div>
       </div>
-      <div class="feat-grid" style="margin-top: 20px;">
-        <div class="feat-card"><div class="feat-icon">01</div><h4 data-i18n="feat_1_title">Voice Cloning AI</h4><p data-i18n="feat_1_desc">Learns your exact tone, language, and emoji style from real reply samples.</p></div>
-        <div class="feat-card"><div class="feat-icon">02</div><h4 data-i18n="feat_2_title">Instant Auto-Reply</h4><p data-i18n="feat_2_desc">AI drafts replies in seconds. No more late responses or lost clients.</p></div>
-        <div class="feat-card"><div class="feat-icon">03</div><h4 data-i18n="feat_3_title">Military Encryption</h4><p data-i18n="feat_3_desc">AES-256 encryption. Your emails and data are 100% secure and private.</p></div>
-        <div class="feat-card"><div class="feat-icon">04</div><h4 data-i18n="feat_4_title">Review &amp; Approve</h4><p data-i18n="feat_4_desc">Edit, regenerate, or approve every AI draft before it gets sent.</p></div>
-        <div class="feat-card"><div class="feat-icon">05</div><h4 data-i18n="feat_5_title">24/7 Monitoring</h4><p data-i18n="feat_5_desc">Works while you sleep. Never miss a client message again.</p></div>
-        <div class="feat-card"><div class="feat-icon">06</div><h4 data-i18n="feat_6_title">25+ Languages</h4><p data-i18n="feat_6_desc">Auto-detect and reply in your client's language — English, Japanese, Korean, Spanish, and more.</p></div>
+      <div class="modal-body-scroll">
+        <div class="feat-grid" style="margin-top: 10px;">
+          <div class="feat-card"><div class="feat-icon">01</div><h4 data-i18n="feat_1_title">Voice Cloning AI</h4><p data-i18n="feat_1_desc">Learns your exact tone, language, and emoji style from real reply samples.</p></div>
+          <div class="feat-card"><div class="feat-icon">02</div><h4 data-i18n="feat_2_title">Instant Auto-Reply</h4><p data-i18n="feat_2_desc">AI drafts replies in seconds. No more late responses or lost clients.</p></div>
+          <div class="feat-card"><div class="feat-icon">03</div><h4 data-i18n="feat_3_title">Military Encryption</h4><p data-i18n="feat_3_desc">AES-256 encryption. Your emails and data are 100% secure and private.</p></div>
+          <div class="feat-card"><div class="feat-icon">04</div><h4 data-i18n="feat_4_title">Review &amp; Approve</h4><p data-i18n="feat_4_desc">Edit, regenerate, or approve every AI draft before it gets sent.</p></div>
+          <div class="feat-card"><div class="feat-icon">05</div><h4 data-i18n="feat_5_title">24/7 Monitoring</h4><p data-i18n="feat_5_desc">Works while you sleep. Never miss a client message again.</p></div>
+          <div class="feat-card"><div class="feat-icon">06</div><h4 data-i18n="feat_6_title">25+ Languages</h4><p data-i18n="feat_6_desc">Auto-detect and reply in your client's language — English, Japanese, Korean, Spanish, and more.</p></div>
+        </div>
       </div>
     </div>
   </div>
@@ -1297,139 +1360,140 @@
   <!-- Languages Modal -->
   <div id="languages-modal" class="modal hidden">
     <div class="modal-bg" id="languages-modal-bg"></div>
-    <div class="modal-box glass" style="max-width: 900px; max-height: 90vh; overflow-y: auto; text-align: left;">
-      <button class="modal-x" id="languages-modal-close">×</button>
-      <div class="modal-head">
-        <div class="section-tag" style="margin-bottom:6px">Global Ready</div>
-        <h3>🌍 One Inbox. Every Language.</h3>
-        <p style="color:var(--t2);font-size:.9rem;margin-top:4px">AutoInbox auto-detects your client's language and replies naturally — no translation apps needed.</p>
-      </div>
-      <div class="lang-showcase">
-        <div class="lang-scroll-row" style="margin-bottom:8px">
-          <div class="lang-scroll-track">
-            <div class="lang-pill"><span class="flag-badge">US</span> English</div>
-            <div class="lang-pill"><span class="flag-badge">JP</span> 日本語</div>
-            <div class="lang-pill"><span class="flag-badge">KR</span> 한국어</div>
-            <div class="lang-pill"><span class="flag-badge">ES</span> Español</div>
-            <div class="lang-pill"><span class="flag-badge">FR</span> Français</div>
-            <div class="lang-pill"><span class="flag-badge">DE</span> Deutsch</div>
-            <div class="lang-pill"><span class="flag-badge">PT</span> Português</div>
-            <div class="lang-pill"><span class="flag-badge">IT</span> Italiano</div>
-            <div class="lang-pill"><span class="flag-badge">RU</span> Русский</div>
-            <div class="lang-pill"><span class="flag-badge">AR</span> العربية</div>
-            <div class="lang-pill"><span class="flag-badge">IN</span> हिन्दी</div>
-            <div class="lang-pill"><span class="flag-badge">CN</span> 中文</div>
-            <div class="lang-pill"><span class="flag-badge">TH</span> ไทย</div>
-            <div class="lang-pill"><span class="flag-badge">PH</span> Filipino</div>
-            <div class="lang-pill"><span class="flag-badge">VN</span> Tiếng Việt</div>
-            <div class="lang-pill"><span class="flag-badge">ID</span> Indonesia</div>
-            <div class="lang-pill"><span class="flag-badge">MY</span> Malay</div>
-            <div class="lang-pill"><span class="flag-badge">TR</span> Türkçe</div>
-            <div class="lang-pill"><span class="flag-badge">PL</span> Polski</div>
-            <div class="lang-pill"><span class="flag-badge">UA</span> Українська</div>
-            <div class="lang-pill"><span class="flag-badge">NL</span> Nederlands</div>
-            <div class="lang-pill"><span class="flag-badge">SE</span> Svenska</div>
-            <div class="lang-pill"><span class="flag-badge">TW</span> 繁體中文</div>
-            <div class="lang-pill"><span class="flag-badge">US</span> English</div>
-            <div class="lang-pill"><span class="flag-badge">JP</span> 日本語</div>
-            <div class="lang-pill"><span class="flag-badge">KR</span> 한국어</div>
-            <div class="lang-pill"><span class="flag-badge">ES</span> Español</div>
-            <div class="lang-pill"><span class="flag-badge">FR</span> Français</div>
-            <div class="lang-pill"><span class="flag-badge">DE</span> Deutsch</div>
-            <div class="lang-pill"><span class="flag-badge">PT</span> Português</div>
-            <div class="lang-pill"><span class="flag-badge">IT</span> Italiano</div>
-            <div class="lang-pill"><span class="flag-badge">RU</span> Русский</div>
-            <div class="lang-pill"><span class="flag-badge">AR</span> العربية</div>
-            <div class="lang-pill"><span class="flag-badge">IN</span> हिन्दी</div>
-            <div class="lang-pill"><span class="flag-badge">CN</span> 中文</div>
-            <div class="lang-pill"><span class="flag-badge">TH</span> ไทย</div>
-            <div class="lang-pill"><span class="flag-badge">PH</span> Filipino</div>
-            <div class="lang-pill"><span class="flag-badge">VN</span> Tiếng Việt</div>
-            <div class="lang-pill"><span class="flag-badge">ID</span> Indonesia</div>
-            <div class="lang-pill"><span class="flag-badge">MY</span> Malay</div>
-            <div class="lang-pill"><span class="flag-badge">TR</span> Türkçe</div>
-            <div class="lang-pill"><span class="flag-badge">PL</span> Polski</div>
-            <div class="lang-pill"><span class="flag-badge">UA</span> Українська</div>
-            <div class="lang-pill"><span class="flag-badge">NL</span> Nederlands</div>
-            <div class="lang-pill"><span class="flag-badge">SE</span> Svenska</div>
-            <div class="lang-pill"><span class="flag-badge">TW</span> 繁體中文</div>
-          </div>
+    <div class="modal-box glass" style="max-width: 900px; max-height: 90vh; text-align: left; display: flex; flex-direction: column; overflow: hidden; padding: 0;">
+      <div class="modal-header-nav">
+        <button class="modal-x" id="languages-modal-close" type="button">×</button>
+        <div class="modal-head">
+          <div class="section-tag" style="margin-bottom:6px">Global Ready</div>
+          <h3>🌍 One Inbox. Every Language.</h3>
+          <p style="color:var(--t2);font-size:.9rem;margin-top:4px">AutoInbox auto-detects your client's language and replies naturally — no translation apps needed.</p>
         </div>
-
-
-        <div class="demo-playground">
-          <div class="demo-tabs">
-            <button class="demo-tab active" data-lang="ja">
-              <span class="tab-flag flag-badge">JP</span>
-              <div class="tab-info">
-                <span class="tab-name">Japanese</span>
-                <span class="tab-user">Yuki Tanaka</span>
-              </div>
-              <span class="tab-pulse"></span>
-            </button>
-            <button class="demo-tab" data-lang="ko">
-              <span class="tab-flag flag-badge">KR</span>
-              <div class="tab-info">
-                <span class="tab-name">Korean</span>
-                <span class="tab-user">Min-Jun Kim</span>
-              </div>
-              <span class="tab-pulse"></span>
-            </button>
-            <button class="demo-tab" data-lang="es">
-              <span class="tab-flag flag-badge">ES</span>
-              <div class="tab-info">
-                <span class="tab-name">Spanish</span>
-                <span class="tab-user">Sofía Rodríguez</span>
-              </div>
-              <span class="tab-pulse"></span>
-            </button>
-            <button class="demo-tab" data-lang="fr">
-              <span class="tab-flag flag-badge">FR</span>
-              <div class="tab-info">
-                <span class="tab-name">French</span>
-                <span class="tab-user">Lucas Martin</span>
-              </div>
-              <span class="tab-pulse"></span>
-            </button>
-            <button class="demo-tab" data-lang="ar">
-              <span class="tab-flag flag-badge">AR</span>
-              <div class="tab-info">
-                <span class="tab-name">Arabic</span>
-                <span class="tab-user">Yousef Al-Harbi</span>
-              </div>
-              <span class="tab-pulse"></span>
-            </button>
-            <button class="demo-tab" data-lang="tl">
-              <span class="tab-flag flag-badge">PH</span>
-              <div class="tab-info">
-                <span class="tab-name">Filipino</span>
-                <span class="tab-user">Jay dela Cruz</span>
-              </div>
-              <span class="tab-pulse"></span>
-            </button>
+      </div>
+      <div class="modal-body-scroll">
+        <div class="lang-showcase">
+          <div class="lang-scroll-row" style="margin-bottom:8px">
+            <div class="lang-scroll-track">
+              <div class="lang-pill"><span class="flag-badge">US</span> English</div>
+              <div class="lang-pill"><span class="flag-badge">JP</span> 日本語</div>
+              <div class="lang-pill"><span class="flag-badge">KR</span> 한국어</div>
+              <div class="lang-pill"><span class="flag-badge">ES</span> Español</div>
+              <div class="lang-pill"><span class="flag-badge">FR</span> Français</div>
+              <div class="lang-pill"><span class="flag-badge">DE</span> Deutsch</div>
+              <div class="lang-pill"><span class="flag-badge">PT</span> Português</div>
+              <div class="lang-pill"><span class="flag-badge">IT</span> Italiano</div>
+              <div class="lang-pill"><span class="flag-badge">RU</span> Русский</div>
+              <div class="lang-pill"><span class="flag-badge">AR</span> العربية</div>
+              <div class="lang-pill"><span class="flag-badge">IN</span> Hindi</div>
+              <div class="lang-pill"><span class="flag-badge">CN</span> 中文</div>
+              <div class="lang-pill"><span class="flag-badge">TH</span> ไทย</div>
+              <div class="lang-pill"><span class="flag-badge">PH</span> Filipino</div>
+              <div class="lang-pill"><span class="flag-badge">VN</span> Tiếng Việt</div>
+              <div class="lang-pill"><span class="flag-badge">ID</span> Indonesia</div>
+              <div class="lang-pill"><span class="flag-badge">MY</span> Malay</div>
+              <div class="lang-pill"><span class="flag-badge">TR</span> Türkçe</div>
+              <div class="lang-pill"><span class="flag-badge">PL</span> Polski</div>
+              <div class="lang-pill"><span class="flag-badge">UA</span> Українська</div>
+              <div class="lang-pill"><span class="flag-badge">NL</span> Nederlands</div>
+              <div class="lang-pill"><span class="flag-badge">SE</span> Svenska</div>
+              <div class="lang-pill"><span class="flag-badge">TW</span> 繁體中文</div>
+              <div class="lang-pill"><span class="flag-badge">US</span> English</div>
+              <div class="lang-pill"><span class="flag-badge">JP</span> 日本語</div>
+              <div class="lang-pill"><span class="flag-badge">KR</span> 한국어</div>
+              <div class="lang-pill"><span class="flag-badge">ES</span> Español</div>
+              <div class="lang-pill"><span class="flag-badge">FR</span> Français</div>
+              <div class="lang-pill"><span class="flag-badge">DE</span> Deutsch</div>
+              <div class="lang-pill"><span class="flag-badge">PT</span> Português</div>
+              <div class="lang-pill"><span class="flag-badge">IT</span> Italiano</div>
+              <div class="lang-pill"><span class="flag-badge">RU</span> Русский</div>
+              <div class="lang-pill"><span class="flag-badge">AR</span> العربية</div>
+              <div class="lang-pill"><span class="flag-badge">IN</span> Hindi</div>
+              <div class="lang-pill"><span class="flag-badge">CN</span> 中文</div>
+              <div class="lang-pill"><span class="flag-badge">TH</span> ไทย</div>
+              <div class="lang-pill"><span class="flag-badge">PH</span> Filipino</div>
+              <div class="lang-pill"><span class="flag-badge">VN</span> Tiếng Việt</div>
+              <div class="lang-pill"><span class="flag-badge">ID</span> Indonesia</div>
+              <div class="lang-pill"><span class="flag-badge">MY</span> Malay</div>
+              <div class="lang-pill"><span class="flag-badge">TR</span> Türkçe</div>
+              <div class="lang-pill"><span class="flag-badge">PL</span> Polski</div>
+              <div class="lang-pill"><span class="flag-badge">UA</span> Українська</div>
+              <div class="lang-pill"><span class="flag-badge">NL</span> Nederlands</div>
+              <div class="lang-pill"><span class="flag-badge">SE</span> Svenska</div>
+              <div class="lang-pill"><span class="flag-badge">TW</span> 繁體中文</div>
+            </div>
           </div>
-
-          <div class="demo-simulator">
-            <div class="phone-frame">
-              <div class="phone-notch"></div>
-              <div class="phone-bar">
-                <div class="phone-user-info">
-                  <div class="phone-avatar" id="demo-avatar">YT</div>
-                  <div>
-                    <div class="phone-username" id="demo-name">Yuki Tanaka</div>
-                    <div class="phone-status-row">
-                      <span class="phone-status-dot"></span>
-                      <span class="phone-status-text">Active Now</span>
+          <div class="demo-playground">
+            <div class="demo-tabs">
+              <button class="demo-tab active" data-lang="ja">
+                <span class="tab-flag flag-badge">JP</span>
+                <div class="tab-info">
+                  <span class="tab-name">Japanese</span>
+                  <span class="tab-user">Yuki Tanaka</span>
+                </div>
+                <span class="tab-pulse"></span>
+              </button>
+              <button class="demo-tab" data-lang="ko">
+                <span class="tab-flag flag-badge">KR</span>
+                <div class="tab-info">
+                  <span class="tab-name">Korean</span>
+                  <span class="tab-user">Min-Jun Kim</span>
+                </div>
+                <span class="tab-pulse"></span>
+              </button>
+              <button class="demo-tab" data-lang="es">
+                <span class="tab-flag flag-badge">ES</span>
+                <div class="tab-info">
+                  <span class="tab-name">Spanish</span>
+                  <span class="tab-user">Sofía Rodríguez</span>
+                </div>
+                <span class="tab-pulse"></span>
+              </button>
+              <button class="demo-tab" data-lang="fr">
+                <span class="tab-flag flag-badge">FR</span>
+                <div class="tab-info">
+                  <span class="tab-name">French</span>
+                  <span class="tab-user">Lucas Martin</span>
+                </div>
+                <span class="tab-pulse"></span>
+              </button>
+              <button class="demo-tab" data-lang="ar">
+                <span class="tab-flag flag-badge">AR</span>
+                <div class="tab-info">
+                  <span class="tab-name">Arabic</span>
+                  <span class="tab-user">Yousef Al-Harbi</span>
+                </div>
+                <span class="tab-pulse"></span>
+              </button>
+              <button class="demo-tab" data-lang="tl">
+                <span class="tab-flag flag-badge">PH</span>
+                <div class="tab-info">
+                  <span class="tab-name">Filipino</span>
+                  <span class="tab-user">Jay dela Cruz</span>
+                </div>
+                <span class="tab-pulse"></span>
+              </button>
+            </div>
+            <div class="demo-simulator">
+              <div class="phone-frame">
+                <div class="phone-notch"></div>
+                <div class="phone-bar">
+                  <div class="phone-user-info">
+                    <div class="phone-avatar" id="demo-avatar">YT</div>
+                    <div>
+                      <div class="phone-username" id="demo-name">Yuki Tanaka</div>
+                      <div class="phone-status-row">
+                        <span class="phone-status-dot"></span>
+                        <span class="phone-status-text">Active Now</span>
+                      </div>
                     </div>
                   </div>
+                  <div class="phone-badge">AutoInbox Active ⚡</div>
                 </div>
-                <div class="phone-badge">AutoInbox Active ⚡</div>
-              </div>
-              <div class="phone-chat-body" id="demo-chat-body"></div>
-              <div class="phone-footer-mock">
-                <div class="phone-input-bar">
-                  <span>AI Clone drafting reply...</span>
-                  <span class="phone-send-icon">⚡</span>
+                <div class="phone-chat-body" id="demo-chat-body"></div>
+                <div class="phone-footer-mock">
+                  <div class="phone-input-bar">
+                    <span>AI Clone drafting reply...</span>
+                    <span class="phone-send-icon">⚡</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1442,83 +1506,86 @@
   <!-- How It Works Modal -->
   <div id="how-modal" class="modal hidden">
     <div class="modal-bg" id="how-modal-bg"></div>
-    <div class="modal-box glass" style="max-width: 900px; max-height: 85vh; overflow-y: auto; text-align: left;">
-      <button class="modal-x" id="how-modal-close">×</button>
-      <div class="modal-head">
-        <div class="section-tag" style="margin-bottom:6px" data-i18n="how_tag">How It Works</div>
-        <h3 data-i18n="how_title">🛠️ Your AI Clone in 3 Easy Steps</h3>
-        <p style="color:var(--t2);font-size:.9rem;margin-top:4px" data-i18n="how_desc">No technical skills needed. No downloads. Setup takes under 2 minutes.</p>
-      </div>
-
-      <div class="timeline" style="margin-top:30px">
-        <div class="timeline-step">
-          <div class="timeline-left">
-            <div class="timeline-num">01</div>
-          </div>
-          <div class="timeline-line"></div>
-          <div class="timeline-content">
-            <div class="timeline-badge" data-i18n="how_step1_badge">Step 1</div>
-            <h3 data-i18n="how_step1_title">Connect Your Gmail</h3>
-            <p data-i18n-html="how_step1_desc">Enter your Gmail address and a Google App Password. This is a special 16-character code from Google — <strong>not your real password</strong>. You can revoke it anytime from your Google Account.</p>
-            <div class="timeline-note" data-i18n="how_step1_note">Your credentials are encrypted with AES-256 — the same standard used by banks.</div>
-          </div>
-        </div>
-        <div class="timeline-step">
-          <div class="timeline-left">
-            <div class="timeline-num">02</div>
-          </div>
-          <div class="timeline-line"></div>
-          <div class="timeline-content">
-            <div class="timeline-badge" data-i18n="how_step2_badge">Step 2</div>
-            <h3 data-i18n="how_step2_title">Train Your AI Clone</h3>
-            <p data-i18n-html="how_step2_desc">Paste 3-5 examples of your real email replies. The AI analyzes your writing style — your tone, greeting, sign-off, language preference, and personality — to create a unique <strong>Voice Profile</strong>.</p>
-            <div class="timeline-note" data-i18n="how_step2_note">The more samples you provide, the more accurate your AI clone becomes.</div>
-          </div>
-        </div>
-        <div class="timeline-step">
-          <div class="timeline-left">
-            <div class="timeline-num">03</div>
-          </div>
-          <div class="timeline-line"></div>
-          <div class="timeline-content">
-            <div class="timeline-badge" data-i18n="how_step3_badge">Step 3</div>
-            <h3 data-i18n="how_step3_title">Review, Approve & Send</h3>
-            <p data-i18n-html="how_step3_desc">When a new email arrives, your AI clone instantly drafts a reply that sounds exactly like you. Open your dashboard, review the draft, make edits if needed, then <strong>approve with one click</strong>.</p>
-            <div class="timeline-note" data-i18n="how_step3_note">You stay in full control. Nothing gets sent without your approval.</div>
-          </div>
+    <div class="modal-box glass" style="max-width: 900px; max-height: 85vh; text-align: left; display: flex; flex-direction: column; overflow: hidden; padding: 0;">
+      <div class="modal-header-nav">
+        <button class="modal-x" id="how-modal-close" type="button">×</button>
+        <div class="modal-head">
+          <div class="section-tag" style="margin-bottom:6px" data-i18n="how_tag">How It Works</div>
+          <h3 data-i18n="how_title">🛠️ Your AI Clone in 3 Easy Steps</h3>
+          <p style="color:var(--t2);font-size:.9rem;margin-top:4px" data-i18n="how_desc">No technical skills needed. No downloads. Setup takes under 2 minutes.</p>
         </div>
       </div>
-
-      <hr style="border:0;border-top:1px solid var(--s2);margin:40px 0;">
-
-      <div style="text-align:center">
-        <div class="section-tag" style="margin-bottom:6px" data-i18n="diff_tag">The Difference</div>
-        <h3 style="margin-bottom:20px" data-i18n="diff_title">Before vs After AutoInbox</h3>
-      </div>
-      <div class="bva-grid" style="margin-top:20px">
-        <div class="bva-card before">
-          <div class="bva-label" data-i18n="diff_without">Without AutoInbox</div>
-          <ul class="bva-list"><li data-i18n="diff_b1">2+ hours daily replying</li><li data-i18n="diff_b2">Slow response = lost clients</li><li data-i18n="diff_b3">No replies while you sleep</li><li data-i18n="diff_b4">Copy-paste the same answers</li><li data-i18n="diff_b5">Missed opportunities everyday</li></ul>
-          <div class="bva-stat"><span data-i18n="diff_b_stat">~120 mins</span><span data-i18n="diff_b_stat_label">wasted daily</span></div>
+      <div class="modal-body-scroll">
+        <div class="timeline" style="margin-top:20px">
+          <div class="timeline-step">
+            <div class="timeline-left">
+              <div class="timeline-num">01</div>
+            </div>
+            <div class="timeline-line"></div>
+            <div class="timeline-content">
+              <div class="timeline-badge" data-i18n="how_step1_badge">Step 1</div>
+              <h3 data-i18n="how_step1_title">Connect Your Gmail</h3>
+              <p data-i18n-html="how_step1_desc">Enter your Gmail address and a Google App Password. This is a special 16-character code from Google — <strong>not your real password</strong>. You can revoke it anytime from your Google Account.</p>
+              <div class="timeline-note" data-i18n="how_step1_note">Your credentials are encrypted with AES-256 — the same standard used by banks.</div>
+            </div>
+          </div>
+          <div class="timeline-step">
+            <div class="timeline-left">
+              <div class="timeline-num">02</div>
+            </div>
+            <div class="timeline-line"></div>
+            <div class="timeline-content">
+              <div class="timeline-badge" data-i18n="how_step2_badge">Step 2</div>
+              <h3 data-i18n="how_step2_title">Train Your AI Clone</h3>
+              <p data-i18n-html="how_step2_desc">Paste 3-5 examples of your real email replies. The AI analyzes your writing style — your tone, greeting, sign-off, language preference, and personality — to create a unique <strong>Voice Profile</strong>.</p>
+              <div class="timeline-note" data-i18n="how_step2_note">The more samples you provide, the more accurate your AI clone becomes.</div>
+            </div>
+          </div>
+          <div class="timeline-step">
+            <div class="timeline-left">
+              <div class="timeline-num">03</div>
+            </div>
+            <div class="timeline-line"></div>
+            <div class="timeline-content">
+              <div class="timeline-badge" data-i18n="how_step3_badge">Step 3</div>
+              <h3 data-i18n="how_step3_title">Review, Approve & Send</h3>
+              <p data-i18n-html="how_step3_desc">When a new email arrives, your AI clone instantly drafts a reply that sounds exactly like you. Open your dashboard, review the draft, make edits if needed, then <strong>approve with one click</strong>.</p>
+              <div class="timeline-note" data-i18n="how_step3_note">You stay in full control. Nothing gets sent without your approval.</div>
+            </div>
+          </div>
         </div>
-        <div class="bva-vs"><div class="vs-circle">VS</div></div>
-        <div class="bva-card after">
-          <div class="bva-label" data-i18n="diff_with">With AutoInbox</div>
-          <ul class="bva-list"><li data-i18n="diff_a1">AI replies in seconds — 24/7</li><li data-i18n="diff_a2">Instant response = happy clients</li><li data-i18n="diff_a3">Works while you sleep</li><li data-i18n="diff_a4">Personalized — sounds like YOU</li><li data-i18n="diff_a5">More sales, less stress</li></ul>
-          <div class="bva-stat glow"><span data-i18n="diff_a_stat">~10 mins</span><span data-i18n="diff_a_stat_label">approve & done</span></div>
+
+        <hr style="border:0;border-top:1px solid var(--s2);margin:40px 0;">
+
+        <div style="text-align:center">
+          <div class="section-tag" style="margin-bottom:6px" data-i18n="diff_tag">The Difference</div>
+          <h3 style="margin-bottom:20px" data-i18n="diff_title">Before vs After AutoInbox</h3>
         </div>
-      </div>
+        <div class="bva-grid" style="margin-top:20px">
+          <div class="bva-card before">
+            <div class="bva-label" data-i18n="diff_without">Without AutoInbox</div>
+            <ul class="bva-list"><li data-i18n="diff_b1">2+ hours daily replying</li><li data-i18n="diff_b2">Slow response = lost clients</li><li data-i18n="diff_b3">No replies while you sleep</li><li data-i18n="diff_b4">Copy-paste the same answers</li><li data-i18n="diff_b5">Missed opportunities everyday</li></ul>
+            <div class="bva-stat"><span data-i18n="diff_b_stat">~120 mins</span><span data-i18n="diff_b_stat_label">wasted daily</span></div>
+          </div>
+          <div class="bva-vs"><div class="vs-circle">VS</div></div>
+          <div class="bva-card after">
+            <div class="bva-label" data-i18n="diff_with">With AutoInbox</div>
+            <ul class="bva-list"><li data-i18n="diff_a1">AI replies in seconds — 24/7</li><li data-i18n="diff_a2">Instant response = happy clients</li><li data-i18n="diff_a3">Works while you sleep</li><li data-i18n="diff_a4">Personalized — sounds like YOU</li><li data-i18n="diff_a5">More sales, less stress</li></ul>
+            <div class="bva-stat glow"><span data-i18n="diff_a_stat">~10 mins</span><span data-i18n="diff_a_stat_label">approve & done</span></div>
+          </div>
+        </div>
 
-      <hr style="border:0;border-top:1px solid var(--s2);margin:40px 0;">
+        <hr style="border:0;border-top:1px solid var(--s2);margin:40px 0;">
 
-      <div style="text-align:center">
-        <div class="section-tag" style="margin-bottom:6px" data-i18n="testi_tag">Testimonials</div>
-        <h3 style="margin-bottom:20px" data-i18n="testi_title">Loved by Professionals Worldwide</h3>
-      </div>
-      <div class="testi-row" style="margin-top:20px; display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:20px;">
-        <div class="testi-card" style="margin:0;"><p data-i18n="testi_1_quote">"This has been a help! I used to spend 2 hours on replies, now it only takes 10 minutes. It still sounds exactly like me!"</p><div class="testi-who"><span class="testi-av">MG</span><div><strong data-i18n="testi_1_name">Maria Garcia</strong><small data-i18n="testi_1_role">Freelance Designer</small></div></div></div>
-        <div class="testi-card" style="margin:0;"><p data-i18n="testi_2_quote">"Game changer for my online business. Auto-reply to 'is this still available?' — finally! Amazing."</p><div class="testi-who"><span class="testi-av">JR</span><div><strong data-i18n="testi_2_name">Jay Roberts</strong><small data-i18n="testi_2_role">Online Seller</small></div></div></div>
-        <div class="testi-card" style="margin:0;"><p data-i18n="testi_3_quote">"Even with my casual writing style, the AI copies my exact tone perfectly. You can't even tell it's AI!"</p><div class="testi-who"><span class="testi-av">AL</span><div><strong data-i18n="testi_3_name">Anna Lee</strong><small data-i18n="testi_3_role">Virtual Assistant</small></div></div></div>
+        <div style="text-align:center">
+          <div class="section-tag" style="margin-bottom:6px" data-i18n="testi_tag">Testimonials</div>
+          <h3 style="margin-bottom:20px" data-i18n="testi_title">Loved by Professionals Worldwide</h3>
+        </div>
+        <div class="testi-row" style="margin-top:20px; display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:20px;">
+          <div class="testi-card" style="margin:0;"><p data-i18n="testi_1_quote">"This has been a help! I used to spend 2 hours on replies, now it only takes 10 minutes. It still sounds exactly like me!"</p><div class="testi-who"><span class="testi-av">MG</span><div><strong data-i18n="testi_1_name">Maria Garcia</strong><small data-i18n="testi_1_role">Freelance Designer</small></div></div></div>
+          <div class="testi-card" style="margin:0;"><p data-i18n="testi_2_quote">"Game changer for my online business. Auto-reply to 'is this still available?' — finally! Amazing."</p><div class="testi-who"><span class="testi-av">JR</span><div><strong data-i18n="testi_2_name">Jay Roberts</strong><small data-i18n="testi_2_role">Online Seller</small></div></div></div>
+          <div class="testi-card" style="margin:0;"><p data-i18n="testi_3_quote">"Even with my casual writing style, the AI copies my exact tone perfectly. You can't even tell it's AI!"</p><div class="testi-who"><span class="testi-av">AL</span><div><strong data-i18n="testi_3_name">Anna Lee</strong><small data-i18n="testi_3_role">Virtual Assistant</small></div></div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -1526,38 +1593,46 @@
   <!-- Pricing Modal -->
   <div id="pricing-modal" class="modal hidden">
     <div class="modal-bg" id="pricing-modal-bg"></div>
-    <div class="modal-box glass" style="max-width: 900px; max-height: 85vh; overflow-y: auto; text-align: left;">
-      <button class="modal-x" id="pricing-modal-close">×</button>
-      <div class="modal-head" style="text-align:center">
-        <div class="section-tag" style="margin-bottom:6px" data-i18n="price_tag">Pricing</div>
-        <h3 data-i18n="price_title">Simple. Transparent. Affordable.</h3>
-        <p style="color:var(--t2);font-size:.9rem;margin-top:4px" data-i18n="price_desc">Start free. Upgrade when your business grows.</p>
+    <div class="modal-box glass" style="max-width: 900px; max-height: 85vh; text-align: left; display: flex; flex-direction: column; overflow: hidden; padding: 0;">
+      <div class="modal-header-nav" style="text-align:center">
+        <button class="modal-x" id="pricing-modal-close" type="button">×</button>
+        <div class="modal-head">
+          <div class="section-tag" style="margin-bottom:6px" data-i18n="price_tag">Pricing</div>
+          <h3 data-i18n="price_title">Simple. Transparent. Affordable.</h3>
+          <p style="color:var(--t2);font-size:.9rem;margin-top:4px" data-i18n="price_desc">Start free. Upgrade when your business grows.</p>
+        </div>
       </div>
-      <div class="price-row" style="margin-top:30px">
-        <div class="price-card"><h4 data-i18n="price_free">Free</h4><div class="price-val">₱0<span>/mo</span></div><ul><li data-i18n="price_free_1">10 AI replies / month</li><li data-i18n="price_free_2">1 Gmail / Yahoo Mail account</li><li data-i18n="price_free_3">Basic voice clone</li><li data-i18n="price_free_4">Dashboard access</li><li class="dim" data-i18n="price_free_5">— Priority AI speed</li><li class="dim" data-i18n="price_free_6">— Multiple accounts</li></ul><button class="btn-ghost btn-full" id="price-free" data-i18n="price_free_btn">Sign Up Free</button></div>
-        <div class="price-card pop"><div class="pop-tag" data-i18n="price_best">Best Value</div><h4 data-i18n="price_basic">Basic</h4><div class="price-val">₱499<span>/mo</span></div><div class="trial-badge" data-i18n="price_trial">7-day free trial</div><ul><li data-i18n="price_basic_1">200 AI replies / month</li><li data-i18n="price_basic_2">1 Gmail / Yahoo Mail account</li><li data-i18n="price_basic_3">Full voice clone</li><li data-i18n="price_basic_4">Edit & customize drafts</li><li data-i18n="price_basic_5">Priority AI speed</li><li class="dim" data-i18n="price_basic_6">— Multiple accounts</li></ul><button class="btn-accent btn-full pulse-glow" id="price-basic" data-i18n="price_basic_btn">Start 7-Day Free Trial</button></div>
-        <div class="price-card"><h4 data-i18n="price_pro">Pro</h4><div class="price-val">₱999<span>/mo</span></div><ul><li data-i18n="price_pro_1">Unlimited AI replies</li><li data-i18n="price_pro_2">3 Gmail / Yahoo Mail accounts</li><li data-i18n="price_pro_3">Full voice clone</li><li data-i18n="price_pro_4">Edit & customize drafts</li><li data-i18n="price_pro_5">Fastest AI priority</li><li data-i18n="price_pro_6">Multi-account dashboard</li></ul><button class="btn-ghost btn-full" id="price-pro" data-i18n="price_pro_btn">Subscribe Now</button></div>
+      <div class="modal-body-scroll">
+        <div class="price-row" style="margin-top:10px">
+          <div class="price-card"><h4 data-i18n="price_free">Free</h4><div class="price-val">₱0<span>/mo</span></div><ul><li data-i18n="price_free_1">10 AI replies / month</li><li data-i18n="price_free_2">1 Gmail / Yahoo Mail account</li><li data-i18n="price_free_3">Basic voice clone</li><li data-i18n="price_free_4">Dashboard access</li><li class="dim" data-i18n="price_free_5">— Priority AI speed</li><li class="dim" data-i18n="price_free_6">— Multiple accounts</li></ul><button class="btn-ghost btn-full" id="price-free" data-i18n="price_free_btn">Sign Up Free</button></div>
+          <div class="price-card pop"><div class="pop-tag" data-i18n="price_best">Best Value</div><h4 data-i18n="price_basic">Basic</h4><div class="price-val">₱499<span>/mo</span></div><div class="trial-badge" data-i18n="price_trial">7-day free trial</div><ul><li data-i18n="price_basic_1">200 AI replies / month</li><li data-i18n="price_basic_2">1 Gmail / Yahoo Mail account</li><li data-i18n="price_basic_3">Full voice clone</li><li data-i18n="price_basic_4">Edit & customize drafts</li><li data-i18n="price_basic_5">Priority AI speed</li><li class="dim" data-i18n="price_basic_6">— Multiple accounts</li></ul><button class="btn-accent btn-full pulse-glow" id="price-basic" data-i18n="price_basic_btn">Start 7-Day Free Trial</button></div>
+          <div class="price-card"><h4 data-i18n="price_pro">Pro</h4><div class="price-val">₱999<span>/mo</span></div><ul><li data-i18n="price_pro_1">Unlimited AI replies</li><li data-i18n="price_pro_2">3 Gmail / Yahoo Mail accounts</li><li data-i18n="price_pro_3">Full voice clone</li><li data-i18n="price_pro_4">Edit & customize drafts</li><li data-i18n="price_pro_5">Fastest AI priority</li><li data-i18n="price_pro_6">Multi-account dashboard</li></ul><button class="btn-ghost btn-full" id="price-pro" data-i18n="price_pro_btn">Subscribe Now</button></div>
+        </div>
+        <p style="text-align: center; font-size: 0.8rem; color: var(--t3); margin-top: 16px;" data-i18n="price_note">* Payments are processed in equivalent PHP (₱499 / ₱999) at checkout.</p>
       </div>
-      <p style="text-align: center; font-size: 0.8rem; color: var(--t3); margin-top: 16px;" data-i18n="price_note">* Payments are processed in equivalent PHP (₱499 / ₱999) at checkout.</p>
     </div>
   </div>
 
   <!-- FAQ Modal -->
   <div id="faq-modal" class="modal hidden">
     <div class="modal-bg" id="faq-modal-bg"></div>
-    <div class="modal-box glass" style="max-width: 700px; max-height: 85vh; overflow-y: auto; text-align: left;">
-      <button class="modal-x" id="faq-modal-close">×</button>
-      <div class="modal-head">
-        <div class="section-tag" style="margin-bottom:6px" data-i18n="faq_tag">FAQ</div>
-        <h3 data-i18n="faq_title">Common Questions</h3>
+    <div class="modal-box glass" style="max-width: 700px; max-height: 85vh; text-align: left; display: flex; flex-direction: column; overflow: hidden; padding: 0;">
+      <div class="modal-header-nav">
+        <button class="modal-x" id="faq-modal-close" type="button">×</button>
+        <div class="modal-head">
+          <div class="section-tag" style="margin-bottom:6px" data-i18n="faq_tag">FAQ</div>
+          <h3 data-i18n="faq_title">Common Questions</h3>
+        </div>
       </div>
-      <div class="faq-list" style="margin-top:20px">
-        <div class="faq-item"><button class="faq-q" data-i18n="faq_q1">Is my data safe?</button><div class="faq-a"><p data-i18n="faq_a1">Absolutely. We use AES-256 encryption (military-grade). We never read your emails.</p></div></div>
-        <div class="faq-item"><button class="faq-q" data-i18n="faq_q2">Which email providers are supported?</button><div class="faq-a"><p data-i18n="faq_a2">Gmail and Yahoo Mail are currently supported via App Password. Outlook coming soon.</p></div></div>
-        <div class="faq-item"><button class="faq-q" data-i18n="faq_q3">Can I edit the AI reply?</button><div class="faq-a"><p data-i18n="faq_a3">Yes! All drafts can be edited, regenerated, or skipped.</p></div></div>
-        <div class="faq-item"><button class="faq-q" data-i18n="faq_q4">How do I cancel?</button><div class="faq-a"><p data-i18n="faq_a4">Anytime — no lock-in. Disconnect your email, delete your account. Done.</p></div></div>
-        <div class="faq-item"><button class="faq-q" data-i18n="faq_q5">Do I need technical skills?</button><div class="faq-a"><p data-i18n="faq_a5">Not at all. If you can copy and paste, you can use AutoInbox.</p></div></div>
-        <div class="faq-item"><button class="faq-q" data-i18n="faq_q6">What languages does AutoInbox support?</button><div class="faq-a"><p data-i18n="faq_a6">AutoInbox supports 25+ languages including English, Japanese, Korean, Chinese, Spanish, French, German, Arabic, Hindi, Filipino, and more. With Auto-Detect mode, the AI automatically replies in the same language your client uses — no setup needed.</p></div></div>
+      <div class="modal-body-scroll">
+        <div class="faq-list" style="margin-top:10px">
+          <div class="faq-item"><button class="faq-q" data-i18n="faq_q1">Is my data safe?</button><div class="faq-a"><p data-i18n="faq_a1">Absolutely. We use AES-256 encryption (military-grade). We never read your emails.</p></div></div>
+          <div class="faq-item"><button class="faq-q" data-i18n="faq_q2">Which email providers are supported?</button><div class="faq-a"><p data-i18n="faq_a2">Gmail and Yahoo Mail are currently supported via App Password. Outlook coming soon.</p></div></div>
+          <div class="faq-item"><button class="faq-q" data-i18n="faq_q3">Can I edit the AI reply?</button><div class="faq-a"><p data-i18n="faq_a3">Yes! All drafts can be edited, regenerated, or skipped.</p></div></div>
+          <div class="faq-item"><button class="faq-q" data-i18n="faq_q4">How do I cancel?</button><div class="faq-a"><p data-i18n="faq_a4">Anytime — no lock-in. Disconnect your email, delete your account. Done.</p></div></div>
+          <div class="faq-item"><button class="faq-q" data-i18n="faq_q5">Do I need technical skills?</button><div class="faq-a"><p data-i18n="faq_a5">Not at all. If you can copy and paste, you can use AutoInbox.</p></div></div>
+          <div class="faq-item"><button class="faq-q" data-i18n="faq_q6">What languages does AutoInbox support?</button><div class="faq-a"><p data-i18n="faq_a6">AutoInbox supports 25+ languages including English, Japanese, Korean, Chinese, Spanish, French, German, Arabic, Hindi, Filipino, and more. With Auto-Detect mode, the AI automatically replies in the same language your client uses — no setup needed.</p></div></div>
+        </div>
       </div>
     </div>
   </div>
@@ -1565,31 +1640,35 @@
   <!-- Feedback Modal -->
   <div id="feedback-modal" class="modal hidden">
     <div class="modal-bg" id="feedback-modal-bg"></div>
-    <div class="modal-box glass" style="max-width: 500px; text-align: left;">
-      <button class="modal-x" id="feedback-modal-close">×</button>
-      <div class="modal-head">
-        <div class="section-tag" style="margin-bottom:6px" data-i18n="feedback_tag">Feedback</div>
-        <h3 data-i18n="feedback_title">We'd Love to Hear From You</h3>
-        <p style="color:var(--t2);font-size:.9rem;margin-top:4px" data-i18n="feedback_desc">Send us your comments, suggestions, or questions.</p>
+    <div class="modal-box glass" style="max-width: 500px; text-align: left; display: flex; flex-direction: column; overflow: hidden; padding: 0;">
+      <div class="modal-header-nav">
+        <button class="modal-x" id="feedback-modal-close" type="button">×</button>
+        <div class="modal-head">
+          <div class="section-tag" style="margin-bottom:6px" data-i18n="feedback_tag">Feedback</div>
+          <h3 data-i18n="feedback_title">We'd Love to Hear From You</h3>
+          <p style="color:var(--t2);font-size:.9rem;margin-top:4px" data-i18n="feedback_desc">Send us your comments, suggestions, or questions.</p>
+        </div>
       </div>
-      <form id="form-feedback">
-        <div class="fg">
-          <label for="feedback-name" data-i18n="feedback_name">Name</label>
-          <input type="text" id="feedback-name" placeholder="Your Name" required data-i18n-placeholder="ph_feedback_name">
-        </div>
-        <div class="fg" style="margin-top: 16px;">
-          <label for="feedback-email" data-i18n="feedback_email">Email Address</label>
-          <input type="email" id="feedback-email" placeholder="you@example.com" required data-i18n-placeholder="ph_feedback_email">
-        </div>
-        <div class="fg" style="margin-top: 16px;">
-          <label for="feedback-message" data-i18n="feedback_message">Message</label>
-          <textarea id="feedback-message" rows="5" placeholder="Write your thoughts..." required style="background:var(--bg2); border:1px solid var(--s2); color:var(--t); padding:12px 14px; border-radius:10px; font-size:.95rem; font-family:var(--f); width:100%; box-sizing:border-box; resize:vertical;" data-i18n-placeholder="ph_feedback_message"></textarea>
-        </div>
-        <div id="feedback-error" class="form-err hidden" style="margin-top: 16px;"></div>
-        <div id="feedback-success" class="form-err hidden" style="margin-top: 16px; color: var(--g); background: rgba(16, 185, 129, 0.1); border-color: var(--g);"></div>
-        <div class="g-recaptcha" data-sitekey="6LcB6Q8tAAAAADFvYDqdTBG9nN5xD0-HMdDAnGqI" id="recaptcha-feedback" style="margin-top:16px;transform:scale(0.9);transform-origin:0 0;"></div>
-        <button type="submit" class="btn-accent btn-sm" style="width: 100%; padding: 12px; font-size: 1rem; margin-top: 20px;" data-i18n="feedback_btn">Send Message</button>
-      </form>
+      <div class="modal-body-scroll">
+        <form id="form-feedback">
+          <div class="fg">
+            <label for="feedback-name" data-i18n="feedback_name">Name</label>
+            <input type="text" id="feedback-name" placeholder="Your Name" required data-i18n-placeholder="ph_feedback_name">
+          </div>
+          <div class="fg" style="margin-top: 16px;">
+            <label for="feedback-email" data-i18n="feedback_email">Email Address</label>
+            <input type="email" id="feedback-email" placeholder="you@example.com" required data-i18n-placeholder="ph_feedback_email">
+          </div>
+          <div class="fg" style="margin-top: 16px;">
+            <label for="feedback-message" data-i18n="feedback_message">Message</label>
+            <textarea id="feedback-message" rows="5" placeholder="Write your thoughts..." required style="background:var(--bg2); border:1px solid var(--s2); color:var(--t); padding:12px 14px; border-radius:10px; font-size:.95rem; font-family:var(--f); width:100%; box-sizing:border-box; resize:vertical;" data-i18n-placeholder="ph_feedback_message"></textarea>
+          </div>
+          <div id="feedback-error" class="form-err hidden" style="margin-top: 16px;"></div>
+          <div id="feedback-success" class="form-err hidden" style="margin-top: 16px; color: var(--g); background: rgba(16, 185, 129, 0.1); border-color: var(--g);"></div>
+          <div class="g-recaptcha" data-sitekey="6LcB6Q8tAAAAADFvYDqdTBG9nN5xD0-HMdDAnGqI" id="recaptcha-feedback" style="margin-top:16px;transform:scale(0.9);transform-origin:0 0;"></div>
+          <button type="submit" class="btn-accent btn-sm" style="width: 100%; padding: 12px; font-size: 1rem; margin-top: 20px;" data-i18n="feedback_btn">Send Message</button>
+        </form>
+      </div>
     </div>
   </div>
 
