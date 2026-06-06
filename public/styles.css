@@ -2994,6 +2994,10 @@ body::-webkit-scrollbar {
   from { opacity: 0; transform: translateY(30px) scale(0.95); }
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 
 .canvas-contact-btn {
   background: #1A1A1C;

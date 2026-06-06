@@ -2219,6 +2219,7 @@ function detectPlatform() {
 
 async function installPWA() {
   const p = detectPlatform();
+  console.log('[PWA Install]', { deferredPrompt: !!deferredPrompt, ...p });
 
   // Already installed as PWA
   if (p.isStandalone) {
@@ -2304,6 +2305,17 @@ if ('serviceWorker' in navigator) {
     .then(reg => console.log('[SW] Registered:', reg.scope))
     .catch(err => console.warn('[SW] Registration failed:', err));
 }
+
+// Bind install button click via JS (fallback for inline onclick)
+document.addEventListener('DOMContentLoaded', () => {
+  const installBtn = document.getElementById('btn-install-app');
+  if (installBtn) {
+    installBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      installPWA();
+    });
+  }
+});
 
 // ===== Pricing & Checkout =====
 async function startCheckout(plan) {
