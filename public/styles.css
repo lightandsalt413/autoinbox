@@ -7196,7 +7196,7 @@ body, #page-landing {
    ========================================================================== */
 
 #page-dashboard {
-  background: #003566 !important;
+  background: #daf0f8 !important;
 }
 
 #page-dashboard .sidebar {
@@ -7204,7 +7204,7 @@ body, #page-landing {
 }
 
 #page-dashboard .dash-main {
-  background: #003566 !important;
+  background: #daf0f8 !important;
   color: #0f172a !important;
   box-shadow: 0 24px 64px rgba(0, 53, 102, 0.05) !important;
 }
