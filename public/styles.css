@@ -7155,4 +7155,153 @@ body, #page-landing {
   box-shadow: 0 0 8px rgba(0, 158, 204, 0.5) !important;
 }
 
+/* ==========================================================================
+   ALIGNED DASHBOARD LIGHT MODE REDESIGN (USER REQUEST)
+   ========================================================================== */
+
+#page-dashboard {
+  background: #daf0f8 !important;
+}
+
+#page-dashboard .sidebar {
+  background: #0f172a !important; /* Premium brand navy sidebar */
+}
+
+#page-dashboard .dash-main {
+  background: #daf0f8 !important;
+  color: #0f172a !important;
+  box-shadow: 0 24px 64px rgba(0, 53, 102, 0.05) !important;
+}
+
+/* Headings inside Dashboard */
+.dash-main h1, .dash-main h2, .dash-main h3, .dash-main h4, .dash-main h5 {
+  color: #0f172a !important;
+}
+
+/* Dashboard Cards and Settings Sidebar */
+.dash-main .card, .dash-main .card.glass, .dash-main .settings-sidebar {
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 53, 102, 0.08) !important;
+  color: #334155 !important;
+  box-shadow: 0 10px 30px rgba(0, 53, 102, 0.03) !important;
+}
+
+.dash-main .card h3 {
+  color: #0f172a !important;
+}
+
+.dash-main .card p {
+  color: #475569 !important;
+}
+
+.dash-main .profile-box {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #334155 !important;
+}
+
+.dash-main .snav-item {
+  color: #475569 !important;
+}
+
+.dash-main .snav-item:hover {
+  background: rgba(0, 158, 204, 0.05) !important;
+  color: #009ecc !important;
+}
+
+.dash-main .snav-item.active {
+  background: rgba(0, 158, 204, 0.1) !important;
+  color: #003566 !important;
+  border-left-color: #009ecc !important;
+}
+
+/* Dashboard Buttons */
+.dash-main .btn-accent {
+  background: linear-gradient(90deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 4px 14px rgba(0, 158, 204, 0.2) !important;
+}
+
+.dash-main .btn-accent:hover {
+  box-shadow: 0 6px 20px rgba(0, 158, 204, 0.35) !important;
+  transform: translateY(-1.5px) !important;
+}
+
+/* Stat Cards */
+.dash-main .stat-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #334155 !important;
+  box-shadow: 0 4px 16px rgba(0, 53, 102, 0.02) !important;
+}
+
+.dash-main .stat-card .stat-num {
+  color: #0f172a !important;
+}
+
+.dash-main .stat-card .stat-lbl {
+  color: #64748b !important;
+}
+
+/* Filter Tabs */
+.dash-main .tab {
+  border: 1px solid #e2e8f0 !important;
+  color: #475569 !important;
+}
+
+.dash-main .tab:hover {
+  background: rgba(0, 158, 204, 0.05) !important;
+}
+
+.dash-main .tab.active {
+  background: linear-gradient(90deg, #003566 0%, #009ecc 100%) !important;
+  color: #ffffff !important;
+  border-color: transparent !important;
+  box-shadow: 0 4px 12px rgba(0, 158, 204, 0.2) !important;
+}
+
+/* Message Cards */
+.dash-main .message-card {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #334155 !important;
+  box-shadow: 0 4px 16px rgba(0, 53, 102, 0.02) !important;
+}
+
+.dash-main .message-card:hover {
+  border-color: #009ecc !important;
+  background: #ffffff !important;
+}
+
+.dash-main .message-avatar {
+  background: linear-gradient(135deg, #003566, #009ecc) !important;
+  color: #ffffff !important;
+}
+
+.dash-main .message-sender {
+  color: #0f172a !important;
+}
+
+.dash-main .message-subject {
+  color: #334155 !important;
+}
+
+.dash-main .message-preview {
+  color: #64748b !important;
+}
+
+/* Input Fields inside Dashboard */
+.dash-main .fg input, .dash-main .fg select, .dash-main .fg textarea {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+.dash-main .fg input:focus, .dash-main .fg select:focus, .dash-main .fg textarea:focus {
+  background: #ffffff !important;
+  border-color: #009ecc !important;
+}
+
+
 
