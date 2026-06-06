@@ -3,6 +3,43 @@ if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
 }
 
+// ===== reCAPTCHA v2 Explicit Rendering =====
+const RECAPTCHA_SITE_KEY = '6LcB6Q8tAAAAADFvYDqdTBG9nN5xD0-HMdDAnGqI';
+let recaptchaReady = false;
+const recaptchaWidgets = {};
+
+function renderRecaptchaWidget(containerId) {
+  if (!recaptchaReady || !window.grecaptcha) return;
+  const el = document.getElementById(containerId);
+  if (!el || el.dataset.rendered === 'true') return;
+  try {
+    const widgetId = grecaptcha.render(containerId, { sitekey: RECAPTCHA_SITE_KEY });
+    el.dataset.widgetId = widgetId;
+    el.dataset.rendered = 'true';
+    recaptchaWidgets[containerId] = widgetId;
+  } catch (e) { console.warn('reCAPTCHA render error:', e); }
+}
+
+function getRecaptchaResponse(containerId) {
+  if (!window.grecaptcha) return '';
+  const wid = recaptchaWidgets[containerId];
+  if (wid === undefined) return '';
+  return grecaptcha.getResponse(wid) || '';
+}
+
+function resetRecaptcha(containerId) {
+  if (!window.grecaptcha) return;
+  const wid = recaptchaWidgets[containerId];
+  if (wid !== undefined) grecaptcha.reset(wid);
+}
+
+// Called by Google's API when script loads
+window.onRecaptchaLoad = function() {
+  recaptchaReady = true;
+  // Render inline feedback (always visible on landing)
+  renderRecaptchaWidget('recaptcha-feedback-inline');
+};
+
 // ===== Profanity Filter (Client-Side — 12 Languages) =====
 const _profanityWords = [
   // English
@@ -349,6 +386,10 @@ function showPage(id, addHistory = true) {
       const rememberCheckbox = document.getElementById('remember-me');
       if (rememberCheckbox) rememberCheckbox.checked = true;
     }
+    setTimeout(() => renderRecaptchaWidget('recaptcha-login'), 100);
+  }
+  if (id === 'register') {
+    setTimeout(() => renderRecaptchaWidget('recaptcha-register'), 100);
   }
 
   // Manage scroll progress bar visibility
@@ -705,6 +746,9 @@ function openModal(modalId, addHistory = true, extra = null) {
     if (modalId === 'languages-modal') {
       startDemoCycle();
     }
+    if (modalId === 'feedback-modal') {
+      setTimeout(() => renderRecaptchaWidget('recaptcha-feedback'), 100);
+    }
   }
 
   // Re-apply translations for newly-visible modal content
@@ -880,7 +924,7 @@ document.getElementById('form-login')?.addEventListener('submit', async (e) => {
   const errEl = document.getElementById('login-error');
   errEl.classList.add('hidden');
   // reCAPTCHA v2 check
-  const recaptchaResponse = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse(document.getElementById('recaptcha-login')?.dataset.widgetId || 0) : '';
+  const recaptchaResponse = getRecaptchaResponse('recaptcha-login');
   if (!recaptchaResponse) {
     errEl.textContent = 'Please complete the CAPTCHA verification.';
     errEl.classList.remove('hidden');
@@ -1296,8 +1340,7 @@ document.getElementById('form-register')?.addEventListener('submit', async (e) =
   const rawPhone = phoneVal;
   const phone = rawPhone ? (prefix + rawPhone) : '';
   // reCAPTCHA v2 check
-  const recaptchaEl = document.getElementById('recaptcha-register');
-  const recaptchaResponse = typeof grecaptcha !== 'undefined' && recaptchaEl ? grecaptcha.getResponse(recaptchaEl.dataset.widgetId || 0) : '';
+  const recaptchaResponse = getRecaptchaResponse('recaptcha-register');
   if (!recaptchaResponse) {
     errEl.textContent = 'Please complete the CAPTCHA verification.';
     errEl.classList.remove('hidden');
@@ -2668,7 +2711,7 @@ document.getElementById('form-feedback')?.addEventListener('submit', async (e) =
     return;
   }
   // reCAPTCHA v2 check
-  const recaptchaResponse = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse(document.getElementById('recaptcha-feedback')?.dataset.widgetId || 0) : '';
+  const recaptchaResponse = getRecaptchaResponse('recaptcha-feedback');
   if (!recaptchaResponse) {
     if (errEl) {
       errEl.textContent = 'Please complete the CAPTCHA verification.';
@@ -3212,7 +3255,7 @@ document.getElementById('form-feedback-inline')?.addEventListener('submit', asyn
     return;
   }
   // reCAPTCHA v2 check
-  const recaptchaResponse = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse(document.getElementById('recaptcha-feedback-inline')?.dataset.widgetId || 0) : '';
+  const recaptchaResponse = getRecaptchaResponse('recaptcha-feedback-inline');
   if (!recaptchaResponse) {
     if (errEl) {
       errEl.textContent = 'Please complete the CAPTCHA verification.';
