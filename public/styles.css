@@ -7514,7 +7514,14 @@ body, #page-landing {
   color: #003566 !important;
 }
 
-
+/* Remove curve from top-right cutout only — keep bottom-right curve */
+.cutout-top-right {
+  border-bottom-left-radius: 0 !important;
+}
+.fillet-tr-left,
+.fillet-tr-bottom {
+  display: none !important;
+}
 
 
 
