@@ -46,6 +46,15 @@
     gtag('config', 'G-SEF5Y7KP9Z');
   </script>
   <!-- Google reCAPTCHA v2 (explicit render) -->
+  <script>
+    window.recaptchaScriptLoaded = false;
+    window.onRecaptchaLoad = function() {
+      window.recaptchaScriptLoaded = true;
+      if (typeof window.initRecaptcha === 'function') {
+        window.initRecaptcha();
+      }
+    };
+  </script>
   <script src="https://www.google.com/recaptcha/api.js?onload=onRecaptchaLoad&render=explicit" async defer></script>
 </head>
 <body>
@@ -1627,6 +1636,6 @@
   </div>
 
   <script src="/i18n.js?v=3"></script>
-  <script src="/app.js?v=67"></script>
+  <script src="/app.js?v=68"></script>
 </body>
 </html>

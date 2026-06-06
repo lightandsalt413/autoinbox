@@ -11,12 +11,12 @@ const recaptchaWidgets = {};
 function renderRecaptchaWidget(containerId) {
   const el = document.getElementById(containerId);
   if (!el || el.dataset.rendered === 'true') return;
-  if (!recaptchaReady || !window.grecaptcha || !window.grecaptcha.render) {
+  if (!window.grecaptcha || !window.grecaptcha.render) {
     // Script not ready yet — retry every 500ms up to 10 times
     let retries = 0;
     const interval = setInterval(() => {
       retries++;
-      if (recaptchaReady && window.grecaptcha && window.grecaptcha.render) {
+      if (window.grecaptcha && window.grecaptcha.render) {
         clearInterval(interval);
         renderRecaptchaWidget(containerId); // re-call with script ready
       } else if (retries >= 10) {
@@ -46,8 +46,8 @@ function resetRecaptcha(containerId) {
   if (wid !== undefined) grecaptcha.reset(wid);
 }
 
-// Called by Google's API when script loads
-window.onRecaptchaLoad = function() {
+// Named function to initialize/render active widgets once script is ready
+window.initRecaptcha = function() {
   recaptchaReady = true;
   // Render inline feedback (always visible on landing)
   renderRecaptchaWidget('recaptcha-feedback-inline');
@@ -65,6 +65,11 @@ window.onRecaptchaLoad = function() {
     renderRecaptchaWidget('recaptcha-feedback');
   }
 };
+
+// Check if reCAPTCHA script loaded before app.js executed
+if (window.recaptchaScriptLoaded) {
+  window.initRecaptcha();
+}
 
 // ===== Profanity Filter (Client-Side — 12 Languages) =====
 const _profanityWords = [
