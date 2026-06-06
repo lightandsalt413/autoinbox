@@ -6752,7 +6752,7 @@ body, #page-landing {
   margin-top: -1px !important;
   width: 42px !important;
   height: 42px !important;
-  background: radial-gradient(circle at 41px 41px, transparent 40px, #003566 40px) !important;
+  background: radial-gradient(circle at 42px 42px, transparent 40px, #003566 40px) !important;
   -webkit-mask: none !important;
   mask: none !important;
 }
@@ -6762,7 +6762,7 @@ body, #page-landing {
   top: -1px !important;
   width: 42px !important;
   height: 42px !important;
-  background: radial-gradient(circle at 41px 41px, transparent 40px, #003566 40px) !important;
+  background: radial-gradient(circle at 42px 42px, transparent 40px, #003566 40px) !important;
   -webkit-mask: none !important;
   mask: none !important;
 }
@@ -6772,7 +6772,7 @@ body, #page-landing {
   top: -1px !important;
   width: 42px !important;
   height: 42px !important;
-  background: radial-gradient(circle at 1px 41px, transparent 40px, #003566 40px) !important;
+  background: radial-gradient(circle at 0px 42px, transparent 40px, #003566 40px) !important;
   -webkit-mask: none !important;
   mask: none !important;
 }
@@ -6783,7 +6783,7 @@ body, #page-landing {
   margin-top: -1px !important;
   width: 42px !important;
   height: 42px !important;
-  background: radial-gradient(circle at 1px 41px, transparent 40px, #003566 40px) !important;
+  background: radial-gradient(circle at 0px 42px, transparent 40px, #003566 40px) !important;
   -webkit-mask: none !important;
   mask: none !important;
 }
@@ -6793,7 +6793,7 @@ body, #page-landing {
   bottom: -1px !important;
   width: 42px !important;
   height: 42px !important;
-  background: radial-gradient(circle at 1px 1px, transparent 40px, #003566 40px) !important;
+  background: radial-gradient(circle at 0px 0px, transparent 40px, #003566 40px) !important;
   -webkit-mask: none !important;
   mask: none !important;
 }
@@ -6804,7 +6804,7 @@ body, #page-landing {
   margin-bottom: -1px !important;
   width: 42px !important;
   height: 42px !important;
-  background: radial-gradient(circle at 1px 1px, transparent 40px, #003566 40px) !important;
+  background: radial-gradient(circle at 0px 0px, transparent 40px, #003566 40px) !important;
   -webkit-mask: none !important;
   mask: none !important;
 }
