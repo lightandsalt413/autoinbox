@@ -7514,16 +7514,35 @@ body, #page-landing {
   color: #003566 !important;
 }
 
-/* Remove curve from top-right cutout only — keep bottom-right curve */
+/* Remove curves from right-side cutouts */
 .cutout-top-right {
   border-bottom-left-radius: 0 !important;
 }
+.cutout-bottom-right {
+  border-top-left-radius: 0 !important;
+}
 .fillet-tr-left,
-.fillet-tr-bottom {
+.fillet-tr-bottom,
+.fillet-br-left,
+.fillet-br-top {
   display: none !important;
 }
 
-
+/* Bottom-center decorative curve */
+.landing-canvas::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 38px;
+  background-color: #daf0f8;
+  border-top-left-radius: 40px;
+  border-top-right-radius: 40px;
+  z-index: 3;
+  pointer-events: none;
+}
 
 
 
