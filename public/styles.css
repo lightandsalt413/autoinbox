@@ -7486,6 +7486,34 @@ body, #page-landing {
   padding: 0 20px 20px 20px !important;
 }
 
+/* Stacking Context & Language Switcher Redesign (Z-Index Clash Fix) */
+.canvas-header {
+  z-index: 500 !important;
+}
+
+.lang-switcher-dropdown {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(0, 53, 102, 0.08) !important;
+  box-shadow: 
+    0 10px 30px rgba(0, 53, 102, 0.08), 
+    0 2px 8px rgba(0, 53, 102, 0.04) !important;
+}
+
+.lang-switcher-option {
+  color: #334155 !important;
+}
+
+.lang-switcher-option:hover {
+  background: rgba(0, 158, 204, 0.06) !important;
+  color: #009ecc !important;
+}
+
+.lang-switcher-option.active {
+  background: rgba(0, 158, 204, 0.1) !important;
+  color: #003566 !important;
+}
+
+
 
 
 
