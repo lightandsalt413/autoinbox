@@ -2833,7 +2833,7 @@ body::-webkit-scrollbar {
 /* Inner Canvas Content Container */
 .canvas-content {
   flex: 1;
-  padding: 82px 60px 100px;
+  padding: 115px 60px 100px;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
@@ -3148,6 +3148,7 @@ body::-webkit-scrollbar {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 15px;
 }
 
 .canvas-hero-img {
