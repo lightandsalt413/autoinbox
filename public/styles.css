@@ -2866,6 +2866,47 @@ body::-webkit-scrollbar {
 
 .canvas-cta-area {
   margin-bottom: 22px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.canvas-download-btn {
+  background: transparent;
+  color: #1A1A1C;
+  border: 1.5px solid rgba(197, 165, 90, 0.5);
+  border-radius: 30px;
+  padding: 10px 22px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: var(--f);
+}
+.canvas-download-btn:hover {
+  background: #C5A55A;
+  color: #0A0A0B;
+  border-color: #C5A55A;
+  box-shadow: 0 6px 20px rgba(197, 165, 90, 0.35);
+  transform: translateY(-2px);
+}
+.cta-download-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: rgba(197, 165, 90, 0.12);
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+.canvas-download-btn:hover .cta-download-icon {
+  background: rgba(10, 10, 11, 0.15);
+  transform: translateY(2px);
 }
 
 .canvas-contact-btn {

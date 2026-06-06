@@ -6,14 +6,12 @@
   "nav_privacy": "プライバシー",
   "nav_terms": "利用規約",
   "nav_language": "言語",
-
   "hero_title": "もっと<br><span class=\"hero-gradient-text\">スマートな</span><br>返信を。",
   "hero_title_1": "もっと",
   "hero_title_2": "スマートな",
   "hero_title_3": "返信を。",
   "hero_desc": "AutoInboxはAIメール自動返信アシスタントです。数秒で返信を下書きし、24時間365日あなたの受信トレイを自動管理。返信率を常に完璧に保ちます。",
   "hero_contact": "お問い合わせ",
-
   "mockup_inbox": "受信トレイ",
   "mockup_new": "新着",
   "mockup_ai_active": "AutoInbox 有効",
@@ -38,7 +36,6 @@
   "mockup_connected_to": "Gmail に接続中 (business@email.com)",
   "mockup_ai_draft_active": "✨ AI下書き有効",
   "mockup_reply_rate": "⚡ 100% 返信率",
-
   "auth_account": "アカウント",
   "auth_welcome": "👋 おかえりなさい",
   "auth_login_desc": "ダッシュボードにログイン",
@@ -50,7 +47,6 @@
   "auth_no_account": "アカウントをお持ちでないですか？",
   "auth_signup_link": "無料で登録",
   "auth_show": "表示",
-
   "auth_signup_tag": "新規登録",
   "auth_signup_title": "無料アカウントを作成",
   "auth_signup_desc": "クレジットカード不要。2分でスマートな返信を始めましょう。",
@@ -82,7 +78,6 @@
   "auth_phone_label": "携帯電話番号 <span style=\"font-size:0.75rem;color:#888;font-weight:normal;display:block;margin-top:2px\">(セキュアなSMSパスワードリセット用 — 国コードを選んで番号を入力)</span>",
   "auth_email_label_full": "メールアドレス <span style=\"font-size:0.75rem;color:#888;font-weight:normal;display:block;margin-top:2px\">(ログイン用メールになります。Gmail/Yahooは次のステップで接続します。)</span>",
   "auth_agree_text": "<a href=\"#\" id=\"link-open-terms\" style=\"color:var(--p);text-decoration:underline;font-weight:600\">利用規約</a>と<a href=\"#\" id=\"link-open-privacy\" style=\"color:var(--p);text-decoration:underline;font-weight:600\">プライバシーポリシー</a>に同意します",
-
   "auth_security": "セキュリティ",
   "auth_forgot_title": "🔒 パスワードをお忘れですか？",
   "auth_forgot_desc": "メールアドレスまたは携帯電話番号（国番号付き、例: +819012345678）を入力すると、6桁の認証コードをお送りします。",
@@ -96,7 +91,6 @@
   "auth_confirm_new": "新しいパスワードの確認",
   "auth_reset_btn": "パスワードをリセット",
   "auth_back_code": "コード請求に戻る",
-
   "feat_tag": "機能",
   "feat_title": "よりスマートな返信のための強力な機能",
   "feat_1_title": "ボイスクローニングAI",
@@ -111,11 +105,9 @@
   "feat_5_desc": "あなたが寝ている間も稼働。クライアントのメッセージを二度と見逃しません。",
   "feat_6_title": "25以上の言語対応",
   "feat_6_desc": "クライアントの言語を自動検出して返信 — 英語、日本語、韓国語、スペイン語など。",
-
   "lang_tag": "グローバル対応",
   "lang_title": "🌍 ひとつの受信トレイ。すべての言語。",
   "lang_desc": "AutoInboxがクライアントの言語を自動検出し、自然に返信します — 翻訳アプリは不要です。",
-
   "how_tag": "使い方",
   "how_title": "🛠️ 3つの簡単ステップでAIクローンを作成",
   "how_desc": "技術的なスキルは不要。ダウンロードも不要。セットアップは2分以内。",
@@ -131,7 +123,6 @@
   "how_step3_title": "レビュー、承認、送信",
   "how_step3_desc": "新しいメールが届くと、AIクローンがあなたそっくりの返信を即座に下書きします。ダッシュボードを開き、下書きを確認し、必要に応じて編集して、<strong>ワンクリックで承認</strong>。",
   "how_step3_note": "常にあなたが管理しています。承認なしには何も送信されません。",
-
   "diff_tag": "比較",
   "diff_title": "AutoInbox導入前 vs 導入後",
   "diff_without": "AutoInboxなし",
@@ -150,7 +141,6 @@
   "diff_a5": "売上アップ、ストレス軽減",
   "diff_a_stat": "約10分",
   "diff_a_stat_label": "承認して完了",
-
   "testi_tag": "お客様の声",
   "testi_title": "世界中のプロフェッショナルに愛されています",
   "testi_1_quote": "「本当に助かりました！以前は返信に2時間かかっていましたが、今はたった10分。しかも自分が書いたのと全く同じように聞こえます！」",
@@ -162,7 +152,6 @@
   "testi_3_quote": "「カジュアルな文体でも、AIが私のトーンを完璧にコピーしてくれます。AIだとは絶対にバレません！」",
   "testi_3_name": "Anna Lee",
   "testi_3_role": "バーチャルアシスタント",
-
   "price_tag": "料金",
   "price_title": "シンプル。透明。手頃な価格。",
   "price_desc": "無料から始めて、ビジネスの成長に合わせてアップグレード。",
@@ -197,7 +186,6 @@
   "price_pro_6": "マルチアカウントダッシュボード",
   "price_pro_btn": "今すぐ登録",
   "price_note": "※ お支払いはチェックアウト時にPHP（₱499 / ₱999）相当で処理されます。",
-
   "faq_tag": "FAQ",
   "faq_title": "よくあるご質問",
   "faq_q1": "データは安全ですか？",
@@ -212,7 +200,6 @@
   "faq_a5": "まったく必要ありません。コピー＆ペーストができれば、AutoInboxを使えます。",
   "faq_q6": "AutoInboxはどの言語に対応していますか？",
   "faq_a6": "AutoInboxは英語、日本語、韓国語、中国語、スペイン語、フランス語、ドイツ語、アラビア語、ヒンディー語、フィリピノ語など25以上の言語に対応しています。自動検出モードでは、クライアントが使用する言語で自動的に返信します — 設定不要です。",
-
   "feedback_tag": "フィードバック",
   "feedback_title": "ご意見をお聞かせください",
   "feedback_desc": "ご感想、ご提案、ご質問をお送りください。",
@@ -220,18 +207,14 @@
   "feedback_email": "メールアドレス",
   "feedback_message": "メッセージ",
   "feedback_btn": "メッセージを送信",
-
   "footer_text": "© 2026 AutoInbox",
   "footer_privacy": "プライバシーポリシー",
   "footer_terms": "利用規約",
-
   "btn_login": "ログイン",
   "btn_connect": "お問い合わせ",
-
   "lang_switch_en": "English",
   "lang_switch_tl": "Filipino",
   "lang_switch_ja": "日本語",
-
   "val_fname_required": "名は必須です。",
   "val_lname_required": "姓は必須です。",
   "val_name_min": "{field}は2文字以上で入力してください。",
@@ -247,7 +230,6 @@
   "val_pass_mismatch": "パスワードが一致しません。",
   "val_agree_terms": "利用規約とプライバシーポリシーに同意してください。",
   "val_profanity": "不適切な言葉が検出されました。適切な言葉を使用してください。",
-
   "ob_step_label": "ステップ 1/3",
   "ob_connect_email": "メールを接続",
   "ob_gmail": "Gmail",
@@ -270,7 +252,6 @@
   "ob_ready": "AIクローンの準備ができました。",
   "ob_voice_profile": "ボイスプロファイル",
   "ob_goto_dash": "ダッシュボードへ",
-
   "guide_title": "🔑 セットアップガイド",
   "guide_subtitle": "アプリパスワードの取得方法",
   "guide_gmail_tab": "Gmail セットアップ",
@@ -287,9 +268,7 @@
   "guide_yahoo_step4": "16文字のコードをコピーし、スペースなしで接続入力欄に貼り付けてください。",
   "trouble_title": "💡 トラブルシューティング",
   "trouble_desc": "「無効な認証情報」と表示された場合は、メールアドレスが正しいこと、16文字のコードにスペースがないことを確認してください。また、個人のログインパスワードではなく、生成されたアプリパスワードを使用していることを確認してください。",
-
   "auth_show_btn": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/></svg> 表示",
-
   "ph_login_email": "you@email.com",
   "ph_login_pass": "••••••••",
   "ph_reg_fname": "例: 太郎",
@@ -308,7 +287,6 @@
   "ph_feedback_message": "ご感想をお書きください...",
   "ph_ob_email": "you@gmail.com",
   "ph_ob_pass": "xxxx xxxx xxxx xxxx",
-
   "tos_back": "ホームに戻る",
   "tos_contents": "目次",
   "tos_toc_1": "同意",
@@ -351,7 +329,6 @@
   "tos_s11_title": "お問い合わせ",
   "tos_s11_body": "<p>本規約に関するご質問は、以下までお問い合わせください：</p><p><strong>メール：</strong> <a href=\"https://mail.google.com/mail/?view=cm&to=autoinbox1990@gmail.com\" target=\"_blank\">autoinbox1990@gmail.com</a></p>",
   "tos_footer": "AutoInbox Software Publishing Services<br>DTI登録済 · フィリピン",
-
   "pp_back": "ホームに戻る",
   "pp_contents": "目次",
   "pp_toc_1": "収集する情報",
@@ -380,6 +357,6 @@
   "pp_s6_body": "<p>お客様には以下の権利があります：</p><ul><li>当社システムに保存されている個人データへのアクセス。</li><li>設定ページからいつでもメールの接続解除。</li><li>ボイスサンプルとAIプロファイルの削除。</li><li>アカウントの完全な削除のリクエスト。</li></ul>",
   "pp_s7_title": "お問い合わせ",
   "pp_s7_body": "<p>本プライバシーポリシーに関するご質問は、以下までお問い合わせください：</p><p><strong>メール：</strong> <a href=\"https://mail.google.com/mail/?view=cm&to=autoinbox1990@gmail.com\" target=\"_blank\">autoinbox1990@gmail.com</a></p>",
-  "pp_footer": "AutoInbox Software Publishing Services<br>DTI登録済 · フィリピン"
+  "pp_footer": "AutoInbox Software Publishing Services<br>DTI登録済 · フィリピン",
+  "hero_download": "アプリをダウンロード"
 }
-

@@ -2195,14 +2195,41 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 
 // ===== PWA Install =====
 let deferredPrompt;
-window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredPrompt = e; });
-
-// ===== Unregister Service Worker & Clear Caches =====
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.getRegistrations().then(regs => {
-    regs.forEach(r => r.unregister());
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  // Show install buttons when prompt is available
+  document.querySelectorAll('.pwa-install-btn').forEach(btn => {
+    btn.classList.remove('hidden');
   });
-  caches.keys().then(keys => keys.forEach(k => caches.delete(k)));
+});
+
+window.addEventListener('appinstalled', () => {
+  deferredPrompt = null;
+  document.querySelectorAll('.pwa-install-btn').forEach(btn => {
+    btn.classList.add('hidden');
+  });
+  showToast('AutoInbox installed successfully! 🎉', 'success');
+});
+
+async function installPWA() {
+  if (!deferredPrompt) {
+    showToast('App is already installed or not available', 'info');
+    return;
+  }
+  deferredPrompt.prompt();
+  const { outcome } = await deferredPrompt.userChoice;
+  if (outcome === 'accepted') {
+    showToast('Installing AutoInbox...', 'success');
+  }
+  deferredPrompt = null;
+}
+
+// ===== Register Service Worker =====
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js')
+    .then(reg => console.log('[SW] Registered:', reg.scope))
+    .catch(err => console.warn('[SW] Registration failed:', err));
 }
 
 // ===== Pricing & Checkout =====

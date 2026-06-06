@@ -6,14 +6,12 @@
   "nav_privacy": "Privacy",
   "nav_terms": "Terms",
   "nav_language": "Language",
-
   "hero_title": "There is a<br><span class=\"hero-gradient-text\">Better Way</span><br>to Reply.",
   "hero_title_1": "There is a",
   "hero_title_2": "Better Way",
   "hero_title_3": "to Reply.",
   "hero_desc": "AutoInbox is an AI email auto-reply assistant that drafts replies in seconds and automatically handles your inbox 24/7, keeping your reply rates perfect.",
   "hero_contact": "Contact Us",
-
   "mockup_inbox": "MY INBOX",
   "mockup_new": "new",
   "mockup_ai_active": "AutoInbox Active",
@@ -38,7 +36,6 @@
   "mockup_connected_to": "Connected to Gmail (business@email.com)",
   "mockup_ai_draft_active": "✨ AI Draft Active",
   "mockup_reply_rate": "⚡ 100% Reply Rate",
-
   "auth_account": "Account",
   "auth_welcome": "👋 Welcome Back",
   "auth_login_desc": "Log in to your dashboard",
@@ -50,7 +47,6 @@
   "auth_no_account": "No account?",
   "auth_signup_link": "Sign Up Free",
   "auth_show": "Show",
-
   "auth_signup_tag": "Sign Up",
   "auth_signup_title": "Create Your Free Account",
   "auth_signup_desc": "No credit card needed. Start replying smarter in 2 minutes.",
@@ -79,10 +75,9 @@
   "auth_login_link": "Log In",
   "auth_mname_label": "Middle Name <span class=\"optional\">(Optional)</span>",
   "auth_suffix_label": "Suffix <span class=\"optional\">(Opt)</span>",
-  "auth_phone_label": "Cellphone Number <span style=\"font-size:0.75rem;color:#888;font-weight:normal;display:block;margin-top:2px\">(For secure SMS password reset \u2014 choose the country code and type the number)</span>",
+  "auth_phone_label": "Cellphone Number <span style=\"font-size:0.75rem;color:#888;font-weight:normal;display:block;margin-top:2px\">(For secure SMS password reset — choose the country code and type the number)</span>",
   "auth_email_label_full": "Email Address <span style=\"font-size:0.75rem;color:#888;font-weight:normal;display:block;margin-top:2px\">(This will be your login email. You'll connect your Gmail/Yahoo in the next step.)</span>",
   "auth_agree_text": "I agree to the <a href=\"#\" id=\"link-open-terms\" style=\"color:var(--p);text-decoration:underline;font-weight:600\">Terms of Service</a> and <a href=\"#\" id=\"link-open-privacy\" style=\"color:var(--p);text-decoration:underline;font-weight:600\">Privacy Policy</a>",
-
   "auth_security": "Security",
   "auth_forgot_title": "🔒 Forgot Password?",
   "auth_forgot_desc": "Enter your email or cellphone number (with country code prefix, e.g. +639171234567) and we'll send you a 6-digit verification code.",
@@ -96,7 +91,6 @@
   "auth_confirm_new": "Confirm New Password",
   "auth_reset_btn": "Reset Password",
   "auth_back_code": "Back to request code",
-
   "feat_tag": "Features",
   "feat_title": "Powerful Features for Smarter Replies",
   "feat_1_title": "Voice Cloning AI",
@@ -111,11 +105,9 @@
   "feat_5_desc": "Works while you sleep. Never miss a client message again.",
   "feat_6_title": "25+ Languages",
   "feat_6_desc": "Auto-detect and reply in your client's language — English, Japanese, Korean, Spanish, and more.",
-
   "lang_tag": "Global Ready",
   "lang_title": "🌍 One Inbox. Every Language.",
   "lang_desc": "AutoInbox auto-detects your client's language and replies naturally — no translation apps needed.",
-
   "how_tag": "How It Works",
   "how_title": "🛠️ Your AI Clone in 3 Easy Steps",
   "how_desc": "No technical skills needed. No downloads. Setup takes under 2 minutes.",
@@ -131,7 +123,6 @@
   "how_step3_title": "Review, Approve & Send",
   "how_step3_desc": "When a new email arrives, your AI clone instantly drafts a reply that sounds exactly like you. Open your dashboard, review the draft, make edits if needed, then <strong>approve with one click</strong>.",
   "how_step3_note": "You stay in full control. Nothing gets sent without your approval.",
-
   "diff_tag": "The Difference",
   "diff_title": "Before vs After AutoInbox",
   "diff_without": "Without AutoInbox",
@@ -150,7 +141,6 @@
   "diff_a5": "More sales, less stress",
   "diff_a_stat": "~10 mins",
   "diff_a_stat_label": "approve & done",
-
   "testi_tag": "Testimonials",
   "testi_title": "Loved by Professionals Worldwide",
   "testi_1_quote": "\"This has been a help! I used to spend 2 hours on replies, now it only takes 10 minutes. It still sounds exactly like me!\"",
@@ -162,7 +152,6 @@
   "testi_3_quote": "\"Even with my casual writing style, the AI copies my exact tone perfectly. You can't even tell it's AI!\"",
   "testi_3_name": "Anna Lee",
   "testi_3_role": "Virtual Assistant",
-
   "price_tag": "Pricing",
   "price_title": "Simple. Transparent. Affordable.",
   "price_desc": "Start free. Upgrade when your business grows.",
@@ -197,7 +186,6 @@
   "price_pro_6": "Multi-account dashboard",
   "price_pro_btn": "Subscribe Now",
   "price_note": "* Payments are processed in equivalent PHP (₱499 / ₱999) at checkout.",
-
   "faq_tag": "FAQ",
   "faq_title": "Common Questions",
   "faq_q1": "Is my data safe?",
@@ -212,7 +200,6 @@
   "faq_a5": "Not at all. If you can copy and paste, you can use AutoInbox.",
   "faq_q6": "What languages does AutoInbox support?",
   "faq_a6": "AutoInbox supports 25+ languages including English, Japanese, Korean, Chinese, Spanish, French, German, Arabic, Hindi, Filipino, and more. With Auto-Detect mode, the AI automatically replies in the same language your client uses — no setup needed.",
-
   "feedback_tag": "Feedback",
   "feedback_title": "We'd Love to Hear From You",
   "feedback_desc": "Send us your comments, suggestions, or questions.",
@@ -220,18 +207,14 @@
   "feedback_email": "Email Address",
   "feedback_message": "Message",
   "feedback_btn": "Send Message",
-
   "footer_text": "© 2026 AutoInbox",
   "footer_privacy": "Privacy Policy",
   "footer_terms": "Terms of Service",
-
   "btn_login": "Log In",
   "btn_connect": "Let's Connect",
-
   "lang_switch_en": "English",
   "lang_switch_tl": "Filipino",
   "lang_switch_ja": "日本語",
-
   "val_fname_required": "First Name is required.",
   "val_lname_required": "Surname is required.",
   "val_name_min": "{field} must be at least 2 characters.",
@@ -247,7 +230,6 @@
   "val_pass_mismatch": "Passwords do not match.",
   "val_agree_terms": "Please agree to the Terms of Service and Privacy Policy.",
   "val_profanity": "Inappropriate language detected. Please use proper words.",
-
   "ob_step_label": "Step 1 of 3",
   "ob_connect_email": "Connect Email",
   "ob_gmail": "Gmail",
@@ -270,7 +252,6 @@
   "ob_ready": "Your AI clone is ready.",
   "ob_voice_profile": "Voice Profile",
   "ob_goto_dash": "Go to Dashboard",
-
   "guide_title": "🔑 Setup Guide",
   "guide_subtitle": "How to retrieve your App Password",
   "guide_gmail_tab": "Gmail Setup",
@@ -287,9 +268,7 @@
   "guide_yahoo_step4": "Copy the 16-character code and paste it in the connect input without spaces.",
   "trouble_title": "💡 Troubleshooting",
   "trouble_desc": "If you encounter \"Invalid credentials\", make sure your email address is correct and the 16-character code has no spaces. Also ensure you are using a generated App Password and not your personal login password.",
-
   "auth_show_btn": "<svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/></svg> Show",
-
   "ph_login_email": "you@email.com",
   "ph_login_pass": "••••••••",
   "ph_reg_fname": "e.g. Maria",
@@ -308,7 +287,6 @@
   "ph_feedback_message": "Write your thoughts...",
   "ph_ob_email": "you@gmail.com",
   "ph_ob_pass": "xxxx xxxx xxxx xxxx",
-
   "tos_back": "Back to Home",
   "tos_contents": "Contents",
   "tos_toc_1": "Acceptance",
@@ -351,7 +329,6 @@
   "tos_s11_title": "Contact",
   "tos_s11_body": "<p>For questions about these terms, contact us at:</p><p><strong>Email:</strong> <a href=\"https://mail.google.com/mail/?view=cm&to=autoinbox1990@gmail.com\" target=\"_blank\">autoinbox1990@gmail.com</a></p>",
   "tos_footer": "AutoInbox Software Publishing Services<br>DTI Registered · Philippines",
-
   "pp_back": "Back to Home",
   "pp_contents": "Contents",
   "pp_toc_1": "Information We Collect",
@@ -380,6 +357,6 @@
   "pp_s6_body": "<p>You have the right to:</p><ul><li>Access your personal data stored in our system.</li><li>Disconnect your email at any time from the Settings page.</li><li>Delete your voice samples and AI profile.</li><li>Request complete account deletion.</li></ul>",
   "pp_s7_title": "Contact",
   "pp_s7_body": "<p>If you have questions about this privacy policy, contact us at:</p><p><strong>Email:</strong> <a href=\"https://mail.google.com/mail/?view=cm&to=autoinbox1990@gmail.com\" target=\"_blank\">autoinbox1990@gmail.com</a></p>",
-  "pp_footer": "AutoInbox Software Publishing Services<br>DTI Registered · Philippines"
+  "pp_footer": "AutoInbox Software Publishing Services<br>DTI Registered · Philippines",
+  "hero_download": "Download App"
 }
-
