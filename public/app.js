@@ -879,12 +879,19 @@ document.getElementById('form-login')?.addEventListener('submit', async (e) => {
   e.preventDefault();
   const errEl = document.getElementById('login-error');
   errEl.classList.add('hidden');
+  // reCAPTCHA v2 check
+  const recaptchaResponse = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse(document.getElementById('recaptcha-login')?.dataset.widgetId || 0) : '';
+  if (!recaptchaResponse) {
+    errEl.textContent = 'Please complete the CAPTCHA verification.';
+    errEl.classList.remove('hidden');
+    return;
+  }
   const submitBtn = e.target.querySelector('button[type="submit"]');
   btnLoading(submitBtn, true);
   try {
     const data = await api('/auth/login', {
       method: 'POST',
-      body: JSON.stringify({ email: document.getElementById('login-email').value, password: document.getElementById('login-pass').value })
+      body: JSON.stringify({ email: document.getElementById('login-email').value, password: document.getElementById('login-pass').value, recaptchaToken: recaptchaResponse })
     });
     token = data.token;
     const rememberMe = document.getElementById('remember-me')?.checked;
@@ -1288,6 +1295,14 @@ document.getElementById('form-register')?.addEventListener('submit', async (e) =
   const prefix = document.getElementById('reg-phone-prefix')?.value || '';
   const rawPhone = phoneVal;
   const phone = rawPhone ? (prefix + rawPhone) : '';
+  // reCAPTCHA v2 check
+  const recaptchaEl = document.getElementById('recaptcha-register');
+  const recaptchaResponse = typeof grecaptcha !== 'undefined' && recaptchaEl ? grecaptcha.getResponse(recaptchaEl.dataset.widgetId || 0) : '';
+  if (!recaptchaResponse) {
+    errEl.textContent = 'Please complete the CAPTCHA verification.';
+    errEl.classList.remove('hidden');
+    return;
+  }
   const submitBtn = e.target.querySelector('button[type="submit"]');
   btnLoading(submitBtn, true);
   try {
@@ -1297,7 +1312,8 @@ document.getElementById('form-register')?.addEventListener('submit', async (e) =
         name: [fname, mname, lname, suffix].filter(Boolean).join(' '),
         email: emailVal,
         phone: phone || null,
-        password: pass
+        password: pass,
+        recaptchaToken: recaptchaResponse
       })
     });
     token = data.token;
@@ -2651,6 +2667,15 @@ document.getElementById('form-feedback')?.addEventListener('submit', async (e) =
     }
     return;
   }
+  // reCAPTCHA v2 check
+  const recaptchaResponse = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse(document.getElementById('recaptcha-feedback')?.dataset.widgetId || 0) : '';
+  if (!recaptchaResponse) {
+    if (errEl) {
+      errEl.textContent = 'Please complete the CAPTCHA verification.';
+      errEl.classList.remove('hidden');
+    }
+    return;
+  }
 
   try {
     const btn = e.target.querySelector('button[type="submit"]');
@@ -2661,7 +2686,7 @@ document.getElementById('form-feedback')?.addEventListener('submit', async (e) =
 
     await api('/feedback', {
       method: 'POST',
-      body: JSON.stringify({ name, email, message })
+      body: JSON.stringify({ name, email, message, recaptchaToken: recaptchaResponse })
     });
     
     document.getElementById('feedback-name').value = '';
@@ -3186,6 +3211,15 @@ document.getElementById('form-feedback-inline')?.addEventListener('submit', asyn
     }
     return;
   }
+  // reCAPTCHA v2 check
+  const recaptchaResponse = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse(document.getElementById('recaptcha-feedback-inline')?.dataset.widgetId || 0) : '';
+  if (!recaptchaResponse) {
+    if (errEl) {
+      errEl.textContent = 'Please complete the CAPTCHA verification.';
+      errEl.classList.remove('hidden');
+    }
+    return;
+  }
 
   try {
     const btn = e.target.querySelector('button[type="submit"]');
@@ -3196,7 +3230,7 @@ document.getElementById('form-feedback-inline')?.addEventListener('submit', asyn
 
     await api('/feedback', {
       method: 'POST',
-      body: JSON.stringify({ name, email, message })
+      body: JSON.stringify({ name, email, message, recaptchaToken: recaptchaResponse })
     });
     
     document.getElementById('feedback-name-inline').value = '';

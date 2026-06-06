@@ -15,6 +15,25 @@ const nodemailer = require('nodemailer');
 // HTML escape helper — prevents XSS in email templates
 function escHtml(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
+// reCAPTCHA v2 verification helper
+const RECAPTCHA_SECRET = process.env.RECAPTCHA_SECRET_KEY || '';
+async function verifyRecaptcha(token) {
+  if (!RECAPTCHA_SECRET) return true; // Skip if not configured
+  if (!token) return false;
+  try {
+    const res = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: `secret=${RECAPTCHA_SECRET}&response=${token}`
+    });
+    const data = await res.json();
+    return data.success === true;
+  } catch (e) {
+    console.error('reCAPTCHA verification error:', e);
+    return true; // Fail open to not block users
+  }
+}
+
 function normalizePhone(phone) {
   if (!phone) return null;
   let cleaned = phone.trim().replace(/[^\d+]/g, '');
@@ -89,7 +108,8 @@ app.get('/health', (req, res) => {
 // --- Auth Routes (public) ---
 app.post('/api/auth/register', authLimiter, profanityMiddleware, async (req, res) => {
   try {
-    const { email, password, name, phone } = req.body;
+    const { email, password, name, phone, recaptchaToken } = req.body;
+    if (!await verifyRecaptcha(recaptchaToken)) return res.status(403).json({ error: 'CAPTCHA verification failed. Please try again.' });
     const result = await register(email, password, name, phone);
     res.json({ success: true, token: result.token, userId: result.userId });
   } catch (e) { res.status(400).json({ error: e.message }); }
@@ -97,7 +117,8 @@ app.post('/api/auth/register', authLimiter, profanityMiddleware, async (req, res
 
 app.post('/api/auth/login', authLimiter, async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password, recaptchaToken } = req.body;
+    if (!await verifyRecaptcha(recaptchaToken)) return res.status(403).json({ error: 'CAPTCHA verification failed. Please try again.' });
     const result = await login(email, password);
     res.json({ success: true, token: result.token, name: result.name });
   } catch (e) { res.status(401).json({ error: e.message }); }
@@ -307,7 +328,8 @@ app.post('/api/webhook/paymongo', async (req, res) => {
 // --- Public Feedback Route ---
 app.post('/api/feedback', profanityMiddleware, async (req, res) => {
   try {
-    const { name, email, message } = req.body;
+    const { name, email, message, recaptchaToken } = req.body;
+    if (!await verifyRecaptcha(recaptchaToken)) return res.status(403).json({ error: 'CAPTCHA verification failed. Please try again.' });
     if (!email || !message) {
       return res.status(400).json({ error: 'Email and message are required.' });
     }
