@@ -2198,31 +2198,104 @@ let deferredPrompt;
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
-  // Show install buttons when prompt is available
-  document.querySelectorAll('.pwa-install-btn').forEach(btn => {
-    btn.classList.remove('hidden');
-  });
 });
 
 window.addEventListener('appinstalled', () => {
   deferredPrompt = null;
-  document.querySelectorAll('.pwa-install-btn').forEach(btn => {
-    btn.classList.add('hidden');
-  });
   showToast('AutoInbox installed successfully! 🎉', 'success');
 });
 
+function detectPlatform() {
+  const ua = navigator.userAgent;
+  const isIOS = /iPhone|iPad|iPod/.test(ua);
+  const isMac = /Macintosh/.test(ua);
+  const isAndroid = /Android/.test(ua);
+  const isChrome = /Chrome/.test(ua) && !/Edg/.test(ua);
+  const isSafari = /Safari/.test(ua) && !/Chrome/.test(ua);
+  const isFirefox = /Firefox/.test(ua);
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone;
+  return { isIOS, isMac, isAndroid, isChrome, isSafari, isFirefox, isStandalone };
+}
+
 async function installPWA() {
-  if (!deferredPrompt) {
-    showToast('App is already installed or not available', 'info');
+  const p = detectPlatform();
+
+  // Already installed as PWA
+  if (p.isStandalone) {
+    showToast('✅ AutoInbox is already installed!', 'success');
     return;
   }
-  deferredPrompt.prompt();
-  const { outcome } = await deferredPrompt.userChoice;
-  if (outcome === 'accepted') {
-    showToast('Installing AutoInbox...', 'success');
+
+  // Chrome/Edge — native install prompt
+  if (deferredPrompt) {
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
+    if (outcome === 'accepted') {
+      showToast('Installing AutoInbox... 🎉', 'success');
+    }
+    deferredPrompt = null;
+    return;
   }
-  deferredPrompt = null;
+
+  // iOS Safari — show instructions
+  if (p.isIOS) {
+    showInstallGuide(
+      '📱 Install on iPhone/iPad',
+      [
+        'Tap the <strong>Share</strong> button <span style="font-size:1.2em">⬆️</span> at the bottom of Safari',
+        'Scroll down and tap <strong>"Add to Home Screen"</strong>',
+        'Tap <strong>"Add"</strong> — AutoInbox icon will appear on your home screen!'
+      ]
+    );
+    return;
+  }
+
+  // Mac Safari
+  if (p.isMac && p.isSafari) {
+    showInstallGuide(
+      '💻 Install on Mac',
+      [
+        'In Safari menu bar, click <strong>File</strong>',
+        'Click <strong>"Add to Dock"</strong>',
+        'AutoInbox will open as a standalone app!'
+      ]
+    );
+    return;
+  }
+
+  // Firefox / other browsers
+  showInstallGuide(
+    '📥 Install AutoInbox',
+    [
+      'Open this website in <strong>Google Chrome</strong> for the best install experience',
+      'Or bookmark this page and add it to your home screen manually',
+      'The app works in any browser — Chrome just offers 1-tap install!'
+    ]
+  );
+}
+
+function showInstallGuide(title, steps) {
+  // Create modal overlay
+  const overlay = document.createElement('div');
+  overlay.className = 'pwa-guide-overlay';
+  overlay.onclick = (e) => { if (e.target === overlay) overlay.remove(); };
+
+  const stepsHtml = steps.map((s, i) =>
+    `<div class="pwa-guide-step">
+      <span class="pwa-guide-num">${i + 1}</span>
+      <span>${s}</span>
+    </div>`
+  ).join('');
+
+  overlay.innerHTML = `
+    <div class="pwa-guide-modal">
+      <button class="pwa-guide-close" onclick="this.closest('.pwa-guide-overlay').remove()">✕</button>
+      <h3>${title}</h3>
+      <div class="pwa-guide-steps">${stepsHtml}</div>
+      <button class="btn-accent" style="width:100%;margin-top:16px;border-radius:12px;padding:12px;" onclick="this.closest('.pwa-guide-overlay').remove()">Got it!</button>
+    </div>
+  `;
+  document.body.appendChild(overlay);
 }
 
 // ===== Register Service Worker =====
