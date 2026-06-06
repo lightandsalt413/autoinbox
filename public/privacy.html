@@ -364,7 +364,7 @@
 
       <div class="cutout-top-right">
         <div class="outer-actions">
-          <a href="/" class="outer-login-btn" style="text-decoration:none; display:inline-flex; align-items:center; justify-content:center;">Back to Home</a>
+          <a href="/" class="outer-login-btn" style="text-decoration:none; display:inline-flex; align-items:center; justify-content:center;" data-i18n="pp_back">Back to Home</a>
         </div>
       </div>
 
@@ -378,40 +378,40 @@
 
           <nav class="legal-toc">
             <div class="toc-card">
-              <div class="toc-label">Contents</div>
+              <div class="toc-label" data-i18n="pp_contents">Contents</div>
               <ul class="toc-list">
-                <li><a href="#pp-1"><span class="toc-num">01</span> Information We Collect</a></li>
-                <li><a href="#pp-2"><span class="toc-num">02</span> How We Use It</a></li>
-                <li><a href="#pp-3"><span class="toc-num">03</span> Data Security</a></li>
-                <li><a href="#pp-4"><span class="toc-num">04</span> Third-Party Services</a></li>
-                <li><a href="#pp-5"><span class="toc-num">05</span> Data Retention</a></li>
-                <li><a href="#pp-6"><span class="toc-num">06</span> Your Rights</a></li>
-                <li><a href="#pp-7"><span class="toc-num">07</span> Contact</a></li>
+                <li><a href="#pp-1"><span class="toc-num">01</span> <span data-i18n="pp_toc_1">Information We Collect</span></a></li>
+                <li><a href="#pp-2"><span class="toc-num">02</span> <span data-i18n="pp_toc_2">How We Use It</span></a></li>
+                <li><a href="#pp-3"><span class="toc-num">03</span> <span data-i18n="pp_toc_3">Data Security</span></a></li>
+                <li><a href="#pp-4"><span class="toc-num">04</span> <span data-i18n="pp_toc_4">Third-Party Services</span></a></li>
+                <li><a href="#pp-5"><span class="toc-num">05</span> <span data-i18n="pp_toc_5">Data Retention</span></a></li>
+                <li><a href="#pp-6"><span class="toc-num">06</span> <span data-i18n="pp_toc_6">Your Rights</span></a></li>
+                <li><a href="#pp-7"><span class="toc-num">07</span> <span data-i18n="pp_toc_7">Contact</span></a></li>
               </ul>
             </div>
           </nav>
 
           <div class="legal-main">
             <div class="legal-header">
-              <div class="legal-badge">Legal</div>
-              <h1>Privacy Policy</h1>
-              <p class="legal-date">Last updated: May 20, 2026</p>
+              <div class="legal-badge" data-i18n="pp_badge">Legal</div>
+              <h1 data-i18n="pp_title">Privacy Policy</h1>
+              <p class="legal-date" data-i18n="pp_date">Last updated: May 20, 2026</p>
             </div>
 
             <div class="legal-summary">
               <div class="summary-bar"></div>
               <div class="summary-content">
-                <div class="summary-label">In Short</div>
-                <div class="summary-text">We only collect what's necessary to provide the service. We never sell your data. Your emails are encrypted with AES-256 military-grade encryption.</div>
+                <div class="summary-label" data-i18n="pp_summary_label">In Short</div>
+                <div class="summary-text" data-i18n="pp_summary_text">We only collect what's necessary to provide the service. We never sell your data. Your emails are encrypted with AES-256 military-grade encryption.</div>
               </div>
             </div>
 
             <div class="legal-section" id="pp-1">
               <div class="section-head">
                 <div class="section-num">01</div>
-                <span class="section-title">Information We Collect</span>
+                <span class="section-title" data-i18n="pp_s1_title">Information We Collect</span>
               </div>
-              <div class="section-body">
+              <div class="section-body" data-i18n-html="pp_s1_body">
                 <p>When you create an account and use AutoInbox, we collect:</p>
                 <ul>
                   <li><strong>Account Information:</strong> Your name, email address, and password (hashed using bcrypt with 12 salt rounds).</li>
@@ -426,9 +426,9 @@
             <div class="legal-section" id="pp-2">
               <div class="section-head">
                 <div class="section-num">02</div>
-                <span class="section-title">How We Use Your Information</span>
+                <span class="section-title" data-i18n="pp_s2_title">How We Use Your Information</span>
               </div>
-              <div class="section-body">
+              <div class="section-body" data-i18n-html="pp_s2_body">
                 <p>Your information is used exclusively to:</p>
                 <ul>
                   <li>Provide AI-powered auto-reply drafts that match your writing style.</li>
@@ -442,9 +442,9 @@
             <div class="legal-section" id="pp-3">
               <div class="section-head">
                 <div class="section-num">03</div>
-                <span class="section-title">Data Security</span>
+                <span class="section-title" data-i18n="pp_s3_title">Data Security</span>
               </div>
-              <div class="section-body">
+              <div class="section-body" data-i18n-html="pp_s3_body">
                 <p>We take security seriously:</p>
                 <ul>
                   <li><strong>Encryption:</strong> All email credentials are encrypted with AES-256-GCM, the same standard used by banks and military systems.</li>
@@ -459,9 +459,9 @@
             <div class="legal-section" id="pp-4">
               <div class="section-head">
                 <div class="section-num">04</div>
-                <span class="section-title">Third-Party Services</span>
+                <span class="section-title" data-i18n="pp_s4_title">Third-Party Services</span>
               </div>
-              <div class="section-body">
+              <div class="section-body" data-i18n-html="pp_s4_body">
                 <p>We use the following third-party services:</p>
                 <ul>
                   <li><strong>Google Gemini AI:</strong> To generate email reply drafts. Email content is sent to Google's API for processing. See <a href="https://ai.google.dev/terms" target="_blank">Google AI Terms</a>.</li>
@@ -474,9 +474,9 @@
             <div class="legal-section" id="pp-5">
               <div class="section-head">
                 <div class="section-num">05</div>
-                <span class="section-title">Data Retention</span>
+                <span class="section-title" data-i18n="pp_s5_title">Data Retention</span>
               </div>
-              <div class="section-body">
+              <div class="section-body" data-i18n="pp_s5_body">
                 <p>We retain your data for as long as your account is active. You can delete your account at any time by disconnecting your email and contacting us. Upon deletion, all your data (messages, drafts, voice samples, and credentials) will be permanently removed.</p>
               </div>
             </div>
@@ -484,9 +484,9 @@
             <div class="legal-section" id="pp-6">
               <div class="section-head">
                 <div class="section-num">06</div>
-                <span class="section-title">Your Rights</span>
+                <span class="section-title" data-i18n="pp_s6_title">Your Rights</span>
               </div>
-              <div class="section-body">
+              <div class="section-body" data-i18n-html="pp_s6_body">
                 <p>You have the right to:</p>
                 <ul>
                   <li>Access your personal data stored in our system.</li>
@@ -500,21 +500,27 @@
             <div class="legal-section" id="pp-7">
               <div class="section-head">
                 <div class="section-num">07</div>
-                <span class="section-title">Contact</span>
+                <span class="section-title" data-i18n="pp_s7_title">Contact</span>
               </div>
-              <div class="section-body">
+              <div class="section-body" data-i18n-html="pp_s7_body">
                 <p>If you have questions about this privacy policy, contact us at:</p>
                 <p><strong>Email:</strong> <a href="https://mail.google.com/mail/?view=cm&to=autoinbox1990@gmail.com" target="_blank">autoinbox1990@gmail.com</a></p>
               </div>
             </div>
 
             <div class="legal-footer">
-              <p>AutoInbox Software Publishing Services<br>DTI Registered · Philippines</p>
+              <p data-i18n-html="pp_footer">AutoInbox Software Publishing Services<br>DTI Registered · Philippines</p>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+<script src="/i18n.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    if (window.i18n) window.i18n.init();
+  });
+</script>
 </body>
 </html>
