@@ -739,14 +739,42 @@ function closeModal(modalId) {
 
 // MODAL_MAPPING moved to top
 
+const MENU_TO_SECTION = {
+  'menu-features': 'features',
+  'menu-how': 'how',
+  'menu-pricing': 'pricing',
+  'menu-faq': 'faq',
+  'menu-feedback': 'feedback'
+};
+
 document.querySelectorAll('.menu-item').forEach(item => {
   item.addEventListener('click', (e) => {
     e.preventDefault();
+    
+    // Smooth scroll if on landing page and section exists
+    const id = item.id;
+    const sectionId = MENU_TO_SECTION[id];
+    if (currentPage === 'page-landing' && sectionId) {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const container = document.querySelector('.landing-canvas');
+        if (container) {
+          if (menuPanel) {
+            menuPanel.classList.remove('open');
+          }
+          container.scrollTo({
+            top: element.offsetTop - 80,
+            behavior: 'smooth'
+          });
+          return;
+        }
+      }
+    }
+
     const inMenuState = history.state && history.state.menuOpen;
     if (menuPanel) {
       menuPanel.classList.remove('open');
     }
-    const id = item.id;
     const modalId = MODAL_MAPPING[id];
     if (modalId) {
       if (modalId === 'guide-modal') {
@@ -3118,3 +3146,77 @@ document.getElementById('form-feedback')?.addEventListener('submit', async (e) =
     }
   });
 })();
+
+
+// ===== Inline Redesign Custom Integrations =====
+document.addEventListener('DOMContentLoaded', () => {
+  // Wait a bit to ensure elements are fully initialized or bind directly
+  setTimeout(() => {
+    document.getElementById('inline-price-free')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      showPage('register');
+    });
+    document.getElementById('inline-price-basic')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      showPage('register');
+    });
+    document.getElementById('inline-price-pro')?.addEventListener('click', (e) => {
+      e.preventDefault();
+      showPage('register');
+    });
+  }, 1000);
+});
+
+// Inline Feedback Form Submission
+document.getElementById('form-feedback-inline')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const errEl = document.getElementById('feedback-error-inline');
+  const succEl = document.getElementById('feedback-success-inline');
+  const name = document.getElementById('feedback-name-inline').value;
+  const email = document.getElementById('feedback-email-inline').value;
+  const message = document.getElementById('feedback-message-inline').value;
+
+  if (errEl) errEl.classList.add('hidden');
+  if (succEl) succEl.classList.add('hidden');
+
+  if (checkFormProfanity(name, message)) {
+    if (errEl) {
+      errEl.textContent = 'Inappropriate language detected. Please remove offensive words.';
+      errEl.classList.remove('hidden');
+    }
+    return;
+  }
+
+  try {
+    const btn = e.target.querySelector('button[type="submit"]');
+    if (btn) {
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+    }
+
+    await api('/feedback', {
+      method: 'POST',
+      body: JSON.stringify({ name, email, message })
+    });
+    
+    document.getElementById('feedback-name-inline').value = '';
+    document.getElementById('feedback-email-inline').value = '';
+    document.getElementById('feedback-message-inline').value = '';
+
+    if (succEl) {
+      succEl.textContent = 'Feedback sent successfully! Thank you for sharing your thoughts. ✅';
+      succEl.classList.remove('hidden');
+    }
+  } catch (err) {
+    if (errEl) {
+      errEl.textContent = err.message || 'Failed to send feedback.';
+      errEl.classList.remove('hidden');
+    }
+  } finally {
+    const btn = e.target.querySelector('button[type="submit"]');
+    if (btn) {
+      btn.disabled = false;
+      btn.textContent = 'Send Message';
+    }
+  }
+});
