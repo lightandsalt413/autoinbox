@@ -3220,3 +3220,233 @@ document.getElementById('form-feedback-inline')?.addEventListener('submit', asyn
     }
   }
 });
+
+
+// ===== Audio UI Synthesized Sound Effects =====
+const AudioUI = {
+  ctx: null,
+  init() {
+    if (this.ctx) return;
+    try {
+      this.ctx = new (window.AudioContext || window.webkitAudioContext)();
+    } catch (e) {
+      console.warn("Web Audio API not supported", e);
+    }
+  },
+  playClick() {
+    this.init();
+    if (!this.ctx || this.ctx.state === 'suspended') return;
+    
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+    
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(1200, this.ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(400, this.ctx.currentTime + 0.06);
+    
+    gain.gain.setValueAtTime(0.04, this.ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.06);
+    
+    osc.connect(gain);
+    gain.connect(this.ctx.destination);
+    
+    osc.start();
+    osc.stop(this.ctx.currentTime + 0.06);
+  },
+  playHover() {
+    this.init();
+    if (!this.ctx || this.ctx.state === 'suspended') return;
+    
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+    
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(500, this.ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(700, this.ctx.currentTime + 0.04);
+    
+    gain.gain.setValueAtTime(0.015, this.ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.04);
+    
+    osc.connect(gain);
+    gain.connect(this.ctx.destination);
+    
+    osc.start();
+    osc.stop(this.ctx.currentTime + 0.04);
+  }
+};
+
+// Bind audio triggers to UI
+document.addEventListener('DOMContentLoaded', () => {
+  const resumeAudio = () => {
+    AudioUI.init();
+    if (AudioUI.ctx && AudioUI.ctx.state === 'suspended') {
+      AudioUI.ctx.resume();
+    }
+  };
+  document.body.addEventListener('click', resumeAudio, { once: true });
+  document.body.addEventListener('touchstart', resumeAudio, { once: true });
+
+  const bindUIListeners = () => {
+    document.querySelectorAll('.menu-item, .nav-pill-item, .lang-switcher-option, .lang-switcher-dropdown button').forEach(el => {
+      el.removeEventListener('mouseenter', AudioUI.playHover);
+      el.addEventListener('mouseenter', AudioUI.playHover);
+    });
+
+    document.querySelectorAll('.btn-accent, .btn-ghost, .outer-login-btn, .outer-connect-btn, .canvas-contact-btn, .canvas-download-btn, .menu-item, .nav-pill-item, .pass-toggle, .social-btn, .mnav-item, .inline-price-signup, .inline-price-trial, .inline-price-pro').forEach(el => {
+      el.removeEventListener('click', AudioUI.playClick);
+      el.addEventListener('click', AudioUI.playClick);
+    });
+  };
+  
+  bindUIListeners();
+  
+  // Re-bind when language switcher is toggled
+  document.getElementById('lang-switcher-btn')?.addEventListener('click', () => {
+    setTimeout(bindUIListeners, 200);
+  });
+});
+
+
+// ===== Canvas Particle Network Motion Graphics =====
+(function() {
+  const canvas = document.getElementById('particles');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  
+  let width = canvas.width = window.innerWidth;
+  let height = canvas.height = window.innerHeight;
+  
+  const particles = [];
+  const mouse = { x: null, y: null, radius: 150 };
+  
+  window.addEventListener('resize', () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+  });
+  
+  const container = document.getElementById('page-landing');
+  if (container) {
+    container.addEventListener('mousemove', (e) => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+    });
+    container.addEventListener('mouseleave', () => {
+      mouse.x = null;
+      mouse.y = null;
+    });
+  }
+  
+  class Particle {
+    constructor() {
+      this.x = Math.random() * width;
+      this.y = Math.random() * height;
+      this.size = Math.random() * 2 + 1;
+      this.vx = (Math.random() - 0.5) * 0.4;
+      this.vy = (Math.random() - 0.5) * 0.4;
+    }
+    
+    draw() {
+      ctx.fillStyle = 'rgba(0, 158, 204, 0.4)';
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.fill();
+    }
+    
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      
+      if (this.x < 0 || this.x > width) this.vx = -this.vx;
+      if (this.y < 0 || this.y > height) this.vy = -this.vy;
+      
+      if (mouse.x != null && mouse.y != null) {
+        let dx = mouse.x - this.x;
+        let dy = mouse.y - this.y;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+        if (distance < mouse.radius) {
+          let force = (mouse.radius - distance) / mouse.radius;
+          let directionX = dx / distance;
+          let directionY = dy / distance;
+          this.x -= directionX * force * 2;
+          this.y -= directionY * force * 2;
+        }
+      }
+    }
+  }
+  
+  const particleCount = Math.min(60, Math.floor((width * height) / 20000));
+  for (let i = 0; i < particleCount; i++) {
+    particles.push(new Particle());
+  }
+  
+  function animate() {
+    const landing = document.getElementById('page-landing');
+    if (landing && !landing.classList.contains('hidden')) {
+      ctx.clearRect(0, 0, width, height);
+      
+      for (let a = 0; a < particles.length; a++) {
+        for (let b = a + 1; b < particles.length; b++) {
+          let dx = particles[a].x - particles[b].x;
+          let dy = particles[a].y - particles[b].y;
+          let distance = Math.sqrt(dx * dx + dy * dy);
+          
+          if (distance < 120) {
+            let alpha = (120 - distance) / 120 * 0.15;
+            ctx.strokeStyle = `rgba(0, 158, 204, ${alpha})`;
+            ctx.lineWidth = 0.8;
+            ctx.beginPath();
+            ctx.moveTo(particles[a].x, particles[a].y);
+            ctx.lineTo(particles[b].x, particles[b].y);
+            ctx.stroke();
+          }
+        }
+      }
+      
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+    }
+    requestAnimationFrame(animate);
+  }
+  
+  animate();
+})();
+
+
+// ===== Scroll Reveal Intersection Observer =====
+(function() {
+  document.addEventListener('DOMContentLoaded', () => {
+    const sections = document.querySelectorAll('.landing-section, .feat-card, .timeline-step, .price-card, .testi-card');
+    
+    sections.forEach(el => el.classList.add('reveal-fade'));
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.05,
+      rootMargin: '0px 0px -30px 0px'
+    });
+    
+    sections.forEach(sec => observer.observe(sec));
+  });
+})();
+
+// Track cursor on bento cards for gradient movement
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.feat-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--x', `${x}px`);
+      card.style.setProperty('--y', `${y}px`);
+    });
+  });
+});

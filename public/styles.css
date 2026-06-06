@@ -6606,3 +6606,112 @@ a:not(.nav-item):not(.footer-col a):not(.tab):not(.mnav-item) {
     margin: 10px 0;
   }
 }
+
+
+/* ==========================================================================
+   KINETIC TEXT & SCROLL REVEALS
+   ========================================================================== */
+
+:root {
+  --f: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+  --fh: 'Cabinet Grotesk', system-ui, sans-serif !important;
+}
+
+/* Kinetic Title Text Reveal */
+.kinetic-title {
+  display: inline-block;
+  overflow: hidden;
+}
+
+.kinetic-title .word-wrap {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  margin-right: 0.18em;
+  padding-bottom: 0.05em;
+}
+
+.kinetic-title .word {
+  display: inline-block;
+  transform: translateY(110%);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+.kinetic-title .word.animate {
+  animation: kineticReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes kineticReveal {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Scroll Reveal Fade Styles */
+.reveal-fade {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.reveal-fade.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Glow improvements on Bento elements */
+.feat-card {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.feat-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(600px circle at var(--x, 0px) var(--y, 0px), rgba(0, 158, 204, 0.06), transparent 40%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.feat-card:hover::after {
+  opacity: 1;
+}
+
+/* Canvas Particles Backdrop styling */
+#particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+/* Interactive glows on CTA */
+.btn-accent, .canvas-contact-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-accent::before, .canvas-contact-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+  transition: all 0.5s;
+}
+
+.btn-accent:hover::before, .canvas-contact-btn:hover::before {
+  left: 100%;
+}

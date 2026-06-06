@@ -71,6 +71,38 @@
         if (canvas) canvas.style.setProperty('--cutout-right-w', w + 'px');
       }
     });
+
+    // Kinetic Text Reveal wrapping for dynamic i18n titles
+    (function() {
+      var element = document.querySelector('.canvas-title');
+      if (!element) return;
+      var originalHTML = element.innerHTML;
+      
+      // Prevent double-wrapping
+      if (element.querySelector('.word-wrap')) return;
+
+      var lines = originalHTML.split('<br>');
+      var newHTML = lines.map(function(line) {
+        if (line.includes('class="hero-gradient-text"')) {
+          return line.replace(/(<span[^>]*>.*?<\/span>)/g, '<span class="word-wrap"><span class="word hero-gradient-text">$1</span></span>');
+        }
+        var words = line.trim().split(/\s+/);
+        return words.map(function(word) {
+          if (!word) return '';
+          return '<span class="word-wrap"><span class="word">' + word + '</span></span>';
+        }).join(' ');
+      }).join('<br>');
+      
+      element.innerHTML = newHTML;
+      
+      var words = element.querySelectorAll('.word');
+      words.forEach(function(word, index) {
+        word.style.animationDelay = (index * 0.08) + 's';
+        word.classList.remove('animate');
+        void word.offsetWidth; 
+        word.classList.add('animate');
+      });
+    })();
   }
 
   async function switchTo(langCode) {
