@@ -33,13 +33,13 @@
       flex-direction: column !important;
       background-color: #F6F0E6 !important;
       scrollbar-width: thin !important;
-      scrollbar-color: rgba(197,165,90,0.4) #F6F0E6 !important;
+      scrollbar-color: rgba(0, 158, 204,0.4) #F6F0E6 !important;
       scroll-behavior: smooth !important;
     }
     .landing-canvas::-webkit-scrollbar { display: block !important; width: 8px !important; }
     .landing-canvas::-webkit-scrollbar-track { background: #F6F0E6 !important; border-radius: 0 40px 40px 0 !important; }
-    .landing-canvas::-webkit-scrollbar-thumb { background: rgba(197,165,90,0.4) !important; border-radius: 4px !important; }
-    .landing-canvas::-webkit-scrollbar-thumb:hover { background: rgba(197,165,90,0.6) !important; }
+    .landing-canvas::-webkit-scrollbar-thumb { background: rgba(0, 158, 204,0.4) !important; border-radius: 4px !important; }
+    .landing-canvas::-webkit-scrollbar-thumb:hover { background: rgba(0, 158, 204,0.6) !important; }
     @media (max-width: 768px) {
       .landing-frame { padding: 8px !important; }
       .landing-canvas::-webkit-scrollbar-track { border-radius: 0 24px 24px 0 !important; }
@@ -117,13 +117,13 @@
     }
     .toc-list li a:hover {
       color: #1A1A1C;
-      background: rgba(197,165,90,0.06);
-      border-left-color: #C5A55A;
+      background: rgba(0, 158, 204,0.06);
+      border-left-color: #009ecc;
     }
     .toc-num {
       font-size: .6rem;
       font-weight: 700;
-      color: #C5A55A;
+      color: #009ecc;
       min-width: 16px;
     }
 
@@ -145,9 +145,9 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 2px;
-      color: #C5A55A;
-      background: rgba(197,165,90,0.08);
-      border: 1px solid rgba(197,165,90,0.15);
+      color: #009ecc;
+      background: rgba(0, 158, 204,0.08);
+      border: 1px solid rgba(0, 158, 204,0.15);
       padding: 5px 14px;
       border-radius: 20px;
       margin-bottom: 16px;
@@ -182,7 +182,7 @@
       width: 3px;
       min-height: 100%;
       align-self: stretch;
-      background: linear-gradient(180deg, #C5A55A 0%, rgba(197,165,90,0.2) 100%);
+      background: linear-gradient(180deg, #009ecc 0%, rgba(0, 158, 204,0.2) 100%);
       border-radius: 2px;
       flex-shrink: 0;
     }
@@ -194,7 +194,7 @@
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 1.5px;
-      color: #C5A55A;
+      color: #009ecc;
       margin-bottom: 8px;
     }
     .summary-text {
@@ -214,8 +214,8 @@
       transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .legal-section:hover {
-      box-shadow: 0 8px 32px rgba(197,165,90,0.1), 0 2px 8px rgba(0,0,0,0.04);
-      border-color: rgba(197,165,90,0.2);
+      box-shadow: 0 8px 32px rgba(0, 158, 204,0.1), 0 2px 8px rgba(0,0,0,0.04);
+      border-color: rgba(0, 158, 204,0.2);
       transform: translateY(-2px);
     }
     .section-head {
@@ -228,22 +228,22 @@
       width: 48px;
       height: 48px;
       border-radius: 50%;
-      background: rgba(197,165,90,0.08);
-      border: 2px solid rgba(197,165,90,0.18);
+      background: rgba(0, 158, 204,0.08);
+      border: 2px solid rgba(0, 158, 204,0.18);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: .82rem;
       font-weight: 800;
-      color: #8a7540;
+      color: #092c3e;
       flex-shrink: 0;
       transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
     }
     .legal-section:hover .section-num {
-      background: linear-gradient(135deg, #C5A55A, #8a7540);
+      background: linear-gradient(135deg, #009ecc, #092c3e);
       color: #fff;
-      border-color: #C5A55A;
-      box-shadow: 0 4px 20px rgba(197,165,90,0.25);
+      border-color: #009ecc;
+      box-shadow: 0 4px 20px rgba(0, 158, 204,0.25);
       transform: scale(1.05);
     }
     .section-title {
@@ -255,7 +255,7 @@
       transition: color 0.3s ease;
     }
     .legal-section:hover .section-title {
-      color: #8a7540;
+      color: #092c3e;
     }
     .section-body {
       padding-left: 64px;
@@ -285,29 +285,29 @@
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #C5A55A, #8a7540);
+      background: linear-gradient(135deg, #009ecc, #092c3e);
     }
     .section-body strong {
       color: #1A1A1C;
       font-weight: 600;
     }
     .section-body a {
-      color: #8a7540;
+      color: #092c3e;
       text-decoration: underline;
       text-underline-offset: 3px;
-      text-decoration-color: rgba(138,117,64,0.3);
+      text-decoration-color: rgba(9, 44, 62,0.3);
       transition: all 0.2s;
     }
     .section-body a:hover {
-      color: #C5A55A;
-      text-decoration-color: #C5A55A;
+      color: #009ecc;
+      text-decoration-color: #009ecc;
     }
 
     /* Highlighted callout box */
     .section-highlight {
-      background: rgba(197,165,90,0.05);
-      border: 1px solid rgba(197,165,90,0.15);
-      border-left: 3px solid #C5A55A;
+      background: rgba(0, 158, 204,0.05);
+      border: 1px solid rgba(0, 158, 204,0.15);
+      border-left: 3px solid #009ecc;
       border-radius: 0 10px 10px 0;
       padding: 14px 18px;
       margin-top: 16px;
@@ -316,7 +316,7 @@
       line-height: 1.7;
     }
     .section-highlight strong {
-      color: #8a7540;
+      color: #092c3e;
       font-weight: 700;
     }
 
@@ -360,7 +360,7 @@
       .section-head { gap: 12px; }
       .section-num { width: 36px; height: 36px; font-size: .7rem; }
       .legal-summary { padding: 16px; flex-direction: column; gap: 12px; }
-      .summary-bar { width: 100%; min-height: 3px; align-self: auto; background: linear-gradient(90deg, #C5A55A 0%, rgba(197,165,90,0.2) 100%); }
+      .summary-bar { width: 100%; min-height: 3px; align-self: auto; background: linear-gradient(90deg, #009ecc 0%, rgba(0, 158, 204,0.2) 100%); }
       .legal-layout { padding: 20px 10px 48px; }
       .section-highlight { padding: 10px 12px; font-size: .76rem; border-radius: 0 8px 8px 0; }
       .legal-footer { padding: 18px 16px; }
@@ -376,7 +376,7 @@
         <div class="outer-logo">
           <a href="/" style="text-decoration:none; display:inline-flex; align-items:center; gap:10px;">
             <img src="/logo.png?v=8" width="30" height="30" style="flex-shrink:0; vertical-align:middle; object-fit:contain;" alt="AutoInbox Logo">
-            <span class="logo-text" style="font-size:1.85rem; font-weight:800; background:linear-gradient(135deg, #FFFFFF 30%, #C5A55A 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; display:inline-block; letter-spacing:-0.5px; filter:drop-shadow(0 2px 10px rgba(197, 165, 90, 0.15)); transition:all 0.3s ease;">AutoInbox</span>
+            <span class="logo-text" style="font-size:1.85rem; font-weight:800; background:linear-gradient(135deg, #FFFFFF 30%, #009ecc 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; display:inline-block; letter-spacing:-0.5px; filter:drop-shadow(0 2px 10px rgba(0, 158, 204, 0.15)); transition:all 0.3s ease;">AutoInbox</span>
           </a>
         </div>
       </div>
