@@ -60,16 +60,14 @@
       if (translations[key] !== undefined) el.innerHTML = translations[key];
     });
 
-    // Reposition fillet + canvas-header to match dynamic cutout-top-right width
+    // Reposition canvas-header to match dynamic cutout-top-right width
     requestAnimationFrame(function () {
       var cutout = document.querySelector('.cutout-top-right');
-      var fillet = document.querySelector('.fillet-tr-left');
       var canvas = document.querySelector('.landing-canvas');
       if (cutout && cutout.offsetParent) {
         cutout.style.removeProperty('width');
         var w = Math.round(cutout.getBoundingClientRect().width);
         cutout.style.setProperty('width', w + 'px', 'important');
-        if (fillet) fillet.style.right = (w - 2) + 'px';
         if (canvas) canvas.style.setProperty('--cutout-right-w', w + 'px');
       }
     });

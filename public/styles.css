@@ -6749,40 +6749,67 @@ body, #page-landing {
 }
 
 .fillet-tl-bottom {
-  background: linear-gradient(135deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
-  background-attachment: fixed !important;
-  -webkit-mask: radial-gradient(circle at 41px 41px, transparent 39.5px, black 40.5px);
-  mask: radial-gradient(circle at 41px 41px, transparent 39.5px, black 40.5px);
+  position: absolute !important;
+  left: -1px !important;
+  top: 100% !important;
+  margin-top: -1px !important;
+  width: 42px !important;
+  height: 42px !important;
+  background: radial-gradient(circle at 41px 41px, transparent 39.5px, #003566 40.5px) !important;
+  -webkit-mask: none !important;
+  mask: none !important;
 }
 .fillet-tl-right {
-  background: linear-gradient(135deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
-  background-attachment: fixed !important;
-  -webkit-mask: radial-gradient(circle at 41px 41px, transparent 39.5px, black 40.5px);
-  mask: radial-gradient(circle at 41px 41px, transparent 39.5px, black 40.5px);
+  position: absolute !important;
+  right: -41px !important;
+  top: -1px !important;
+  width: 42px !important;
+  height: 42px !important;
+  background: radial-gradient(circle at 41px 41px, transparent 39.5px, #003566 40.5px) !important;
+  -webkit-mask: none !important;
+  mask: none !important;
 }
 .fillet-tr-left {
-  background: linear-gradient(135deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
-  background-attachment: fixed !important;
-  -webkit-mask: radial-gradient(circle at 1px 41px, transparent 39.5px, black 40.5px);
-  mask: radial-gradient(circle at 1px 41px, transparent 39.5px, black 40.5px);
+  position: absolute !important;
+  left: -41px !important;
+  top: -1px !important;
+  width: 42px !important;
+  height: 42px !important;
+  background: radial-gradient(circle at 1px 41px, transparent 39.5px, #009ecc 40.5px) !important;
+  -webkit-mask: none !important;
+  mask: none !important;
 }
 .fillet-tr-bottom {
-  background: linear-gradient(135deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
-  background-attachment: fixed !important;
-  -webkit-mask: radial-gradient(circle at 1px 41px, transparent 39.5px, black 40.5px);
-  mask: radial-gradient(circle at 1px 41px, transparent 39.5px, black 40.5px);
+  position: absolute !important;
+  right: -1px !important;
+  top: 100% !important;
+  margin-top: -1px !important;
+  width: 42px !important;
+  height: 42px !important;
+  background: radial-gradient(circle at 1px 41px, transparent 39.5px, #009ecc 40.5px) !important;
+  -webkit-mask: none !important;
+  mask: none !important;
 }
 .fillet-br-left {
-  background: linear-gradient(135deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
-  background-attachment: fixed !important;
-  -webkit-mask: radial-gradient(circle at 1px 1px, transparent 39.5px, black 40.5px);
-  mask: radial-gradient(circle at 1px 1px, transparent 39.5px, black 40.5px);
+  position: absolute !important;
+  left: -41px !important;
+  bottom: -1px !important;
+  width: 42px !important;
+  height: 42px !important;
+  background: radial-gradient(circle at 1px 1px, transparent 39.5px, #00c2ff 40.5px) !important;
+  -webkit-mask: none !important;
+  mask: none !important;
 }
 .fillet-br-top {
-  background: linear-gradient(135deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
-  background-attachment: fixed !important;
-  -webkit-mask: radial-gradient(circle at 1px 1px, transparent 39.5px, black 40.5px);
-  mask: radial-gradient(circle at 1px 1px, transparent 39.5px, black 40.5px);
+  position: absolute !important;
+  right: -1px !important;
+  bottom: 100% !important;
+  margin-bottom: -1px !important;
+  width: 42px !important;
+  height: 42px !important;
+  background: radial-gradient(circle at 1px 1px, transparent 39.5px, #00c2ff 40.5px) !important;
+  -webkit-mask: none !important;
+  mask: none !important;
 }
 
 /* 3. Outer Cutout Controls & Logo */
