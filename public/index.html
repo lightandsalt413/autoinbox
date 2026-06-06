@@ -717,111 +717,128 @@
         </div>
 
       </section>
-      <section id="dash-settings" class="dash-section hidden">
+            <section id="dash-settings" class="dash-section hidden">
         <div class="dash-head"><h1>Settings</h1></div>
         
         <div class="settings-wrapper">
           <aside class="settings-sidebar">
-            <button type="button" class="snav-item active" data-settings-section="general">AI Personality</button>
-            <button type="button" class="snav-item" data-settings-section="email">Email Connection</button>
-            <button type="button" class="snav-item" data-settings-section="security">Change Password</button>
+            <button type="button" class="snav-item active" data-settings-section="general">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              AI Personality
+            </button>
+            <button type="button" class="snav-item" data-settings-section="email">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              Email
+            </button>
+            <button type="button" class="snav-item" data-settings-section="security">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              Security
+            </button>
           </aside>
 
           <div class="settings-content">
             <!-- AI Personality Panel -->
             <div class="settings-panel" id="settings-sec-general">
               <div class="card glass">
-                <h3>AI Personality</h3>
-                <p class="field-desc">Configure your AI clone's identity, language, and response tone.</p>
-                <div class="fg">
-                  <label for="set-name">Name</label>
-                  <input type="text" id="set-name" placeholder="Your name">
-                  <p class="input-hint">This name will be used to sign off your auto-reply emails.</p>
+                <div class="settings-section-header">
+                  <h3>Identity &amp; Tone</h3>
+                  <p class="field-desc">Set up how your AI clone introduces itself and responds.</p>
                 </div>
-                <div class="fg">
-                  <label for="set-tone">Tone</label>
-                  <select id="set-tone">
-                    <option value="professional-friendly">Professional Friendly</option>
-                    <option value="casual">Casual</option>
-                    <option value="formal">Formal</option>
-                    <option value="taglish">Taglish Casual</option>
-                  </select>
-                  <p class="input-hint">Select the general vibe and speaking style of the AI.</p>
+                <div class="settings-fields-grid">
+                  <div class="fg">
+                    <label for="set-name">Display Name</label>
+                    <input type="text" id="set-name" placeholder="Your name">
+                    <p class="input-hint">Used to sign off auto-reply emails.</p>
+                  </div>
+                  <div class="fg">
+                    <label for="set-tone">Response Tone</label>
+                    <select id="set-tone">
+                      <option value="professional-friendly">Professional Friendly</option>
+                      <option value="casual">Casual</option>
+                      <option value="formal">Formal</option>
+                      <option value="taglish">Taglish Casual</option>
+                    </select>
+                    <p class="input-hint">General speaking style of the AI.</p>
+                  </div>
+                  <div class="fg">
+                    <label for="set-lang">Reply Language</label>
+                    <select id="set-lang">
+                      <option value="auto">🌍 Auto-Detect (match sender)</option>
+                      <option value="en">🇺🇸 English</option>
+                      <option value="tl">🇵🇭 Filipino</option>
+                      <option value="taglish">🇵🇭 Taglish</option>
+                      <option value="es">🇪🇸 Spanish</option>
+                      <option value="fr">🇫🇷 French</option>
+                      <option value="de">🇩🇪 German</option>
+                      <option value="it">🇮🇹 Italian</option>
+                      <option value="pt">🇵🇹 Portuguese</option>
+                      <option value="ja">🇯🇵 Japanese</option>
+                      <option value="ko">🇰🇷 Korean</option>
+                      <option value="zh">🇨🇳 Chinese (Simplified)</option>
+                      <option value="zh-tw">🇹🇼 Chinese (Traditional)</option>
+                      <option value="ar">🇸🇦 Arabic</option>
+                      <option value="hi">🇮🇳 Hindi</option>
+                      <option value="ru">🇷🇺 Russian</option>
+                      <option value="nl">🇳🇱 Dutch</option>
+                      <option value="sv">🇸🇪 Swedish</option>
+                      <option value="th">🇹🇭 Thai</option>
+                      <option value="vi">🇻🇳 Vietnamese</option>
+                      <option value="id">🇮🇩 Bahasa Indonesia</option>
+                      <option value="ms">🇲🇾 Bahasa Malay</option>
+                      <option value="tr">🇹🇷 Turkish</option>
+                      <option value="pl">🇵🇱 Polish</option>
+                      <option value="uk">🇺🇦 Ukrainian</option>
+                    </select>
+                    <p class="input-hint">Fixed language or auto-detect from sender.</p>
+                  </div>
                 </div>
-                <div class="fg">
-                  <label for="set-lang">Language</label>
-                  <select id="set-lang">
-                    <option value="auto">🌍 Auto-Detect (match sender)</option>
-                    <option value="en">🇺🇸 English</option>
-                    <option value="tl">🇵🇭 Filipino</option>
-                    <option value="taglish">🇵🇭 Taglish</option>
-                    <option value="es">🇪🇸 Spanish</option>
-                    <option value="fr">🇫🇷 French</option>
-                    <option value="de">🇩🇪 German</option>
-                    <option value="it">🇮🇹 Italian</option>
-                    <option value="pt">🇵🇹 Portuguese</option>
-                    <option value="ja">🇯🇵 Japanese</option>
-                    <option value="ko">🇰🇷 Korean</option>
-                    <option value="zh">🇨🇳 Chinese (Simplified)</option>
-                    <option value="zh-tw">🇹🇼 Chinese (Traditional)</option>
-                    <option value="ar">🇸🇦 Arabic</option>
-                    <option value="hi">🇮🇳 Hindi</option>
-                    <option value="ru">🇷🇺 Russian</option>
-                    <option value="nl">🇳🇱 Dutch</option>
-                    <option value="sv">🇸🇪 Swedish</option>
-                    <option value="th">🇹🇭 Thai</option>
-                    <option value="vi">🇻🇳 Vietnamese</option>
-                    <option value="id">🇮🇩 Bahasa Indonesia</option>
-                    <option value="ms">🇲🇾 Bahasa Malay</option>
-                    <option value="tr">🇹🇷 Turkish</option>
-                    <option value="pl">🇵🇱 Polish</option>
-                    <option value="uk">🇺🇦 Ukrainian</option>
-                  </select>
-                  <p class="input-hint">Select a fixed language or let the AI match the sender's language dynamically.</p>
-                </div>
-              </div>
 
-              <div class="card glass settings-col-flex">
-                <h3>Instructions & Custom Rules</h3>
-                <p class="field-desc">Provide specific information about your services and custom instructions the AI must follow.</p>
-                <div class="fg settings-fg-flex">
-                  <label for="set-services">Services</label>
-                  <textarea id="set-services" class="settings-textarea-flex" placeholder="Your services..."></textarea>
-                  <p class="input-hint">List your offerings, rates, and basic FAQs to help the AI answer inquiries accurately.</p>
+                <hr class="settings-divider">
+
+                <div class="settings-section-header">
+                  <h3>Instructions &amp; Rules</h3>
+                  <p class="field-desc">Tell the AI what you do and any specific rules to follow.</p>
                 </div>
-                <div class="fg settings-fg-flex settings-label-margin">
+                <div class="fg">
+                  <label for="set-services">Your Services</label>
+                  <textarea id="set-services" class="settings-textarea" rows="4" placeholder="e.g. I offer web design packages starting at ₱5,000..."></textarea>
+                  <p class="input-hint">Offerings, rates, and FAQs for accurate replies.</p>
+                </div>
+                <div class="fg" style="margin-top:16px">
                   <label for="set-custom">Custom Rules</label>
-                  <textarea id="set-custom" class="settings-textarea-flex" placeholder="Special instructions..."></textarea>
-                  <p class="input-hint">Add constraints (e.g. "Do not offer discounts", "Always ask for their phone number").</p>
+                  <textarea id="set-custom" class="settings-textarea" rows="4" placeholder="e.g. Never offer discounts, Always ask for phone number"></textarea>
+                  <p class="input-hint">Constraints and special instructions for the AI.</p>
                 </div>
-              </div>
 
-              <div class="settings-btn-container">
-                <button class="btn-accent btn-full" id="btn-save-settings">Save Settings</button>
+                <div class="settings-btn-container">
+                  <button class="btn-accent btn-full" id="btn-save-settings">Save Settings</button>
+                </div>
               </div>
             </div>
 
             <!-- Email Connection Panel -->
             <div class="settings-panel hidden" id="settings-sec-email">
               <div class="card glass">
-                <h3>Email Connection</h3>
-                <p class="field-desc">Connect your business email via App Passwords. AutoInbox runs in the background to draft responses.</p>
-                <p id="email-status-text" style="margin-bottom:12px">Not connected</p>
+                <div class="settings-section-header">
+                  <h3>Email Connection</h3>
+                  <p class="field-desc">Connect your email so AutoInbox can monitor and draft replies.</p>
+                </div>
+                <p id="email-status-text" class="email-status-badge">Not connected</p>
                 <div class="provider-tabs" id="set-provider-tabs" style="display:flex;gap:10px;margin-bottom:15px">
-                  <button type="button" class="tab active" data-provider="gmail" style="flex:1;padding:6px 12px;font-size:.78rem">Gmail</button>
-                  <button type="button" class="tab" data-provider="yahoo" style="flex:1;padding:6px 12px;font-size:.78rem">Yahoo Mail</button>
+                  <button type="button" class="tab active" data-provider="gmail" style="flex:1;padding:8px 12px;font-size:.82rem">Gmail</button>
+                  <button type="button" class="tab" data-provider="yahoo" style="flex:1;padding:8px 12px;font-size:.82rem">Yahoo Mail</button>
                 </div>
                 <div class="fg">
                   <label for="set-email" id="set-email-lbl">Gmail Address</label>
                   <input type="email" id="set-email" placeholder="you@gmail.com">
-                  <p class="input-hint">Your workspace or personal email address to monitor.</p>
+                  <p class="input-hint">Your workspace or personal email to monitor.</p>
                 </div>
                 <div class="fg">
                   <label for="set-email-pass" id="set-pass-lbl">App Password <a href="https://myaccount.google.com/apppasswords" target="_blank" style="color:var(--p)" id="set-pass-guide">Get here →</a></label>
                   <input type="password" id="set-email-pass" placeholder="xxxx xxxx xxxx xxxx">
-                  <p class="input-hint">A secure 16-character code from your email provider. <a href="#" id="set-open-guide" style="color:var(--p);text-decoration:underline">Setup Guide →</a></p>
+                  <p class="input-hint">16-character code from your provider. <a href="#" id="set-open-guide" style="color:var(--p);text-decoration:underline">Setup Guide →</a></p>
                 </div>
-                <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <div style="display:flex;gap:8px;flex-wrap:wrap;">
                   <button class="btn-accent btn-sm" id="set-email-connect">Connect</button>
                   <button class="btn-ghost btn-sm hidden" id="set-email-disconnect">Disconnect</button>
                   <button type="button" class="btn-ghost btn-sm hidden" id="set-email-test">Test Connection</button>
@@ -833,8 +850,10 @@
             <!-- Account Security Panel -->
             <div class="settings-panel hidden" id="settings-sec-security">
               <div class="card glass" id="card-account-security">
-                <h3>Account Security / Change Password</h3>
-                <p class="field-desc">Change your password here. Doing so will invalidate your active sessions on other devices.</p>
+                <div class="settings-section-header">
+                  <h3>Change Password</h3>
+                  <p class="field-desc">Changing your password will sign out all other devices.</p>
+                </div>
                 <form id="form-change-password">
                   <div class="fg">
                     <label for="set-curr-pass">Current Password</label>
@@ -853,7 +872,6 @@
                       <div class="pass-bar" id="change-pass-bar"></div>
                     </div>
                     <span class="pass-label" id="change-pass-label"></span>
-                    <p class="input-hint">Choose a strong, unique password to protect your account.</p>
                   </div>
                   <div class="fg">
                     <label for="set-new-pass-confirm">Confirm New Password</label>
@@ -864,18 +882,20 @@
                   </div>
                   <div id="change-pass-error" class="form-err hidden" style="margin-top:10px"></div>
                   <div id="change-pass-success" class="form-err hidden" style="margin-top:10px; color:var(--g); background:rgba(16,185,129,0.1); border-color:var(--g)"></div>
-                  <button type="submit" class="btn-accent btn-sm" style="margin-top:12px">Update Password</button>
+                  <button type="submit" class="btn-accent btn-sm" style="margin-top:16px">Update Password</button>
                 </form>
               </div>
 
-              <div class="card glass" style="margin-top: 20px;" id="card-cellphone-security">
-                <h3>Cellphone Settings</h3>
-                <p class="field-desc">Set or update your cellphone number here to receive a password reset code on your cellphone via SMS.</p>
+              <div class="card glass" style="margin-top:20px;" id="card-cellphone-security">
+                <div class="settings-section-header">
+                  <h3>Cellphone Number</h3>
+                  <p class="field-desc">For password reset via SMS.</p>
+                </div>
                 <form id="form-update-phone">
                   <div class="fg">
-                    <label for="set-phone-num">Cellphone Number</label>
+                    <label for="set-phone-num">Phone Number</label>
                     <div class="phone-input-group" style="display:flex; gap:8px">
-                      <select id="set-phone-prefix" style="width:120px; flex:0 0 120px; padding:12px 8px;">
+                      <select id="set-phone-prefix" style="width:110px; flex:0 0 110px; padding:12px 8px;">
                         <option value="+63">🇵🇭 +63</option>
                         <option value="+1">🇺🇸 +1</option>
                         <option value="+65">🇸🇬 +65</option>
@@ -896,16 +916,15 @@
                         <option value="+33">🇫🇷 +33</option>
                         <option value="+49">🇩🇪 +49</option>
                       </select>
-                      <input type="tel" id="set-phone-num" placeholder="e.g. 9171234567" required pattern="^\d{4,14}$" style="flex:1">
+                      <input type="tel" id="set-phone-num" placeholder="9171234567" required pattern="^\d{4,14}$" style="flex:1">
                     </div>
                   </div>
                   <div id="update-phone-error" class="form-err hidden" style="margin-top:10px"></div>
                   <div id="update-phone-success" class="form-err hidden" style="margin-top:10px; color:var(--g); background:rgba(16,185,129,0.1); border-color:var(--g)"></div>
-                  <button type="submit" class="btn-accent btn-sm" style="margin-top:15px">Update Phone Number</button>
+                  <button type="submit" class="btn-accent btn-sm" style="margin-top:16px">Update Phone Number</button>
                 </form>
               </div>
             </div>
-
 
           </div>
         </div>
@@ -923,6 +942,7 @@
         </div>
 
       </section>
+
       <section id="dash-admin" class="dash-section hidden"><div class="dash-head"><h1>👑 Admin Dashboard</h1></div>
         <div class="admin-stats-grid">
           <div class="stat-card admin-stat"><span class="stat-num" id="admin-total-users">0</span><span class="stat-lbl">Total Users</span></div>

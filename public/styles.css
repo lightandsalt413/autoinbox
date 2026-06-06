@@ -1677,24 +1677,96 @@ a{color:var(--p2);text-decoration:none}
   margin-top: 20px;
 }
 
-/* Custom Spacing Rules for Settings Panels to prevent crowded layout */
+/* Custom Spacing Rules for Settings Panels */
 .settings-panel .card {
-  padding: 36px 32px !important;
-  margin-bottom: 24px !important;
+  padding: 28px 24px !important;
+  margin-bottom: 20px !important;
 }
 .settings-panel h3 {
-  font-size: 1.2rem !important;
-  margin-bottom: 8px !important;
+  font-size: 1.1rem !important;
+  margin-bottom: 4px !important;
+  font-weight: 700 !important;
 }
 .settings-panel .field-desc {
-  margin-bottom: 28px !important;
+  margin-bottom: 20px !important;
 }
 .settings-panel .fg {
-  margin-bottom: 24px !important;
+  margin-bottom: 20px !important;
 }
 .settings-panel .fg:last-child {
   margin-bottom: 0 !important;
 }
+
+/* Settings Section Header */
+.settings-section-header {
+  margin-bottom: 20px;
+}
+.settings-section-header h3 {
+  color: #1A1A1C;
+  letter-spacing: -0.2px;
+}
+
+/* Settings Divider */
+.settings-divider {
+  border: none;
+  height: 1px;
+  background: rgba(26, 26, 28, 0.08);
+  margin: 28px 0;
+}
+
+/* Settings Fields Grid — 2 col on desktop */
+.settings-fields-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 20px;
+}
+.settings-fields-grid .fg {
+  margin-bottom: 0 !important;
+}
+.settings-fields-grid .fg:nth-child(3) {
+  grid-column: 1 / -1;
+}
+
+/* Settings Textarea */
+.settings-textarea {
+  width: 100%;
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Email Status Badge */
+.email-status-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: rgba(220, 53, 69, 0.08);
+  color: #dc3545;
+  margin-bottom: 16px;
+}
+
+/* Sidebar nav icons */
+.snav-item svg {
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+.snav-item.active svg {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .settings-fields-grid {
+    grid-template-columns: 1fr;
+  }
+  .settings-panel .card {
+    padding: 20px 16px !important;
+  }
+  .snav-item svg {
+    display: none;
+  }
+}
+
 
 @media (max-width: 768px) {
   .settings-wrapper {
