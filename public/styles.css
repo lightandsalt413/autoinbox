@@ -2764,7 +2764,7 @@ body::-webkit-scrollbar {
   position: absolute;
   top: 0;
   left: 220px;
-  right: 300px !important;
+  right: var(--cutout-right-w, 300px) !important;
   height: 72px;
   display: flex;
   align-items: center;
