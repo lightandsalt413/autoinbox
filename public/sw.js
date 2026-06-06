@@ -1,5 +1,5 @@
 // AutoInbox Service Worker — PWA Offline + Cache
-const CACHE_NAME = 'autoinbox-v1';
+const CACHE_NAME = 'autoinbox-v2';
 const PRECACHE_URLS = [
   '/',
   '/styles.css',
