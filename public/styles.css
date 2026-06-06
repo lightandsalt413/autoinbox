@@ -7303,5 +7303,85 @@ body, #page-landing {
   border-color: #009ecc !important;
 }
 
+/* Logout Modal & Sidebar Logout Button Styles (Light Theme Fix) */
+#logout-modal .modal-box {
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 53, 102, 0.08) !important;
+  color: #0f172a !important;
+  box-shadow: 
+    0 24px 60px rgba(0, 53, 102, 0.12),
+    0 0 0 1px rgba(0, 158, 204, 0.05) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+#logout-modal h3 {
+  color: #0f172a !important;
+  font-weight: 800 !important;
+}
+
+#logout-modal p {
+  color: #475569 !important;
+}
+
+#logout-cancel {
+  border: 1.5px solid #cbd5e1 !important;
+  color: #475569 !important;
+  background: transparent !important;
+  font-weight: 600 !important;
+  transition: all 0.2s ease !important;
+}
+
+#logout-cancel:hover {
+  background: #f1f5f9 !important;
+  border-color: #94a3b8 !important;
+  color: #0f172a !important;
+  transform: translateY(-1.5px) !important;
+}
+
+#logout-confirm {
+  background: linear-gradient(90deg, #dc2626 0%, #f43f5e 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.25) !important;
+  font-weight: 600 !important;
+  transition: all 0.2s ease !important;
+}
+
+#logout-confirm:hover {
+  background: linear-gradient(90deg, #b91c1c 0%, #e11d48 100%) !important;
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4) !important;
+  transform: translateY(-1.5px) !important;
+}
+
+.sidebar #btn-logout {
+  color: rgba(255, 255, 255, 0.75) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.15) !important;
+  background: transparent !important;
+  font-weight: 600 !important;
+  transition: all 0.2s ease !important;
+}
+
+.sidebar #btn-logout:hover {
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  transform: translateY(-1px) !important;
+}
+
+.btn-logout-full {
+  background: rgba(220, 38, 38, 0.06) !important;
+  color: #dc2626 !important;
+  border: 1.5px solid rgba(220, 38, 38, 0.18) !important;
+}
+
+.btn-logout-full:hover {
+  background: #dc2626 !important;
+  color: #ffffff !important;
+  border-color: #dc2626 !important;
+  box-shadow: 0 6px 18px rgba(220, 38, 38, 0.25) !important;
+}
+
+
 
 
