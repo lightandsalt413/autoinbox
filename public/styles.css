@@ -7514,9 +7514,17 @@ body, #page-landing {
   color: #003566 !important;
 }
 
-/* Remove fillet corner transition curves (user request) */
+/* Remove curves from top-right and bottom-right cutouts (user request) */
+.cutout-top-right {
+  border-bottom-left-radius: 0 !important;
+}
+.cutout-bottom-right {
+  border-top-left-radius: 0 !important;
+}
 .fillet-tr-left,
-.fillet-br-left {
+.fillet-tr-bottom,
+.fillet-br-left,
+.fillet-br-top {
   display: none !important;
 }
 
