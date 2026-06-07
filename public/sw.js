@@ -1,5 +1,5 @@
 // AutoInbox Service Worker — PWA Offline + Cache
-const CACHE_NAME = 'autoinbox-v12';
+const CACHE_NAME = 'autoinbox-v13';
 const PRECACHE_URLS = [
   '/',
   '/styles.css',
@@ -41,6 +41,9 @@ self.addEventListener('fetch', (event) => {
   // Skip non-GET and API requests
   if (event.request.method !== 'GET') return;
   if (event.request.url.includes('/api/')) return;
+
+  // Skip cross-origin requests (like reCAPTCHA, fonts, analytics) to prevent caching failures
+  if (!event.request.url.startsWith(self.location.origin)) return;
 
   event.respondWith(
     fetch(event.request)
