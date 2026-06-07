@@ -1932,22 +1932,17 @@ body::-webkit-scrollbar {
 }
 
 /* Close button - premium circular black button with gold X */
-#features-modal .modal-x,
-#pricing-modal .modal-x,
-#how-modal .modal-x,
-#faq-modal .modal-x,
-#feedback-modal .modal-x,
-#languages-modal .modal-x {
+.modal-box.glass .modal-x {
   position: absolute !important;
-  top: 10px !important;
-  right: 12px !important;
-  width: 36px !important;
-  height: 36px !important;
+  top: 12px !important;
+  right: 16px !important;
+  width: 32px !important;
+  height: 32px !important;
   border-radius: 50% !important;
   background: #1A1A1C !important;
   border: 1px solid rgba(0, 158, 204, 0.3) !important;
   color: #009ecc !important;
-  font-size: 1.2rem !important;
+  font-size: 1.1rem !important;
   font-weight: 700 !important;
   display: flex !important;
   align-items: center !important;
@@ -1959,12 +1954,7 @@ body::-webkit-scrollbar {
   padding: 0 !important;
   line-height: 1 !important;
 }
-#features-modal .modal-x:hover,
-#pricing-modal .modal-x:hover,
-#how-modal .modal-x:hover,
-#faq-modal .modal-x:hover,
-#feedback-modal .modal-x:hover,
-#languages-modal .modal-x:hover {
+.modal-box.glass .modal-x:hover {
   background: #009ecc !important;
   color: #1A1A1C !important;
   border-color: #009ecc !important;
@@ -7610,13 +7600,17 @@ body, #page-landing {
   position: relative !important;
   flex-shrink: 0 !important;
   background: #ffffff !important;
-  padding: 14px 20px 8px !important;
+  padding: 16px 24px 14px !important;
   border-bottom: 1px solid rgba(0, 53, 102, 0.08) !important;
   z-index: 10 !important;
   border-top-left-radius: 20px !important;
   border-top-right-radius: 20px !important;
   width: 100% !important;
   box-sizing: border-box !important;
+}
+
+.modal-box.glass .modal-header-nav .modal-head {
+  margin-bottom: 0 !important;
 }
 
 .modal-box.glass .modal-body-scroll {
@@ -7717,21 +7711,23 @@ body, #page-landing {
 
   /* Responsive overrides for general landing page modals */
   .modal-box.glass .modal-header-nav {
-    padding: 10px 14px 6px !important;
+    padding: 12px 16px 10px !important;
+  }
+
+  .modal-box.glass .modal-header-nav .modal-head {
+    margin-bottom: 0 !important;
   }
 
   .modal-box.glass .modal-body-scroll {
     padding: 6px 14px 14px !important;
   }
 
-  #features-modal .modal-x,
-  #pricing-modal .modal-x,
-  #how-modal .modal-x,
-  #faq-modal .modal-x,
-  #feedback-modal .modal-x,
-  #languages-modal .modal-x {
+  .modal-box.glass .modal-x {
     top: 8px !important;
     right: 10px !important;
+    width: 28px !important;
+    height: 28px !important;
+    font-size: 0.95rem !important;
   }
 }
 
