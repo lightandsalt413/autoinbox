@@ -36,7 +36,7 @@
       scrollbar-width: none !important;
     }
   </style>
-  <link rel="stylesheet" href="/styles.css?v=173">
+  <link rel="stylesheet" href="/styles.css?v=174">
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SEF5Y7KP9Z"></script>
   <script>
@@ -74,45 +74,37 @@
     <div class="landing-frame">
       <div class="landing-canvas">
         
-        <!-- Top Left Dark Cutout (Logo Area) -->
-        <div class="cutout-top-left">
-          <div class="outer-logo">
-            <a href="/" id="logo-home" style="text-decoration:none; display:inline-flex; align-items:center; gap:10px;">
-              <img src="/logo.png?v=9" width="30" height="30" style="flex-shrink:0; vertical-align:middle; object-fit:contain;" alt="AutoInbox Logo">
-              <span class="logo-text" style="font-size:1.85rem; font-weight:800; background:linear-gradient(135deg, #003566 30%, #009ecc 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; display:inline-block; letter-spacing:-0.5px; filter:drop-shadow(0 2px 10px rgba(0, 158, 204, 0.15)); transition:all 0.3s ease;">AutoInbox</span>
-            </a>
+        <!-- Sticky Main Header Wrapper -->
+        <div class="landing-header-wrapper">
+          <!-- Top Left Dark Cutout (Logo Area) -->
+          <div class="cutout-top-left">
+            <div class="outer-logo">
+              <a href="/" id="logo-home" style="text-decoration:none; display:inline-flex; align-items:center; gap:10px;">
+                <img src="/logo.png?v=9" width="30" height="30" style="flex-shrink:0; vertical-align:middle; object-fit:contain;" alt="AutoInbox Logo">
+                <span class="logo-text" style="font-size:1.85rem; font-weight:800; background:linear-gradient(135deg, #003566 30%, #009ecc 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; display:inline-block; letter-spacing:-0.5px; filter:drop-shadow(0 2px 10px rgba(0, 158, 204, 0.15)); transition:all 0.3s ease;">AutoInbox</span>
+              </a>
+            </div>
+            <!-- Fillets for organic transitions (concave corners) -->
+            <div class="fillet fillet-tl-bottom"></div>
+            <div class="fillet fillet-tl-right"></div>
           </div>
-          <!-- Fillets for organic transitions (concave corners) -->
-          <div class="fillet fillet-tl-bottom"></div>
-          <div class="fillet fillet-tl-right"></div>
-        </div>
 
-        <!-- Top Right Dark Cutout (Actions Area) -->
-        <div class="cutout-top-right">
-          <div class="outer-actions">
-              <button class="outer-login-btn" id="btn-goto-login" data-i18n="btn_login">Log In</button>
-              <button class="outer-connect-btn" id="btn-goto-register">
-                <span data-i18n="btn_connect">Let's Connect</span>
-              <span class="connect-arrow">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-              </span>
-            </button>
+          <!-- Top Right Dark Cutout (Actions Area) -->
+          <div class="cutout-top-right">
+            <div class="outer-actions">
+                <button class="outer-login-btn" id="btn-goto-login" data-i18n="btn_login">Log In</button>
+                <button class="outer-connect-btn" id="btn-goto-register">
+                  <span data-i18n="btn_connect">Let's Connect</span>
+                <span class="connect-arrow">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </span>
+              </button>
+            </div>
+            <!-- Fillets for organic transitions (concave corners) -->
+            <div class="fillet fillet-tr-bottom"></div>
+            <div class="fillet fillet-tr-left"></div>
           </div>
-          <!-- Fillets for organic transitions (concave corners) -->
-          <div class="fillet fillet-tr-bottom"></div>
-          <div class="fillet fillet-tr-left"></div>
-        </div>
 
-        <!-- Bottom Right Dark Cutout (Empty Area) -->
-        <div class="cutout-bottom-right">
-          <!-- Fillets for organic transitions (concave corners) -->
-          <div class="fillet fillet-br-top"></div>
-          <div class="fillet fillet-br-left"></div>
-        </div>
-
-        <!-- Inner Canvas Content -->
-        <div class="canvas-content">
-          
           <!-- Inner Nav Pill -->
           <header class="canvas-header">
             <div class="nav-pill">
@@ -150,6 +142,17 @@
               </div>
             </div>
           </header>
+        </div>
+
+        <!-- Bottom Right Dark Cutout (Empty Area) -->
+        <div class="cutout-bottom-right">
+          <!-- Fillets for organic transitions (concave corners) -->
+          <div class="fillet fillet-br-top"></div>
+          <div class="fillet fillet-br-left"></div>
+        </div>
+
+        <!-- Inner Canvas Content -->
+        <div class="canvas-content">
 
           <!-- Main Hero Inside Canvas -->
           <div class="canvas-hero-grid">

@@ -2569,6 +2569,23 @@ body::-webkit-scrollbar {
   height: 0 !important;
 }
 
+/* Sticky Header Wrapper */
+.landing-header-wrapper {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  z-index: 100;
+  background: transparent;
+  pointer-events: none;
+}
+.landing-header-wrapper .cutout-top-left,
+.landing-header-wrapper .cutout-top-right,
+.landing-header-wrapper .canvas-header {
+  pointer-events: auto;
+}
+
 /* Cutout styles */
 .cutout-top-left {
   position: absolute;
@@ -4070,6 +4087,16 @@ body::-webkit-scrollbar {
     overflow: visible !important;
     height: auto !important;
   }
+  .landing-header-wrapper {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    z-index: auto;
+    background: transparent;
+    pointer-events: auto;
+  }
+
   /* Hide the absolute fillets */
   .fillet {
     display: none !important;
