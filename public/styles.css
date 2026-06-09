@@ -212,7 +212,9 @@ a{color:var(--p2);text-decoration:none}
 .faq-item{background:var(--s);border:1px solid var(--s2);border-radius:12px;overflow:hidden;transition:all .4s}
 .faq-item:hover{border-color:rgba(0, 158, 204,.2);box-shadow:0 4px 20px rgba(0, 158, 204,.05)}
 .faq-item.open{border-color:rgba(0, 158, 204,.3);box-shadow:0 8px 30px rgba(0, 158, 204,.08)}
-.faq-q{width:100%;text-align:left;background:none;border:none;color:var(--t);padding:18px 22px;font-size:.92rem;cursor:pointer;font-family:var(--f);font-weight:500}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;background:none;border:none;color:var(--t);padding:18px 22px;padding-right:48px;font-size:.92rem;cursor:pointer;font-family:var(--f);font-weight:500;position:relative}
+.faq-q::after{content:'+';font-size:1.25rem;font-weight:600;color:var(--p);transition:all .3s ease;position:absolute;right:22px;top:50%;transform:translateY(-50%)}
+.faq-item.open .faq-q::after{content:'−';transform:translateY(-50%) rotate(180deg);color:var(--r)}
 .faq-a{max-height:0;overflow:hidden;transition:max-height .3s}.faq-item.open .faq-a{max-height:500px}
 .faq-a p{padding:0 22px 18px;font-size:.88rem;color:var(--t2)}
 .cta-section{text-align:center;padding:120px 48px;position:relative}
@@ -2006,26 +2008,32 @@ body::-webkit-scrollbar {
 
 /* ---- Feature Cards (blue-white themed) ---- */
 #features-modal .feat-card {
-  background: #f8fafc !important;
-  border: 1px solid #e2e8f0 !important;
+  background: rgba(255, 255, 255, 0.65) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(0, 53, 102, 0.06) !important;
   border-radius: 20px !important;
-  padding: 32px 24px !important;
-  box-shadow: 0 4px 18px rgba(0, 53, 102, 0.03), inset 0 1px 0 #FFFFFF !important;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  padding: 28px 24px !important;
+  box-shadow: 0 8px 30px rgba(0, 53, 102, 0.02), inset 0 1px 1px #ffffff !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  text-align: left !important;
 }
 #features-modal .feat-card:hover {
   background: #ffffff !important;
-  border-color: rgba(0, 158, 204, 0.45) !important;
+  border-color: rgba(0, 158, 204, 0.4) !important;
   box-shadow: 
-    0 20px 48px rgba(0, 53, 102, 0.08),
+    0 24px 48px rgba(0, 53, 102, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
   transform: translateY(-6px) !important;
 }
 #features-modal .feat-card h4 {
   color: #0f172a !important;
-  font-size: 1.15rem !important;
-  font-weight: 700 !important;
-  margin-bottom: 10px !important;
+  font-size: 1.1rem !important;
+  font-weight: 800 !important;
+  margin-bottom: 8px !important;
   transition: color 0.3s ease !important;
 }
 #features-modal .feat-card:hover h4 {
@@ -2033,32 +2041,44 @@ body::-webkit-scrollbar {
 }
 #features-modal .feat-card p {
   color: #475569 !important;
-  font-size: 0.88rem !important;
+  font-size: 0.86rem !important;
   line-height: 1.6 !important;
   transition: color 0.3s ease !important;
 }
 #features-modal .feat-card:hover p {
-  color: #0f172a !important;
+  color: #1e293b !important;
 }
 #features-modal .feat-icon {
-  display: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 12px !important;
+  background: rgba(0, 158, 204, 0.07) !important;
+  border: 1px solid rgba(0, 158, 204, 0.15) !important;
+  color: #009ecc !important;
+  margin-bottom: 16px !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 #features-modal .feat-card:hover .feat-icon {
-  background: linear-gradient(135deg, #003566, #009ecc) !important;
+  background: linear-gradient(135deg, #009ecc, #003566) !important;
   color: #ffffff !important;
-  border-color: #003566 !important;
-  box-shadow: 0 6px 20px rgba(0, 53, 102, 0.4) !important;
-  transform: scale(1.1) rotate(4deg) !important;
+  border-color: transparent !important;
+  box-shadow: 0 8px 24px rgba(0, 158, 204, 0.25) !important;
+  transform: translateY(-2px) scale(1.05) !important;
 }
 
 /* ---- Pricing Cards (blue-white themed) ---- */
 #pricing-modal .price-card {
-  background: #f8fafc !important;
-  border: 1px solid #e2e8f0 !important;
+  background: rgba(255, 255, 255, 0.65) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(0, 53, 102, 0.06) !important;
   border-radius: 20px !important;
   padding: 36px 28px !important;
-  box-shadow: 0 4px 18px rgba(0, 53, 102, 0.03), inset 0 1px 0 #FFFFFF !important;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  box-shadow: 0 8px 30px rgba(0, 53, 102, 0.02), inset 0 1px 1px #ffffff !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
   display: flex !important;
   flex-direction: column !important;
   justify-content: space-between !important;
@@ -2067,9 +2087,9 @@ body::-webkit-scrollbar {
 
 #pricing-modal .price-card:hover {
   background: #ffffff !important;
-  border-color: rgba(0, 158, 204, 0.45) !important;
+  border-color: rgba(0, 158, 204, 0.4) !important;
   box-shadow: 
-    0 24px 50px rgba(0, 53, 102, 0.08),
+    0 24px 48px rgba(0, 53, 102, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
   transform: translateY(-8px) !important;
 }
@@ -2107,10 +2127,10 @@ body::-webkit-scrollbar {
 }
 
 #pricing-modal .price-card ul li {
-  color: #0f172a !important;
+  color: #475569 !important;
   font-size: 0.9rem !important;
-  padding: 10px 0 10px 24px !important;
-  border-bottom: 1px solid #e2e8f0 !important;
+  padding: 8px 0 8px 24px !important;
+  border-bottom: 1px solid rgba(0, 53, 102, 0.05) !important;
   position: relative !important;
   line-height: 1.5 !important;
   transition: all 0.3s ease !important;
@@ -2155,19 +2175,19 @@ body::-webkit-scrollbar {
 
 /* Featured Card (Basic) */
 #pricing-modal .price-card.pop {
-  background: linear-gradient(135deg, #003566 0%, #00587a 100%) !important;
-  border: 1px solid rgba(0, 158, 204, 0.45) !important;
+  background: linear-gradient(135deg, #091a2f 0%, #003566 100%) !important;
+  border: 1px solid rgba(0, 194, 255, 0.35) !important;
   color: #ffffff !important;
   transform: scale(1.04) !important;
-  box-shadow: 0 12px 40px rgba(0, 53, 102, 0.25) !important;
+  box-shadow: 0 16px 48px rgba(0, 158, 204, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
   z-index: 2 !important;
 }
 
 #pricing-modal .price-card.pop:hover {
   border-color: #00c2ff !important;
   box-shadow: 
-    0 24px 60px rgba(0, 158, 204, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+    0 28px 64px rgba(0, 158, 204, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
   transform: scale(1.06) translateY(-8px) !important;
 }
 
@@ -2185,12 +2205,12 @@ body::-webkit-scrollbar {
 }
 
 #pricing-modal .price-card.pop ul li {
-  color: rgba(255, 255, 255, 0.85) !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
 }
 
 #pricing-modal .price-card.pop ul li:hover {
-  color: #e0f7ff !important;
+  color: #ffffff !important;
 }
 
 #pricing-modal .price-card.pop ul li::before {
@@ -2342,95 +2362,195 @@ body::-webkit-scrollbar {
 }
 
 /* BVA Cards (Before vs After) */
+/* BVA Cards (Before vs After) */
 #how-modal .bva-card {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  border: 1px solid rgba(0, 53, 102, 0.08);
   color: #0f172a;
+  border-radius: 20px !important;
+  padding: 32px 28px !important;
+  box-shadow: 0 8px 30px rgba(0, 53, 102, 0.02) !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 #how-modal .bva-card.before {
-  background: rgba(239, 68, 68, 0.03);
-  border-color: rgba(239, 68, 68, 0.15);
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.02) 0%, #ffffff 100%) !important;
+  border: 1px dashed rgba(239, 68, 68, 0.25) !important;
 }
 #how-modal .bva-card.after {
-  background: rgba(16, 185, 129, 0.03);
-  border-color: rgba(16, 185, 129, 0.15);
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.03) 0%, #ffffff 100%) !important;
+  border: 1px solid rgba(16, 185, 129, 0.25) !important;
+  box-shadow: 0 12px 32px rgba(16, 185, 129, 0.04) !important;
+}
+#how-modal .bva-card:hover {
+  transform: translateY(-4px) !important;
+}
+#how-modal .bva-card.before:hover {
+  border-color: rgba(239, 68, 68, 0.45) !important;
+  box-shadow: 0 16px 36px rgba(239, 68, 68, 0.06) !important;
+}
+#how-modal .bva-card.after:hover {
+  border-color: rgba(16, 185, 129, 0.45) !important;
+  box-shadow: 0 16px 36px rgba(16, 185, 129, 0.08) !important;
 }
 #how-modal .bva-label {
-  color: #475569;
+  color: #0f172a !important;
+  font-weight: 800 !important;
+  font-size: 1rem !important;
+  letter-spacing: -0.2px !important;
 }
 #how-modal .bva-list li {
-  color: #475569;
+  color: #475569 !important;
+  font-size: 0.9rem !important;
+}
+#how-modal .before .bva-list li::before {
+  content: "×" !important;
+  color: #ef4444 !important;
+  font-weight: 800 !important;
+  font-size: 1.2rem !important;
+  width: auto !important;
+  height: auto !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+#how-modal .after .bva-list li::before {
+  content: "✓" !important;
+  color: #10b981 !important;
+  font-weight: 800 !important;
+  font-size: 1rem !important;
+  width: auto !important;
+  height: auto !important;
+  border-radius: 0 !important;
+  background: transparent !important;
 }
 #how-modal .bva-stat {
-  background: rgba(239, 68, 68, 0.04);
-  border: 1px solid rgba(239, 68, 68, 0.12);
-  color: #dc2626;
+  background: rgba(239, 68, 68, 0.05) !important;
+  border: 1px solid rgba(239, 68, 68, 0.15) !important;
+  color: #ef4444 !important;
+  border-radius: 14px !important;
+  padding: 12px 18px !important;
+  font-weight: 800 !important;
+  font-size: 1.15rem !important;
 }
 #how-modal .bva-stat span {
-  color: #475569;
+  color: #dc2626 !important;
+  font-size: 0.75rem !important;
+  font-weight: 600 !important;
 }
 #how-modal .bva-stat.glow {
-  background: rgba(16, 185, 129, 0.04);
-  border: 1px solid rgba(16, 185, 129, 0.15);
-  color: #059669;
-  box-shadow: 0 0 20px rgba(16, 185, 129, 0.06);
+  background: linear-gradient(135deg, #10b981, #059669) !important;
+  border: none !important;
+  color: #ffffff !important;
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3) !important;
+}
+#how-modal .bva-stat.glow span {
+  color: rgba(255, 255, 255, 0.9) !important;
 }
 #how-modal .vs-circle {
-  background: #003566;
-  color: #ffffff;
+  background: linear-gradient(135deg, #003566, #009ecc) !important;
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  box-shadow: 0 4px 15px rgba(0, 158, 204, 0.3) !important;
+  border: 2px solid #ffffff !important;
+  animation: bvaPulse 2.5s infinite ease-in-out !important;
+}
+@keyframes bvaPulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 4px 15px rgba(0, 158, 204, 0.3); }
+  50% { transform: scale(1.08); box-shadow: 0 6px 22px rgba(0, 158, 204, 0.5); }
 }
 
 /* Testimonials in How modal */
 #how-modal .testi-card {
-  background: #f8fafc;
-  border-color: #e2e8f0;
-  color: #475569;
+  background: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(0, 53, 102, 0.06) !important;
+  color: #475569 !important;
+  border-radius: 20px !important;
+  padding: 32px 24px !important;
+  box-shadow: 0 6px 20px rgba(0, 53, 102, 0.02) !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+#how-modal .testi-card:hover {
+  transform: translateY(-5px) !important;
+  border-color: rgba(0, 158, 204, 0.3) !important;
+  box-shadow: 0 16px 36px rgba(0, 53, 102, 0.06) !important;
 }
 #how-modal .testi-card p {
-  color: #475569;
+  color: #475569 !important;
+  font-size: 0.9rem !important;
 }
 #how-modal .testi-card strong {
-  color: #0f172a;
+  color: #0f172a !important;
+  font-weight: 800 !important;
 }
 #how-modal .testi-card small {
-  color: #003566;
+  color: #64748b !important;
 }
 #how-modal .testi-card::before {
-  color: rgba(0, 53, 102, 0.12) !important;
+  color: rgba(0, 158, 204, 0.08) !important;
+  font-size: 5rem !important;
+  right: 16px !important;
+  top: 4px !important;
 }
 #how-modal .testi-card::after {
   background: linear-gradient(90deg, transparent, #009ecc, transparent) !important;
 }
 #how-modal .testi-av {
-  background: rgba(0, 53, 102, 0.08);
-  color: #003566;
+  background: linear-gradient(135deg, #003566, #009ecc) !important;
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  box-shadow: 0 4px 10px rgba(0, 158, 204, 0.15) !important;
+  border: 1.5px solid #ffffff !important;
 }
 
 /* ---- FAQ (blue-white themed) ---- */
 #faq-modal .faq-item {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 14px !important;
+  margin-bottom: 12px !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 #faq-modal .faq-item:hover {
-  border-color: rgba(0, 158, 204, 0.3);
-  box-shadow: 0 4px 20px rgba(0, 53, 102, 0.04);
+  background: #ffffff !important;
+  border-color: rgba(0, 158, 204, 0.3) !important;
+  box-shadow: 0 8px 24px rgba(0, 53, 102, 0.04) !important;
 }
 #faq-modal .faq-item.open {
-  border-color: rgba(0, 158, 204, 0.45);
-  box-shadow: 0 8px 30px rgba(0, 53, 102, 0.06);
+  background: #ffffff !important;
+  border-color: rgba(0, 158, 204, 0.45) !important;
+  box-shadow: 0 12px 32px rgba(0, 53, 102, 0.06) !important;
 }
 #faq-modal .faq-q {
-  color: #0f172a;
-  background: transparent;
+  color: #0f172a !important;
+  background: transparent !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding-right: 48px !important;
+  position: relative !important;
+  font-weight: 700 !important;
 }
 #faq-modal .faq-q:hover {
-  color: #003566;
+  color: #003566 !important;
 }
 #faq-modal .faq-q::after {
-  color: #003566;
+  content: "+" !important;
+  position: absolute !important;
+  right: 22px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  color: #009ecc !important;
+  font-size: 1.3rem !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+}
+#faq-modal .faq-item.open .faq-q::after {
+  content: "−" !important;
+  transform: translateY(-50%) rotate(180deg) !important;
+  color: #ef4444 !important;
 }
 #faq-modal .faq-a p {
-  color: #475569;
+  color: #475569 !important;
+  padding: 0 22px 18px !important;
 }
 
 /* ---- Feedback Form (blue-white themed) ---- */
