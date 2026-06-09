@@ -1,0 +1,14 @@
+# robots.txt for AutoInbox
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /privacy.html
+Allow: /terms.html
+Allow: /styles.css
+Allow: /app.js
+Allow: /i18n.js
+
+# Disallow internal pages
+Disallow: /api/
+Disallow: /onboarding
+Disallow: /dashboard
