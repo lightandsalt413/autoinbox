@@ -1,4 +1,20 @@
 (function () {
+  // Safe localStorage polyfill for sandboxed environments (PageSpeed/Lighthouse)
+  const localStorage = (function() {
+    try {
+      var s = window.localStorage;
+      s.getItem('t');
+      return s;
+    } catch (e) {
+      return {
+        getItem: function() { return null; },
+        setItem: function() {},
+        removeItem: function() {},
+        clear: function() {}
+      };
+    }
+  })();
+
   const SUPPORTED_LANGS = ['en', 'tl', 'ja'];
   const DEFAULT_LANG = 'en';
   const STORAGE_KEY = 'autoinbox_lang';

@@ -1,3 +1,34 @@
+// Safe localStorage/sessionStorage polyfill for sandboxed environments (PageSpeed/Lighthouse)
+const localStorage = (function() {
+  try {
+    var s = window.localStorage;
+    s.getItem('t');
+    return s;
+  } catch (e) {
+    return {
+      getItem: function() { return null; },
+      setItem: function() {},
+      removeItem: function() {},
+      clear: function() {}
+    };
+  }
+})();
+
+const sessionStorage = (function() {
+  try {
+    var s = window.sessionStorage;
+    s.getItem('t');
+    return s;
+  } catch (e) {
+    return {
+      getItem: function() { return null; },
+      setItem: function() {},
+      removeItem: function() {},
+      clear: function() {}
+    };
+  }
+})();
+
 // ===== State =====
 if ('scrollRestoration' in history) {
   history.scrollRestoration = 'manual';
