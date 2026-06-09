@@ -2701,7 +2701,7 @@ body::-webkit-scrollbar {
   position: absolute;
   top: -1px;
   left: -1px;
-  width: 220px;
+  width: 270px;
   height: 72px;
   background-color: #0A0A0B;
   border-bottom-right-radius: 40px;
@@ -2957,7 +2957,7 @@ body::-webkit-scrollbar {
 .canvas-header {
   position: absolute;
   top: 0;
-  left: 220px;
+  left: 270px;
   right: var(--cutout-right-w, 300px) !important;
   height: 72px;
   display: flex;
@@ -4176,7 +4176,7 @@ body::-webkit-scrollbar {
     font-size: 0.8rem;
   }
   .canvas-header {
-    left: 230px;
+    left: 280px;
     right: 300px !important;
   }
   .nav-pill-item {
