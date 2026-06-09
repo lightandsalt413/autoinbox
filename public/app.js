@@ -12,6 +12,9 @@ function renderRecaptchaWidget(containerId) {
   const el = document.getElementById(containerId);
   if (!el || el.dataset.rendered === 'true') return;
   if (!window.grecaptcha || !window.grecaptcha.render) {
+    if (typeof window.triggerRecaptchaLoad === 'function') {
+      window.triggerRecaptchaLoad();
+    }
     // Script not ready yet — retry every 500ms up to 10 times
     let retries = 0;
     const interval = setInterval(() => {

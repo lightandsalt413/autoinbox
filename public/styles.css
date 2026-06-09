@@ -5,6 +5,7 @@ body{font-family:var(--f);background:#0A0A0B;color:var(--t);line-height:1.7;over
 #page-landing::before{content:'';position:absolute;inset:0;background:rgba(10,10,11,.85);pointer-events:none;z-index:0}
 #page-login,#page-register{background:#0A0A0B}
 #page-dashboard{background:#111111}
+.user-logged-in #page-landing{display:none!important}
 html{scroll-behavior:smooth}.hidden{display:none!important}.page{min-height:100vh;position:relative}.page:not(.hidden){animation:pageFadeIn .4s ease forwards}
 @keyframes pageFadeIn{from{opacity:0}to{opacity:1}}
 a{color:var(--p2);text-decoration:none}
