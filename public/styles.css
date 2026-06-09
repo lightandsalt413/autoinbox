@@ -4134,18 +4134,18 @@ body::-webkit-scrollbar {
   position: relative;
   z-index: 10;
   font-size: 0.8rem;
-  color: rgba(26, 26, 28, 0.45);
+  color: rgba(26, 26, 28, 0.7) !important;
   text-align: center;
   white-space: nowrap;
   padding: 14px 0 18px;
 }
 .footer-simple a {
-  color: rgba(26, 26, 28, 0.45);
+  color: rgba(26, 26, 28, 0.7) !important;
   text-decoration: none;
   transition: color 0.2s ease;
 }
 .footer-simple a:hover {
-  color: #1A1A1C;
+  color: #1A1A1C !important;
 }
 
 /* Responsive Screen Collapse */
@@ -4265,11 +4265,11 @@ body::-webkit-scrollbar {
   .nav-pill {
     flex-wrap: wrap !important;
     justify-content: center !important;
-    gap: 8px 10px !important;
+    gap: 12px 14px !important;
     border-radius: 20px !important;
     overflow-x: visible !important;
     max-width: 100% !important;
-    padding: 8px 12px !important;
+    padding: 10px 14px !important;
     mask-image: none !important;
     -webkit-mask-image: none !important;
     border: 1.5px solid rgba(0, 158, 204, 0.2) !important;
@@ -4278,8 +4278,8 @@ body::-webkit-scrollbar {
   }
   
   .nav-pill-item {
-    padding: 5px 12px !important;
-    font-size: 0.74rem !important;
+    padding: 8px 16px !important;
+    font-size: 0.8rem !important;
     white-space: nowrap !important;
     flex-shrink: 0 !important;
   }
@@ -4361,17 +4361,17 @@ body::-webkit-scrollbar {
   .nav-pill {
     flex-wrap: wrap !important;
     justify-content: center !important;
-    gap: 6px 8px !important;
+    gap: 10px 10px !important;
     border-radius: 16px !important;
     overflow-x: visible !important;
-    padding: 6px 10px !important;
+    padding: 10px 14px !important;
     mask-image: none !important;
     -webkit-mask-image: none !important;
-    border: 1px solid rgba(0, 158, 204, 0.25) !important;
+    border: 1px solid rgba(0, 112, 148, 0.25) !important;
   }
   .nav-pill-item {
-    padding: 4px 9px !important;
-    font-size: 0.68rem !important;
+    padding: 8px 12px !important;
+    font-size: 0.72rem !important;
   }
   .canvas-title {
     font-size: 1.8rem;
@@ -4393,8 +4393,19 @@ body::-webkit-scrollbar {
     height: 30px !important;
   }
   .footer-simple {
-    font-size: 0.68rem;
-    padding: 12px 0 16px;
+    font-size: 0.72rem;
+    padding: 16px 0;
+    white-space: normal !important;
+  }
+  .footer-simple a {
+    display: inline-block !important;
+    padding: 8px 14px !important;
+    margin: 4px 6px !important;
+    border-radius: 20px !important;
+    background: rgba(0, 112, 148, 0.08) !important;
+    color: #007094 !important;
+    font-weight: 500 !important;
+    text-decoration: none !important;
   }
   /* Hide floating badges on mobile to prevent overflow */
   .mockup-badge-float {
@@ -6984,6 +6995,8 @@ body, #page-landing {
   --t: #0f172a;
   --t2: #475569;
   --t3: #64748b;
+  --p: #007094;
+  --acc: #007094;
 }
 
 /* Override hardcoded dark properties inside canvas */
@@ -7006,17 +7019,17 @@ body, #page-landing {
 /* 5. Header Navigation Pill (Light Mode) */
 .nav-pill {
   background: rgba(255, 255, 255, 0.9) !important;
-  border: 1.5px solid rgba(0, 158, 204, 0.5) !important;
+  border: 1.5px solid rgba(0, 112, 148, 0.5) !important;
   box-shadow: 
-    0 8px 25px rgba(0, 158, 204, 0.15),
+    0 8px 25px rgba(0, 112, 148, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
 }
 .nav-pill-item {
   color: #334155 !important;
 }
 .nav-pill-item:hover {
-  color: #009ecc !important;
-  background: rgba(0, 158, 204, 0.08) !important;
+  color: #007094 !important;
+  background: rgba(0, 112, 148, 0.08) !important;
 }
 
 /* 6. Cards and Bento Grid Elements */
@@ -7026,9 +7039,9 @@ body, #page-landing {
   box-shadow: 0 10px 30px rgba(0, 53, 102, 0.03) !important;
 }
 .feat-card:hover, .step-card:hover, .price-card:hover {
-  border-color: rgba(0, 158, 204, 0.45) !important;
+  border-color: rgba(0, 112, 148, 0.45) !important;
   background: #ffffff !important;
-  box-shadow: 0 16px 40px rgba(0, 158, 204, 0.08) !important;
+  box-shadow: 0 16px 40px rgba(0, 112, 148, 0.08) !important;
 }
 .feat-card h4, .step-card h4, .price-card h4, .price-val {
   color: #0f172a !important;
@@ -7040,24 +7053,24 @@ body, #page-landing {
   border-bottom: 1px solid #e2e8f0 !important;
 }
 .price-card.pop {
-  border-color: #009ecc !important;
+  border-color: #007094 !important;
   background: #ffffff !important;
-  box-shadow: 0 20px 48px rgba(0, 158, 204, 0.08) !important;
+  box-shadow: 0 20px 48px rgba(0, 112, 148, 0.08) !important;
 }
 .bento-large {
   background: #ffffff !important;
-  border: 1px solid rgba(0, 158, 204, 0.25) !important;
+  border: 1px solid rgba(0, 112, 148, 0.25) !important;
 }
 
 /* 7. CTA Buttons in Canvas */
 .btn-accent, .canvas-contact-btn {
-  background: linear-gradient(90deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
+  background: linear-gradient(90deg, #003566 0%, #005a78 50%, #007094 100%) !important;
   color: #ffffff !important;
-  box-shadow: 0 4px 15px rgba(0, 158, 204, 0.2) !important;
+  box-shadow: 0 4px 15px rgba(0, 112, 148, 0.2) !important;
   border: none !important;
 }
 .btn-accent:hover, .canvas-contact-btn:hover {
-  box-shadow: 0 6px 22px rgba(0, 158, 204, 0.35) !important;
+  box-shadow: 0 6px 22px rgba(0, 112, 148, 0.35) !important;
   transform: translateY(-2px) !important;
 }
 .btn-ghost, .canvas-download-btn {
@@ -7071,7 +7084,7 @@ body, #page-landing {
   border-color: #003566 !important;
 }
 .cta-download-icon {
-  background: rgba(0, 158, 204, 0.1) !important;
+  background: rgba(0, 112, 148, 0.1) !important;
 }
 
 /* 8. Forms & Inputs Inside Landing Canvas */
@@ -7082,7 +7095,7 @@ body, #page-landing {
 }
 .landing-canvas input:focus, .landing-canvas select:focus, .landing-canvas textarea:focus {
   background: #ffffff !important;
-  border-color: #009ecc !important;
+  border-color: #007094 !important;
 }
 
 /* Before / After comparisons */
@@ -7117,7 +7130,7 @@ body, #page-landing {
   border: 1px solid rgba(0, 53, 102, 0.08) !important;
   box-shadow: 
     0 32px 80px rgba(0, 53, 102, 0.08), 
-    0 0 0 1px rgba(0, 158, 204, 0.05),
+    0 0 0 1px rgba(0, 112, 148, 0.05),
     inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
 }
 
@@ -7132,30 +7145,30 @@ body, #page-landing {
 }
 
 .modal-page .auth-form button[type="submit"] {
-  background: linear-gradient(90deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
-  box-shadow: 0 6px 20px rgba(0, 158, 204, 0.18) !important;
+  background: linear-gradient(90deg, #003566 0%, #005a78 50%, #007094 100%) !important;
+  box-shadow: 0 6px 20px rgba(0, 112, 148, 0.18) !important;
   color: #ffffff !important;
 }
 .modal-page .auth-form button[type="submit"]:hover {
-  box-shadow: 0 8px 24px rgba(0, 158, 204, 0.28) !important;
+  box-shadow: 0 8px 24px rgba(0, 112, 148, 0.28) !important;
   transform: translateY(-1.5px) !important;
 }
 
 .modal-page .auth-sw a {
-  color: #009ecc !important;
+  color: #007094 !important;
 }
 .modal-page .auth-sw a:hover {
-  color: #00c2ff !important;
+  color: #005a78 !important;
 }
 
 /* Mobile Wave Headers/Footers */
 .mobile-auth-header {
-  background: linear-gradient(135deg, #003566 0%, #009ecc 100%) !important;
+  background: linear-gradient(135deg, #003566 0%, #007094 100%) !important;
   box-shadow: 0 8px 24px rgba(0, 53, 102, 0.08) !important;
 }
 .mobile-auth-footer {
-  background: linear-gradient(135deg, #009ecc 0%, #00c2ff 100%) !important;
-  box-shadow: 0 -8px 24px rgba(0, 158, 204, 0.08) !important;
+  background: linear-gradient(135deg, #007094 0%, #005a78 100%) !important;
+  box-shadow: 0 -8px 24px rgba(0, 112, 148, 0.08) !important;
 }
 
 /* Underline border for input fields in login/signup page */
