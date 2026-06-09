@@ -2701,7 +2701,7 @@ body::-webkit-scrollbar {
   position: absolute;
   top: -1px;
   left: -1px;
-  width: 270px;
+  width: 220px;
   height: 72px;
   background-color: #0A0A0B;
   border-bottom-right-radius: 40px;
@@ -2757,10 +2757,15 @@ body::-webkit-scrollbar {
 }
 .outer-logo .logo-text {
   font-family: var(--fh);
-  font-weight: 700;
-  color: #FAFAFA;
-  font-size: 1.25rem;
-  letter-spacing: 0.5px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #003566 30%, #009ecc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  letter-spacing: -0.5px;
+  filter: drop-shadow(0 2px 10px rgba(0, 158, 204, 0.15));
+  transition: all 0.3s ease;
+  font-size: 1.35rem;
 }
 .outer-logo .logo-icon-wrap {
   width: 36px;
@@ -2782,13 +2787,6 @@ body::-webkit-scrollbar {
   object-fit: cover;
   object-position: 50% 0%;
   transform: scale(2.6);
-}
-.outer-logo .logo-text {
-  font-family: var(--fh);
-  font-weight: 700;
-  color: #FAFAFA;
-  font-size: 1.25rem;
-  letter-spacing: 0.5px;
 }
 
 /* Actions inside dark top-right cutout */
@@ -2912,7 +2910,7 @@ body::-webkit-scrollbar {
 }
 
 .fillet-tr-left {
-  right: 298px;
+  left: -41px;
   top: -2px;
   width: 42px;
   height: 42px;
@@ -2957,7 +2955,7 @@ body::-webkit-scrollbar {
 .canvas-header {
   position: absolute;
   top: 0;
-  left: 270px;
+  left: 220px;
   right: var(--cutout-right-w, 300px) !important;
   height: 72px;
   display: flex;
@@ -4155,7 +4153,7 @@ body::-webkit-scrollbar {
     min-width: 280px !important;
   }
   .fillet-tr-left {
-    right: 298px;
+    left: -41px;
     top: -2px;
     width: 42px;
     height: 42px;
@@ -4176,7 +4174,7 @@ body::-webkit-scrollbar {
     font-size: 0.8rem;
   }
   .canvas-header {
-    left: 280px;
+    left: 230px;
     right: 300px !important;
   }
   .nav-pill-item {
