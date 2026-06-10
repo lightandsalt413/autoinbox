@@ -84,7 +84,8 @@ app.use(express.static(path.join(__dirname, '..', 'public'), {
   etag: true,
   lastModified: true,
   setHeaders: (res, filePath) => {
-    if (filePath.endsWith('.html')) {
+    const baseName = path.basename(filePath);
+    if (filePath.endsWith('.html') || baseName === 'sw.js' || baseName === 'sw.min.js' || baseName === 'manifest.json') {
       res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
       res.setHeader('Pragma', 'no-cache');
       res.setHeader('Expires', '0');
