@@ -125,8 +125,9 @@ def minify_js(js_content):
     return temp.strip()
 
 def main():
-    repo_dir = "/Users/renejayflores/.gemini/antigravity/scratch/autoinbox-git"
-    preview_dir = "/Users/renejayflores/.gemini/antigravity/scratch/autoinbox"
+    # Use the script's own directory as the repo root (works on local dev and Render)
+    repo_dir = os.path.dirname(os.path.abspath(__file__))
+    preview_dir = os.path.join(os.path.dirname(repo_dir), "autoinbox")
     
     css_src = os.path.join(repo_dir, "public", "styles.css")
     css_dest = os.path.join(repo_dir, "public", "styles.min.css")
@@ -171,22 +172,25 @@ def main():
         f.write(minified_sw)
     print(f"JS Minified (sw.js): {len(sw_data)} -> {len(minified_sw)} bytes")
     
-    # Sync to preview directory
-    print("Syncing to preview directory...")
-    os.makedirs(os.path.join(preview_dir, "public"), exist_ok=True)
-    with open(os.path.join(preview_dir, "public", "styles.min.css"), "w", encoding="utf-8") as f:
-        f.write(minified_css)
-    with open(os.path.join(preview_dir, "public", "app.min.js"), "w", encoding="utf-8") as f:
-        f.write(minified_js)
-    with open(os.path.join(preview_dir, "public", "i18n.min.js"), "w", encoding="utf-8") as f:
-        f.write(minified_i18n)
-    with open(os.path.join(preview_dir, "public", "sw.min.js"), "w", encoding="utf-8") as f:
-        f.write(minified_sw)
-        
-    with open(os.path.join(preview_dir, "styles.min.css"), "w", encoding="utf-8") as f:
-        f.write(minified_css)
+    # Sync to preview directory (optional — only runs locally, skipped on Render)
+    if os.path.isdir(preview_dir):
+        print("Syncing to preview directory...")
+        os.makedirs(os.path.join(preview_dir, "public"), exist_ok=True)
+        with open(os.path.join(preview_dir, "public", "styles.min.css"), "w", encoding="utf-8") as f:
+            f.write(minified_css)
+        with open(os.path.join(preview_dir, "public", "app.min.js"), "w", encoding="utf-8") as f:
+            f.write(minified_js)
+        with open(os.path.join(preview_dir, "public", "i18n.min.js"), "w", encoding="utf-8") as f:
+            f.write(minified_i18n)
+        with open(os.path.join(preview_dir, "public", "sw.min.js"), "w", encoding="utf-8") as f:
+            f.write(minified_sw)
+        with open(os.path.join(preview_dir, "styles.min.css"), "w", encoding="utf-8") as f:
+            f.write(minified_css)
+    else:
+        print("Preview directory not found, skipping sync (this is normal on Render).")
         
     print("Minification and sync complete!")
 
 if __name__ == "__main__":
     main()
+
