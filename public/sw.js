@@ -1,5 +1,5 @@
 // AutoInbox Service Worker — PWA Offline + Cache
-const CACHE_NAME = 'autoinbox-v18';
+const CACHE_NAME = 'autoinbox-v19';
 const PRECACHE_URLS = [
   '/',
   '/styles.min.css',
@@ -36,7 +36,7 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Fetch — network-first with cache fallback
+// Fetch — hybrid Network-First & Cache-First strategy
 self.addEventListener('fetch', (event) => {
   // Skip non-GET and API requests
   if (event.request.method !== 'GET') return;
@@ -45,23 +45,46 @@ self.addEventListener('fetch', (event) => {
   // Skip cross-origin requests (like reCAPTCHA, fonts, analytics) to prevent caching failures
   if (!event.request.url.startsWith(self.location.origin)) return;
 
-  event.respondWith(
-    fetch(event.request)
-      .then((response) => {
-        // Cache successful responses
-        if (response.ok) {
-          const clone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(event.request, clone);
+  const url = new URL(event.request.url);
+  const isHtml = url.pathname === '/' || url.pathname.endsWith('.html');
+  const isManifest = url.pathname.endsWith('manifest.json');
+
+  if (isHtml || isManifest) {
+    // Network-First for HTML documents and manifest.json to ensure they are always fresh
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          if (response.ok) {
+            const clone = response.clone();
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(event.request, clone);
+            });
+          }
+          return response;
+        })
+        .catch(() => {
+          return caches.match(event.request).then((cached) => {
+            return cached || new Response('Offline', { status: 503 });
           });
+        })
+    );
+  } else {
+    // Cache-First for versioned or static files (CSS, JS, images, languages)
+    event.respondWith(
+      caches.match(event.request).then((cached) => {
+        if (cached) {
+          return cached; // Instant local load
         }
-        return response;
-      })
-      .catch(() => {
-        // Fallback to cache when offline
-        return caches.match(event.request).then((cached) => {
-          return cached || new Response('Offline', { status: 503 });
+        return fetch(event.request).then((response) => {
+          if (response.ok) {
+            const clone = response.clone();
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(event.request, clone);
+            });
+          }
+          return response;
         });
       })
-  );
+    );
+  }
 });
