@@ -8,7 +8,8 @@
   <link rel="icon" href="/favicon-32.png?v=8" type="image/png" sizes="32x32">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap"></noscript>
   <link rel="stylesheet" href="/styles.min.css?v=182">
   <style>
     body {
@@ -595,7 +596,7 @@
       </main>
     </div>
   </div>
-<script src="/i18n.min.js?v=3"></script>
+<script src="/i18n.min.js?v=3" defer></script>
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     if (window.i18n) window.i18n.init();
