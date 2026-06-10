@@ -19,6 +19,8 @@ def minify_js(js_content):
     escape = False
     in_line_comment = False
     in_block_comment = False
+    in_regex = False
+    in_regex_class = False
     
     i = 0
     n = len(js_content)
@@ -56,6 +58,19 @@ def minify_js(js_content):
             i += 1
             continue
             
+        if in_regex:
+            if char == '\\':
+                escape = True
+            elif char == '[' and not in_regex_class:
+                in_regex_class = True
+            elif char == ']' and in_regex_class:
+                in_regex_class = False
+            elif char == '/' and not in_regex_class:
+                in_regex = False
+            result.append(char)
+            i += 1
+            continue
+
         if char in ('"', "'", '`'):
             in_string = char
             result.append(char)
@@ -72,6 +87,34 @@ def minify_js(js_content):
             in_block_comment = True
             i += 2
             continue
+            
+        # Check for regex literal starting character
+        if char == '/':
+            # Find the last non-whitespace character in the result
+            last_non_ws = ''
+            for prev_char in reversed(result):
+                if prev_char not in (' ', '\t', '\n', '\r'):
+                    last_non_ws = prev_char
+                    break
+            
+            is_regex_start = True
+            if last_non_ws.isalnum() or last_non_ws in (')', ']', '}'):
+                # Check if the last word is a keyword that can precede a regex
+                last_word = ''
+                idx = len(result) - 1
+                while idx >= 0 and (result[idx].isalnum() or result[idx] == '_'):
+                    last_word = result[idx] + last_word
+                    idx -= 1
+                if last_word in ('return', 'throw', 'yield', 'typeof', 'delete', 'void', 'in', 'instanceof', 'new'):
+                    is_regex_start = True
+                else:
+                    is_regex_start = False
+            
+            if is_regex_start:
+                in_regex = True
+                result.append(char)
+                i += 1
+                continue
             
         result.append(char)
         i += 1
