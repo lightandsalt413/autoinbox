@@ -78,15 +78,18 @@ if (process.env.NODE_ENV !== 'production' && !process.env.RENDER) {
 
 app.use(helmetConfig);
 app.use(express.json());
+const isProd = process.env.NODE_ENV === 'production';
 app.use(express.static(path.join(__dirname, '..', 'public'), {
-  maxAge: 0,
+  maxAge: isProd ? '31536000000' : 0, // 1 year in milliseconds
   etag: true,
   lastModified: true,
   setHeaders: (res, filePath) => {
-    if (filePath.endsWith('.html') || filePath.endsWith('.css') || filePath.endsWith('.js')) {
+    if (filePath.endsWith('.html')) {
       res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
       res.setHeader('Pragma', 'no-cache');
       res.setHeader('Expires', '0');
+    } else if (isProd && (filePath.endsWith('.css') || filePath.endsWith('.js') || filePath.endsWith('.svg') || filePath.endsWith('.png') || filePath.endsWith('.json'))) {
+      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
     }
   }
 }));
