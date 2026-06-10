@@ -132,6 +132,10 @@ def main():
     css_dest = os.path.join(repo_dir, "public", "styles.min.css")
     js_src = os.path.join(repo_dir, "public", "app.js")
     js_dest = os.path.join(repo_dir, "public", "app.min.js")
+    i18n_src = os.path.join(repo_dir, "public", "i18n.js")
+    i18n_dest = os.path.join(repo_dir, "public", "i18n.min.js")
+    sw_src = os.path.join(repo_dir, "public", "sw.js")
+    sw_dest = os.path.join(repo_dir, "public", "sw.min.js")
     
     print("Minifying CSS...")
     with open(css_src, "r", encoding="utf-8") as f:
@@ -141,13 +145,31 @@ def main():
         f.write(minified_css)
     print(f"CSS Minified: {len(css_data)} -> {len(minified_css)} bytes")
     
-    print("Minifying JS...")
+    print("Minifying app.js...")
     with open(js_src, "r", encoding="utf-8") as f:
         js_data = f.read()
     minified_js = minify_js(js_data)
+    # Rewrite service worker registration to sw.min.js in production
+    minified_js = minified_js.replace("'/sw.js'", "'/sw.min.js'").replace('"/sw.js"', '"/sw.min.js"')
     with open(js_dest, "w", encoding="utf-8") as f:
         f.write(minified_js)
-    print(f"JS Minified: {len(js_data)} -> {len(minified_js)} bytes")
+    print(f"JS Minified (app.js): {len(js_data)} -> {len(minified_js)} bytes")
+    
+    print("Minifying i18n.js...")
+    with open(i18n_src, "r", encoding="utf-8") as f:
+        i18n_data = f.read()
+    minified_i18n = minify_js(i18n_data)
+    with open(i18n_dest, "w", encoding="utf-8") as f:
+        f.write(minified_i18n)
+    print(f"JS Minified (i18n.js): {len(i18n_data)} -> {len(minified_i18n)} bytes")
+    
+    print("Minifying sw.js...")
+    with open(sw_src, "r", encoding="utf-8") as f:
+        sw_data = f.read()
+    minified_sw = minify_js(sw_data)
+    with open(sw_dest, "w", encoding="utf-8") as f:
+        f.write(minified_sw)
+    print(f"JS Minified (sw.js): {len(sw_data)} -> {len(minified_sw)} bytes")
     
     # Sync to preview directory
     print("Syncing to preview directory...")
@@ -156,6 +178,10 @@ def main():
         f.write(minified_css)
     with open(os.path.join(preview_dir, "public", "app.min.js"), "w", encoding="utf-8") as f:
         f.write(minified_js)
+    with open(os.path.join(preview_dir, "public", "i18n.min.js"), "w", encoding="utf-8") as f:
+        f.write(minified_i18n)
+    with open(os.path.join(preview_dir, "public", "sw.min.js"), "w", encoding="utf-8") as f:
+        f.write(minified_sw)
         
     with open(os.path.join(preview_dir, "styles.min.css"), "w", encoding="utf-8") as f:
         f.write(minified_css)

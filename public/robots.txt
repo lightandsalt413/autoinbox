@@ -5,8 +5,13 @@ Allow: /index.html
 Allow: /privacy.html
 Allow: /terms.html
 Allow: /styles.css
+Allow: /styles.min.css
 Allow: /app.js
+Allow: /app.min.js
 Allow: /i18n.js
+Allow: /i18n.min.js
+Allow: /sw.js
+Allow: /sw.min.js
 
 # Disallow internal pages
 Disallow: /api/
