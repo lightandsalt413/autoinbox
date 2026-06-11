@@ -6980,897 +6980,182 @@ body, #page-landing {
   color: #ffffff !important;
 }
 
-/* 4. Canvas Component & Color Schemes */
-.landing-canvas {
-  background-color: #ffffff !important;
-  color: #1e293b !important;
-  box-shadow: 0 24px 64px rgba(0, 53, 102, 0.08) !important;
+/* ==========================================================================
+   DARK ELEGANT MINIMALISM REDESIGN (USER REQUEST)
+   ========================================================================== */
+
+/* 1. Monochromatic Dark Variables Override for Landing Canvas & Dashboard */
+.landing-canvas, #page-dashboard, #page-dashboard .dash-main {
+  background-color: #0A0A0B !important;
+  color: #e2e8f0 !important;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45) !important;
 }
 
-/* Inherit variable overrides inside the canvas */
-.landing-canvas {
-  --bg: #ffffff;
-  --bg2: #f8fafc;
-  --s: #f1f5f9;
-  --s2: #e2e8f0;
-  --t: #0f172a;
-  --t2: #475569;
+.landing-canvas, #page-dashboard {
+  --bg: #0A0A0B;
+  --bg2: #121316;
+  --s: #1a1b1f;
+  --s2: #27282f;
+  --t: #f8fafc;
+  --t2: #94a3b8;
   --t3: #64748b;
-  --p: #007094;
-  --acc: #007094;
+  --p: #009ecc;
+  --acc: #00c2ff;
 }
 
-/* Override hardcoded dark properties inside canvas */
-.canvas-title {
-  color: #0f172a !important;
+/* Override hardcoded light colors globally for typography in canvas & dashboard */
+.canvas-title, .landing-section .section-h, .dash-main h1, .dash-main h2, .dash-main h3, .dash-main h4 {
+  color: #f8fafc !important;
+  font-family: var(--fh);
 }
-.canvas-desc {
-  color: #475569 !important;
-}
-.landing-section .section-h {
-  color: #0f172a !important;
-}
-.landing-section .section-p {
-  color: #475569 !important;
-}
-.landing-section .timeline-content h3 {
-  color: #0f172a !important;
+.canvas-desc, .landing-section .section-p, .dash-main p {
+  color: #cbd5e1 !important;
 }
 
-/* 5. Header Navigation Pill (Light Mode) */
+/* Nav pill styling */
 .nav-pill {
-  background: rgba(255, 255, 255, 0.9) !important;
-  border: 1.5px solid rgba(0, 112, 148, 0.5) !important;
-  box-shadow: 
-    0 8px 25px rgba(0, 112, 148, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+  background: rgba(10, 10, 11, 0.8) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 .nav-pill-item {
-  color: #334155 !important;
+  color: #cbd5e1 !important;
 }
 .nav-pill-item:hover {
-  color: #007094 !important;
-  background: rgba(0, 112, 148, 0.08) !important;
+  color: #00c2ff !important;
+  background: rgba(255, 255, 255, 0.03) !important;
 }
 
-/* 6. Cards and Bento Grid Elements */
-.feat-card, .step-card, .price-card, .testi-card, .bva-card, .bva-stat, .faq-item {
-  background: #f8fafc !important;
-  border: 1px solid #e2e8f0 !important;
-  box-shadow: 0 10px 30px rgba(0, 53, 102, 0.03) !important;
+/* 2. Glassmorphism Card Textures & Shadows (No harsh borders) */
+.feat-card, .step-card, .price-card, .testi-card, .bva-card, .faq-item, .info-card, .dash-main .card, .dash-main .stat-card, .dash-main .message-card {
+  background: rgba(26, 26, 26, 0.55) !important;
+  border: 1px solid rgba(255, 255, 255, 0.04) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border-radius: 16px !important;
+  color: #cbd5e1 !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
-.feat-card:hover, .step-card:hover, .price-card:hover {
-  border-color: rgba(0, 112, 148, 0.45) !important;
-  background: #ffffff !important;
-  box-shadow: 0 16px 40px rgba(0, 112, 148, 0.08) !important;
-}
-.feat-card h4, .step-card h4, .price-card h4, .price-val {
-  color: #0f172a !important;
-}
-.feat-card p, .step-card p, .price-card ul li, .testi-card p {
-  color: #475569 !important;
-}
-.price-card ul li {
-  border-bottom: 1px solid #e2e8f0 !important;
-}
-.price-card.pop {
-  border-color: #007094 !important;
-  background: #ffffff !important;
-  box-shadow: 0 20px 48px rgba(0, 112, 148, 0.08) !important;
-}
-.bento-large {
-  background: #ffffff !important;
-  border: 1px solid rgba(0, 112, 148, 0.25) !important;
+.feat-card:hover, .step-card:hover, .price-card:hover, .testi-card:hover, .bva-card:hover, .dash-main .message-card:hover {
+  background: rgba(30, 30, 30, 0.7) !important;
+  border-color: rgba(0, 194, 255, 0.2) !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.35), 0 0 15px rgba(0, 194, 255, 0.05), inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
 }
 
-/* 7. CTA Buttons in Canvas */
+/* Headings/Texts inside cards */
+.feat-card h3, .step-card h3, .price-card h3, .testi-card strong, .bva-label, .faq-q, .price-val {
+  color: #f8fafc !important;
+}
+
+/* Input Fields inside Canvas & Dashboard */
+.landing-canvas input, .landing-canvas select, .landing-canvas textarea,
+.dash-main .fg input, .dash-main .fg select, .dash-main .fg textarea {
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  color: #f8fafc !important;
+}
+.landing-canvas input:focus, .landing-canvas select:focus, .landing-canvas textarea:focus,
+.dash-main .fg input:focus, .dash-main .fg select:focus, .dash-main .fg textarea:focus {
+  background: rgba(255, 255, 255, 0.05) !important;
+  border-color: #00c2ff !important;
+}
+
+/* Buttons in Canvas */
 .btn-accent, .canvas-contact-btn {
-  background: linear-gradient(90deg, #003566 0%, #005a78 50%, #007094 100%) !important;
+  background: linear-gradient(90deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
   color: #ffffff !important;
-  box-shadow: 0 4px 15px rgba(0, 112, 148, 0.2) !important;
+  box-shadow: 0 4px 15px rgba(0, 194, 255, 0.2) !important;
   border: none !important;
 }
 .btn-accent:hover, .canvas-contact-btn:hover {
-  box-shadow: 0 6px 22px rgba(0, 112, 148, 0.35) !important;
+  box-shadow: 0 6px 22px rgba(0, 194, 255, 0.4) !important;
   transform: translateY(-2px) !important;
 }
 .btn-ghost, .canvas-download-btn {
   background: transparent !important;
-  color: #003566 !important;
-  border: 1.5px solid rgba(0, 53, 102, 0.3) !important;
+  color: #00c2ff !important;
+  border: 1.5px solid rgba(0, 194, 255, 0.3) !important;
 }
 .btn-ghost:hover, .canvas-download-btn:hover {
-  background: rgba(0, 53, 102, 0.04) !important;
-  color: #003566 !important;
-  border-color: #003566 !important;
-}
-.cta-download-icon {
-  background: rgba(0, 112, 148, 0.1) !important;
+  background: rgba(0, 194, 255, 0.06) !important;
+  border-color: #00c2ff !important;
 }
 
-/* 8. Forms & Inputs Inside Landing Canvas */
-.landing-canvas input, .landing-canvas select, .landing-canvas textarea {
-  background: #f8fafc !important;
-  border: 1px solid #e2e8f0 !important;
-  color: #0f172a !important;
+/* 3. Features Bento Grid CSS Layout Rules */
+.feat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 30px;
 }
-.landing-canvas input:focus, .landing-canvas select:focus, .landing-canvas textarea:focus {
-  background: #ffffff !important;
-  border-color: #007094 !important;
+.feat-card.colspan-2 {
+  grid-column: span 2;
 }
-
-/* Before / After comparisons */
-.landing-section .bva-card.before {
-  border-color: rgba(239, 68, 68, 0.15) !important;
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.02), rgba(239, 68, 68, 0.01)), #ffffff !important;
+.feat-card.colspan-3 {
+  grid-column: span 3;
 }
-.landing-section .bva-card.after {
-  border-color: rgba(16, 185, 129, 0.2) !important;
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.03), rgba(16, 185, 129, 0.01)), #ffffff !important;
+.feat-card.rowspan-2 {
+  grid-row: span 2;
 }
-
-/* FAQ accordion styling */
-.landing-section .faq-item {
-  border-bottom: 1px solid #e2e8f0 !important;
-}
-.landing-section .faq-q {
-  color: #0f172a !important;
+@media (max-width: 768px) {
+  .feat-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+  .feat-card.colspan-2, .feat-card.colspan-3, .feat-card.rowspan-2 {
+    grid-column: span 1 !important;
+    grid-row: span 1 !important;
+  }
 }
 
-/* 9. Auth Screens (Login / Register Modal Pages) */
-#page-login, #page-register {
-  background: #003566 !important;
+/* 4. Typewriter blink cursor keyframes */
+@keyframes blink-cursor {
+  from, to { border-color: transparent }
+  50% { border-color: #00c2ff }
 }
 
+/* 5. Auth Screens (Login / Register Modal Pages) Dark Mode */
 .modal-page .modal-bg {
-  background: rgba(218, 240, 248, 0.7) !important;
+  background: rgba(5, 5, 8, 0.7) !important;
 }
-
 .modal-page .modal-box.auth-modal-box {
-  background: #ffffff !important;
-  border: 1px solid rgba(0, 53, 102, 0.08) !important;
-  box-shadow: 
-    0 32px 80px rgba(0, 53, 102, 0.08), 
-    0 0 0 1px rgba(0, 112, 148, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+  background: #0A0A0B !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6) !important;
+  color: #e2e8f0 !important;
 }
-
 .modal-page .modal-x {
-  background: #f1f5f9 !important;
-  border: 1px solid #e2e8f0 !important;
-  color: #64748b !important;
+  background: rgba(255, 255, 255, 0.03) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  color: #cbd5e1 !important;
 }
 .modal-page .modal-x:hover {
-  background: #e2e8f0 !important;
-  color: #0f172a !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: #ffffff !important;
 }
-
 .modal-page .auth-form button[type="submit"] {
-  background: linear-gradient(90deg, #003566 0%, #005a78 50%, #007094 100%) !important;
-  box-shadow: 0 6px 20px rgba(0, 112, 148, 0.18) !important;
+  background: linear-gradient(90deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
+  box-shadow: 0 6px 20px rgba(0, 194, 255, 0.18) !important;
   color: #ffffff !important;
 }
 .modal-page .auth-form button[type="submit"]:hover {
-  box-shadow: 0 8px 24px rgba(0, 112, 148, 0.28) !important;
+  box-shadow: 0 8px 24px rgba(0, 194, 255, 0.28) !important;
   transform: translateY(-1.5px) !important;
 }
-
 .modal-page .auth-sw a {
-  color: #007094 !important;
+  color: #00c2ff !important;
 }
 .modal-page .auth-sw a:hover {
-  color: #005a78 !important;
+  color: #009ecc !important;
 }
-
-/* Mobile Wave Headers/Footers */
 .mobile-auth-header {
-  background: linear-gradient(135deg, #003566 0%, #007094 100%) !important;
-  box-shadow: 0 8px 24px rgba(0, 53, 102, 0.08) !important;
+  background: linear-gradient(135deg, #003566 0%, #009ecc 100%) !important;
 }
 .mobile-auth-footer {
-  background: linear-gradient(135deg, #007094 0%, #005a78 100%) !important;
-  box-shadow: 0 -8px 24px rgba(0, 112, 148, 0.08) !important;
-}
-
-/* Underline border for input fields in login/signup page */
-.modal-page .fg input, .modal-page .fg select {
-  background: #f8fafc !important;
-  border: 1px solid #e2e8f0 !important;
-  color: #0f172a !important;
-}
-.modal-page .fg input:focus, .modal-page .fg select:focus {
-  background: #ffffff !important;
-  border-color: #009ecc !important;
-}
-
-/* 10. Carousel Mockup Simulator Elements (Light Mode) */
-.mockup-window {
-  background: #ffffff !important;
-  border: 1px solid rgba(0, 53, 102, 0.08) !important;
-  box-shadow: 
-    0 24px 60px rgba(0, 53, 102, 0.05),
-    0 0 0 1px rgba(0, 158, 204, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
-}
-.mockup-header {
-  border-bottom: 1px solid rgba(0, 53, 102, 0.05) !important;
-}
-.mockup-title {
-  color: #0f172a !important;
-}
-.mockup-badge {
-  color: #003566 !important;
-  background: rgba(0, 53, 102, 0.05) !important;
-  border: 1px solid rgba(0, 53, 102, 0.15) !important;
-}
-.mockup-badge.has-new {
-  color: #c53030 !important;
-  background: rgba(220, 60, 60, 0.08) !important;
-  border-color: rgba(220, 60, 60, 0.2) !important;
-}
-.mockup-email {
-  background: #f8fafc !important;
-  border: 1px solid #e2e8f0 !important;
-}
-.mockup-email-name {
-  color: #0f172a !important;
-}
-.mockup-email-subject {
-  color: #475569 !important;
-}
-.mockup-email-time {
-  color: #64748b !important;
-}
-.mockup-email.replying {
-  background: rgba(0, 158, 204, 0.05) !important;
-  border-color: rgba(0, 158, 204, 0.2) !important;
-  box-shadow: 0 0 12px rgba(0, 158, 204, 0.08) !important;
-}
-.mockup-email.replied {
-  background: rgba(22, 163, 74, 0.05) !important;
-  border-color: rgba(22, 163, 74, 0.15) !important;
-}
-.mockup-ai-bar {
-  background: linear-gradient(90deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
-  color: #ffffff !important;
-}
-.mockup-ai-dots span {
-  background: #ffffff !important;
-}
-
-/* Status Pills (Light Mode) */
-.status-pill.active-pill {
-  background: #ffffff !important;
-  color: #009ecc !important;
-  border: 1px solid rgba(0, 158, 204, 0.3) !important;
-  box-shadow: 0 4px 12px rgba(0, 53, 102, 0.05) !important;
-}
-.status-pill.rate-pill {
-  background: #ffffff !important;
-  color: #003566 !important;
-  border: 1px solid rgba(0, 53, 102, 0.15) !important;
-  box-shadow: 0 4px 12px rgba(0, 53, 102, 0.05) !important;
-}
-
-/* Slide 2: Style Cloner Voice Elements */
-.voice-sample-box {
-  background: #f8fafc !important;
-  border: 1px solid #e2e8f0 !important;
-  color: #0f172a !important;
-}
-.voice-analysis-panel {
-  background: #f8fafc !important;
-  border: 1px dashed #e2e8f0 !important;
-}
-.analysis-metric {
-  color: #475569 !important;
-}
-.metric-bar-wrap {
-  background: #e2e8f0 !important;
-}
-.voice-match-badge {
-  background: rgba(0, 158, 204, 0.08) !important;
-  border: 1px solid rgba(0, 158, 204, 0.25) !important;
-  color: #003566 !important;
-}
-
-/* Slide 3: Translator Elements */
-.lang-card {
-  background: #f8fafc !important;
-  border: 1px solid #e2e8f0 !important;
-}
-.lang-sender {
-  color: #0f172a !important;
-}
-.lang-sender .lang-avatar {
-  background: linear-gradient(135deg, rgba(0, 53, 102, 0.1) 0%, rgba(0, 53, 102, 0.05) 100%) !important;
-  border: 1px solid rgba(0, 53, 102, 0.15) !important;
-  color: #003566 !important;
-}
-.lang-message {
-  color: #475569 !important;
-}
-.lang-flag {
-  background: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
-}
-
-/* Slide 4: Stats Slide Elements */
-.stat-mockup-card {
-  background: #f8fafc !important;
-  border: 1px solid #e2e8f0 !important;
-}
-.stat-mockup-card:hover {
-  border-color: rgba(0, 158, 204, 0.3) !important;
-  box-shadow: 0 10px 24px rgba(0, 158, 204, 0.08) !important;
-}
-.stat-mockup-lbl {
-  color: #64748b !important;
-}
-.stats-toggle-row {
-  background: #f8fafc !important;
-  border: 1px solid #e2e8f0 !important;
-}
-.toggle-title {
-  color: #0f172a !important;
-}
-.toggle-subtitle {
-  color: #64748b !important;
-}
-.mockup-switch::after {
-  background: #ffffff !important;
-}
-
-/* Carousel Control Elements */
-.carousel-arrow {
-  background: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
-  color: #0f172a !important;
-  box-shadow: 0 4px 15px rgba(0, 53, 102, 0.08) !important;
-}
-.carousel-arrow:hover {
-  background: #003566 !important;
-  color: #ffffff !important;
-  border-color: #003566 !important;
-}
-.carousel-dot {
-  background: rgba(0, 53, 102, 0.15) !important;
-}
-.carousel-dot.active {
-  background: #009ecc !important;
-  box-shadow: 0 0 8px rgba(0, 158, 204, 0.5) !important;
-}
-
-/* ==========================================================================
-   ALIGNED DASHBOARD LIGHT MODE REDESIGN (USER REQUEST)
-   ========================================================================== */
-
-#page-dashboard {
-  background: #daf0f8 !important;
-}
-
-#page-dashboard .sidebar {
-  background: #0f172a !important; /* Premium brand navy sidebar */
-}
-
-#page-dashboard .dash-main {
-  background: #daf0f8 !important;
-  color: #0f172a !important;
-  box-shadow: 0 24px 64px rgba(0, 53, 102, 0.05) !important;
-}
-
-/* Headings inside Dashboard */
-.dash-main h1, .dash-main h2, .dash-main h3, .dash-main h4, .dash-main h5 {
-  color: #0f172a !important;
-}
-
-/* Dashboard Cards and Settings Sidebar */
-.dash-main .card, .dash-main .card.glass, .dash-main .settings-sidebar {
-  background: #ffffff !important;
-  border: 1px solid rgba(0, 53, 102, 0.08) !important;
-  color: #334155 !important;
-  box-shadow: 0 10px 30px rgba(0, 53, 102, 0.03) !important;
-}
-
-.dash-main .card h3 {
-  color: #0f172a !important;
-}
-
-.dash-main .card p {
-  color: #475569 !important;
-}
-
-.dash-main .profile-box {
-  background: #f8fafc !important;
-  border: 1px solid #e2e8f0 !important;
-  color: #334155 !important;
-}
-
-.dash-main .snav-item {
-  color: #475569 !important;
-}
-
-.dash-main .snav-item:hover {
-  background: rgba(0, 158, 204, 0.05) !important;
-  color: #009ecc !important;
-}
-
-.dash-main .snav-item.active {
-  background: rgba(0, 158, 204, 0.1) !important;
-  color: #003566 !important;
-  border-left-color: #009ecc !important;
-}
-
-/* Dashboard Buttons */
-.dash-main .btn-accent {
-  background: linear-gradient(90deg, #003566 0%, #009ecc 50%, #00c2ff 100%) !important;
-  color: #ffffff !important;
-  border: none !important;
-  box-shadow: 0 4px 14px rgba(0, 158, 204, 0.2) !important;
-}
-
-.dash-main .btn-accent:hover {
-  box-shadow: 0 6px 20px rgba(0, 158, 204, 0.35) !important;
-  transform: translateY(-1.5px) !important;
-}
-
-/* Stat Cards */
-.dash-main .stat-card {
-  background: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
-  color: #334155 !important;
-  box-shadow: 0 4px 16px rgba(0, 53, 102, 0.02) !important;
-}
-
-.dash-main .stat-card .stat-num {
-  color: #0f172a !important;
-}
-
-.dash-main .stat-card .stat-lbl {
-  color: #64748b !important;
-}
-
-/* Filter Tabs */
-.dash-main .tab {
-  border: 1px solid #e2e8f0 !important;
-  color: #475569 !important;
-}
-
-.dash-main .tab:hover {
-  background: rgba(0, 158, 204, 0.05) !important;
-}
-
-.dash-main .tab.active {
-  background: linear-gradient(90deg, #003566 0%, #009ecc 100%) !important;
-  color: #ffffff !important;
-  border-color: transparent !important;
-  box-shadow: 0 4px 12px rgba(0, 158, 204, 0.2) !important;
-}
-
-/* Message Cards */
-.dash-main .message-card {
-  background: #ffffff !important;
-  border: 1px solid #e2e8f0 !important;
-  color: #334155 !important;
-  box-shadow: 0 4px 16px rgba(0, 53, 102, 0.02) !important;
-}
-
-.dash-main .message-card:hover {
-  border-color: #009ecc !important;
-  background: #ffffff !important;
-}
-
-.dash-main .message-avatar {
-  background: linear-gradient(135deg, #003566, #009ecc) !important;
-  color: #ffffff !important;
-}
-
-.dash-main .message-sender {
-  color: #0f172a !important;
-}
-
-.dash-main .message-subject {
-  color: #334155 !important;
-}
-
-.dash-main .message-preview {
-  color: #64748b !important;
-}
-
-/* Input Fields inside Dashboard */
-.dash-main .fg input, .dash-main .fg select, .dash-main .fg textarea {
-  background: #f8fafc !important;
-  border: 1px solid #e2e8f0 !important;
-  color: #0f172a !important;
-}
-
-.dash-main .fg input:focus, .dash-main .fg select:focus, .dash-main .fg textarea:focus {
-  background: #ffffff !important;
-  border-color: #009ecc !important;
-}
-
-/* Logout Modal & Sidebar Logout Button Styles (Light Theme Fix) */
-#logout-modal .modal-box {
-  background: #ffffff !important;
-  border: 1px solid rgba(0, 53, 102, 0.08) !important;
-  color: #0f172a !important;
-  box-shadow: 
-    0 24px 60px rgba(0, 53, 102, 0.12),
-    0 0 0 1px rgba(0, 158, 204, 0.05) !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-}
-
-#logout-modal h3 {
-  color: #0f172a !important;
-  font-weight: 800 !important;
-}
-
-#logout-modal p {
-  color: #475569 !important;
-}
-
-#logout-cancel {
-  border: 1.5px solid #cbd5e1 !important;
-  color: #475569 !important;
-  background: transparent !important;
-  font-weight: 600 !important;
-  transition: all 0.2s ease !important;
-}
-
-#logout-cancel:hover {
-  background: #f1f5f9 !important;
-  border-color: #94a3b8 !important;
-  color: #0f172a !important;
-  transform: translateY(-1.5px) !important;
-}
-
-#logout-confirm {
-  background: linear-gradient(90deg, #dc2626 0%, #f43f5e 100%) !important;
-  color: #ffffff !important;
-  border: none !important;
-  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.25) !important;
-  font-weight: 600 !important;
-  transition: all 0.2s ease !important;
-}
-
-#logout-confirm:hover {
-  background: linear-gradient(90deg, #b91c1c 0%, #e11d48 100%) !important;
-  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4) !important;
-  transform: translateY(-1.5px) !important;
-}
-
-.sidebar #btn-logout {
-  color: rgba(255, 255, 255, 0.75) !important;
-  border: 1.5px solid rgba(255, 255, 255, 0.15) !important;
-  background: transparent !important;
-  font-weight: 600 !important;
-  transition: all 0.2s ease !important;
-}
-
-.sidebar #btn-logout:hover {
-  color: #ffffff !important;
-  border-color: rgba(255, 255, 255, 0.4) !important;
-  background: rgba(255, 255, 255, 0.08) !important;
-  transform: translateY(-1px) !important;
-}
-
-.btn-logout-full {
-  background: rgba(220, 38, 38, 0.06) !important;
-  color: #dc2626 !important;
-  border: 1.5px solid rgba(220, 38, 38, 0.18) !important;
-}
-
-.btn-logout-full:hover {
-  background: #dc2626 !important;
-  color: #ffffff !important;
-  border-color: #dc2626 !important;
-  box-shadow: 0 6px 18px rgba(220, 38, 38, 0.25) !important;
-}
-
-/* Pricing Trial Badge & Buttons Enhancements */
-.trial-badge {
-  background: rgba(16, 185, 129, 0.1) !important;
-  color: #16a34a !important;
-  border: 1px solid rgba(16, 185, 129, 0.2) !important;
-  padding: 4px 12px !important;
-  border-radius: 50px !important;
-  display: inline-block !important;
-  font-size: 0.72rem !important;
-  margin-top: -6px !important;
-  margin-bottom: 16px !important;
-  font-weight: 700 !important;
-  text-transform: uppercase !important;
-  letter-spacing: 0.5px !important;
-  text-align: center !important;
-}
-
-.price-card .btn-ghost {
-  background: rgba(0, 158, 204, 0.04) !important;
-  border: 1.5px solid rgba(0, 158, 204, 0.15) !important;
-  color: #003566 !important;
-  font-weight: 600 !important;
-  transition: all 0.2s ease !important;
-}
-
-.price-card .btn-ghost:hover {
-  background: rgba(0, 158, 204, 0.1) !important;
-  border-color: #009ecc !important;
-  color: #009ecc !important;
-  transform: translateY(-1.5px) !important;
-  box-shadow: 0 4px 12px rgba(0, 158, 204, 0.08) !important;
-}
-
-/* Before vs After Redesign */
-.bva-card.before:hover {
-  transform: translateY(-4px) !important;
-  border-color: rgba(239, 68, 68, 0.3) !important;
-  box-shadow: 0 10px 24px rgba(239, 68, 68, 0.05) !important;
-}
-
-.bva-card.after:hover {
-  transform: translateY(-4px) !important;
-  border-color: rgba(16, 185, 129, 0.4) !important;
-  box-shadow: 0 10px 24px rgba(16, 185, 129, 0.08) !important;
-}
-
-.bva-vs .vs-circle {
-  background: linear-gradient(135deg, #003566 0%, #009ecc 100%) !important;
-  color: #ffffff !important;
-  font-weight: 800 !important;
-  box-shadow: 0 0 15px rgba(0, 158, 204, 0.3) !important;
-  border: 2px solid #ffffff !important;
-  transition: all 0.3s ease !important;
-}
-
-.bva-vs .vs-circle:hover {
-  transform: scale(1.1) rotate(360deg) !important;
-  box-shadow: 0 0 25px rgba(0, 158, 204, 0.5) !important;
-}
-
-/* In-line Feedback Form Glow */
-#form-feedback-inline {
-  transition: all 0.3s ease !important;
-}
-
-#form-feedback-inline:hover {
-  box-shadow: 0 15px 36px rgba(0, 53, 102, 0.06) !important;
-  border-color: rgba(0, 158, 204, 0.2) !important;
-}
-
-/* FAQ Item visibility fixes and transitions */
-.faq-item {
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
-}
-
-.faq-item:hover {
-  border-color: rgba(0, 158, 204, 0.3) !important;
-  background: #ffffff !important;
-  box-shadow: 0 8px 20px rgba(0, 158, 204, 0.05) !important;
-}
-
-.faq-item.open {
-  border-color: #009ecc !important;
-  background: #ffffff !important;
-  box-shadow: 0 12px 28px rgba(0, 158, 204, 0.08) !important;
-}
-
-.faq-item .faq-q {
-  color: #0f172a !important;
-  font-weight: 700 !important;
-  transition: color 0.3s ease !important;
-}
-
-.faq-item.open .faq-q {
-  color: #009ecc !important;
-}
-
-.faq-item .faq-a p {
-  color: #475569 !important;
-  font-size: 0.92rem !important;
-  line-height: 1.6 !important;
-  padding: 0 20px 20px 20px !important;
-}
-
-/* Stacking Context & Language Switcher Redesign (Z-Index Clash Fix) */
-.canvas-header {
-  z-index: 500 !important;
-}
-
-.lang-switcher-dropdown {
-  background: rgba(255, 255, 255, 0.95) !important;
-  border: 1px solid rgba(0, 53, 102, 0.08) !important;
-  box-shadow: 
-    0 10px 30px rgba(0, 53, 102, 0.08), 
-    0 2px 8px rgba(0, 53, 102, 0.04) !important;
-}
-
-.lang-switcher-option {
-  color: #334155 !important;
-}
-
-.lang-switcher-option:hover {
-  background: rgba(0, 158, 204, 0.06) !important;
-  color: #009ecc !important;
-}
-
-.lang-switcher-option.active {
-  background: rgba(0, 158, 204, 0.1) !important;
-  color: #003566 !important;
-}
-
-/* Move bottom-right cutout to very bottom of scroll content (after footer) */
-.cutout-bottom-right {
-  position: relative !important;
-  bottom: auto !important;
-  right: auto !important;
-  order: 999 !important;
-  align-self: flex-end !important;
-}
-.fillet-br-left,
-.fillet-br-top {
-  display: none !important;
-}
-
-/* Hide all numbered feature icons globally */
-.feat-icon {
-  display: none !important;
-}
-
-/* ==========================================================================
-   Restructured Sticky Header & Scrollable Body Modals
-   ========================================================================== */
-
-/* Shifting scroll to body scroll inside modals */
-.modal-box.glass {
-  display: flex !important;
-  flex-direction: column !important;
-  overflow: hidden !important;
-  padding: 0 !important;
-}
-
-.modal-box.glass .modal-header-nav {
-  position: relative !important;
-  flex-shrink: 0 !important;
-  background: #ffffff !important;
-  padding: 16px 24px 14px !important;
-  border-bottom: 1px solid rgba(0, 53, 102, 0.08) !important;
-  z-index: 10 !important;
-  border-top-left-radius: 20px !important;
-  border-top-right-radius: 20px !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-}
-
-.modal-box.glass .modal-header-nav .modal-head {
-  margin-bottom: 0 !important;
-}
-
-.modal-box.glass .modal-body-scroll {
-  overflow-y: auto !important;
-  flex: 1 !important;
-  padding: 8px 20px 16px !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-}
-
-/* Auth Modals Sticky Header styling */
-.modal-page .modal-box.auth-modal-box {
-  padding: 0 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  max-height: 90vh !important;
-  overflow: hidden !important;
-}
-
-.modal-page .modal-box.auth-modal-box .modal-header-nav {
-  position: relative !important;
-  background: #ffffff !important;
-  z-index: 100 !important;
-  padding: 16px 20px 8px !important;
-  border-top-left-radius: 20px !important;
-  border-top-right-radius: 20px !important;
-  flex-shrink: 0 !important;
-  border-bottom: 1px solid rgba(0, 53, 102, 0.08) !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-}
-
-.modal-page .modal-box.auth-modal-box .modal-header-nav.x-only {
-  padding: 8px 20px 0 !important;
-  border-bottom: none !important;
-}
-
-.modal-page .modal-box.auth-modal-box .modal-body-scroll {
-  overflow-y: auto !important;
-  padding: 8px 20px 16px !important;
-  flex-grow: 1 !important;
-  display: flex !important;
-  flex-direction: column !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
-}
-
-.modal-page .modal-box.auth-modal-box .mobile-auth-header {
-  margin: -16px -20px 8px -20px !important;
-  border-top-left-radius: 19px !important;
-  border-top-right-radius: 19px !important;
-}
-
-/* Mobile full-screen overrides for Auth modals to keep flex structure scroll-free on the container */
-@media (max-width: 480px) {
-  .modal-page .modal-box.auth-modal-box {
-    position: fixed !important;
-    inset: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    max-width: none !important;
-    max-height: none !important;
-    border-radius: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    background: #ffffff !important;
-    overflow: hidden !important; /* Shifting scroll to modal-body-scroll */
-    border: none !important;
-    box-shadow: none !important;
-  }
-
-  .modal-page .modal-box.auth-modal-box .modal-header-nav {
-    padding: 10px 14px 6px !important;
-    border-radius: 0 !important;
-  }
-
-  .modal-page .modal-box.auth-modal-box .modal-body-scroll {
-    overflow-y: auto !important;
-    flex: 1 !important;
-    padding: 6px 14px 14px !important;
-  }
-
-  .modal-page .modal-box.auth-modal-box .mobile-auth-header {
-    margin: -10px -14px 6px -14px !important;
-    border-top-left-radius: 0 !important;
-    border-top-right-radius: 0 !important;
-    padding: 40px 16px 24px !important;
-  }
-
-  .modal-page .modal-box.auth-modal-box .mobile-auth-footer {
-    margin: 20px -14px -30px -14px !important;
-    border-bottom-left-radius: 0 !important;
-    border-bottom-right-radius: 0 !important;
-    padding: 24px 16px 40px !important;
-  }
-
-  /* Responsive overrides for general landing page modals */
-  .modal-box.glass .modal-header-nav {
-    padding: 12px 16px 10px !important;
-  }
-
-  .modal-box.glass .modal-header-nav .modal-head {
-    margin-bottom: 0 !important;
-  }
-
-  .modal-box.glass .modal-body-scroll {
-    padding: 6px 14px 14px !important;
-  }
-
-  .modal-box.glass .modal-x {
-    top: 8px !important;
-    right: 10px !important;
-    width: 28px !important;
-    height: 28px !important;
-    font-size: 0.95rem !important;
-  }
-}
-
-/* Custom Scrollbar bindings for the new scroll containers */
-.modal-body-scroll::-webkit-scrollbar-track {
-  background: rgba(0, 53, 102, 0.03);
-}
-
-.modal-body-scroll::-webkit-scrollbar-thumb {
-  background: rgba(0, 53, 102, 0.12);
-  border-radius: 10px;
+  background: linear-gradient(135deg, #009ecc 0%, #003566 100%) !important;
 }
 

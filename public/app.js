@@ -3592,3 +3592,56 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
+
+// Global Language Typewriter loop
+document.addEventListener('DOMContentLoaded', () => {
+  const cycleLangEl = document.getElementById('cycle-lang');
+  if (cycleLangEl) {
+    const languages = [
+      "English",
+      "日本語 (Japanese)",
+      "Español (Spanish)",
+      "Tagalog (Filipino)",
+      "Deutsch (German)",
+      "Français (French)",
+      "العربية (Arabic)",
+      "한국어 (Korean)",
+      "中文 (Chinese)",
+      "Italiano (Italian)",
+      "Русский (Russian)"
+    ];
+    let langIndex = 0;
+    let charIndex = languages[langIndex].length;
+    let isDeleting = false;
+    let typingSpeed = 100;
+    
+    function type() {
+      const currentWord = languages[langIndex];
+      
+      if (isDeleting) {
+        cycleLangEl.textContent = currentWord.substring(0, charIndex - 1);
+        charIndex--;
+        typingSpeed = 50;
+      } else {
+        cycleLangEl.textContent = currentWord.substring(0, charIndex + 1);
+        charIndex++;
+        typingSpeed = 100;
+      }
+      
+      if (!isDeleting && charIndex === currentWord.length) {
+        // Pause at full word
+        typingSpeed = 2000;
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        langIndex = (langIndex + 1) % languages.length;
+        typingSpeed = 500; // Pause before typing next word
+      }
+      
+      setTimeout(type, typingSpeed);
+    }
+    
+    // Start the typewriter loop
+    setTimeout(type, 1000);
+  }
+});
