@@ -35,7 +35,7 @@ if ('scrollRestoration' in history) {
 }
 
 // ===== reCAPTCHA v2 Explicit Rendering =====
-const RECAPTCHA_SITE_KEY = '6LdauhgtAAAAAOIM2D3D7sdlccvqA8HLAH19hciG';
+const RECAPTCHA_SITE_KEY = '6LcB6Q8tAAAAADFvYDqdTBG9nN5xD0-HMdDAnGqI';
 let recaptchaReady = false;
 const recaptchaWidgets = {};
 
