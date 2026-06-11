@@ -125,7 +125,7 @@
   <div id="scroll-progress-bar"></div>
   <!-- Landing -->
   <div id="page-landing" class="page">
-    <canvas id="particles"></canvas>
+
 
     <!-- Premium Morphing Gradient Background -->
     <div class="morphing-bg-wrapper">
@@ -269,10 +269,10 @@
                   <div class="mockup-status-row">
                     <div class="status-pill active-pill">
                       <span class="pulse-dot"></span>
-                      <span>✨ AI Draft Active</span>
+                      <span data-i18n="mockup_ai_draft_active">Auto Draft Active</span>
                     </div>
                     <div class="status-pill rate-pill">
-                      <span>⚡ 100% Reply Rate</span>
+                      <span data-i18n="mockup_reply_rate">100% Response Rate</span>
                     </div>
                   </div>
 
@@ -298,7 +298,7 @@
 
                         <!-- AI Status Bar -->
                         <div class="mockup-ai-bar" id="mockup-ai-bar">
-                          <div class="mockup-ai-icon">⚡</div>
+                          <div class="mockup-ai-icon"></div>
                           <span class="mockup-ai-text" id="mockup-ai-text">AutoInbox Active</span>
                           <div class="mockup-ai-dots" id="mockup-ai-dots">
                             <span></span><span></span><span></span>
@@ -346,7 +346,7 @@
                             </div>
                           </div>
                           <div class="voice-match-badge">
-                            <span>✨ 98.7% Style Match Verified</span>
+                            <span data-i18n="mockup_style_match">98.7% Tone Match Verified</span>
                           </div>
                         </div>
                       </div>
@@ -381,15 +381,15 @@
                           
                           <div class="lang-divider">
                             <div class="lang-divider-line"></div>
-                            <span class="lang-translate-badge">🌐 Translation Active</span>
+                            <span class="lang-translate-badge" data-i18n="mockup_translation_active">Multi-language Enabled</span>
                             <div class="lang-divider-line"></div>
                           </div>
 
                           <div class="lang-card reply">
                             <div class="lang-card-header">
                               <span class="lang-sender" style="color:#16a34a">
-                                <span class="lang-avatar" style="background:rgba(22,163,74,0.1);border-color:rgba(22,163,74,0.2);color:#16a34a">⚡</span>
-                                AutoInbox Draft
+                                <span class="lang-avatar" style="background:rgba(22,163,74,0.1);border-color:rgba(22,163,74,0.2);color:#16a34a">AD</span>
+                                <span data-i18n="mockup_ai_draft">AutoInbox Draft</span>
                               </span>
                               <span class="lang-flag" style="color:#16a34a;background:rgba(22,163,74,0.08);border-color:rgba(22,163,74,0.15)">Ready ✓</span>
                             </div>
@@ -509,8 +509,8 @@
                 
                 <!-- Huge Bento Box Card for Languages / Global Ready -->
                 <div class="feat-card bento-large colspan-3">
-                  <div class="section-tag" style="margin-bottom:6px">Global Ready</div>
-                  <h3>🌍 One Inbox. Every Language.</h3>
+                  <div class="section-tag" style="margin-bottom:6px" data-i18n="lang_tag">Global Ready</div>
+                  <h3 data-i18n="lang_title">One Inbox. Every Language.</h3>
                   <p style="color:var(--t2);font-size:.9rem;margin-top:4px">AutoInbox auto-detects your client's language and replies naturally — no translation apps needed.</p>
                   
                   <div class="lang-showcase">
@@ -549,7 +549,7 @@
             <!-- How It Works Section -->
             <section id="how" class="landing-section">
               <div class="section-tag" data-i18n="how_tag">How It Works</div>
-              <h2 class="section-h" data-i18n="how_title">🛠️ Your AI Clone in 3 Easy Steps</h2>
+              <h2 class="section-h" data-i18n="how_title">Your Auto-Responder in 3 Easy Steps</h2>
               <p class="section-p" data-i18n="how_desc">No technical skills needed. No downloads. Setup takes under 2 minutes.</p>
               
               <div class="timeline">
@@ -708,7 +708,7 @@
         <button class="modal-x" id="login-modal-close" type="button">×</button>
         <div class="modal-head">
           <div class="section-tag" style="margin-bottom:6px" data-i18n="auth_account">Account</div>
-          <h3 data-i18n="auth_welcome">👋 Welcome Back</h3>
+          <h3 data-i18n="auth_welcome">Welcome Back</h3>
           <p style="color:#666;font-size:.9rem;margin-top:4px" data-i18n="auth_login_desc">Log in to your dashboard</p>
         </div>
       </div>
@@ -764,7 +764,7 @@
         <div id="forgot-step-1">
           <div class="modal-head">
             <div class="section-tag" style="margin-bottom:6px" data-i18n="auth_security">Security</div>
-            <h3 data-i18n="auth_forgot_title">🔒 Forgot Password?</h3>
+            <h3 data-i18n="auth_forgot_title">Forgot Password?</h3>
             <p style="color:#666;font-size:.9rem;margin-top:4px" data-i18n="auth_forgot_desc">Enter your email or cellphone number (with country code prefix, e.g. +639171234567) and we'll send you a 6-digit verification code.</p>
           </div>
           <form id="form-forgot-request" class="auth-form" style="margin-top:20px">
@@ -782,7 +782,7 @@
         <div id="forgot-step-2" class="hidden">
           <div class="modal-head">
             <div class="section-tag" style="margin-bottom:6px" data-i18n="auth_security">Security</div>
-            <h3 data-i18n="auth_reset_title">🔒 Reset Password</h3>
+            <h3 data-i18n="auth_reset_title">Reset Password</h3>
             <p style="color:#666;font-size:.9rem;margin-top:4px" data-i18n="auth_reset_desc">Enter the 6-digit code sent to your email or cellphone along with your new password.</p>
           </div>
           <form id="form-forgot-reset" class="auth-form" style="margin-top:20px">
@@ -927,7 +927,7 @@
             </div>
           </div>
         </form>
-        <p style="margin-top:14px;color:#999;font-size:.75rem;text-align:center" data-i18n="auth_encryption">🔒 Your data is protected with AES-256 encryption</p>
+        <p style="margin-top:14px;color:#999;font-size:.75rem;text-align:center" data-i18n="auth_encryption">Your data is protected with AES-256 encryption</p>
         <p class="auth-sw" style="margin-top:10px;text-align:center;color:#1A1A1C;font-size:.85rem"><span data-i18n="auth_has_account">Already have an account?</span> <a href="#" id="link-login" style="color:var(--p);font-weight:600" data-i18n="auth_login_link">Log In</a></p>
 
         <!-- Mobile Wave Footer -->
@@ -962,16 +962,16 @@
       <div id="ob-email-error" class="form-err hidden"></div>
       <div class="ob-btns"><button class="btn-ghost" id="ob-skip-1" data-i18n="ob_skip">Skip</button><button class="btn-accent" id="ob-next-1" data-i18n="ob_connect_btn">Connect</button></div>
     </div>
-    <div class="onboard-step hidden" id="onboard-step-2"><h2 data-i18n="ob_train_title">Train AI Clone</h2><p data-i18n-html="ob_train_desc">Paste <strong>3+ of your real replies</strong> below.</p><div id="voice-samples-container"><div class="fg sg"><label data-i18n="ob_sample_1">Sample 1</label><textarea class="voice-sample" rows="3" placeholder='e.g. "Hi! Yes, I am available..."'></textarea></div><div class="fg sg"><label data-i18n="ob_sample_2">Sample 2</label><textarea class="voice-sample" rows="3" placeholder='e.g. "Thank you for your order!"'></textarea></div><div class="fg sg"><label data-i18n="ob_sample_3">Sample 3</label><textarea class="voice-sample" rows="3" placeholder='e.g. "Hello! Sorry for the delay..."'></textarea></div></div><button class="btn-ghost btn-sm" id="ob-add-sample" data-i18n="ob_add_more">+ Add More</button><div id="ob-voice-error" class="form-err hidden"></div><div class="ob-btns"><button class="btn-ghost" id="ob-skip-2" data-i18n="ob_skip">Skip</button><button class="btn-accent" id="ob-next-2" data-i18n="ob_analyze">Analyze Style</button></div></div>
-    <div class="onboard-step hidden" id="onboard-step-3"><div style="text-align:center;padding:20px 0"><h2 data-i18n="ob_allset">All Set!</h2><p style="color:var(--t2);margin:8px 0 20px" data-i18n="ob_ready">Your AI clone is ready.</p><div id="voice-profile-preview" class="profile-box hidden"><h4 data-i18n="ob_voice_profile">Voice Profile</h4><div id="profile-details"></div></div><button class="btn-accent btn-xl" id="ob-finish" data-i18n="ob_goto_dash">Go to Dashboard</button></div></div>
+    <div class="onboard-step hidden" id="onboard-step-2"><h2 data-i18n="ob_train_title">Train Reply Style</h2><p data-i18n-html="ob_train_desc">Paste <strong>3+ of your real replies</strong> below.</p><div id="voice-samples-container"><div class="fg sg"><label data-i18n="ob_sample_1">Sample 1</label><textarea class="voice-sample" rows="3" placeholder='e.g. "Hi! Yes, I am available..."'></textarea></div><div class="fg sg"><label data-i18n="ob_sample_2">Sample 2</label><textarea class="voice-sample" rows="3" placeholder='e.g. "Thank you for your order!"'></textarea></div><div class="fg sg"><label data-i18n="ob_sample_3">Sample 3</label><textarea class="voice-sample" rows="3" placeholder='e.g. "Hello! Sorry for the delay..."'></textarea></div></div><button class="btn-ghost btn-sm" id="ob-add-sample" data-i18n="ob_add_more">+ Add More</button><div id="ob-voice-error" class="form-err hidden"></div><div class="ob-btns"><button class="btn-ghost" id="ob-skip-2" data-i18n="ob_skip">Skip</button><button class="btn-accent" id="ob-next-2" data-i18n="ob_analyze">Analyze Style</button></div></div>
+    <div class="onboard-step hidden" id="onboard-step-3"><div style="text-align:center;padding:20px 0"><h2 data-i18n="ob_allset">All Set!</h2><p style="color:var(--t2);margin:8px 0 20px" data-i18n="ob_ready">Your profile is ready.</p><div id="voice-profile-preview" class="profile-box hidden"><h4 data-i18n="ob_voice_profile">Reply Profile</h4><div id="profile-details"></div></div><button class="btn-accent btn-xl" id="ob-finish" data-i18n="ob_goto_dash">Go to Dashboard</button></div></div>
   </div></div></div>
 
   <!-- Dashboard -->
   <div id="page-dashboard" class="page hidden">
-    <aside class="sidebar" role="complementary" aria-label="Dashboard sidebar"><div class="sb-top"><div class="logo-sm"><a href="/" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;"><img src="/logo.svg?v=9" width="24" height="24" style="flex-shrink:0; object-fit:contain; vertical-align:middle;" alt="AutoInbox Logo"><span class="logo-text" style="font-size:1.35rem; font-weight:800; background:linear-gradient(135deg, #FFFFFF 30%, #009ecc 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; display:inline-block; letter-spacing:-0.3px; filter:drop-shadow(0 2px 8px rgba(0, 158, 204, 0.15));">AutoInbox</span></a></div></div><nav class="sb-nav" aria-label="Main navigation"><button class="nav-item active" data-page="inbox" id="nav-inbox" aria-label="Inbox"><span></span> Inbox <span class="badge hidden" id="inbox-badge">0</span></button><button class="nav-item" data-page="voice" id="nav-voice" aria-label="Voice Clone"><span></span> Voice Clone</button><button class="nav-item" data-page="plan" id="nav-plan" aria-label="Plan and Billing"><span></span> Plan & Billing</button><button class="nav-item" data-page="settings" id="nav-settings" aria-label="Settings"><span></span> Settings</button><button class="nav-item hidden" data-page="admin" id="nav-admin" aria-label="Admin Dashboard"><span></span> 👑 Admin</button></nav><div class="sb-bot"><div class="plan-badge" id="sidebar-plan"><span class="plan-dot"></span><span>Free Plan</span></div><div class="mon-st"><span class="status-dot" id="monitor-dot"></span><span id="monitor-label">Email</span></div><div class="sb-user"><span class="user-dot"></span><span id="sidebar-user">User</span></div><button class="btn-ghost btn-sm" id="btn-logout" aria-label="Log out">Logout</button></div></aside>
+    <aside class="sidebar" role="complementary" aria-label="Dashboard sidebar"><div class="sb-top"><div class="logo-sm"><a href="/" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;"><img src="/logo.svg?v=9" width="24" height="24" style="flex-shrink:0; object-fit:contain; vertical-align:middle;" alt="AutoInbox Logo"><span class="logo-text" style="font-size:1.35rem; font-weight:800; background:linear-gradient(135deg, #FFFFFF 30%, #009ecc 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; display:inline-block; letter-spacing:-0.3px; filter:drop-shadow(0 2px 8px rgba(0, 158, 204, 0.15));">AutoInbox</span></a></div></div><nav class="sb-nav" aria-label="Main navigation"><button class="nav-item active" data-page="inbox" id="nav-inbox" aria-label="Inbox"><span></span> Inbox <span class="badge hidden" id="inbox-badge">0</span></button><button class="nav-item" data-page="voice" id="nav-voice" aria-label="Voice Clone"><span></span> Reply Style</button><button class="nav-item" data-page="plan" id="nav-plan" aria-label="Plan and Billing"><span></span> Plan & Billing</button><button class="nav-item" data-page="settings" id="nav-settings" aria-label="Settings"><span></span> Settings</button><button class="nav-item hidden" data-page="admin" id="nav-admin" aria-label="Admin Dashboard"><span></span> Admin</button></nav><div class="sb-bot"><div class="plan-badge" id="sidebar-plan"><span class="plan-dot"></span><span>Free Plan</span></div><div class="mon-st"><span class="status-dot" id="monitor-dot"></span><span id="monitor-label">Email</span></div><div class="sb-user"><span class="user-dot"></span><span id="sidebar-user">User</span></div><button class="btn-ghost btn-sm" id="btn-logout" aria-label="Log out">Logout</button></div></aside>
     <main class="dash-main" role="main" aria-label="Dashboard content">
       <section id="dash-inbox" class="dash-section"><div class="dash-head"><h1>Inbox</h1><div class="stats-row"><div class="stat-card"><span class="stat-num" id="stat-today">0</span><span class="stat-lbl">Today</span></div><div class="stat-card warn"><span class="stat-num" id="stat-pending">0</span><span class="stat-lbl">Pending</span></div><div class="stat-card good"><span class="stat-num" id="stat-sent">0</span><span class="stat-lbl">Sent</span></div></div></div><div class="filter-tabs"><button class="tab active" data-filter="all">All</button><button class="tab" data-filter="drafted">Drafted</button><button class="tab" data-filter="pending">Pending</button><button class="tab" data-filter="sent">Sent</button><button class="tab" data-filter="rejected">Skipped</button></div><div id="message-list" class="message-list"><div class="empty-state"><p><strong>No messages yet</strong></p><p style="color:var(--t3)">Messages appear here when received.</p></div></div></section>
-      <section id="dash-voice" class="dash-section hidden"><div class="dash-head"><h1>Voice Clone</h1></div><div class="card glass"><h3>Voice Profile</h3><div id="dash-voice-profile" class="profile-box"><p style="color:var(--t3)">No profile yet. Add samples below.</p></div></div><div class="card glass"><h3>Samples</h3><p style="color:var(--t2);font-size:.9rem;margin-bottom:16px">Paste real replies. Min 3.</p><div id="dash-voice-samples"></div><button class="btn-ghost btn-sm" id="dash-add-sample">+ Add</button><div style="margin-top:16px"><button class="btn-accent" id="dash-analyze">Analyze Style</button></div></div></section>
+      <section id="dash-voice" class="dash-section hidden"><div class="dash-head"><h1>Reply Style</h1></div><div class="card glass"><h3>Profile</h3><div id="dash-voice-profile" class="profile-box"><p style="color:var(--t3)">No profile yet. Add samples below.</p></div></div><div class="card glass"><h3>Samples</h3><p style="color:var(--t2);font-size:.9rem;margin-bottom:16px">Paste real replies. Min 3.</p><div id="dash-voice-samples"></div><button class="btn-ghost btn-sm" id="dash-add-sample">+ Add</button><div style="margin-top:16px"><button class="btn-accent" id="dash-analyze">Analyze Style</button></div></div></section>
       <section id="dash-plan" class="dash-section hidden">
         <div class="dash-head"><h1>Plan &amp; Billing</h1></div>
 
@@ -1099,7 +1099,7 @@
                   <div class="fg">
                     <label for="set-lang">Reply Language</label>
                     <select id="set-lang">
-                      <option value="auto">🌍 Auto-Detect (match sender)</option>
+                      <option value="auto">Auto-Detect (match sender)</option>
                       <option value="en">🇺🇸 English</option>
                       <option value="tl">🇵🇭 Filipino</option>
                       <option value="taglish">🇵🇭 Taglish</option>
@@ -1279,7 +1279,7 @@
 
       </section>
 
-      <section id="dash-admin" class="dash-section hidden"><div class="dash-head"><h1>👑 Admin Dashboard</h1></div>
+      <section id="dash-admin" class="dash-section hidden"><div class="dash-head"><h1>Admin Dashboard</h1></div>
         <div class="admin-stats-grid">
           <div class="stat-card admin-stat"><span class="stat-num" id="admin-total-users">0</span><span class="stat-lbl">Total Users</span></div>
           <div class="stat-card admin-stat good"><span class="stat-num" id="admin-paying">0</span><span class="stat-lbl">Paying</span></div>
@@ -1467,7 +1467,7 @@
         <button class="modal-x" id="languages-modal-close" type="button">×</button>
         <div class="modal-head">
           <div class="section-tag" style="margin-bottom:6px">Global Ready</div>
-          <h3>🌍 One Inbox. Every Language.</h3>
+          <h3>One Inbox. Every Language.</h3>
           <p style="color:var(--t2);font-size:.9rem;margin-top:4px">AutoInbox auto-detects your client's language and replies naturally — no translation apps needed.</p>
         </div>
       </div>
@@ -1588,13 +1588,13 @@
                       </div>
                     </div>
                   </div>
-                  <div class="phone-badge">AutoInbox Active ⚡</div>
+                  <div class="phone-badge">AutoInbox Active</div>
                 </div>
                 <div class="phone-chat-body" id="demo-chat-body"></div>
                 <div class="phone-footer-mock">
                   <div class="phone-input-bar">
-                    <span>AI Clone drafting reply...</span>
-                    <span class="phone-send-icon">⚡</span>
+                    <span>Drafting reply...</span>
+                    <span class="phone-send-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></span>
                   </div>
                 </div>
               </div>
@@ -1613,7 +1613,7 @@
         <button class="modal-x" id="how-modal-close" type="button">×</button>
         <div class="modal-head">
           <div class="section-tag" style="margin-bottom:6px" data-i18n="how_tag">How It Works</div>
-          <h3 data-i18n="how_title">🛠️ Your AI Clone in 3 Easy Steps</h3>
+          <h3 data-i18n="how_title">Your Auto-Responder in 3 Easy Steps</h3>
           <p style="color:var(--t2);font-size:.9rem;margin-top:4px" data-i18n="how_desc">No technical skills needed. No downloads. Setup takes under 2 minutes.</p>
         </div>
       </div>
@@ -1801,7 +1801,7 @@
     <div class="legal-modal-box">
       <div class="legal-modal-header">
         <div>
-          <div class="legal-modal-badge">🔒 Legal</div>
+          <div class="legal-modal-badge">Legal</div>
           <h2>Privacy Policy</h2>
           <p class="legal-modal-date">Last updated: May 20, 2026</p>
         </div>

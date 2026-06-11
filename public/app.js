@@ -2560,42 +2560,42 @@ const DEMO_DATA = {
     name: 'Yuki Tanaka',
     clientMsg: 'ウェブサイトの料金を教えてください。',
     aiReply: '基本的なウェブサイトは$150からです。5〜7日で完成いたします。',
-    replyBadge: '⚡ Auto-replied in 1.2s'
+    replyBadge: 'Auto-replied in 1.2s'
   },
   ko: {
     avatar: 'MK',
     name: 'Min-Jun Kim',
     clientMsg: '로고 디자인 가격이 얼마인가요?',
     aiReply: '로고 디자인은 $80부터 시작합니다. 3~5일 내 완성됩니다.',
-    replyBadge: '⚡ Auto-replied in 0.9s'
+    replyBadge: 'Auto-replied in 0.9s'
   },
   es: {
     avatar: 'SR',
     name: 'Sofía Rodríguez',
     clientMsg: '¿Cuánto cuesta el desarrollo de una app móvil?',
     aiReply: 'El costo inicial es de $500. Depende de las funciones y diseño.',
-    replyBadge: '⚡ Auto-replied in 1.5s'
+    replyBadge: 'Auto-replied in 1.5s'
   },
   fr: {
     avatar: 'LM',
     name: 'Lucas Martin',
     clientMsg: 'Faites-vous des designs pour des e-boutiques?',
     aiReply: 'Oui, nous concevons des boutiques Shopify professionnelles dès 300€.',
-    replyBadge: '⚡ Auto-replied in 1.1s'
+    replyBadge: 'Auto-replied in 1.1s'
   },
   ar: {
     avatar: 'YA',
     name: 'Yousef Al-Harbi',
     clientMsg: 'هل تقدمون خدمات كتابة المحتوى الإعلاني؟',
     aiReply: 'نعم، نقدم خدمات كتابة محتوى احترافية متوافقة مع السيو بسعر يبدأ من 30$ للصفحة.',
-    replyBadge: '⚡ Auto-replied in 1.4s'
+    replyBadge: 'Auto-replied in 1.4s'
   },
   tl: {
     avatar: 'JC',
     name: 'Jay dela Cruz',
     clientMsg: 'Magkano po magpa-gawa ng customized e-commerce site?',
     aiReply: 'Hello Jay! Ang starting price po namin ay ₱7,500, kasama na ang domain, hosting, at payment setup.',
-    replyBadge: '⚡ Auto-replied in 0.8s'
+    replyBadge: 'Auto-replied in 0.8s'
   }
 };
 
@@ -3449,113 +3449,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
-// ===== Canvas Particle Network Motion Graphics =====
-(function() {
-  const canvas = document.getElementById('particles');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  
-  let width = canvas.width = window.innerWidth;
-  let height = canvas.height = window.innerHeight;
-  
-  const particles = [];
-  const mouse = { x: null, y: null, radius: 150 };
-  
-  window.addEventListener('resize', () => {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-  });
-  
-  const container = document.getElementById('page-landing');
-  if (container) {
-    container.addEventListener('mousemove', (e) => {
-      const rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
-    });
-    container.addEventListener('mouseleave', () => {
-      mouse.x = null;
-      mouse.y = null;
-    });
-  }
-  
-  class Particle {
-    constructor() {
-      this.x = Math.random() * width;
-      this.y = Math.random() * height;
-      this.size = Math.random() * 2 + 1;
-      this.vx = (Math.random() - 0.5) * 0.4;
-      this.vy = (Math.random() - 0.5) * 0.4;
-    }
-    
-    draw() {
-      ctx.fillStyle = 'rgba(0, 158, 204, 0.25)';
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.closePath();
-      ctx.fill();
-    }
-    
-    update() {
-      this.x += this.vx;
-      this.y += this.vy;
-      
-      if (this.x < 0 || this.x > width) this.vx = -this.vx;
-      if (this.y < 0 || this.y > height) this.vy = -this.vy;
-      
-      if (mouse.x != null && mouse.y != null) {
-        let dx = mouse.x - this.x;
-        let dy = mouse.y - this.y;
-        let distance = Math.sqrt(dx * dx + dy * dy);
-        if (distance < mouse.radius) {
-          let force = (mouse.radius - distance) / mouse.radius;
-          let directionX = dx / distance;
-          let directionY = dy / distance;
-          this.x -= directionX * force * 2;
-          this.y -= directionY * force * 2;
-        }
-      }
-    }
-  }
-  
-  const particleCount = Math.min(60, Math.floor((width * height) / 20000));
-  for (let i = 0; i < particleCount; i++) {
-    particles.push(new Particle());
-  }
-  
-  function animate() {
-    const landing = document.getElementById('page-landing');
-    if (landing && !landing.classList.contains('hidden')) {
-      ctx.clearRect(0, 0, width, height);
-      
-      for (let a = 0; a < particles.length; a++) {
-        for (let b = a + 1; b < particles.length; b++) {
-          let dx = particles[a].x - particles[b].x;
-          let dy = particles[a].y - particles[b].y;
-          let distance = Math.sqrt(dx * dx + dy * dy);
-          
-          if (distance < 120) {
-            let alpha = (120 - distance) / 120 * 0.15;
-            ctx.strokeStyle = `rgba(0, 158, 204, ${alpha * 1.5})`;
-            ctx.lineWidth = 0.8;
-            ctx.beginPath();
-            ctx.moveTo(particles[a].x, particles[a].y);
-            ctx.lineTo(particles[b].x, particles[b].y);
-            ctx.stroke();
-          }
-        }
-      }
-      
-      particles.forEach(p => {
-        p.update();
-        p.draw();
-      });
-    }
-    requestAnimationFrame(animate);
-  }
-  
-  animate();
-})();
+// Particle animation removed to prevent generic 'AI template' look and optimize performance.
 
 
 // ===== Scroll Reveal Intersection Observer =====
