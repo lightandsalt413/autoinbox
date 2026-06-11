@@ -7269,3 +7269,207 @@ body, #page-landing, .landing-canvas, .landing-sections-container {
   background-image: none !important;
 }
 
+/* ==========================================================================
+   DARK SAAS CINEMATIC FLOW & COHESION ADJUSTMENTS
+   ========================================================================== */
+
+/* 1. Unified Dark Environment & Subtle Ambient Rays */
+.landing-canvas {
+  position: relative !important;
+  background-color: #0A0A0B !important;
+  overflow-x: hidden !important;
+}
+
+.landing-canvas::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 15% !important;
+  left: 10% !important;
+  width: 800px !important;
+  height: 800px !important;
+  background: radial-gradient(circle, rgba(0, 194, 255, 0.035) 0%, transparent 70%) !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
+
+.landing-canvas::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 25% !important;
+  right: 5% !important;
+  width: 900px !important;
+  height: 900px !important;
+  background: radial-gradient(circle, rgba(0, 194, 255, 0.025) 0%, transparent 70%) !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
+
+/* 2. Soft Gradient Transitions Between Sections (Seamless Scroll) */
+.landing-section {
+  position: relative !important;
+  background: linear-gradient(180deg, transparent 0%, rgba(18, 18, 24, 0.2) 25%, rgba(18, 18, 24, 0.2) 75%, transparent 100%) !important;
+  border-bottom: none !important;
+  padding: 80px 0 !important;
+  z-index: 1 !important;
+}
+
+.landing-section::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 10% !important;
+  width: 80% !important;
+  height: 1px !important;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03), transparent) !important;
+  pointer-events: none !important;
+}
+
+/* 3. Soften Card Borders Globally to Minimize "Islands" Effect */
+.feat-card, .step-card, .price-card, .testi-card, .bva-card, .faq-item, .info-card {
+  border: 1px solid rgba(255, 255, 255, 0.03) !important;
+  background: rgba(14, 14, 18, 0.4) !important;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.02) !important;
+}
+
+.feat-card:hover, .step-card:hover, .price-card:hover, .testi-card:hover, .bva-card:hover {
+  background: rgba(20, 20, 26, 0.5) !important;
+  border-color: rgba(0, 194, 255, 0.15) !important;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55), 0 0 24px rgba(0, 194, 255, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.06) !important;
+}
+
+/* 4. Unified Horizontal Header (Removing Hard Cutouts) */
+.landing-header-wrapper {
+  position: relative !important;
+  background: rgba(10, 10, 11, 0.4) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  height: 76px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0 40px !important;
+  z-index: 500 !important;
+  pointer-events: auto !important;
+}
+
+.cutout-top-left, .cutout-top-right, .cutout-bottom-right {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  min-width: 0 !important;
+  background: transparent !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  z-index: auto !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+.cutout-top-right {
+  justify-content: flex-end !important;
+}
+
+/* Hide fillets completely to remove blocky cutout curves */
+.fillet {
+  display: none !important;
+}
+
+/* 5. Consistent Background Depth for Mockup Window (My Inbox / Style Cloner Cards) */
+.mockup-window {
+  background: rgba(18, 19, 23, 0.8) !important; /* Brought closer to background charcoal slate */
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  box-shadow: 
+    0 24px 60px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04) !important;
+  color: #f8fafc !important;
+}
+
+.mockup-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.mockup-title {
+  color: #f8fafc !important;
+  font-family: 'Cabinet Grotesk', system-ui, sans-serif !important;
+  letter-spacing: 0.5px !important;
+}
+
+.mockup-badge {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  color: #cbd5e1 !important;
+}
+
+.mockup-badge.has-new {
+  background: rgba(0, 194, 255, 0.12) !important;
+  border-color: rgba(0, 194, 255, 0.25) !important;
+  color: #00c2ff !important;
+}
+
+/* Email Row inside Dark Mockup */
+.mockup-email {
+  background: rgba(255, 255, 255, 0.02) !important;
+  border: 1px solid rgba(255, 255, 255, 0.04) !important;
+}
+
+.mockup-email.replying {
+  background: rgba(0, 194, 255, 0.06) !important;
+  border-color: rgba(0, 194, 255, 0.18) !important;
+  box-shadow: 0 0 16px rgba(0, 194, 255, 0.08) !important;
+}
+
+.mockup-email.replied {
+  background: rgba(16, 185, 129, 0.04) !important;
+  border-color: rgba(16, 185, 129, 0.15) !important;
+}
+
+.mockup-avatar {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #cbd5e1 !important;
+}
+
+.mockup-email-name {
+  color: #f8fafc !important;
+}
+
+.mockup-email-subject {
+  color: rgba(255, 255, 255, 0.45) !important;
+}
+
+.mockup-email-time {
+  color: rgba(255, 255, 255, 0.35) !important;
+}
+
+.mockup-replied-badge {
+  background: rgba(16, 185, 129, 0.1) !important;
+  border: 1px solid rgba(16, 185, 129, 0.2) !important;
+  color: #10b981 !important;
+}
+
+.mockup-typing-label {
+  color: #00c2ff !important;
+}
+
+.mockup-typing-bubble {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+.mockup-typing-bubble span {
+  background: #00c2ff !important;
+}
+
+/* Mockup AI Status Bar */
+.mockup-ai-bar {
+  background: #121316 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.04) !important;
+  color: #cbd5e1 !important;
+}
+
+.mockup-ai-text {
+  color: #f8fafc !important;
+}
+
